@@ -8,6 +8,7 @@ import Business.*;
 import EntityLayer.*;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,4 +28,12 @@ public class TipoInfraestructuraController {
 
     }
     
+ @GetMapping("/GetTipoInfraestructuraItem/{TipoInfraestructuraId}")
+    public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItem(@PathVariable int TipoInfraestructuraId) {
+
+        TipoInfraestructura BS = new TipoInfraestructura();
+        return BS.GetTipoInfraestructuraItem(TipoInfraestructuraId);
+
+    }
+   
 }
