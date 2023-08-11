@@ -21,4 +21,11 @@ public class TipoElemento {
         return BD.GetTipoElementoItems();
         
     }
+    
+       public ArrayList<TipoElementoEntity> GetTipoElementoItem(int TipoElementoId) {
+        
+        TipoElementoDB BD = new TipoElementoDB();
+        return BD.GetTipoElementoItem(TipoElementoId);
+        
+    }
 }

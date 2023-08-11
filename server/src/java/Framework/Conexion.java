@@ -20,14 +20,10 @@ public class Conexion {
 //    private String nombre_BD = "DBAlmacenLogistico";
     private Connection con = null;
 
-    
-    private String URL = "jdbc:mysql://localhost:3306/SpaceDB?autoReconnect=true&useSSL=false";
-    String jdbcUrl = "jdbc:mysql://localhost:3306/logisticstoragedb";
-    String usuario = "root";
-    String contraseña = "123456";
-    String driver = "com.mysql.jdbc.Driver";
-
-      
+    private String URL = "jdbc:mysql://localhost:3306/spaceDB?autoReconnect=true&useSSL=false";
+    private String usuario = "root";
+    private String contraseña = "123456";
+    private String driver = "com.mysql.jdbc.Driver";
 
     public Connection ConexionBD() {
         try {

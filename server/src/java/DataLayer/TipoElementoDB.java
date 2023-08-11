@@ -42,4 +42,29 @@ public class TipoElementoDB {
         }
         return DatoMemoria;
     }
+
+    public ArrayList<TipoElementoEntity> GetTipoElementoItem(int TipoElementoId) {
+
+        ArrayList<TipoElementoEntity> DatoMemoria = new ArrayList<>();
+        TipoElementoEntity en;
+        try {
+
+            Inj.Sp("sp_TipoElementoItem");
+            Inj.Pmt_Integer("v_TipoElementoId", TipoElementoId, false);
+            ResultSet rs = Inj.RunSelect();
+            while (rs.next()) {
+
+                en = new TipoElementoEntity();
+                en.setTipoElementoId(rs.getInt("TipoElementoId"));
+                en.setNombre(rs.getString("Nombre"));
+                DatoMemoria.add(en);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR" + e);
+            throw new UnsupportedOperationException("Datalater :" + e);
+        }
+        return DatoMemoria;
+    }
 }
