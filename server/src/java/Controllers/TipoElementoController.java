@@ -39,7 +39,7 @@ public class TipoElementoController {
     @Produces(MediaType.APPLICATION_XML)
     public String getXml() {
         //TODO return proper representation object
-        throw new UnsupportedOperationException();
+     return "";
     }
 
     /**
