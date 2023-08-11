@@ -21,7 +21,7 @@ public class Conexion {
     private Connection con = null;
 
     
-    private String URL = "jdbc:mysql://localhost:3306/logisticstoragedb?autoReconnect=true&useSSL=false";
+    private String URL = "jdbc:mysql://localhost:3306/SpaceDB?autoReconnect=true&useSSL=false";
     String jdbcUrl = "jdbc:mysql://localhost:3306/logisticstoragedb";
     String usuario = "root";
     String contraseña = "123456";

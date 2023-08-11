@@ -5,6 +5,9 @@
  */
 package Controllers;
 
+import Business.TipoElemento;
+import EntityLayer.TipoElementoEntity;
+import java.util.ArrayList;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -36,10 +39,13 @@ public class TipoElementoController {
      * @return an instance of java.lang.String
      */
     @GET
-    @Produces(MediaType.APPLICATION_XML)
-    public String getXml() {
-        //TODO return proper representation object
-     return "";
+    @Produces(MediaType.APPLICATION_JSON)
+    public  ArrayList<TipoElementoEntity>  getJson() {
+        
+        
+                
+        TipoElemento BS = new TipoElemento();
+        return BS.GetTipoElementoItems();
     }
 
     /**
@@ -47,7 +53,7 @@ public class TipoElementoController {
      * @param content representation for the resource
      */
     @PUT
-    @Consumes(MediaType.APPLICATION_XML)
+    @Consumes(MediaType.APPLICATION_JSON)
     public void putXml(String content) {
     }
 }
