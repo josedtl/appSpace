@@ -31,6 +31,9 @@ public class TipoInfraestructuraDB {
                 en = new TipoInfraestructuraEntity();
                 en.setTipoInfraestructuraId(rs.getInt("TipoInfraestructuraId"));
                 en.setNombre(rs.getString("Nombre"));
+                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setCodUsuario(rs.getString("CodUsuario"));
+                en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
 
             }
