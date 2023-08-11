@@ -14,17 +14,24 @@ import java.util.ArrayList;
  */
 public class TipoInfraestructura {
     
-//    public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItems() {
-//        
-//        TipoElementoDB BD = new TipoElementoDB();
-//        return BD.GetTipoInfraestructuraItems();
-//        
-//    }
-//    
-//       public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItems(int TipoElementoId) {
-//        
-//        TipoElementoDB BD = new TipoElementoDB();
-//        return BD.GetTipoElementoItem(TipoElementoId);
-//        
-//    }
+    public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItems() {
+        
+        TipoInfraestructuraDB BD = new TipoInfraestructuraDB();
+        return BD.GetTipoInfraestructuraItems();
+        
+    }
+    
+       public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItem(int TipoInfraestructuraId) {
+        
+        TipoInfraestructuraDB BD = new TipoInfraestructuraDB();
+        return BD.GetTipoInfraestructuraItem(TipoInfraestructuraId);
+        
+    }
+              
+    public Boolean Save(TipoInfraestructuraEntity Item) {
+
+        TipoInfraestructuraDB BD = new TipoInfraestructuraDB();
+        return BD.Save(Item);
+
+    }
 }

@@ -16,7 +16,7 @@ public class TipoInfraestructuraEntity {
   private String Nombre; 
   private Date FechaRegistro ; 
   private String CodUsuario ;
-  private String EstadoRegistro ;
+  private boolean EstadoRegistro ;
 
   public int getTipoInfraestructuraId() {
         return TipoInfraestructuraId;
@@ -50,11 +50,11 @@ public class TipoInfraestructuraEntity {
         this.CodUsuario = CodUsuario;
     }
 
-    public String getEstadoRegistro() {
+    public boolean getEstadoRegistro() {
         return EstadoRegistro;
     }
 
-    public void setEstadoRegistro(String EstadoRegistro) {
+    public void setEstadoRegistro(boolean EstadoRegistro) {
         this.EstadoRegistro = EstadoRegistro;
     }
     
