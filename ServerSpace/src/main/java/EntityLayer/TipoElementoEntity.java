@@ -78,7 +78,7 @@ public class TipoElementoEntity {
     /**
      * @return the estadoRegistro
      */
-    public boolean isEstadoRegistro() {
+    public boolean getEstadoRegistro() {
         return estadoRegistro;
     }
 

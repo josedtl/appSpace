@@ -32,6 +32,9 @@ public class TipoElementoDB {
                 en = new TipoElementoEntity();
                 en.setTipoElementoId(rs.getInt("TipoElementoId"));
                 en.setNombre(rs.getString("Nombre"));
+                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setCodUsuario(rs.getString("CodUsuario"));
+                en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
 
             }
@@ -57,6 +60,9 @@ public class TipoElementoDB {
                 en = new TipoElementoEntity();
                 en.setTipoElementoId(rs.getInt("TipoElementoId"));
                 en.setNombre(rs.getString("Nombre"));
+                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setCodUsuario(rs.getString("CodUsuario"));
+                en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
 
             }
@@ -67,4 +73,28 @@ public class TipoElementoDB {
         }
         return DatoMemoria;
     }
+
+    public Boolean Save(TipoElementoEntity entity) {
+        Boolean State = null;
+        try {
+
+            if (entity.getTipoElementoId() == 0) {
+                Inj.Sp("sp_TipoElementoSave");
+            } else {
+                Inj.Sp("sp_TipoElementoUpdate");
+            }
+
+            Inj.Pmt_Integer("v_TipoElementoId", entity.getTipoElementoId(), false);
+            Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
+            Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
+            Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
+
+            State = Inj.RunInsert() > 0;
+
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Datalater :" + ex);
+        }
+        return State;
+    }
+
 }

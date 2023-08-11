@@ -16,16 +16,23 @@ import java.util.ArrayList;
 public class TipoElemento {
 
     public ArrayList<TipoElementoEntity> GetTipoElementoItems() {
-        
+
         TipoElementoDB BD = new TipoElementoDB();
         return BD.GetTipoElementoItems();
-        
+
     }
-    
-       public ArrayList<TipoElementoEntity> GetTipoElementoItem(int TipoElementoId) {
-        
+
+    public ArrayList<TipoElementoEntity> GetTipoElementoItem(int TipoElementoId) {
+
         TipoElementoDB BD = new TipoElementoDB();
         return BD.GetTipoElementoItem(TipoElementoId);
-        
+
+    }
+
+    public Boolean Save(TipoElementoEntity Ent) {
+
+        TipoElementoDB BD = new TipoElementoDB();
+        return BD.Save(Ent);
+
     }
 }

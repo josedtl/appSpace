@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/api/TipoElemento")
 public class TipoElementoController {
-    
+
 //http://localhost:8080/api/TipoElemento/GetTipoElementoItems
     @GetMapping("/GetTipoElementoItems")
     public ArrayList<TipoElementoEntity> GetTipoElementoItems() {
@@ -30,16 +30,21 @@ public class TipoElementoController {
         return BS.GetTipoElementoItems();
 
     }
-   @GetMapping("/GetTipoElementoItem/{TipoElementoId}")
+
+    @GetMapping("/GetTipoElementoItem/{TipoElementoId}")
     public ArrayList<TipoElementoEntity> GetTipoElementoItem(@PathVariable int TipoElementoId) {
 
         TipoElemento BS = new TipoElemento();
         return BS.GetTipoElementoItem(TipoElementoId);
 
     }
-    
-    
-    
-    
+
+    @PostMapping("/Save")
+    public Boolean Save(@RequestBody TipoElementoEntity Ent) {
+
+        TipoElemento BS = new TipoElemento();
+        return BS.Save(Ent);
+
+    }
 
 }
