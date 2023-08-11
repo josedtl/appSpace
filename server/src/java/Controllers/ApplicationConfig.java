@@ -29,9 +29,14 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(Controllers.DocumentoIdentidadController.class);
         resources.add(Controllers.ElementoController.class);
+        resources.add(Controllers.InfraEstructuraController.class);
+        resources.add(Controllers.InfraEstructuraElementoController.class);
+        resources.add(Controllers.PersonaNaturalController.class);
         resources.add(Controllers.TipoElementoController.class);
         resources.add(Controllers.TipoInfraEstructuraController.class);
+        resources.add(Controllers.UbigeoController.class);
     }
     
 }
