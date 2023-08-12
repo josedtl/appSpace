@@ -7,3 +7,8 @@ ng g s services/TipoElementoService
 
 Ejecutar servidor
 npm start
+
+Emergencia
+npm install
+ng update
+npm update
