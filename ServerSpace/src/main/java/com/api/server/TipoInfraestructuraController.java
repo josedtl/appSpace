@@ -25,19 +25,19 @@ public class TipoInfraestructuraController {
         return BS.GetTipoInfraestructuraItems();
 
     }
-    
- @GetMapping("/GetTipoInfraestructuraItem/{TipoInfraestructuraId}")
-    public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItem(@PathVariable int TipoInfraestructuraId) {
-
-        TipoInfraestructura BS = new TipoInfraestructura();
-        return BS.GetTipoInfraestructuraItem(TipoInfraestructuraId);
-
-    }
-    @PostMapping("/Save")
-    public Boolean Save(@RequestBody TipoInfraestructuraEntity Ent) {
-
-        TipoInfraestructura BS = new TipoInfraestructura();
-        return BS.Save(Ent);
-
-    }
+//    
+// @GetMapping("/GetTipoInfraestructuraItem/{TipoInfraestructuraId}")
+//    public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItem(@PathVariable int TipoInfraestructuraId) {
+//
+//        TipoInfraestructura BS = new TipoInfraestructura();
+//        return BS.GetTipoInfraestructuraItem(TipoInfraestructuraId);
+//
+//    }
+//    @PostMapping("/Save")
+//    public Boolean Save(@RequestBody TipoInfraestructuraEntity Ent) {
+//
+//        TipoInfraestructura BS = new TipoInfraestructura();
+//        return BS.Save(Ent);
+//
+//    }
 }
