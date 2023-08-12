@@ -79,7 +79,7 @@ public class TipoInfraestructuraDB {
                 Inj.Sp("sp_TipoInfraestructuraUpdate");
             }
 
-            Inj.Pmt_Integer("v_TipoElementoId", entity.getTipoInfraestructuraId(), false);
+            Inj.Pmt_Integer("v_TipoInfraestructuraId", entity.getTipoInfraestructuraId(), false);
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
