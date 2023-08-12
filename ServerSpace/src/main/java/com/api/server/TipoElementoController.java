@@ -8,6 +8,7 @@ import Business.TipoElemento;
 import EntityLayer.TipoElementoEntity;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,13 @@ public class TipoElementoController {
         TipoElemento BS = new TipoElemento();
         return BS.Save(Ent);
 
+    }
+
+    @DeleteMapping("Delete/{Id}")
+    public Boolean deteteUser(@PathVariable int Id) {
+
+        TipoElemento BS = new TipoElemento();
+        return BS.Delete(Id);
     }
 
 }

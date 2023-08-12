@@ -1,29 +1,55 @@
+<div class="container">
+  <div>
+    <!-- Botón para abrir la ventana emergente -->
+    <button class="btn btn-primary" (click)="openModal()">Abrir Ventana Emergente</button>
 
-  <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Nombre</th>
-          <th scope="col">Fecha Registro</th>
-          <th scope="col">Usuario</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let game of TipoElementoItems">
-          <td>{{ game.nombre }}</td>
-          <td>{{ game.fechaRegistro | date: 'yyyy-MM-dd' }}</td>
-          <td>{{ game.codUsuario }}</td>
-          <td>
-            <!-- Uncomment and customize as needed -->
-            <!-- <button class="btn btn-danger" (click)="deleteGame(game.id)">
+    <!-- Ventana emergente -->
+    <div #saveModal class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Guardar Nuevo Elemento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="saveItem()">
+              <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" id="name" [(ngModel)]="newItem.nombre" name="name">
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Fecha Registro</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of TipoElementoItems">
+        <td>{{ game.nombre }}</td>
+        <td>{{ game.fechaRegistro | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ game.codUsuario }}</td>
+        <td>
+          <!-- Uncomment and customize as needed -->
+          <button class="btn btn-danger" (click)="Delete_Metho(game.tipoElementoId)">
               <i class="far fa-trash-alt"></i>
             </button>
-            <a [routerLink]="['/games/edit', game.id]" class="btn btn-info">
+            <!-- <a [routerLink]="['/games/edit', game.id]" class="btn btn-info">
               Edit
             </a> -->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

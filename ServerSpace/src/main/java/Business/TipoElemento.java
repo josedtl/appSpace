@@ -35,4 +35,11 @@ public class TipoElemento {
         return BD.Save(Ent);
 
     }
+
+    public Boolean Delete(int Id) {
+
+        TipoElementoDB BD = new TipoElementoDB();
+        return BD.Delete(Id);
+
+    }
 }

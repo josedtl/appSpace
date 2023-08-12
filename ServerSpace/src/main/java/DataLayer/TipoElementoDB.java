@@ -96,5 +96,14 @@ public class TipoElementoDB {
         }
         return State;
     }
+    
+       public Boolean Delete(Integer entity) {
+        Boolean State = null;
+        Inj.Sp("sp_TipoElementoDelete");
+        Inj.Pmt_Integer("v_TipoElementoId", entity, false);
+        State = Inj.RunDelete() > 0;
+        return State;
+
+    }
 
 }
