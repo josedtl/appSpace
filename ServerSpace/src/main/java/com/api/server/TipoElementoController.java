@@ -7,6 +7,7 @@ package com.api.server;
 import Business.TipoElemento;
 import EntityLayer.TipoElementoEntity;
 import java.util.ArrayList;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TipoElementoController {
 
 //http://localhost:8080/api/TipoElemento/GetTipoElementoItems
+//    @CrossOrigin(origins = "http://localhost:4200/")
     @GetMapping("/GetTipoElementoItems")
     public ArrayList<TipoElementoEntity> GetTipoElementoItems() {
 

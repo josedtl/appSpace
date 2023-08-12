@@ -1,0 +1,29 @@
+
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Fecha Registro</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let game of TipoElementoItems">
+          <td>{{ game.nombre }}</td>
+          <td>{{ game.fechaRegistro | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ game.codUsuario }}</td>
+          <td>
+            <!-- Uncomment and customize as needed -->
+            <!-- <button class="btn btn-danger" (click)="deleteGame(game.id)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+            <a [routerLink]="['/games/edit', game.id]" class="btn btn-info">
+              Edit
+            </a> -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
