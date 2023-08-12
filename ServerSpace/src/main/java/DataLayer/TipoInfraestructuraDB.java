@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DataLayer;
 
 import EntityLayer.*;
@@ -31,6 +28,9 @@ public class TipoInfraestructuraDB {
                 en = new TipoInfraestructuraEntity();
                 en.setTipoInfraestructuraId(rs.getInt("TipoInfraestructuraId"));
                 en.setNombre(rs.getString("Nombre"));
+                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setCodUsuario(rs.getString("CodUsuario"));
+                en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
 
             }
@@ -83,7 +83,6 @@ public class TipoInfraestructuraDB {
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
-
             State = Inj.RunInsert() > 0;
 
         } catch (Exception ex) {
