@@ -94,7 +94,7 @@ public class TipoInfraestructuraDB {
         public Boolean Delete(Integer entity) {
         Boolean State = null;
         Inj.Sp("sp_TipoInfraestructuraDelete");
-        Inj.Pmt_Integer("v_TipoInfraestructuraoId", entity, false);
+        Inj.Pmt_Integer("v_TipoInfraestructuraId", entity, false);
         State = Inj.RunDelete() > 0;
         return State;
 
