@@ -32,6 +32,8 @@ export class TipoElementoMainComponent implements OnInit {
   ngOnInit() {
     this.getGames();
   }
+
+  
   getGames() {
     this.tipoelementoserviceservice.getTipoElemento()
       .subscribe(

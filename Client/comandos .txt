@@ -1,3 +1,9 @@
+Crear Componente
 ng g c components/TipoElementoMain
 
+Crear Servicio
 ng g s services/TipoElementoService
+
+
+Ejecutar servidor
+npm start
