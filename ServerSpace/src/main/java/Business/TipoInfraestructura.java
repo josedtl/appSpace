@@ -1,8 +1,9 @@
 
 package Business;
 
-import DataLayer.*;
-import EntityLayer.*;
+
+import DataLayer.TipoInfraestructuraDB;
+import EntityLayer.TipoInfraestructuraEntity;
 import java.util.ArrayList;
 
 /**
