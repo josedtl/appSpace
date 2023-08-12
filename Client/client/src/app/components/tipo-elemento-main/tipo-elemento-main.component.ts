@@ -21,16 +21,16 @@ export class TipoElementoMainComponent implements OnInit {
     estadoRegistro: true
   };
 
-  TipoElementoItems: any= [];;
+  TipoElementoItems: any = [];;
 
   constructor(private tipoelementoserviceservice: TipoElementoServiceService) {
 
-    this.getGames();
-   }
+    // this.getGames();
+  }
 
 
   ngOnInit() {
-    // this.getGames();
+    this.getGames();
   }
   getGames() {
     this.tipoelementoserviceservice.getTipoElemento()
@@ -48,16 +48,7 @@ export class TipoElementoMainComponent implements OnInit {
   closeModal() {
     this.saveModal.nativeElement.style.display = 'none';
   }
-  // saveItem() {
-  //   console.log(this.newItem);
-  //   this.tipoelementoserviceservice.saveTipoElemento(this.newItem).subscribe(() => {
-  //     this.closeModal(); // Cierra la ventana emergente después de guardar
-  //   });
-
-
-
-  // }
-
+ 
 
   saveItem() {
     delete this.newItem.fechaRegistro;
@@ -65,23 +56,22 @@ export class TipoElementoMainComponent implements OnInit {
     this.tipoelementoserviceservice.saveTipoElemento(this.newItem)
       .subscribe(
         res => {
-          console.log(res);
+          this.getGames();
+          // console.log(res);
         },
         err => console.error(err)
       )
     this.closeModal();
-    this.getGames();
 
   }
   Delete_Metho(Id: number) {
     this.tipoelementoserviceservice.deleteTipoElemento(Id)
       .subscribe(
         res => {
-          console.log(res)
+          this.getGames();
         },
         err => console.error(err)
       );
-    this.getGames();
   }
 
 }
