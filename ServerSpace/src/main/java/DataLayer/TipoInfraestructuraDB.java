@@ -91,5 +91,12 @@ public class TipoInfraestructuraDB {
         return State;
     }
 
+        public Boolean Delete(Integer entity) {
+        Boolean State = null;
+        Inj.Sp("sp_TipoInfraestructuraDelete");
+        Inj.Pmt_Integer("v_TipoInfraestructuraId", entity, false);
+        State = Inj.RunDelete() > 0;
+        return State;
 
+    }
 }

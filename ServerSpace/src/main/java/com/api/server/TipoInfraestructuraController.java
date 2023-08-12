@@ -3,6 +3,7 @@ package com.api.server;
 import Business.*;
 import EntityLayer.*;
 import java.util.ArrayList;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,4 +41,11 @@ public class TipoInfraestructuraController {
         return BS.Save(Ent);
 
     }
+    @DeleteMapping("Delete/{Id}")
+    public Boolean deteteUser(@PathVariable int Id) {
+
+        TipoInfraestructura BS = new TipoInfraestructura();
+        return BS.Delete(Id);
+    }
+
 }

@@ -32,4 +32,11 @@ public class TipoInfraestructura {
         return BD.Save(Ent);
 
     }
+    
+    public Boolean Delete(int Id) {
+
+        TipoInfraestructuraDB BD = new TipoInfraestructuraDB();
+        return BD.Delete(Id);
+
+    }
 }
