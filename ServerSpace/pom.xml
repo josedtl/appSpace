@@ -47,7 +47,7 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version> <!-- La versión más actual -->
+            <version>3.0.0</version> <!-- Asegúrate de usar la versión más reciente -->
         </dependency>
     </dependencies>
 

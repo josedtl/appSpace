@@ -1,0 +1,3 @@
+ng g c components/TipoElementoMain
+
+ng g s services/TipoElementoService
