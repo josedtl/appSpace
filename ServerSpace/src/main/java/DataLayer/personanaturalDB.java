@@ -20,7 +20,7 @@ public class personanaturalDB {
         personanaturalEntity en;
         try {
 
-            Inj.Sp("sp_TipoElementoItems");
+            Inj.Sp("sp_personanaturalItems");
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
 
