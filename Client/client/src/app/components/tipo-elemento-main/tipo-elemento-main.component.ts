@@ -55,12 +55,10 @@ export class TipoElementoMainComponent implements OnInit {
 
 
   saveItem() {
-    console.log(this.newItem);
     this.tipoelementoserviceservice.saveTipoElemento(this.newItem)
       .subscribe(
         res => {
           this.getGames();
-          // console.log(res);
         },
         err => console.error(err)
       )
@@ -80,12 +78,6 @@ export class TipoElementoMainComponent implements OnInit {
     this.openModal();
     data.action = 3
     this.newItem = data;
-    // this.tipoelementoserviceservice.saveTipoElemento(data)
-    //   .subscribe(
-    //     res => {
-    //       this.getGames();
-    //     },
-    //     err => console.error(err)
-    //   );
+
   }
 }
