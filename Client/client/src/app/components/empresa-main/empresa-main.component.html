@@ -1,0 +1,52 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Tipo Documento IdentidadId</th>
+        <th scope="col">Numero Documento</th>
+        <th scope="col">RazonSocial</th>
+        <th scope="col">Nombre Comercial</th>
+        <th scope="col">Estado Contribuyente</th>
+        <th scope="col">Condicion Contribuyente</th>
+        <th scope="col">UbigeoId</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of EmpresaItems">
+        <td>{{ row.tipoDocumentoIdentidadId }}</td>
+        <td>{{ row.numeroDocumento }}</td>
+        <td>{{ row.razonSocial }}</td>
+        <td>{{ row.nombreComercial }}</td>
+        <td>{{ row.estadoContribuyente }}</td>
+        <td>{{ row.condicionContribuyente }}</td>
+        <td>{{ row.ubigeoId }}</td>
+        <td>{{ row.direccion }}</td>
+        <!-- "direccion": "Comas",
+    "condicionContribuyente": 0,
+    "tipoDocumentoIdentidadId": 4,
+    "estadoContribuyente": 0,
+    "ubigeoId": 221,
+    "empresaId": 3,
+    "nombreComercial": "ALEHSHH",
+    "numeroDocumento": "10193948391",
+    "razonSocial": "ALESHH",
+    "action": "Loaded" -->
+ <!-- EmpresaId  ,
+        TipoDocumentoIdentidadId  ,
+        NumeroDocumento,
+        RazonSocial ,
+        NombreComercial ,
+        EstadoContribuyente,
+        CondicionContribuyente,
+        UbigeoId ,
+        direccion  -->
+
+        <td>
+       
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+

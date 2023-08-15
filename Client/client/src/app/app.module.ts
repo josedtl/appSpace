@@ -10,10 +10,12 @@ import { TipoElementoMainComponent } from './components/tipo-elemento-main/tipo-
 import { TipoElementoServiceService } from './services/tipo-elemento-service.service';
 import { TipoInfraestructuraService }from './services/tipo-infraestructura.service';
 import {PersonanaturalService} from './services/personanatural.service';
+import { EmpresaService } from './services/empresa.service';
 import { TipoInfraestructuraMainComponent } from './components/tipo-infraestructura-main/tipo-infraestructura-main.component';
 import { SidebarMenuComponent } from './components/Menu/sidebar-menu/sidebar-menu.component';
 import { NavigationComponent } from './components/Menu/navigation/navigation.component';
 import { PersonaNaturalMainComponent } from './components/persona-natural-main/persona-natural-main.component';
+import { EmpresaMainComponent } from './components/empresa-main/empresa-main.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { PersonaNaturalMainComponent } from './components/persona-natural-main/p
     TipoInfraestructuraMainComponent,
     SidebarMenuComponent,
     NavigationComponent,
-    PersonaNaturalMainComponent
+    PersonaNaturalMainComponent,
+    EmpresaMainComponent
   ],
   imports: [
     BrowserModule,
