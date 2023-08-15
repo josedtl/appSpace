@@ -9,9 +9,6 @@ import {  TipoInfraestructuraEntity} from '../../models/TipoInfraestructuraEntit
 })
 export class TipoInfraestructuraMainComponent implements OnInit{
 
-
-  
-  
   TipoinfraestructuraItems: any = [];;
   constructor(private service:TipoInfraestructuraService) {
   }
