@@ -31,10 +31,10 @@ public class InfraestructuraController {
     }
 
     @GetMapping("/GetInfraestructuraItem/{InfraestructuraId}")
-    public ArrayList<InfraestructuraEntity> GetInfraestructuraItem(@PathVariable int TipoElementoId) {
+    public ArrayList<InfraestructuraEntity> GetInfraestructuraItem(@PathVariable int InfraestructuraId) {
 
         Infraestructura BS = new Infraestructura();
-        return BS.GetInfraestructuraItem(TipoElementoId);
+        return BS.GetInfraestructuraItem(InfraestructuraId);
 
     }
 
