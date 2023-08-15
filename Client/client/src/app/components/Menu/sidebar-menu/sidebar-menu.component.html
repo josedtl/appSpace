@@ -7,25 +7,30 @@
         <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
       </li>
       <li>
-        <a routerLink="/TipoElementoMain" routerLinkActive="active" class="nav-link">Tipo Elemento</a>
+        <a routerLink="/TipoElementoMain" 
+        (click)="toggleSidebar()"
+        routerLinkActive="active" class="nav-link">Tipo Elemento</a>
       </li>
       <li>
-        <a routerLink="/TipoInfraestructuraMain" routerLinkActive="active" class="nav-link">Tipo InfraEstructura</a>
+        <a routerLink="/TipoInfraestructuraMain" 
+        (click)="toggleSidebar()"
+        routerLinkActive="active" class="nav-link">Tipo InfraEstructura</a>
       </li>
     </ul>
-    <!-- <button (click)="toggleSidebar()">
-        Menu
-    </button> -->
-    <div class="sidebar-toggle" (click)="toggleSidebar()">
+   
+    <!-- <div class="sidebar-toggle" (click)="toggleSidebar()">
       <i class="fas fa-angle-left">DATA CIB</i>
-      <!-- <button (click)="toggleSidebar()">
-        Menu
-    </button> -->
+     
+    </div> -->
+
+
+    <div class="sidebar-toggle" (click)="toggleSidebar()">
+      <i   [ngClass]="{'fas fa-angle-left': isSidebarExpanded, 'fas fa-angle-right': !isSidebarExpanded}">
+        <svg  width="35" height="35" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+      </i>
     </div>
+
+
   </nav>
-  <!-- <div id="content">
-    <div class="container-fluid">
-      <router-outlet></router-outlet>
-    </div>
-  </div>  -->
-  

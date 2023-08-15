@@ -11,13 +11,15 @@ import { TipoElementoServiceService } from './services/tipo-elemento-service.ser
 import { TipoInfraestructuraService }from './services/tipo-infraestructura.service';
 import { TipoInfraestructuraMainComponent } from './components/tipo-infraestructura-main/tipo-infraestructura-main.component';
 import { SidebarMenuComponent } from './components/Menu/sidebar-menu/sidebar-menu.component';
+import { NavigationComponent } from './components/Menu/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TipoElementoMainComponent,
     TipoInfraestructuraMainComponent,
-    SidebarMenuComponent
+    SidebarMenuComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
