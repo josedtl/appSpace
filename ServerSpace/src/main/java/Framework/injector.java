@@ -21,8 +21,6 @@ public class injector {
     public String getSp() {
         return m_Sp;
     }
-    
-    
 
     public void Pmt_String(String Param, String value, Boolean valueB) {
         variable v = new variable();
@@ -86,7 +84,7 @@ public class injector {
         String sum = "";
         String suma = "";
         Integer RunValue = 1;
-        int con=0;
+        int con = 0;
 
         for (int i = 0; i < type.size(); i++) {
             sum += ",?";
@@ -109,12 +107,12 @@ public class injector {
                         OUTPUT = true;
                     } else {
                         cs.setInt(t.getParameterName(), t.getInt());
-                        
-                        if(con==0){
-                        RunValue = t.getInt();
-                            con+=1;
+
+                        if (con == 0) {
+                            RunValue = t.getInt();
+                            con += 1;
                         }
-                        
+
                     }
                 }
                 if (t.getInt() == null && t.getString() == null && t.getBoolean() == null) {
@@ -126,6 +124,54 @@ public class injector {
             if (OUTPUT) {
                 RunValue = cs.getInt(1);
             }
+
+            cs.close();
+
+        } catch (SQLException ex) {
+
+            throw new UnsupportedOperationException("INJECTOR :" + ex);
+
+        }
+        return RunValue;
+    }
+
+    public Integer RunUpdate() {
+        String sum = "";
+        String suma = "";
+        Integer RunValue = 1;
+        int con = 0;
+
+        for (int i = 0; i < type.size(); i++) {
+            sum += ",?";
+        }
+        suma = sum.substring(1);
+        String parameter = "{CALL " + getSp() + "(" + suma + ")}";
+        try {
+
+            cs = cn.ConexionBD().prepareCall("" + parameter);
+            for (variable t : type) {
+                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null) {
+                    cs.setString(t.getParameterName(), t.getString());
+                }
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null) {
+                    cs.setBoolean(t.getParameterName(), t.getBoolean());
+                }
+                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null) {
+
+                    cs.setInt(t.getParameterName(), t.getInt());
+
+                    if (con == 0) {
+                        RunValue = t.getInt();
+                        con += 1;
+                    }
+
+                }
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null) {
+                    cs.setDouble(t.getParameterName(), t.getDouble());
+                }
+            }
+            cs.execute();
+
 
             cs.close();
 

@@ -90,11 +90,15 @@ public class TipoElementoDB {
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
 
-            int Id = Inj.RunInsert();
-            State = Id > 0;
-            if (State) {
-                entity.setTipoElementoId(Id);
-                entity.setAction(ProcessActionEnum.Add);
+            if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
+                int Id = Inj.RunInsert();
+                State = Id > 0;
+                if (State) {
+                    entity.setTipoElementoId(Id);
+                }
+            }
+            if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
+                Inj.RunUpdate();
             }
 
         } catch (Exception ex) {

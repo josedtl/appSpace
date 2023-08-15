@@ -18,7 +18,8 @@ export class TipoElementoMainComponent implements OnInit {
     nombre: '',
     fechaRegistro: new Date(),
     codUsuario: 'adm ',
-    estadoRegistro: true
+    estadoRegistro: true,
+    action: 0,
   };
 
   TipoElementoItems: any = [];;
@@ -33,28 +34,28 @@ export class TipoElementoMainComponent implements OnInit {
     this.getGames();
   }
 
-  
+
   getGames() {
     this.tipoelementoserviceservice.getTipoElemento()
       .subscribe(
         res => {
           this.TipoElementoItems = res;
-        
+
         },
         err => console.error(err)
       );
   }
   openModal() {
+    this.newItem.action = 1;
     this.saveModal.nativeElement.style.display = 'block';
   }
   closeModal() {
     this.saveModal.nativeElement.style.display = 'none';
   }
- 
+
 
   saveItem() {
-    delete this.newItem.fechaRegistro;
-    delete this.newItem.tipoElementoId;
+    console.log(this.newItem);
     this.tipoelementoserviceservice.saveTipoElemento(this.newItem)
       .subscribe(
         res => {
@@ -75,5 +76,16 @@ export class TipoElementoMainComponent implements OnInit {
         err => console.error(err)
       );
   }
-
+  Update_Metho(data: TipoElementoEntity) {
+    this.openModal();
+    data.action = 3
+    this.newItem = data;
+    // this.tipoelementoserviceservice.saveTipoElemento(data)
+    //   .subscribe(
+    //     res => {
+    //       this.getGames();
+    //     },
+    //     err => console.error(err)
+    //   );
+  }
 }

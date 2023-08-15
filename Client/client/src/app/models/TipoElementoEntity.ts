@@ -5,5 +5,6 @@ export interface TipoElementoEntity {
     nombre?: string,
     fechaRegistro?: Date,
     codUsuario?: string,
-    estadoRegistro?: boolean
+    estadoRegistro?: boolean,
+    action?: number
 };
