@@ -1,0 +1,26 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Fecha Registro</th>
+        <th scope="col">Usuario</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of TipoinfraestructuraItems">
+        <td>{{ row.nombre }}</td>
+        <td>{{ row.fechaRegistro | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ row.codUsuario }}</td>
+        <td>
+          <!-- Uncomment and customize as needed -->
+          <!-- <button class="btn btn-danger" (click)="Delete_Metho(game.tipoElementoId)">
+              <i class="far fa-trash-alt"></i>
+            </button> -->
+            <!-- <a [routerLink]="['/games/edit', game.id]" class="btn btn-info">
+              Edit
+            </a> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>

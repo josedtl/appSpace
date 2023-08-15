@@ -39,7 +39,7 @@ export class TipoElementoMainComponent implements OnInit {
       .subscribe(
         res => {
           this.TipoElementoItems = res;
-          console.log(this.TipoElementoItems)
+        
         },
         err => console.error(err)
       );
