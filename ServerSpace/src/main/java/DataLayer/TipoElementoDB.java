@@ -6,6 +6,7 @@
 package DataLayer;
 
 import EntityLayer.TipoElementoEntity;
+import Enumerados.ProcessActionEnum;
 import Framework.injector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +36,7 @@ public class TipoElementoDB {
                 en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
+                en.setAction(ProcessActionEnum.Loaded);
                 DatoMemoria.add(en);
 
             }
@@ -63,6 +65,7 @@ public class TipoElementoDB {
                 en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
+                en.setAction(ProcessActionEnum.Loaded);
                 DatoMemoria.add(en);
 
             }
@@ -77,27 +80,30 @@ public class TipoElementoDB {
     public Boolean Save(TipoElementoEntity entity) {
         Boolean State = null;
         try {
-
-            if (entity.getTipoElementoId() == 0) {
-                Inj.Sp("sp_TipoElementoSave");
-            } else {
-                Inj.Sp("sp_TipoElementoUpdate");
+            String Store = "sp_TipoElementoSave";
+            if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
+                Store = "sp_TipoElementoUpdate";
             }
-
-            Inj.Pmt_Integer("v_TipoElementoId", entity.getTipoElementoId(), false);
+            Inj.Sp(Store);
+            Inj.Pmt_Integer("v_TipoElementoId", entity.getTipoElementoId(), true);
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
 
-            State = Inj.RunInsert() > 0;
+            int Id = Inj.RunInsert();
+            State = Id > 0;
+            if (State) {
+                entity.setTipoElementoId(Id);
+                entity.setAction(ProcessActionEnum.Add);
+            }
 
         } catch (Exception ex) {
             throw new UnsupportedOperationException("Datalater :" + ex);
         }
         return State;
     }
-    
-       public Boolean Delete(Integer entity) {
+
+    public Boolean Delete(Integer entity) {
         Boolean State = null;
         Inj.Sp("sp_TipoElementoDelete");
         Inj.Pmt_Integer("v_TipoElementoId", entity, false);

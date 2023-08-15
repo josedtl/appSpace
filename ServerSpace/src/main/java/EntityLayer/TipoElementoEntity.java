@@ -5,6 +5,7 @@
  */
 package EntityLayer;
 
+import Enumerados.ProcessActionEnum;
 import java.util.Date;
 
 /**
@@ -18,6 +19,21 @@ public class TipoElementoEntity {
     private Date fechaRegistro;
     private String codUsuario;
     private boolean estadoRegistro;
+    private ProcessActionEnum Action;
+
+    /**
+     * @return the Action
+     */
+    public int getAction() {
+        return Action.getValor();
+    }
+
+    /**
+     * @param Action the Action to set
+     */
+    public void setAction(ProcessActionEnum Action) {
+        this.Action = Action;
+    }
 
     /**
      * @return the tipoElementoId

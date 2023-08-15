@@ -43,10 +43,11 @@ public class TipoElementoController {
     }
 
     @PostMapping("/Save")
-    public Boolean Save(@RequestBody TipoElementoEntity Ent) {
+    public TipoElementoEntity Save(@RequestBody TipoElementoEntity Ent) {
 
         TipoElemento BS = new TipoElemento();
-        return BS.Save(Ent);
+        BS.Save(Ent);
+        return Ent;
 
     }
 
