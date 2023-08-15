@@ -21,7 +21,7 @@ public class TipoElementoDB {
     injector Inj = new injector();
 
     public ArrayList<TipoElementoEntity> GetTipoElementoItems() {
-//das
+
         ArrayList<TipoElementoEntity> DatoMemoria = new ArrayList<>();
         TipoElementoEntity en;
         try {

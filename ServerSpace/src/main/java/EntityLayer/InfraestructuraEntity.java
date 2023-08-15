@@ -1,7 +1,5 @@
 package EntityLayer;
 
-import java.util.Date;
-
 /**
  *
  * @author RUTH
