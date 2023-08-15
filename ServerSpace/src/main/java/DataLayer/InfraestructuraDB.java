@@ -20,7 +20,7 @@ public class InfraestructuraDB {
         InfraestructuraEntity en;
         try {
 
-            Inj.Sp("sp_TipoElementoItems");
+            Inj.Sp("sp_InfraestructuraItems");
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
 
