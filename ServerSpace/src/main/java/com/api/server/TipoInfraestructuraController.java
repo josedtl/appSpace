@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/api/TipoInfraestructura")
 public class TipoInfraestructuraController {
-    
+
     @GetMapping("/GetTipoInfraestructuraItems")
     public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItems() {
 
@@ -26,21 +26,24 @@ public class TipoInfraestructuraController {
         return BS.GetTipoInfraestructuraItems();
 
     }
-    
- @GetMapping("/GetTipoInfraestructuraItem/{TipoInfraestructuraId}")
+
+    @GetMapping("/GetTipoInfraestructuraItem/{TipoInfraestructuraId}")
     public ArrayList<TipoInfraestructuraEntity> GetTipoInfraestructuraItem(@PathVariable int TipoInfraestructuraId) {
 
         TipoInfraestructura BS = new TipoInfraestructura();
         return BS.GetTipoInfraestructuraItem(TipoInfraestructuraId);
 
     }
+
     @PostMapping("/Save")
-    public Boolean Save(@RequestBody TipoInfraestructuraEntity Ent) {
+    public TipoInfraestructuraEntity Save(@RequestBody TipoInfraestructuraEntity Ent) {
 
         TipoInfraestructura BS = new TipoInfraestructura();
-        return BS.Save(Ent);
+        BS.Save(Ent);
+        return Ent;
 
     }
+
     @DeleteMapping("Delete/{Id}")
     public Boolean deteteUser(@PathVariable int Id) {
 

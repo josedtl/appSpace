@@ -15,5 +15,11 @@ export class TipoInfraestructuraService {
     return this.http.get(`${this.API_URI}/api/TipoInfraestructura/GetTipoInfraestructuraItems`);
   }
 
+  save(item: TipoInfraestructuraEntity) {
+    return this.http.post(`${this.API_URI}/api/TipoInfraestructura/Save`, item);
+  }
+  delete(id: number) {
+    return this.http.delete(`${this.API_URI}/api/TipoInfraestructura/Delete/${id}`);
+  }
 
 }

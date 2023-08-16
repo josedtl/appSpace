@@ -4,5 +4,6 @@ export interface TipoInfraestructuraEntity {
     nombre?: string,
     fechaRegistro?: Date,
     codUsuario?: string,
-    estadoRegistro?: boolean    
+    estadoRegistro?: boolean   ,
+    action? :number
 };
