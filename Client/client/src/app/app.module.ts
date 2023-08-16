@@ -11,11 +11,13 @@ import { TipoElementoServiceService } from './services/tipo-elemento-service.ser
 import { TipoInfraestructuraService }from './services/tipo-infraestructura.service';
 import {PersonanaturalService} from './services/personanatural.service';
 import { EmpresaService } from './services/empresa.service';
+import { CargoService } from './services/cargo.service';
 import { TipoInfraestructuraMainComponent } from './components/tipo-infraestructura-main/tipo-infraestructura-main.component';
 import { SidebarMenuComponent } from './components/Menu/sidebar-menu/sidebar-menu.component';
 import { NavigationComponent } from './components/Menu/navigation/navigation.component';
 import { PersonaNaturalMainComponent } from './components/persona-natural-main/persona-natural-main.component';
 import { EmpresaMainComponent } from './components/empresa-main/empresa-main.component';
+import { CargoMainComponent } from './components/cargo-main/cargo-main.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { EmpresaMainComponent } from './components/empresa-main/empresa-main.com
     SidebarMenuComponent,
     NavigationComponent,
     PersonaNaturalMainComponent,
-    EmpresaMainComponent
+    EmpresaMainComponent,
+    CargoMainComponent
   ],
   imports: [
     BrowserModule,
