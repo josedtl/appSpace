@@ -14,5 +14,10 @@ export class CargoService {
   getCargo() {
     return this.http.get(`${this.API_URI}/api/Cargo/GetCargoItems`);
   }
-
+  save(item: CargoEntity) {
+    return this.http.post(`${this.API_URI}/api/Cargo/Save`, item);
+  }
+  delete(id: number) {
+    return this.http.delete(`${this.API_URI}/api/Cargo/Delete/${id}`);
+  }
 }

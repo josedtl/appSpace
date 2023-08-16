@@ -1,8 +1,9 @@
 
 export interface CargoEntity {
-    tipoInfraestructuraId?: number,
+    cargoId?: number,
     nombre?: string,
     fechaRegistro?: Date,
     codUsuario?: string,
-    estadoRegistro?: boolean    
+    estadoRegistro?: boolean ,
+    action?: number
 };

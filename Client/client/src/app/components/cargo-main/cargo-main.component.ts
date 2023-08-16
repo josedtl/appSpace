@@ -14,12 +14,12 @@ export class CargoMainComponent {
   constructor(private service:CargoService) {
   }
   newItem: CargoEntity = {
-    tipoInfraestructuraId: 0,
+    cargoId: 0,
     nombre: '',
     fechaRegistro: new Date(),
     codUsuario: 'adm ',
     estadoRegistro: true,
-  //  action: 0,
+    action: 0,
   };
   
 
@@ -27,7 +27,7 @@ export class CargoMainComponent {
     this.getCargo();
   }
   openModal() {
-   // this.newItem.action = 1;
+    this.newItem.action = 1;
     this.saveModal.nativeElement.style.display = 'block';
   }
   closeModal() {
@@ -43,4 +43,32 @@ export class CargoMainComponent {
     )
 
   }
+
+  saveItem() {
+    this.service.save(this.newItem)
+      .subscribe(
+        res => {
+          this.getCargo();
+        },
+        err => console.error(err)
+      )
+    this.closeModal();
+
+  }
+  Delete_Metho(Id: number) {
+    this.service.delete(Id)
+      .subscribe(
+        res => {
+          this.getCargo();
+        },
+        err => console.error(err)
+      );
+  }
+  Update_Metho(data: CargoEntity) {
+    this.openModal();
+    data.action = 3
+    this.newItem = data;
+
+  }
+
 }
