@@ -1,6 +1,6 @@
-
 package EntityLayer;
 
+import Enumerados.ProcessActionEnum;
 import java.util.Date;
 
 /**
@@ -8,12 +8,24 @@ import java.util.Date;
  * @author DAVID
  */
 public class TipoInfraestructuraEntity {
-  
-  private int TipoInfraestructuraId ; 
-  private String Nombre; 
-  private Date FechaRegistro ; 
-  private String CodUsuario ;
-  private boolean EstadoRegistro ;
+
+    private int TipoInfraestructuraId;
+    private String Nombre;
+    private Date FechaRegistro;
+    private String CodUsuario;
+    private boolean EstadoRegistro;
+    private ProcessActionEnum Action = ProcessActionEnum.Loaded;
+
+    public int getAction() {
+        return Action.getValor();
+    }
+
+    /**
+     * @param Action the Action to set
+     */
+    public void setAction(ProcessActionEnum Action) {
+        this.Action = Action;
+    }
 
     public int getTipoInfraestructuraId() {
         return TipoInfraestructuraId;
@@ -54,7 +66,5 @@ public class TipoInfraestructuraEntity {
     public void setEstadoRegistro(boolean EstadoRegistro) {
         this.EstadoRegistro = EstadoRegistro;
     }
-
-  
 
 }

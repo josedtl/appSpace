@@ -26,17 +26,20 @@
             </button>
           </div>
           <div class="modal-body">
-            <form (ngSubmit)="saveItem()">
+            <form >
               <div class="form-group">
                 <label for="name">Nombre:</label>
                 <input type="text" class="form-control" id="name" [(ngModel)]="newItem.nombre" name="name">
               </div>
-              <button type="submit" class="btn btn-primary">Guardar</button>
+              <button type="submit" class="btn btn-primary"  (click)="saveItem()"  >Guardar</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+
+
+
   </div>
   <table class="table">
     <thead>

@@ -10,13 +10,33 @@ import {  TipoInfraestructuraEntity} from '../../models/TipoInfraestructuraEntit
 export class TipoInfraestructuraMainComponent implements OnInit{
 
   TipoinfraestructuraItems: any = [];;
+
+  @ViewChild('saveModal') saveModal!: ElementRef; // Referencia a la ventana emergente
+
   constructor(private service:TipoInfraestructuraService) {
   }
 
+  newItem: TipoInfraestructuraEntity = {
+    tipoInfraestructuraId: 0,
+    nombre: '',
+    fechaRegistro: new Date(),
+    codUsuario: 'adm ',
+    estadoRegistro: true,
+    action: 0,
+  };
 
   ngOnInit() {
     this.getInfraestructuras();
   }
+
+  openModal() {
+    this.newItem.action = 1;
+    this.saveModal.nativeElement.style.display = 'block';
+  }
+  closeModal() {
+    this.saveModal.nativeElement.style.display = 'none';
+  }
+
 
   getInfraestructuras() {
     this.service.getTipoInfraestructura().subscribe(
@@ -28,5 +48,34 @@ export class TipoInfraestructuraMainComponent implements OnInit{
     )
 
   }
+
+
+  saveItem() {
+    this.service.save(this.newItem)
+      .subscribe(
+        res => {
+          this.getInfraestructuras();
+        },
+        err => console.error(err)
+      )
+    this.closeModal();
+
+  }
+  Delete_Metho(Id: number) {
+    this.service.delete(Id)
+      .subscribe(
+        res => {
+          this.getInfraestructuras();
+        },
+        err => console.error(err)
+      );
+  }
+  Update_Metho(data: TipoInfraestructuraEntity) {
+    this.openModal();
+    data.action = 3
+    this.newItem = data;
+
+  }
+
 
 }
