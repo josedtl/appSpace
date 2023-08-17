@@ -235,3 +235,4 @@ if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 generate_class_from_sql(sql_script, output_folder)
 print(f"Clase Java generada y guardada en '{output_folder}'")
+
