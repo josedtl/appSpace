@@ -20,6 +20,7 @@ public class TipoElementoEntity {
     private String codUsuario;
     private boolean estadoRegistro;
     private ProcessActionEnum Action;
+    private double da = 0;
 
     /**
      * @return the Action
