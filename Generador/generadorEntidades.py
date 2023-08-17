@@ -17,7 +17,6 @@ def map_mysql_to_java_type(mysql_type):
 
 def generate_class_from_sql(script, output_path):
     # script = re.sub(r'\([^)]*\)', '', script)
-    print(script)
     lines = script.split("\n")
     table_name = lines[0].split(" ")[2].split(".")[1]
     
@@ -36,6 +35,60 @@ def generate_class_from_sql(script, output_path):
         
         if not first_attribute_name:
             first_attribute_name = attribute_name
+    
+    class_name = first_attribute_name.replace("Id", "") + "Entity"
+    
+    class_code = f"package EntityLayer;\n\n"
+    class_code += "import com.fasterxml.jackson.annotation.JsonProperty;\n"
+    class_code += "import java.math.BigDecimal;\n"
+    class_code += "import java.util.Date;\n\n"
+    
+    class_code += f"public class {class_name} {{\n\n"
+    
+    for attribute in attributes:
+        attribute_name = attribute["name"]
+        java_attribute_name = attribute_name[0].lower() + attribute_name[1:]  # Primera letra en minúscula
+        attribute_type = attribute["type"]
+        
+        class_code += f"    @JsonProperty(\"{attribute_name}\")\n"
+        if attribute_type == "int" or attribute_type == "smallint":
+            class_code += f"    private {attribute_type} {java_attribute_name} = 0;\n"
+        elif attribute_type == "String":
+            class_code += f"    private {attribute_type} {java_attribute_name} = \"\";\n"
+        elif attribute_type == "BigDecimal":
+            class_code += f"    private {attribute_type} {java_attribute_name} = null;\n"
+        elif attribute_type == "Date":
+            class_code += f"    private {attribute_type} {java_attribute_name} = null;\n"
+        elif attribute_type == "boolean":
+            class_code += f"    private {attribute_type} {java_attribute_name} = false;\n"
+        
+        getter_method = f"    public {attribute_type} get{attribute_name}() {{\n"
+        getter_method += f"        return {java_attribute_name};\n    }}\n\n"
+        class_code += getter_method
+        
+        setter_method = f"    public void set{attribute_name}({attribute_type} {java_attribute_name}) {{\n"
+        setter_method += f"        this.{java_attribute_name} = {java_attribute_name};\n    }}\n\n"
+        class_code += setter_method
+    
+    class_code += "}\n"
+    
+    output_file = os.path.join(output_path, f"{class_name}.java")
+    with open(output_file, "w") as java_file:
+        java_file.write(class_code)
+
+
+
+def generate_class_from_sqlEntidad(attributesData:[], output_path):
+    # script = re.sub(r'\([^)]*\)', '', script)
+    attributes =[]
+    first_attribute_name = ""
+    
+    for line in attributesData:
+        java_attribute_type = map_mysql_to_java_type(line['type'])
+        attribute_name =line['name']
+        attributes.append({"name": attribute_name, "type": java_attribute_type})
+
+    first_attribute_name = attributes[0]['name']
     
     class_name = first_attribute_name.replace("Id", "") + "Entity"
     
@@ -96,8 +149,8 @@ sql_script = """CREATE TABLE spaceDB.catalogo_cabeceradata (
 )"""
 
 # Generar la clase Java en la carpeta EntityLayer
-output_folder = "EntityLayer"
-if not os.path.exists(output_folder):
-    os.makedirs(output_folder)
-generate_class_from_sql(sql_script, output_folder)
-print(f"Clase Java generada y guardada en '{output_folder}'")
+# output_folder = "EntityLayer"
+# if not os.path.exists(output_folder):
+#     os.makedirs(output_folder)
+# generate_class_from_sql(sql_script, output_folder)
+# print(f"Clase Java generada y guardada en '{output_folder}'")
