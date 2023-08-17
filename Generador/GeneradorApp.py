@@ -12,6 +12,7 @@ from GenerarStore import generate_class_from_sqlStore
 class DatabaseApp:
     ERROR=""
     attributes = []
+    attributesExtendido = []
     Mensaje = ""
     host = ""
     user = ""
@@ -93,7 +94,7 @@ class DatabaseApp:
                     # self.fields_tree.insert("", "end", values=(field["Type"], field["Field"], field["Null"], field["Key"]))
                     TypeDatos = re.sub(r'\([^)]*\)', '', field["Type"])
                     self.attributes.append({"name": field["Field"], "type": TypeDatos})
-
+                    self.attributesExtendido.append({"name": field["Field"], "type": field["Type"]})
 
         except pymysql.Error as e:
             self.ERROR="Error"
@@ -126,7 +127,7 @@ class DatabaseApp:
             generate_class_from_sqlDatos(self.attributes, output_folderDataLayer)
             generate_class_from_sqlNegocio(self.attributes, output_folderBusiness)
             generate_class_from_sqlControlador(self.attributes, output_folderControllers)
-            generate_class_from_sqlStore(self.attributes,self.tables_combobox.get(), output_folderStore)
+            generate_class_from_sqlStore(self.attributesExtendido,self.tables_combobox.get(), output_folderStore)
             self.Mensaje += "Archivos Generados\n"
             self.update_text_area()
         except pymysql.Error as e:

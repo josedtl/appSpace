@@ -18,31 +18,34 @@ def generate_class_from_sqlStore(attributesData:[],NameTable, output_path):
     class_code += "BEGIN\n"
     class_code += "  SELECT\n"
     
-    Cont = 1
+    Cont = 0
     for attribute in attributes:
         attribute_name = attribute["name"]
-        java_attribute_name = attribute_name[0].lower() + attribute_name[1:]  # Primera letra en minúscula
         attribute_type = attribute["type"]
+        Cont = Cont + 1
         if Cont == len(attributes):
             class_code += f"    {attribute_name}\n"
         else:
             class_code += f"    {attribute_name},\n"
-        Cont = Cont + 1
 
     class_code += f"  FROM {NameTable};\n"
     class_code += f"END;\n\n"
 
 
-    class_code = f"CREATE PROCEDURE sp_{class_name}AllItem(IN v_{class_name} INT)\n"
+    class_code += f"CREATE PROCEDURE sp_{class_name}AllItem(IN v_{class_name} INT)\n"
     class_code += "BEGIN\n"
     class_code += "  SELECT\n"
-    
+    Cont = 0
     for attribute in attributes:
         attribute_name = attribute["name"]
         java_attribute_name = attribute_name[0].lower() + attribute_name[1:]  # Primera letra en minúscula
         attribute_type = attribute["type"]
 
-        class_code += f"    {attribute_name},\n"
+        Cont = Cont + 1
+        if Cont == len(attributes):
+            class_code += f"    {attribute_name}\n"
+        else:
+            class_code += f"    {attribute_name},\n"
 
         
     
@@ -50,47 +53,76 @@ def generate_class_from_sqlStore(attributesData:[],NameTable, output_path):
     class_code += f"END;\n\n"
 
     class_code += f"CREATE PROCEDURE sp_{class_name}_Save(\n"
-
+    Cont = 0
     for attribute in attributes:
         attribute_name = attribute["name"]
         attribute_type = attribute["type"]
-        class_code += f"    IN v_{attribute_name} {attribute_type},\n"
+
+        Cont = Cont + 1
+        if(Cont==1):
+            class_code += f"    OUT v_{attribute_name} {attribute_type},\n"
+        elif  Cont == len(attributes):
+            class_code += f"    IN v_{attribute_name} {attribute_type}\n"
+        else:
+            class_code += f"    IN v_{attribute_name} {attribute_type},\n"
 
     class_code += f")\n"
     class_code += f"BEGIN\n"
     class_code += f"    INSERT INTO {NameTable} (\n"
+    Cont = 0
     for attribute in attributes:
         attribute_name = attribute["name"]
         attribute_type = attribute["type"]
-        class_code += f"        v_{attribute_name},\n"
+        
+        Cont = Cont + 1
+        if Cont == len(attributes):
+            class_code += f"        v_{attribute_name}\n"
+        else:
+            class_code += f"        v_{attribute_name},\n"
 
-
+    Cont = 0
     class_code += f") VALUES (\n"
     for attribute in attributes:
         attribute_name = attribute["name"]
         attribute_type = attribute["type"]
-        class_code += f"        v_{attribute_name},\n"
+        Cont = Cont + 1
+        if Cont == len(attributes):
+            class_code += f"        v_{attribute_name}\n"
+        else:
+            class_code += f"        v_{attribute_name},\n"
+
     class_code += f"    );\n\n"
     class_code += f"  SET v_{class_name}Id = LAST_INSERT_ID();\n\n"
     class_code += f"END;\n\n"   
 
 
     class_code += f"CREATE PROCEDURE sp_{class_name}_Update(\n"
-
+    Cont= 0
     for attribute in attributes:
         attribute_name = attribute["name"]
         attribute_type = attribute["type"]
-        class_code += f"    IN v_{attribute_name} {attribute_type},\n"
+        Cont = Cont + 1
+        if Cont == len(attributes):
+            class_code += f"    IN v_{attribute_name} {attribute_type}\n"
+        else:
+            class_code += f"    IN v_{attribute_name} {attribute_type},\n"
+        
 
     class_code += f")\n"
     class_code += f"BEGIN\n"
     class_code += f"    UPDATE {NameTable}\n"
     class_code += f"    SET\n"
     
+    Cont=0
     for attribute in attributes:
         attribute_name = attribute["name"]
         attribute_type = attribute["type"]
-        class_code += f"        {attribute_name} = v_{attribute_name},\n"
+        Cont = Cont + 1
+        if Cont == len(attributes):
+            class_code += f"        {attribute_name} = v_{attribute_name}\n"
+        else:
+            class_code += f"        {attribute_name} = v_{attribute_name},\n"
+
     class_code += f"    WHERE\n"
     class_code += f"        {class_name}Id = v_{class_name}Id;\n"
     class_code += f"END;\n\n"   
