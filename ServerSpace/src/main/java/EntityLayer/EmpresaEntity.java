@@ -2,22 +2,18 @@ package EntityLayer;
 
 import Enumerados.ProcessActionEnum;
 
-/**
- *
- * @author RUTH
- */
 public class EmpresaEntity {
 
-    private int EmpresaId;
-    private int TipoDocumentoIdentidadId;
-    private String NumeroDocumento;
-    private String RazonSocial;
-    private String NombreComercial;
-    private int EstadoContribuyente;
-    private int CondicionContribuyente;
-    private int UbigeoId;
-    private String direccion;
-    private ProcessActionEnum Action;
+    private int EmpresaId = 0;
+    private int TipoDocumentoIdentidadId = 0;
+    private String NumeroDocumento = "";
+    private String RazonSocial = "";
+    private String NombreComercial = "";
+    private int EstadoContribuyente = 0;
+    private int CondicionContribuyente = 0;
+    private int UbigeoId = 0;
+    private String direccion = "";
+    private ProcessActionEnum Action = ProcessActionEnum.Loaded;
 
     public int getEmpresaId() {
         return EmpresaId;
@@ -91,13 +87,11 @@ public class EmpresaEntity {
         this.direccion = direccion;
     }
 
-    public ProcessActionEnum getAction() {
-        return Action;
+    public int getAction() {
+        return Action.getValor();
     }
 
     public void setAction(ProcessActionEnum Action) {
         this.Action = Action;
     }
-    
-    
 }

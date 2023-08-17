@@ -1,5 +1,6 @@
 package EntityLayer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.util.Date;
 
@@ -7,133 +8,161 @@ import java.util.Date;
  *
  * @author RUTH
  */
-public class personanaturalEntity {
+public class PersonaNaturalEntity {
 
-    private int PersonaNaturalId;
-    private int TipoDocumentoIdentidadId;
-    private String NumDocumento;
-    private String Nombres;
-    private String ApellidoPaterno;
-    private String ApellidoMaterno;
-    private Date FechaNacimiento;
-    private int UbigeoId;
-    private String Direccion;
-    private String Telefono;
-    private String Correo;
-    private int Genero;
-    private int EstadoCivil;
-    private ProcessActionEnum Action;
+  
+    @JsonProperty("PersonaNaturalId")
+    private int personaNaturalId = 0;
+
+    @JsonProperty("TipoDocumentoIdentidadId")
+    private int tipoDocumentoIdentidadId = 0;
+
+    @JsonProperty("NumDocumento")
+    private String numDocumento = "";
+
+    @JsonProperty("Nombres")
+    private String nombres = "";
+
+    @JsonProperty("ApellidoPaterno")
+    private String apellidoPaterno = "";
+
+    @JsonProperty("ApellidoMaterno")
+    private String apellidoMaterno = "";
+
+    @JsonProperty("FechaNacimiento")
+    private Date fechaNacimiento = new Date();
+
+    @JsonProperty("UbigeoId")
+    private int ubigeoId = 0;
+
+    @JsonProperty("Direccion")
+    private String direccion = "";
+
+    @JsonProperty("Telefono")
+    private String telefono = "";
+
+    @JsonProperty("Correo")
+    private String correo = "";
+
+    @JsonProperty("Genero")
+    private int genero = 0;
+
+    @JsonProperty("EstadoCivil")
+    private int estadoCivil = 0;
+
+    @JsonProperty("Action")
+    private ProcessActionEnum action = ProcessActionEnum.Loaded;
 
     public int getPersonaNaturalId() {
-        return PersonaNaturalId;
+        return personaNaturalId;
     }
 
     public void setPersonaNaturalId(int PersonaNaturalId) {
-        this.PersonaNaturalId = PersonaNaturalId;
+        this.personaNaturalId = PersonaNaturalId;
     }
 
     public int getTipoDocumentoIdentidadId() {
-        return TipoDocumentoIdentidadId;
+        return tipoDocumentoIdentidadId;
     }
 
     public void setTipoDocumentoIdentidadId(int TipoDocumentoIdentidadId) {
-        this.TipoDocumentoIdentidadId = TipoDocumentoIdentidadId;
+        this.tipoDocumentoIdentidadId = TipoDocumentoIdentidadId;
     }
 
     public String getNumDocumento() {
-        return NumDocumento;
+        return numDocumento;
     }
 
     public void setNumDocumento(String NumDocumento) {
-        this.NumDocumento = NumDocumento;
+        this.numDocumento = NumDocumento;
     }
 
     public String getNombres() {
-        return Nombres;
+        return nombres;
     }
 
     public void setNombres(String Nombres) {
-        this.Nombres = Nombres;
+        this.nombres = Nombres;
     }
 
     public String getApellidoPaterno() {
-        return ApellidoPaterno;
+        return apellidoPaterno;
     }
 
     public void setApellidoPaterno(String ApellidoPaterno) {
-        this.ApellidoPaterno = ApellidoPaterno;
+        this.apellidoPaterno = ApellidoPaterno;
     }
 
     public String getApellidoMaterno() {
-        return ApellidoMaterno;
+        return apellidoMaterno;
     }
 
     public void setApellidoMaterno(String ApellidoMaterno) {
-        this.ApellidoMaterno = ApellidoMaterno;
+        this.apellidoMaterno = ApellidoMaterno;
     }
 
     public Date getFechaNacimiento() {
-        return FechaNacimiento;
+        return fechaNacimiento;
     }
 
     public void setFechaNacimiento(Date FechaNacimiento) {
-        this.FechaNacimiento = FechaNacimiento;
+        this.fechaNacimiento = FechaNacimiento;
     }
 
     public int getUbigeoId() {
-        return UbigeoId;
+        return ubigeoId;
     }
 
     public void setUbigeoId(int UbigeoId) {
-        this.UbigeoId = UbigeoId;
+        this.ubigeoId = UbigeoId;
     }
 
     public String getDireccion() {
-        return Direccion;
+        return direccion;
     }
 
     public void setDireccion(String Direccion) {
-        this.Direccion = Direccion;
+        this.direccion = Direccion;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
+        this.telefono = Telefono;
     }
 
     public String getCorreo() {
-        return Correo;
+        return correo;
     }
 
     public void setCorreo(String Correo) {
-        this.Correo = Correo;
+        this.correo = Correo;
     }
 
     public int getGenero() {
-        return Genero;
+        return genero;
     }
 
     public void setGenero(int Genero) {
-        this.Genero = Genero;
+        this.genero = Genero;
     }
 
     public int getEstadoCivil() {
-        return EstadoCivil;
+        return estadoCivil;
     }
 
     public void setEstadoCivil(int EstadoCivil) {
-        this.EstadoCivil = EstadoCivil;
+        this.estadoCivil = EstadoCivil;
     }
 
-    public ProcessActionEnum getAction() {
-        return Action;
+    public int getAction() {
+        return action.getValor();
     }
 
     public void setAction(ProcessActionEnum Action) {
-        this.Action = Action;
+        this.action = Action;
     }
 
 }

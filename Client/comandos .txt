@@ -4,6 +4,7 @@ ng g c components/TipoElementoMain
 Crear Servicio
 ng g s services/TipoElementoService
 
+ng g s services/cargo/cargo
 
 Ejecutar servidor
 npm start
