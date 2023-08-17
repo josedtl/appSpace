@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { personanaturalEntity } from '../models/personanaturalEntity'
+import { PersonaNaturalEntity } from '../models/PersonaNaturalEntity'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,10 @@ export class PersonanaturalService {
   constructor(private http: HttpClient) { }
 
   Getpersonanatural() {
-    return this.http.get(`${this.API_URI}/api/personanatural/GetpersonanaturalItems`);
+    return this.http.get(`${this.API_URI}/api/PersonaNatural/GetAllItems`);
   }
-
+  Save(item: PersonaNaturalEntity) {
+    return this.http.post(`${this.API_URI}/api/PersonaNatural/Save`, item);
+  }
+  
 }

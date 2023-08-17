@@ -5,6 +5,10 @@
  */
 package Framework;
 
+import java.sql.Date;
+
+
+
 /**
  *
  * @author david
@@ -17,6 +21,15 @@ public class variable {
     private Double _double = null;
     private Boolean _OUTPUT = null;
     private String _ParameterName = null;
+
+    public Date getDate() {
+        return _Date;
+    }
+
+    public void setDate(Date _Date) {
+        this._Date = _Date;
+    }
+    private Date _Date = null;
 
     /**
      * @return the _String

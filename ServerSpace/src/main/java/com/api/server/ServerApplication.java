@@ -36,20 +36,4 @@ public class ServerApplication {
             }
         };
     }
-
-
-
-//     @Bean
-//    public Docket api() {
-//        return new Docket(DocumentationType.SWAGGER_2)
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.api.server")) // Reemplaza con el paquete de tus controladores
-//                .paths(PathSelectors.any())
-//                .build()
-//                .apiInfo(new ApiInfoBuilder()
-//                        .title("Mi API")
-//                        .description("Descripción de mi API")
-//                        .version("1.0")
-//                        .build());
-//    }
 }

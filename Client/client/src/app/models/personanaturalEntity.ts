@@ -1,9 +1,9 @@
 import { Title } from '@angular/platform-browser';
 
-export interface personanaturalEntity {
+export interface PersonaNaturalEntity {
 
     PersonaNaturalId?: number,
-    TipoDocumentoIdentidadId?:number,
+    TipoDocumentoIdentidadId?: number,
     NumDocumento?: string,
     Nombres?: string,
     ApellidoPaterno?: string,
@@ -13,7 +13,8 @@ export interface personanaturalEntity {
     Direccion?: string,
     Telefono?: string,
     Correo?: string,
-    Genero?: string,
-    EstadoCivil?: number
-    
+    Genero?: number,
+    EstadoCivil?: number,
+    Action?: number
+
 }

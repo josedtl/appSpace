@@ -1,17 +1,12 @@
 package DataLayer;
 
 import EntityLayer.PersonaNaturalEntity;
-import EntityLayer.TipoElementoEntity;
 import Enumerados.ProcessActionEnum;
 import Framework.injector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author RUTH
- */
 public class PersonaNaturalDB {
 
     injector Inj = new injector();
@@ -21,7 +16,6 @@ public class PersonaNaturalDB {
         ArrayList<PersonaNaturalEntity> DatoMemoria = new ArrayList<>();
         PersonaNaturalEntity en;
         try {
-
             Inj.Sp("sp_PersonaNaturalAllItems");
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
@@ -33,7 +27,7 @@ public class PersonaNaturalDB {
                 en.setNombres(rs.getString("Nombres"));
                 en.setApellidoPaterno(rs.getString("ApellidoPaterno"));
                 en.setApellidoMaterno(rs.getString("ApellidoMaterno"));
-                en.setFechaNacimiento(rs.getDate("FechaNacimiento"));
+                en.setFechaNacimiento(new java.util.Date(rs.getDate("FechaNacimiento").getTime()));
                 en.setUbigeoId(rs.getInt("UbigeoId"));
                 en.setDireccion(rs.getString("Direccion"));
                 en.setTelefono(rs.getString("Telefono"));
@@ -41,7 +35,6 @@ public class PersonaNaturalDB {
                 en.setGenero(rs.getInt("Genero"));
                 en.setEstadoCivil(rs.getInt("EstadoCivil"));
                 DatoMemoria.add(en);
-
             }
 
         } catch (SQLException e) {
@@ -58,6 +51,7 @@ public class PersonaNaturalDB {
         try {
 
             Inj.Sp("sp_PersonaNaturalAllItem");
+            Inj.Pmt_Integer("v_PersonaNaturalId", PersonaNaturalId, false);
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
 
@@ -68,7 +62,7 @@ public class PersonaNaturalDB {
                 en.setNombres(rs.getString("Nombres"));
                 en.setApellidoPaterno(rs.getString("ApellidoPaterno"));
                 en.setApellidoMaterno(rs.getString("ApellidoMaterno"));
-                en.setFechaNacimiento(rs.getDate("FechaNacimiento"));
+                en.setFechaNacimiento(new java.util.Date(rs.getDate("FechaNacimiento").getTime()));
                 en.setUbigeoId(rs.getInt("UbigeoId"));
                 en.setDireccion(rs.getString("Direccion"));
                 en.setTelefono(rs.getString("Telefono"));
@@ -100,7 +94,7 @@ public class PersonaNaturalDB {
             Inj.Pmt_String("v_Nombres", entity.getNombres(), false);
             Inj.Pmt_String("v_ApellidoPaterno", entity.getApellidoPaterno(), false);
             Inj.Pmt_String("v_ApellidoMaterno", entity.getApellidoMaterno(), false);
-            Inj.Pmt_String("v_FechaNacimiento", entity.getFechaNacimiento().toString(), false);
+            Inj.Pmt_Date("v_FechaNacimiento", new java.sql.Date(entity.getFechaNacimiento().getTime()), false);
             Inj.Pmt_Integer("v_UbigeoId", entity.getUbigeoId(), false);
             Inj.Pmt_String("v_Direccion", entity.getDireccion(), false);
             Inj.Pmt_String("v_Telefono", entity.getTelefono(), false);

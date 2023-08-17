@@ -1,7 +1,6 @@
 package com.api.server;
 
 import Business.PersonaNatural;
-import Business.TipoElemento;
 import EntityLayer.PersonaNaturalEntity;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author RUTH
- */
 @RestController
 @RequestMapping("/api/PersonaNatural")
 public class PersonaNaturalController {
@@ -27,8 +22,8 @@ public class PersonaNaturalController {
         return BS.GetAllItems();
     }
 
-    @GetMapping("/GetAllItem")
-    public ArrayList<PersonaNaturalEntity> GetAllItem(int Id) {
+    @GetMapping("/GetAllItem/{Id}")
+    public ArrayList<PersonaNaturalEntity> GetAllItem(@PathVariable int Id) {
 
         PersonaNatural BS = new PersonaNatural();
         return BS.GetAllItem(Id);
@@ -45,7 +40,8 @@ public class PersonaNaturalController {
     @DeleteMapping("Delete/{Id}")
     public Boolean Delete(@PathVariable int Id) {
 
-        TipoElemento BS = new TipoElemento();
+        PersonaNatural BS = new PersonaNatural();
         return BS.Delete(Id);
     }
+
 }

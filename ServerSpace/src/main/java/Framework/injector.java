@@ -6,6 +6,7 @@
 package Framework;
 
 import java.sql.CallableStatement;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -58,6 +59,15 @@ public class injector {
         //    dat.add(value);
     }
 
+    public void Pmt_Date(String Param, Date value, Boolean valueB) {
+        variable v = new variable();
+        v.setParameterName(Param);
+        v.setDate(value);
+        v.setOUTPUT(valueB);
+        type.add(v);
+        //    dat.add(value);
+    }
+
     private String m_Sp;
 
     public String Sp(String value) {
@@ -95,13 +105,16 @@ public class injector {
 
             cs = cn.ConexionBD().prepareCall("" + parameter);
             for (variable t : type) {
-                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setString(t.getParameterName(), t.getString());
                 }
-                if (t.getInt() == null && t.getString() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setBoolean(t.getParameterName(), t.getBoolean());
                 }
-                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDouble() == null) {
+                    cs.setDate(t.getParameterName(),  t.getDate());
+                }
+                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     if (t.getOUTPUT()) {
                         cs.registerOutParameter(t.getParameterName(), Types.INTEGER);
                         OUTPUT = true;
@@ -115,7 +128,7 @@ public class injector {
 
                     }
                 }
-                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     cs.setDouble(t.getParameterName(), t.getDouble());
                 }
             }
@@ -150,13 +163,16 @@ public class injector {
 
             cs = cn.ConexionBD().prepareCall("" + parameter);
             for (variable t : type) {
-                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setString(t.getParameterName(), t.getString());
                 }
-                if (t.getInt() == null && t.getString() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setBoolean(t.getParameterName(), t.getBoolean());
                 }
-                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDouble() == null) {
+                    cs.setDate(t.getParameterName(), t.getDate());
+                }
+                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
 
                     cs.setInt(t.getParameterName(), t.getInt());
 
@@ -166,12 +182,11 @@ public class injector {
                     }
 
                 }
-                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     cs.setDouble(t.getParameterName(), t.getDouble());
                 }
             }
             cs.execute();
-
 
             cs.close();
 
@@ -201,17 +216,20 @@ public class injector {
             cs = cn.ConexionBD().prepareCall("{CALL " + Parmet + "(" + suma + ")}");
 
             for (variable t : type) {
-                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setString(t.getParameterName(), t.getString());
                 }
-                if (t.getInt() == null && t.getString() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setBoolean(t.getParameterName(), t.getBoolean());
                 }
-                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     cs.setInt(t.getParameterName(), t.getInt());
                 }
-                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     cs.setDouble(t.getParameterName(), t.getDouble());
+                }
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDouble() == null) {
+                    cs.setDate(t.getParameterName(),  t.getDate());
                 }
             }
 
@@ -238,13 +256,16 @@ public class injector {
 
             cs = cn.ConexionBD().prepareCall("" + parameter);
             for (variable t : type) {
-                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setString(t.getParameterName(), t.getString());
                 }
-                if (t.getInt() == null && t.getString() == null && t.getDouble() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
                     cs.setBoolean(t.getParameterName(), t.getBoolean());
                 }
-                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getBoolean() == null) {
+                    cs.setDate(t.getParameterName(),  t.getDate());
+                }
+                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     if (t.getOUTPUT()) {
                         cs.registerOutParameter(t.getParameterName(), Types.INTEGER);
                         OUTPUT = true;
@@ -253,7 +274,7 @@ public class injector {
                         RunValue = t.getInt();
                     }
                 }
-                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null) {
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     cs.setDouble(t.getParameterName(), t.getDouble());
                 }
             }
