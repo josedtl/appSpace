@@ -1,45 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business;
 
 import DataLayer.TipoElementoDB;
 import EntityLayer.TipoElementoEntity;
 import java.util.ArrayList;
 
-/**
- *
- * @author DAVID
- */
 public class TipoElemento {
 
-    public ArrayList<TipoElementoEntity> GetTipoElementoItems() {
-
+    public ArrayList<TipoElementoEntity> GetAllItems() {
         TipoElementoDB BD = new TipoElementoDB();
-        return BD.GetTipoElementoItems();
-
+        return BD.GetAllItems();
     }
 
-    public ArrayList<TipoElementoEntity> GetTipoElementoItem(int TipoElementoId) {
-
+    public ArrayList<TipoElementoEntity> GetAllItem(int Id) {
         TipoElementoDB BD = new TipoElementoDB();
-        return BD.GetTipoElementoItem(TipoElementoId);
-
+        return BD.GetAllItem(Id);
     }
 
-    public Boolean Save(TipoElementoEntity Ent) {
-
+    public TipoElementoEntity Save(TipoElementoEntity Item) {
         TipoElementoDB BD = new TipoElementoDB();
-        return BD.Save(Ent);
-
+        return BD.Save(Item);
     }
 
     public Boolean Delete(int Id) {
-
         TipoElementoDB BD = new TipoElementoDB();
         return BD.Delete(Id);
-
     }
 }

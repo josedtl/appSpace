@@ -1,7 +1,7 @@
 package com.api.server;
 
-import Business.TipoInfraestructura;
-import EntityLayer.TipoInfraestructuraEntity;
+import Business.ClientePersonaNatural;
+import EntityLayer.ClientePersonaNaturalEntity;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/api/TipoInfraestructura")
-public class TipoInfraestructuraController {
+@RequestMapping("/api/ClientePersonaNatural")
+public class ClientePersonaNaturalController {
 
     @GetMapping("/GetAllItems")
-    public ArrayList<TipoInfraestructuraEntity> GetAllItems() {
-        TipoInfraestructura BS = new TipoInfraestructura();
+    public ArrayList<ClientePersonaNaturalEntity> GetAllItems() {
+        ClientePersonaNatural BS = new ClientePersonaNatural();
         return BS.GetAllItems();
     }
 
     @GetMapping("/GetAllItem/{Id}")
-    public ArrayList<TipoInfraestructuraEntity> GetAllItem(@PathVariable int Id) {
-        TipoInfraestructura BS = new TipoInfraestructura();
+    public ArrayList<ClientePersonaNaturalEntity> GetAllItem(@PathVariable int Id) {
+        ClientePersonaNatural BS = new ClientePersonaNatural();
         return BS.GetAllItem(Id);
     }
 
     @PostMapping("/Save")
-    public TipoInfraestructuraEntity Save(@RequestBody TipoInfraestructuraEntity Ent) {
-        TipoInfraestructura BS = new TipoInfraestructura();
+    public ClientePersonaNaturalEntity Save(@RequestBody ClientePersonaNaturalEntity Ent) {
+        ClientePersonaNatural BS = new ClientePersonaNatural();
         BS.Save(Ent);
         return Ent;
     }
 
     @DeleteMapping("/Delete/{Id}")
     public Boolean Delete(@PathVariable int Id) {
-        TipoInfraestructura BS = new TipoInfraestructura();
+        ClientePersonaNatural BS = new ClientePersonaNatural();
         return BS.Delete(Id);
     }
 }
