@@ -1,6 +1,6 @@
 package DataLayer;
 
-import EntityLayer.UsuarioEntity;;
+import EntityLayer.UsuarioEntity;
 import Enumerados.ProcessActionEnum;
 import Framework.injector;
 import java.sql.ResultSet;
