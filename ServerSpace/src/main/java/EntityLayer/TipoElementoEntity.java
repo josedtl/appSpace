@@ -1,109 +1,71 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package EntityLayer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.util.Date;
 
-/**
- *
- * @author DAVID
- */
 public class TipoElementoEntity {
 
-    private int tipoElementoId;
-    private String nombre;
-    private Date fechaRegistro;
-    private String codUsuario;
-    private boolean estadoRegistro;
-    private ProcessActionEnum Action;
-    private double da = 0;
-
-    /**
-     * @return the Action
-     */
-    public int getAction() {
-        return Action.getValor();
-    }
-
-    /**
-     * @param Action the Action to set
-     */
-    public void setAction(ProcessActionEnum Action) {
-        this.Action = Action;
-    }
-
-    /**
-     * @return the tipoElementoId
-     */
+    @JsonProperty("TipoElementoId")
+    private int tipoElementoId = 0;
     public int getTipoElementoId() {
         return tipoElementoId;
     }
 
-    /**
-     * @param tipoElementoId the tipoElementoId to set
-     */
     public void setTipoElementoId(int tipoElementoId) {
         this.tipoElementoId = tipoElementoId;
     }
 
-    /**
-     * @return the nombre
-     */
+    @JsonProperty("Nombre")
+    private String nombre = "";
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * @param nombre the nombre to set
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    /**
-     * @return the fechaRegistro
-     */
+    @JsonProperty("FechaRegistro")
+    private Date fechaRegistro = null;
     public Date getFechaRegistro() {
         return fechaRegistro;
     }
 
-    /**
-     * @param fechaRegistro the fechaRegistro to set
-     */
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
-    /**
-     * @return the codUsuario
-     */
+    @JsonProperty("CodUsuario")
+    private String codUsuario = "";
     public String getCodUsuario() {
         return codUsuario;
     }
 
-    /**
-     * @param codUsuario the codUsuario to set
-     */
     public void setCodUsuario(String codUsuario) {
         this.codUsuario = codUsuario;
     }
 
-    /**
-     * @return the estadoRegistro
-     */
+    @JsonProperty("EstadoRegistro")
+    private boolean estadoRegistro = false;
     public boolean getEstadoRegistro() {
         return estadoRegistro;
     }
 
-    /**
-     * @param estadoRegistro the estadoRegistro to set
-     */
     public void setEstadoRegistro(boolean estadoRegistro) {
         this.estadoRegistro = estadoRegistro;
     }
 
+
+
+    @JsonProperty("Action")
+    private ProcessActionEnum action = ProcessActionEnum.Loaded;
+
+    public int getAction() {
+        return action.getValor();
+    }
+
+    public void setAction(ProcessActionEnum Action) {
+        this.action = Action;
+    }
 }

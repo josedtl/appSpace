@@ -3,7 +3,6 @@ package com.api.server;
 import Business.TipoElemento;
 import EntityLayer.TipoElementoEntity;
 import java.util.ArrayList;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,46 +11,32 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author DAVID
- */
 @RestController
 @RequestMapping("/api/TipoElemento")
 public class TipoElementoController {
 
-//http://localhost:8080/api/TipoElemento/GetTipoElementoItems
-//    @CrossOrigin(origins = "http://localhost:4200/")
-    @GetMapping("/GetTipoElementoItems")
-    public ArrayList<TipoElementoEntity> GetTipoElementoItems() {
-
+    @GetMapping("/GetAllItems")
+    public ArrayList<TipoElementoEntity> GetAllItems() {
         TipoElemento BS = new TipoElemento();
-        return BS.GetTipoElementoItems();
-
+        return BS.GetAllItems();
     }
 
-    @GetMapping("/GetTipoElementoItem/{TipoElementoId}")
-    public ArrayList<TipoElementoEntity> GetTipoElementoItem(@PathVariable int TipoElementoId) {
-
+    @GetMapping("/GetAllItem/{Id}")
+    public ArrayList<TipoElementoEntity> GetAllItem(@PathVariable int Id) {
         TipoElemento BS = new TipoElemento();
-        return BS.GetTipoElementoItem(TipoElementoId);
-
+        return BS.GetAllItem(Id);
     }
 
     @PostMapping("/Save")
     public TipoElementoEntity Save(@RequestBody TipoElementoEntity Ent) {
-
         TipoElemento BS = new TipoElemento();
         BS.Save(Ent);
         return Ent;
-
     }
 
-    @DeleteMapping("Delete/{Id}")
-    public Boolean deteteUser(@PathVariable int Id) {
-
+    @DeleteMapping("/Delete/{Id}")
+    public Boolean Delete(@PathVariable int Id) {
         TipoElemento BS = new TipoElemento();
         return BS.Delete(Id);
     }
-
 }

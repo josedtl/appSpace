@@ -1,7 +1,7 @@
 package com.api.server;
 
-import Business.TipoInfraestructura;
-import EntityLayer.TipoInfraestructuraEntity;
+import Business.Proveedor;
+import EntityLayer.ProveedorEntity;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,31 +12,31 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@RequestMapping("/api/TipoInfraestructura")
-public class TipoInfraestructuraController {
+@RequestMapping("/api/Proveedor")
+public class ProveedorController {
 
     @GetMapping("/GetAllItems")
-    public ArrayList<TipoInfraestructuraEntity> GetAllItems() {
-        TipoInfraestructura BS = new TipoInfraestructura();
+    public ArrayList<ProveedorEntity> GetAllItems() {
+        Proveedor BS = new Proveedor();
         return BS.GetAllItems();
     }
 
     @GetMapping("/GetAllItem/{Id}")
-    public ArrayList<TipoInfraestructuraEntity> GetAllItem(@PathVariable int Id) {
-        TipoInfraestructura BS = new TipoInfraestructura();
+    public ArrayList<ProveedorEntity> GetAllItem(@PathVariable int Id) {
+        Proveedor BS = new Proveedor();
         return BS.GetAllItem(Id);
     }
 
     @PostMapping("/Save")
-    public TipoInfraestructuraEntity Save(@RequestBody TipoInfraestructuraEntity Ent) {
-        TipoInfraestructura BS = new TipoInfraestructura();
+    public ProveedorEntity Save(@RequestBody ProveedorEntity Ent) {
+        Proveedor BS = new Proveedor();
         BS.Save(Ent);
         return Ent;
     }
 
     @DeleteMapping("/Delete/{Id}")
     public Boolean Delete(@PathVariable int Id) {
-        TipoInfraestructura BS = new TipoInfraestructura();
+        Proveedor BS = new Proveedor();
         return BS.Delete(Id);
     }
 }

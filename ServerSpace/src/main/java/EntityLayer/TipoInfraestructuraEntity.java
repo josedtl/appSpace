@@ -1,70 +1,71 @@
 package EntityLayer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.util.Date;
 
-/**
- *
- * @author DAVID
- */
 public class TipoInfraestructuraEntity {
 
-    private int TipoInfraestructuraId;
-    private String Nombre;
-    private Date FechaRegistro;
-    private String CodUsuario;
-    private boolean EstadoRegistro;
-    private ProcessActionEnum Action = ProcessActionEnum.Loaded;
+    @JsonProperty("TipoInfraestructuraId")
+    private int tipoInfraestructuraId = 0;
+    public int getTipoInfraestructuraId() {
+        return tipoInfraestructuraId;
+    }
+
+    public void setTipoInfraestructuraId(int tipoInfraestructuraId) {
+        this.tipoInfraestructuraId = tipoInfraestructuraId;
+    }
+
+    @JsonProperty("Nombre")
+    private String nombre = "";
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @JsonProperty("FechaRegistro")
+    private Date fechaRegistro = null;
+    public Date getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Date fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    @JsonProperty("CodUsuario")
+    private String codUsuario = "";
+    public String getCodUsuario() {
+        return codUsuario;
+    }
+
+    public void setCodUsuario(String codUsuario) {
+        this.codUsuario = codUsuario;
+    }
+
+    @JsonProperty("EstadoRegistro")
+    private boolean estadoRegistro = false;
+    public boolean getEstadoRegistro() {
+        return estadoRegistro;
+    }
+
+    public void setEstadoRegistro(boolean estadoRegistro) {
+        this.estadoRegistro = estadoRegistro;
+    }
+
+
+
+    @JsonProperty("Action")
+    private ProcessActionEnum action = ProcessActionEnum.Loaded;
 
     public int getAction() {
-        return Action.getValor();
+        return action.getValor();
     }
 
-    /**
-     * @param Action the Action to set
-     */
     public void setAction(ProcessActionEnum Action) {
-        this.Action = Action;
+        this.action = Action;
     }
-
-    public int getTipoInfraestructuraId() {
-        return TipoInfraestructuraId;
-    }
-
-    public void setTipoInfraestructuraId(int TipoInfraestructuraId) {
-        this.TipoInfraestructuraId = TipoInfraestructuraId;
-    }
-
-    public String getNombre() {
-        return Nombre;
-    }
-
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    public Date getFechaRegistro() {
-        return FechaRegistro;
-    }
-
-    public void setFechaRegistro(Date FechaRegistro) {
-        this.FechaRegistro = FechaRegistro;
-    }
-
-    public String getCodUsuario() {
-        return CodUsuario;
-    }
-
-    public void setCodUsuario(String CodUsuario) {
-        this.CodUsuario = CodUsuario;
-    }
-
-    public boolean getEstadoRegistro() {
-        return EstadoRegistro;
-    }
-
-    public void setEstadoRegistro(boolean EstadoRegistro) {
-        this.EstadoRegistro = EstadoRegistro;
-    }
-
 }
