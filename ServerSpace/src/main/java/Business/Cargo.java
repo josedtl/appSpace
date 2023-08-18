@@ -1,45 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business;
 
 import DataLayer.CargoDB;
 import EntityLayer.CargoEntity;
 import java.util.ArrayList;
 
-/**
- *
- * @author DAVID
- */
 public class Cargo {
 
-    public ArrayList<CargoEntity> GetCargoItems() {
-
+    public ArrayList<CargoEntity> GetAllItems() {
         CargoDB BD = new CargoDB();
-        return BD.GetCargoItems();
-
+        return BD.GetAllItems();
     }
 
-    public ArrayList<CargoEntity> GetCargoItem(int CargoId) {
-
+    public ArrayList<CargoEntity> GetAllItem(int Id) {
         CargoDB BD = new CargoDB();
-        return BD.GetCargoItem(CargoId);
-
+        return BD.GetAllItem(Id);
     }
 
-    public Boolean Save(CargoEntity Ent) {
-
+    public CargoEntity Save(CargoEntity Item) {
         CargoDB BD = new CargoDB();
-        return BD.Save(Ent);
-
+        return BD.Save(Item);
     }
 
     public Boolean Delete(int Id) {
-
         CargoDB BD = new CargoDB();
         return BD.Delete(Id);
-
     }
 }

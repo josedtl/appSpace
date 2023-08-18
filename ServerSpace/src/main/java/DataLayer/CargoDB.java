@@ -1,32 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DataLayer;
 
-import EntityLayer.CargoEntity;
+import EntityLayer.CargoEntity;;
 import Enumerados.ProcessActionEnum;
 import Framework.injector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author DAVID
- */
 public class CargoDB {
 
     injector Inj = new injector();
 
-    public ArrayList<CargoEntity> GetCargoItems() {
+    public ArrayList<CargoEntity> GetAllItems() { 
 
         ArrayList<CargoEntity> DatoMemoria = new ArrayList<>();
         CargoEntity en;
         try {
-
-            Inj.Sp("sp_CargoItems");
+            Inj.Sp("sp_CargoAllItems");
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
 
@@ -36,25 +26,21 @@ public class CargoDB {
                 en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
-                en.setAction(ProcessActionEnum.Loaded);
-                DatoMemoria.add(en);
-
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR" + e);
+            System.out.println("ERROR "+e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
     }
 
-    public ArrayList<CargoEntity> GetCargoItem(int CargoId) {
+    public ArrayList<CargoEntity> GetAllItem(int CargoId) { 
 
         ArrayList<CargoEntity> DatoMemoria = new ArrayList<>();
         CargoEntity en;
         try {
-
-            Inj.Sp("sp_CargoItem");
+            Inj.Sp("sp_CargoAllItem");
             Inj.Pmt_Integer("v_CargoId", CargoId, false);
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
@@ -65,31 +51,28 @@ public class CargoDB {
                 en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
-                en.setAction(ProcessActionEnum.Loaded);
-                DatoMemoria.add(en);
-
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR" + e);
+            System.out.println("ERROR "+e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
     }
 
-    public Boolean Save(CargoEntity entity) {
+    public CargoEntity Save(CargoEntity entity) {
         Boolean State = null;
         try {
-            String Store = "sp_CargoSave";
+            String Store = "sp_Cargo_Save";
             if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
-                Store = "sp_CargoUpdate";
+                Store = "sp_Cargo_Update";
             }
             Inj.Sp(Store);
             Inj.Pmt_Integer("v_CargoId", entity.getCargoId(), true);
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
+            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
-
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
                 int Id = Inj.RunInsert();
                 State = Id > 0;
@@ -102,18 +85,22 @@ public class CargoDB {
             }
 
         } catch (Exception ex) {
-            throw new UnsupportedOperationException("Datalater :" + ex);
+            throw new UnsupportedOperationException("Datalater : " + ex);
         }
-        return State;
+        return entity;
     }
 
-    public Boolean Delete(Integer entity) {
-        Boolean State = null;
-        Inj.Sp("sp_CargoDelete");
-        Inj.Pmt_Integer("v_CargoId", entity, false);
-        State = Inj.RunDelete() > 0;
-        return State;
+    public Boolean Delete(Integer Id) {
 
+        Boolean State = false;
+        try {
+            Inj.Sp("sp_CargoDelete");
+            Inj.Pmt_Integer("v_CargoId", Id, false);
+            State = Inj.RunDelete() > 0;
+        } catch (Exception ex) {
+            throw new UnsupportedOperationException("Datalater : " + ex);
+        }
+        return State;
     }
 
 }
