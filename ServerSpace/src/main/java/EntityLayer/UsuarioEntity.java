@@ -1,6 +1,7 @@
 package EntityLayer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import Enumerados.ProcessActionEnum;
 import java.util.Date;
 
 public class UsuarioEntity {
@@ -75,4 +76,16 @@ public class UsuarioEntity {
         this.estado = estado;
     }
 
+
+
+    @JsonProperty("Action")
+    private ProcessActionEnum action = ProcessActionEnum.Loaded;
+
+    public int getAction() {
+        return action.getValor();
+    }
+
+    public void setAction(ProcessActionEnum Action) {
+        this.action = Action;
+    }
 }

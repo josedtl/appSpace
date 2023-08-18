@@ -83,9 +83,9 @@ def generate_class_from_sql(script, output_path):
         elif attribute_type == "double":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
         elif attribute_type == "Date":
-            class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
         elif attribute_type == "boolean":
-            class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
 
     class_code += "            }\n\n"
     class_code += "        } catch (SQLException e) {\n"
@@ -284,13 +284,13 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
         elif attribute_type == "double":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
         elif attribute_type == "Date":
-            class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
         elif attribute_type == "boolean":
-            class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
 
     class_code += "            }\n\n"
     class_code += "        } catch (SQLException e) {\n"
-    class_code += '            System.out.println("ERROR "e);\n'
+    class_code += '            System.out.println("ERROR "+e);\n'
     class_code += (
         '            throw new UnsupportedOperationException("Datalater :" + e);\n'
     )
@@ -325,13 +325,13 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
         elif attribute_type == "double":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
         elif attribute_type == "Date":
-            class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
         elif attribute_type == "boolean":
-            class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
 
     class_code += "            }\n\n"
     class_code += "        } catch (SQLException e) {\n"
-    class_code += '            System.out.println("ERROR "e);\n'
+    class_code += '            System.out.println("ERROR "+e);\n'
     class_code += (
         '            throw new UnsupportedOperationException("Datalater :" + e);\n'
     )

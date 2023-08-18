@@ -40,7 +40,7 @@ def generate_class_from_sql(script, output_path):
     
     class_code = f"package EntityLayer;\n\n"
     class_code += "import com.fasterxml.jackson.annotation.JsonProperty;\n"
-    class_code += "import java.math.BigDecimal;\n"
+    class_code += "import Enumerados.ProcessActionEnum;\n"
     class_code += "import java.util.Date;\n\n"
     
     class_code += f"public class {class_name} {{\n\n"
@@ -94,7 +94,7 @@ def generate_class_from_sqlEntidad(attributesData:[], output_path):
     
     class_code = f"package EntityLayer;\n\n"
     class_code += "import com.fasterxml.jackson.annotation.JsonProperty;\n"
-    class_code += "import java.math.BigDecimal;\n"
+    class_code += "import Enumerados.ProcessActionEnum;\n"
     class_code += "import java.util.Date;\n\n"
     
     class_code += f"public class {class_name} {{\n\n"
@@ -123,9 +123,18 @@ def generate_class_from_sqlEntidad(attributesData:[], output_path):
         setter_method = f"    public void set{attribute_name}({attribute_type} {java_attribute_name}) {{\n"
         setter_method += f"        this.{java_attribute_name} = {java_attribute_name};\n    }}\n\n"
         class_code += setter_method
-    
-    class_code += "}\n"
-    
+
+    class_code +="\n\n" 
+    class_code += f"    @JsonProperty(\"Action\")\n"
+    class_code += "    private ProcessActionEnum action = ProcessActionEnum.Loaded;\n\n"
+    class_code += "    public int getAction() {\n" 
+    class_code += "        return action.getValor();\n" 
+    class_code += "    }\n\n" 
+    class_code += "    public void setAction(ProcessActionEnum Action) {\n" 
+    class_code += "        this.action = Action;\n" 
+    class_code += "    }\n" 
+    class_code += "}\n" 
+
     output_file = os.path.join(output_path, f"{class_name}.java")
     with open(output_file, "w") as java_file:
         java_file.write(class_code)

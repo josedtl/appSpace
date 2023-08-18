@@ -25,13 +25,13 @@ public class UsuarioDB {
                 en.setEmpleadoId(rs.getInt("EmpleadoId"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setContrasena(rs.getString("Contrasena"));
-                en.setFechaRegistro(rs.getInt("FechaRegistro"));
+                en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setRegistroCodUsuario(rs.getString("RegistroCodUsuario"));
-                en.setEstado(rs.getInt("Estado"));
+                en.setEstado(rs.getBoolean("Estado"));
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "e);
+            System.out.println("ERROR "+e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
@@ -52,13 +52,13 @@ public class UsuarioDB {
                 en.setEmpleadoId(rs.getInt("EmpleadoId"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setContrasena(rs.getString("Contrasena"));
-                en.setFechaRegistro(rs.getInt("FechaRegistro"));
+                en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setRegistroCodUsuario(rs.getString("RegistroCodUsuario"));
-                en.setEstado(rs.getInt("Estado"));
+                en.setEstado(rs.getBoolean("Estado"));
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "e);
+            System.out.println("ERROR "+e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
