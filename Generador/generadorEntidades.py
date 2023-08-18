@@ -109,7 +109,7 @@ def generate_class_from_sqlEntidad(attributesData:[], output_path):
             class_code += f"    private {attribute_type} {java_attribute_name} = 0;\n"
         elif attribute_type == "String":
             class_code += f"    private {attribute_type} {java_attribute_name} = \"\";\n"
-        elif attribute_type == "BigDecimal":
+        elif attribute_type == "double":
             class_code += f"    private {attribute_type} {java_attribute_name} = null;\n"
         elif attribute_type == "Date":
             class_code += f"    private {attribute_type} {java_attribute_name} = null;\n"
