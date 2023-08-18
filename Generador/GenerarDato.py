@@ -248,7 +248,7 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
 
     class_code = f"package DataLayer;\n\n"
 
-    class_code += f"import EntityLayer.{class_nameEntity};;\n"
+    class_code += f"import EntityLayer.{class_nameEntity};\n"
     class_code += "import Enumerados.ProcessActionEnum;\n"
     class_code += "import Framework.injector;\n"
     class_code += "import java.sql.ResultSet;\n"
@@ -287,7 +287,7 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
             class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
         elif attribute_type == "boolean":
             class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
-
+    class_code += "                DatoMemoria.add(en);\n\n"
     class_code += "            }\n\n"
     class_code += "        } catch (SQLException e) {\n"
     class_code += '            System.out.println("ERROR "+e);\n'
@@ -328,7 +328,7 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
             class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
         elif attribute_type == "boolean":
             class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
-
+    class_code += "                DatoMemoria.add(en);\n\n"
     class_code += "            }\n\n"
     class_code += "        } catch (SQLException e) {\n"
     class_code += '            System.out.println("ERROR "+e);\n'

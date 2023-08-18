@@ -4,7 +4,7 @@ def generate_class_from_sqlStore(attributesData:[],NameTable, output_path):
     # script = re.sub(r'\([^)]*\)', '', script)
     attributes =[]
     first_attribute_name = ""
-    
+    class_code=""
     for line in attributesData:
         java_attribute_type = line['type']
         attribute_name =line['name']
@@ -14,7 +14,16 @@ def generate_class_from_sqlStore(attributesData:[],NameTable, output_path):
     
     class_name = first_attribute_name.replace("Id", "") 
     
-    class_code = f"CREATE PROCEDURE sp_{class_name}AllItems()\n"
+
+
+
+    class_code+=f"-- DROP PROCEDURE sp_{class_name}AllItem;\n"
+    class_code+=f"-- DROP PROCEDURE sp_{class_name}AllItems;\n"
+    class_code+=f"-- DROP PROCEDURE sp_{class_name}Delete;\n"
+    class_code+=f"-- DROP PROCEDURE sp_{class_name}_Save;\n"
+    class_code+=f"-- DROP PROCEDURE sp_{class_name}_Update;\n\n"
+
+    class_code += f"CREATE PROCEDURE sp_{class_name}AllItems()\n"
     class_code += "BEGIN\n"
     class_code += "  SELECT\n"
     
@@ -32,7 +41,7 @@ def generate_class_from_sqlStore(attributesData:[],NameTable, output_path):
     class_code += f"END;\n\n"
 
 
-    class_code += f"CREATE PROCEDURE sp_{class_name}AllItem(IN v_{class_name} INT)\n"
+    class_code += f"CREATE PROCEDURE sp_{class_name}AllItem(IN v_{class_name}Id INT)\n"
     class_code += "BEGIN\n"
     class_code += "  SELECT\n"
     Cont = 0
@@ -76,9 +85,9 @@ def generate_class_from_sqlStore(attributesData:[],NameTable, output_path):
         
         Cont = Cont + 1
         if Cont == len(attributes):
-            class_code += f"        v_{attribute_name}\n"
+            class_code += f"        {attribute_name}\n"
         else:
-            class_code += f"        v_{attribute_name},\n"
+            class_code += f"        {attribute_name},\n"
 
     Cont = 0
     class_code += f") VALUES (\n"
