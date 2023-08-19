@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.util.Date;
 
-public class CargoEntity {
+public class CargoEntity  extends EntityLayer.MyCode.CargoEntity{
 
     @JsonProperty("CargoId")
     private int cargoId = 0;

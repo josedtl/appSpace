@@ -26,9 +26,11 @@ public class CargoDB {
                 en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
+                en.setPruebaId(0);
                 DatoMemoria.add(en);
 
             }
+            
 
         } catch (SQLException e) {
             System.out.println("ERROR "+e);
