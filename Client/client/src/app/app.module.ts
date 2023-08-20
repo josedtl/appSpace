@@ -18,6 +18,8 @@ import { NavigationComponent } from './components/Menu/navigation/navigation.com
 import { PersonaNaturalMainComponent } from './components/persona-natural-main/persona-natural-main.component';
 import { EmpresaMainComponent } from './components/empresa-main/empresa-main.component';
 import { CargoMainComponent } from './components/cargo-main/cargo-main.component';
+import { InfraestructuraMainComponent } from './components/Infraestructura/infraestructura-main/infraestructura-main.component';
+import { InfraestructuraSaveComponent } from './components/Infraestructura/infraestructura-save/infraestructura-save.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { CargoMainComponent } from './components/cargo-main/cargo-main.component
     NavigationComponent,
     PersonaNaturalMainComponent,
     EmpresaMainComponent,
-    CargoMainComponent
+    CargoMainComponent,
+    InfraestructuraMainComponent,
+    InfraestructuraSaveComponent
   ],
   imports: [
     BrowserModule,
