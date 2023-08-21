@@ -1,6 +1,6 @@
-import { Component , OnInit, HostBinding, ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { CargoService } from '../../services/cargo.service';
-import {  CargoEntity } from '../../models/CargoEntity';
+import { CargoEntity } from '../../models/CargoEntity';
 
 @Component({
   selector: 'app-cargo-main',
@@ -8,10 +8,12 @@ import {  CargoEntity } from '../../models/CargoEntity';
   styleUrls: ['./cargo-main.component.css']
 })
 export class CargoMainComponent {
-  
+
+  cities: CargoEntity[] | undefined;
+  selectedCity: CargoEntity | undefined;
   CargoItems: any = [];;
   @ViewChild('saveModal') saveModal!: ElementRef; // Referencia a la ventana emergente
-  constructor(private service:CargoService) {
+  constructor(private service: CargoService) {
   }
   newItem: CargoEntity = {
     cargoId: 0,
@@ -21,7 +23,7 @@ export class CargoMainComponent {
     estadoRegistro: true,
     action: 0,
   };
-  
+
 
   ngOnInit() {
     this.getCargo();
@@ -36,8 +38,8 @@ export class CargoMainComponent {
 
   getCargo() {
     this.service.getCargo().subscribe(
-      respuesta =>{
-        this.CargoItems=respuesta;
+      respuesta => {
+        this.CargoItems = respuesta;
         console.log(respuesta);
       }
     )
@@ -70,5 +72,32 @@ export class CargoMainComponent {
     this.newItem = data;
 
   }
+
+  first = 0;
+
+  rows = 10;
+  next() {
+    this.first = this.first + this.rows;
+  }
+
+  prev() {
+    this.first = this.first - this.rows;
+  }
+
+  reset() {
+    this.first = 0;
+  }
+
+  isLastPage(): boolean {
+    return this.CargoItems ? this.first === this.CargoItems.length - this.rows : true;
+  }
+
+  isFirstPage(): boolean {
+    return this.CargoItems ? this.first === 0 : true;
+  }
+  visible: boolean = false;
+  showDialog() {
+    this.visible = true;
+}
 
 }

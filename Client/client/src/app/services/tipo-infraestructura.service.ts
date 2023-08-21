@@ -12,7 +12,7 @@ export class TipoInfraestructuraService {
   constructor(private http: HttpClient) { }
   
   getTipoInfraestructura() {
-    return this.http.get(`${this.API_URI}/api/TipoInfraestructura/GetTipoInfraestructuraItems`);
+    return this.http.get(`${this.API_URI}/api/TipoInfraestructura/GetAllItems`);
   }
 
   save(item: TipoInfraestructuraEntity) {

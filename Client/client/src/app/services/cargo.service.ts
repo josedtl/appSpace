@@ -12,7 +12,7 @@ export class CargoService {
   constructor(private http: HttpClient) { }
   
   getCargo() {
-    return this.http.get(`${this.API_URI}/api/Cargo/GetCargoItems`);
+    return this.http.get(`${this.API_URI}/api/Cargo/GetAllItems`);
   }
   save(item: CargoEntity) {
     return this.http.post(`${this.API_URI}/api/Cargo/Save`, item);

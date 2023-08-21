@@ -13,7 +13,7 @@ export class TipoElementoServiceService {
   constructor(private http: HttpClient) { }
 
   getTipoElemento() {
-    return this.http.get(`${this.API_URI}/api/TipoElemento/GetTipoElementoItems`);
+    return this.http.get(`${this.API_URI}/api/TipoElemento/GetAllItems`);
   }
 
   saveTipoElemento(item: TipoElementoEntity) {

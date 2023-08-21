@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,9 @@ import { EmpresaMainComponent } from './components/empresa-main/empresa-main.com
 import { CargoMainComponent } from './components/cargo-main/cargo-main.component';
 import { InfraestructuraMainComponent } from './components/Infraestructura/infraestructura-main/infraestructura-main.component';
 import { InfraestructuraSaveComponent } from './components/Infraestructura/infraestructura-save/infraestructura-save.component';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -36,9 +40,13 @@ import { InfraestructuraSaveComponent } from './components/Infraestructura/infra
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule 
+    FormsModule ,
+    ButtonModule,
+    TableModule,
+    DialogModule
   ],
   providers: [TipoElementoServiceService,TipoInfraestructuraService],
   bootstrap: [AppComponent]
