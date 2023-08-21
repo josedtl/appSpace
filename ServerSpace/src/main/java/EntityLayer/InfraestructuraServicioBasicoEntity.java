@@ -16,6 +16,16 @@ public class InfraestructuraServicioBasicoEntity {
         this.infraestructuraServicioBasicoId = infraestructuraServicioBasicoId;
     }
 
+    @JsonProperty("InfraestructuraId")
+    private int infraestructuraId = 0;
+    public int getInfraestructuraId() {
+        return infraestructuraId;
+    }
+
+    public void setInfraestructuraId(int infraestructuraId) {
+        this.infraestructuraId = infraestructuraId;
+    }
+
     @JsonProperty("ServicioBasicoId")
     private int servicioBasicoId = 0;
     public int getServicioBasicoId() {

@@ -106,16 +106,6 @@ public class InfraestructuraEntity {
         this.pisoId = pisoId;
     }
 
-    @JsonProperty("InfraestructuraServicioId")
-    private int infraestructuraServicioId = 0;
-    public int getInfraestructuraServicioId() {
-        return infraestructuraServicioId;
-    }
-
-    public void setInfraestructuraServicioId(int infraestructuraServicioId) {
-        this.infraestructuraServicioId = infraestructuraServicioId;
-    }
-
     @JsonProperty("FechaRegistro")
     private Date fechaRegistro = null;
     public Date getFechaRegistro() {

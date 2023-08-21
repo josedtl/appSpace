@@ -22,6 +22,7 @@ public class InfraestructuraServicioBasicoDB {
 
                 en = new InfraestructuraServicioBasicoEntity();
                 en.setInfraestructuraServicioBasicoId(rs.getInt("InfraestructuraServicioBasicoId"));
+                en.setInfraestructuraId(rs.getInt("InfraestructuraId"));
                 en.setServicioBasicoId(rs.getInt("ServicioBasicoId"));
                 en.setPagoExonerado(rs.getBoolean("PagoExonerado"));
                 en.setFechaRegistro(rs.getDate("FechaRegistro"));
@@ -50,6 +51,7 @@ public class InfraestructuraServicioBasicoDB {
 
                 en = new InfraestructuraServicioBasicoEntity();
                 en.setInfraestructuraServicioBasicoId(rs.getInt("InfraestructuraServicioBasicoId"));
+                en.setInfraestructuraId(rs.getInt("InfraestructuraId"));
                 en.setServicioBasicoId(rs.getInt("ServicioBasicoId"));
                 en.setPagoExonerado(rs.getBoolean("PagoExonerado"));
                 en.setFechaRegistro(rs.getDate("FechaRegistro"));
@@ -75,6 +77,7 @@ public class InfraestructuraServicioBasicoDB {
             }
             Inj.Sp(Store);
             Inj.Pmt_Integer("v_InfraestructuraServicioBasicoId", entity.getInfraestructuraServicioBasicoId(), true);
+            Inj.Pmt_Integer("v_InfraestructuraId", entity.getInfraestructuraId(), false);
             Inj.Pmt_Integer("v_ServicioBasicoId", entity.getServicioBasicoId(), false);
             Inj.Pmt_Boolean("v_PagoExonerado", entity.getPagoExonerado(), false);
             Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
