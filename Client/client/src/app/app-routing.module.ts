@@ -6,7 +6,7 @@ import { TipoInfraestructuraMainComponent } from './components/tipo-infraestruct
 import { PersonaNaturalMainComponent} from './components/persona-natural-main/persona-natural-main.component';
 import { EmpresaMainComponent } from './components/empresa-main/empresa-main.component';
 import { CargoMainComponent } from './components/cargo-main/cargo-main.component'
-
+import { InfraestructuraMainComponent } from './components/Infraestructura/infraestructura-main/infraestructura-main.component'
 const routes: Routes = [
   {
     path: '',
@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'cargoMain',
     component: CargoMainComponent
+  },
+  {
+    path: 'InfraEstructuraMain',
+    component: InfraestructuraMainComponent
   }
  
 ];
