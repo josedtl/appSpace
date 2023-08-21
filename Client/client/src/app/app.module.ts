@@ -9,8 +9,8 @@ import { AppComponent } from './app.component';
 import { TipoElementoMainComponent } from './components/tipo-elemento-main/tipo-elemento-main.component';
 
 import { TipoElementoServiceService } from './services/tipo-elemento-service.service';
-import { TipoInfraestructuraService }from './services/tipo-infraestructura.service';
-import {PersonanaturalService} from './services/personanatural.service';
+import { TipoInfraestructuraService } from './services/tipo-infraestructura.service';
+import { PersonanaturalService } from './services/personanatural.service';
 import { EmpresaService } from './services/empresa.service';
 import { CargoService } from './services/cargo.service';
 import { TipoInfraestructuraMainComponent } from './components/tipo-infraestructura-main/tipo-infraestructura-main.component';
@@ -25,6 +25,16 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 
+
+import { InputTextModule } from 'primeng/inputtext';
+import { StyleClassModule } from 'primeng/styleclass';
+import { CardModule } from 'primeng/card';
+import { PanelModule } from 'primeng/panel';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,12 +53,16 @@ import { DialogModule } from 'primeng/dialog';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule ,
+    FormsModule,
     ButtonModule,
     TableModule,
-    DialogModule
-  ],
-  providers: [TipoElementoServiceService,TipoInfraestructuraService],
+    DialogModule,
+    InputTextModule,
+    StyleClassModule,
+    CardModule,
+    PanelModule,
+    ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule],
+  providers: [TipoElementoServiceService, TipoInfraestructuraService, ConfirmationService, CargoService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

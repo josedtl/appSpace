@@ -1,103 +1,164 @@
 import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { CargoService } from '../../services/cargo.service';
 import { CargoEntity } from '../../models/CargoEntity';
+import { Table } from 'primeng/table';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 
+
+// import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 @Component({
   selector: 'app-cargo-main',
   templateUrl: './cargo-main.component.html',
   styleUrls: ['./cargo-main.component.css']
 })
 export class CargoMainComponent {
-
+  loading: boolean = true;
   cities: CargoEntity[] | undefined;
   selectedCity: CargoEntity | undefined;
-  CargoItems: any = [];;
+  CargoItems: CargoEntity[] = [];
+  selectedProducts!: CargoEntity[] | null;
   @ViewChild('saveModal') saveModal!: ElementRef; // Referencia a la ventana emergente
-  constructor(private service: CargoService) {
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private service: CargoService) {
   }
   newItem: CargoEntity = {
-    cargoId: 0,
-    nombre: '',
-    fechaRegistro: new Date(),
-    codUsuario: 'adm ',
-    estadoRegistro: true,
-    action: 0,
+    Item: 0,
+    CargoId: 0,
+    Nombre: '',
+    FechaRegistro: new Date(),
+    CodUsuario: 'adm ',
+    EstadoRegistro: true,
+    Action: 0,
+    Seleccion: false
   };
 
 
   ngOnInit() {
+
     this.getCargo();
-  }
-  openModal() {
-    this.newItem.action = 1;
-    this.saveModal.nativeElement.style.display = 'block';
-  }
-  closeModal() {
-    this.saveModal.nativeElement.style.display = 'none';
+    this.GetlistaOrdenar();
+    this.loading = false;
   }
 
   getCargo() {
     this.service.getCargo().subscribe(
       respuesta => {
         this.CargoItems = respuesta;
-        console.log(respuesta);
+        this.GetlistaOrdenar();
       }
     )
 
+  }
+
+  GetlistaOrdenar() {
+    this.CargoItems.sort((a, b) => b.CargoId - a.CargoId);
+    this.CargoItems.forEach((cargo, index) => {
+      cargo.Item = index + 1;
+    });
   }
 
   saveItem() {
     this.service.save(this.newItem)
       .subscribe(
         res => {
-          this.getCargo();
+          if (res.CargoId != 0) {
+            if (res.Action == 1) {
+              this.CargoItems.push(res);
+              this.GetlistaOrdenar();
+            }
+            if (res.Action == 3) {
+              const index = this.CargoItems.findIndex(cargo => cargo.CargoId === res.CargoId);
+
+              if (index >= 1) {
+                this.CargoItems[index] = res;
+                this.GetlistaOrdenar();
+              }
+            }
+          }
         },
         err => console.error(err)
       )
-    this.closeModal();
+    this.visible = false;
+  }
+  productDialog: boolean = false;
+  submitted: boolean = false;
+  hideDialog() {
+    this.productDialog = false;
+    this.submitted = false;
+  }
+
+  Delete_Metho(Id: number) {
+
+    this.confirmationService.confirm({
+      message: '¿Deseas eliminar el registro?',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sí',
+      rejectLabel: 'No',
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+        this.service.delete(Id)
+          .subscribe(
+            res => {
+              if (res) {
+
+                const index = this.CargoItems.findIndex(cargo => cargo.CargoId === Id);
+
+                if (index !== -1) {
+                  this.CargoItems.splice(index, 1)
+                } else {
+                  console.log('Elemento no encontrado en la lista.');
+                }
+
+
+                this.GetlistaOrdenar();
+              }
+            },
+            err => console.error(err)
+          );
+      },
+
+    });
+
+
+
 
   }
-  Delete_Metho(Id: number) {
-    this.service.delete(Id)
-      .subscribe(
-        res => {
-          this.getCargo();
-        },
-        err => console.error(err)
-      );
-  }
   Update_Metho(data: CargoEntity) {
-    this.openModal();
-    data.action = 3
+    this.showDialog();
+    data.Action = 3
     this.newItem = data;
 
   }
 
-  first = 0;
 
-  rows = 10;
-  next() {
-    this.first = this.first + this.rows;
-  }
-
-  prev() {
-    this.first = this.first - this.rows;
-  }
-
-  reset() {
-    this.first = 0;
-  }
-
-  isLastPage(): boolean {
-    return this.CargoItems ? this.first === this.CargoItems.length - this.rows : true;
-  }
-
-  isFirstPage(): boolean {
-    return this.CargoItems ? this.first === 0 : true;
-  }
   visible: boolean = false;
   showDialog() {
+    this.newItem.Action = 1;
     this.visible = true;
-}
+  }
+
+
+
+  convertToUpperCase(event: any) {
+    this.newItem.Nombre = event.target.value.toUpperCase();
+  }
+
+
+  deleteSelectedProducts() {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete the selected products?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.CargoItems = this.CargoItems.filter((val) => !this.selectedProducts?.includes(val));
+        this.selectedProducts = null;
+        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
+      }
+    });
+  }
+  openNew() {
+    this.submitted = false;
+    this.productDialog = true;
+  }
+
 
 }

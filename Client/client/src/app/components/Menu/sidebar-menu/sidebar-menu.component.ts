@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar-menu.component.css']
 })
 export class SidebarMenuComponent implements OnInit {
-  isSidebarExpanded: boolean = true;
+  isSidebarExpanded: boolean = false;
 
   constructor() { }
 
