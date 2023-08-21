@@ -43,13 +43,7 @@
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <scope>test</scope>
         </dependency>
-                
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version> <!-- Asegúrate de usar la versión más reciente -->
-        </dependency>
- 
+    
     </dependencies>
 
     <build>
