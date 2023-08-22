@@ -8,18 +8,20 @@
 
       <div style="display: flex; justify-content: space-between;">
         <div>
-          <p-button label="" styleClass="p-button-outlined p-button-secondary" (click)="deleteSelectedProducts()"
+          <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary" (click)="deleteSelectedProducts()"
             [disabled]="!CargoItems || !CargoItems.length">
             <i class="pi pi-trash" style="font-size: 1.5rem"></i>
           </p-button>
-          <p-button label="" styleClass="p-button-outlined p-button-secondary"
+          <p-button label=""  [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
            (click)="getCargo()"
             [disabled]="!CargoItems || !CargoItems.length">
             <i class="pi pi-replay" style="font-size: 1.5rem"></i>
           </p-button>
 
         </div>
-        <p-button id="colorboton" label="Agregar" icon="pi pi-plus" styleClass="p-button-outlined p-button-secondary"
+        <p-button [style]="buttonStyle"
+        label="Agregar" 
+         icon="pi pi-plus" styleClass="p-button-outlined p-button-secondary"
           (click)="showDialog()">
         </p-button>
 

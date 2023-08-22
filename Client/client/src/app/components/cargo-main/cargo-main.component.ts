@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/
 import { CargoService } from '../../services/cargo.service';
 import { CargoEntity } from '../../models/CargoEntity';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-
+import {ButtonStyles } from '../../models/StylesPrime';
 @Component({
   selector: 'app-cargo-main',
   templateUrl: './cargo-main.component.html',
@@ -10,13 +10,13 @@ import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/a
 })
 export class CargoMainComponent {
 
+  buttonStyle = ButtonStyles.primary;
   visibleVentena: boolean = false;
   loading: boolean = true;
   cities: CargoEntity[] | undefined;
   selectedCity: CargoEntity | undefined;
   CargoItems: CargoEntity[] = [];
   selectedProducts!: CargoEntity[] | null;
-  @ViewChild('saveModal') saveModal!: ElementRef;
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private service: CargoService) {
   }
   newItem: CargoEntity = {

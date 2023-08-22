@@ -35,6 +35,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { SidebarModule } from 'primeng/sidebar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     StyleClassModule,
     CardModule,
     PanelModule,
-    ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule],
+    ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule,PanelMenuModule,SidebarModule],
   providers: [TipoElementoServiceService, TipoInfraestructuraService, ConfirmationService, CargoService, MessageService],
   bootstrap: [AppComponent]
 })
