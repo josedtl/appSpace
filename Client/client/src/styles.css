@@ -5,3 +5,9 @@
 body {
     font-family: var(--font-family);
 }
+
+
+#HeaderTablaColor {
+    background-color: #00315B; /* Cambia esto al color deseado */
+    color: silver; /* Cambia el color del texto si es necesario */
+  }

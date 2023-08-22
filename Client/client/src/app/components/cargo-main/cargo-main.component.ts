@@ -33,7 +33,6 @@ export class CargoMainComponent {
 
   ngOnInit() {
     this.getCargo();
-    this.GetlistaOrdenar();
     this.loading = false;
   }
 

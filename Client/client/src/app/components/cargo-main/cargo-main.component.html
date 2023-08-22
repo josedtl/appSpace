@@ -1,29 +1,51 @@
-<p-card header="Cargo">
+<p-card>
+  <h1>Cargo</h1>
+  <p-table #dt [value]="CargoItems" [rows]="10" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
+    [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+    currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [showCurrentPageReport]="true">
 
-  <p-table #dt [value]="CargoItems" [rows]="10" [paginator]="true"
-    [tableStyle]="{ 'min-width': '75rem' }" [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedProducts"
-    [rowHover]="true" dataKey="id" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros"
-    [showCurrentPageReport]="true">
     <ng-template pTemplate="caption">
-      <div style="display: flex; justify-content: space-between;">
-        <button pButton pRipple label="" icon="pi pi-trash" class="p-button-danger"
-          (click)="deleteSelectedProducts()" [disabled]="!CargoItems || !CargoItems.length"></button>
 
-        <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-success mr-2"
-          (click)="showDialog()"></button>
+      <div style="display: flex; justify-content: space-between;">
+        <div>
+          <p-button label="" styleClass="p-button-outlined p-button-secondary" (click)="deleteSelectedProducts()"
+            [disabled]="!CargoItems || !CargoItems.length">
+            <i class="pi pi-trash" style="font-size: 1.5rem"></i>
+          </p-button>
+          <p-button label="" styleClass="p-button-outlined p-button-secondary"
+           (click)="getCargo()"
+            [disabled]="!CargoItems || !CargoItems.length">
+            <i class="pi pi-replay" style="font-size: 1.5rem"></i>
+          </p-button>
+
+        </div>
+        <p-button id="colorboton" label="Agregar" icon="pi pi-plus" styleClass="p-button-outlined p-button-secondary"
+          (click)="showDialog()">
+        </p-button>
+
+        <!-- <p-button styleClass="p-button-outlined" (click)="showDialog()">
+          <span id="bold-text">
+            <i class="pi pi-plus" style="font-size: 1.5rem;"></i>
+            Agregar
+          </span>
+        </p-button> -->
 
       </div>
+
     </ng-template>
+
     <ng-template pTemplate="header">
+
       <tr>
-        <th style="width: 4rem">
+        <th style="width: 4rem; " id="HeaderTablaColor">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th>Nº</th>
-        <th pSortableColumn="name" style="min-width:15rem">Name <p-sortIcon field="name"></p-sortIcon></th>
-        <th pSortableColumn="FechaRegistro">Fecha de Registro <p-sortIcon field="Fecha de Registro"></p-sortIcon></th>
-        <th pSortableColumn="CodUsuario">Usuario <p-sortIcon field="CodUsuario"></p-sortIcon></th>
-        <th></th>
+
+        <th id="HeaderTablaColor">Nº</th>
+        <th id="HeaderTablaColor" style="min-width:15rem">Nombre </th>
+        <th id="HeaderTablaColor">Fecha de Registro</th>
+        <th id="HeaderTablaColor">Usuario </th>
+        <th id="HeaderTablaColor"></th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-row>
@@ -46,12 +68,19 @@
         </td>
 
         <td>
-          <p-button icon="pi pi-trash" (click)="Delete_Metho(row.CargoId)"
+          <!-- <p-button icon="pi pi-trash" (click)="Delete_Metho(row.CargoId)"
             styleClass="p-button-sm p-button-danger p-button-text p-button-raised">
           </p-button>
           <p-button icon="pi pi-pencil" (click)="Update_Metho(row)"
             styleClass="p-button-sm p-button-warning p-button-text p-button-raised">
-          </p-button>
+          </p-button> -->
+
+          <a (click)="Delete_Metho(row.CargoId)" style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
+            <i class="pi pi-trash" style="color: red;"></i>
+          </a>
+          <a (click)="Update_Metho(row)" style="cursor: pointer;">
+            <i class="pi pi-pencil" style="color: orange; font-weight: bold;"></i>
+          </a>
         </td>
       </tr>
     </ng-template>
@@ -65,11 +94,15 @@
         : 0 }}</div>
     </ng-template>
   </p-table>
-  
-  <p-dialog [(visible)]="visibleVentena" [style]="{ width: '450px' }" header="Cargo" [modal]="true" styleClass="p-fluid">
+
+  <p-dialog [(visible)]="visibleVentena" [style]="{ width: '450px' }" header="Cargo" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="header" style="background-color: #00315B;">
+      <h3>Cargo</h3>
+    </ng-template>
     <ng-template pTemplate="content">
       <div class="field">
-        <label for="name">Name</label>
+        <label for="name">Nombre</label>
         <input type="text" pInputText id="name" [(ngModel)]="newItem.Nombre" required autofocus />
         <small class="p-error" *ngIf="submitted && !newItem.Nombre">Name is required.</small>
       </div>
@@ -78,6 +111,7 @@
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
       <button pButton pRipple label="Aceptar" icon="pi pi-check" class="p-button-text" (click)="saveItem()"></button>
+
     </ng-template>
   </p-dialog>
 

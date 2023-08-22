@@ -5,7 +5,7 @@
   left: -250px;
   width: 250px;
   transition: left 0.3s;
-  background-color: #00315B;
+  background-color: #027FAB;
   padding-top: 0px;
   z-index: 1000;
 }
@@ -46,3 +46,14 @@
   overflow-x: hidden;
 }
 
+#sidebar a.nav-link {
+  color: white; /* Cambia esto al color deseado */
+  margin-left: 10px;
+  transition: color 0.3s;
+  padding: 5px;
+}
+
+#sidebar a.nav-link:hover {
+  color: gray; /* Cambia esto al color deseado en hover */
+  background-color:#00101A;
+}
