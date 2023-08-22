@@ -14,19 +14,19 @@ export class TipoElementoMainComponent implements OnInit {
   @ViewChild('saveModal') saveModal!: ElementRef; // Referencia a la ventana emergente
 
   newItem: TipoElementoEntity = {
-    tipoElementoId: 0,
-    nombre: '',
-    fechaRegistro: new Date(),
-    codUsuario: 'adm ',
-    estadoRegistro: true,
-    action: 0,
+    TipoElementoId: 0,
+    Nombre: '',
+    FechaRegistro: new Date(),
+    CodUsuario: 'adm ',
+    EstadoRegistro: true,
+    Action: 0,
   };
 
   TipoElementoItems: any = [];;
 
   constructor(private tipoelementoserviceservice: TipoElementoServiceService) {
 
-    // this.getGames();
+
   }
 
 
@@ -46,7 +46,7 @@ export class TipoElementoMainComponent implements OnInit {
       );
   }
   openModal() {
-    this.newItem.action = 1;
+    this.newItem.Action = 1;
     this.saveModal.nativeElement.style.display = 'block';
   }
   closeModal() {
@@ -76,7 +76,7 @@ export class TipoElementoMainComponent implements OnInit {
   }
   Update_Metho(data: TipoElementoEntity) {
     this.openModal();
-    data.action = 3
+    data.Action = 3
     this.newItem = data;
 
   }

@@ -1,23 +1,22 @@
 import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
 import { CargoService } from '../../services/cargo.service';
 import { CargoEntity } from '../../models/CargoEntity';
-import { Table } from 'primeng/table';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 
-
-// import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 @Component({
   selector: 'app-cargo-main',
   templateUrl: './cargo-main.component.html',
   styleUrls: ['./cargo-main.component.css']
 })
 export class CargoMainComponent {
+
+  visibleVentena: boolean = false;
   loading: boolean = true;
   cities: CargoEntity[] | undefined;
   selectedCity: CargoEntity | undefined;
   CargoItems: CargoEntity[] = [];
   selectedProducts!: CargoEntity[] | null;
-  @ViewChild('saveModal') saveModal!: ElementRef; // Referencia a la ventana emergente
+  @ViewChild('saveModal') saveModal!: ElementRef;
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private service: CargoService) {
   }
   newItem: CargoEntity = {
@@ -33,7 +32,6 @@ export class CargoMainComponent {
 
 
   ngOnInit() {
-
     this.getCargo();
     this.GetlistaOrdenar();
     this.loading = false;
@@ -51,9 +49,11 @@ export class CargoMainComponent {
 
   GetlistaOrdenar() {
     this.CargoItems.sort((a, b) => b.CargoId - a.CargoId);
+
     this.CargoItems.forEach((cargo, index) => {
       cargo.Item = index + 1;
     });
+
   }
 
   saveItem() {
@@ -77,13 +77,15 @@ export class CargoMainComponent {
         },
         err => console.error(err)
       )
-    this.visible = false;
+    this.visibleVentena = false;
   }
+
   productDialog: boolean = false;
   submitted: boolean = false;
   hideDialog() {
     this.productDialog = false;
     this.submitted = false;
+    this.visibleVentena = false;
   }
 
   Delete_Metho(Id: number) {
@@ -130,10 +132,10 @@ export class CargoMainComponent {
   }
 
 
-  visible: boolean = false;
+
   showDialog() {
     this.newItem.Action = 1;
-    this.visible = true;
+    this.visibleVentena = true;
   }
 
 

@@ -12,15 +12,10 @@ export class CargoService {
 
   constructor(private http: HttpClient) { }
 
-  // getCargo() {
-  //   return this.http.get(`${this.API_URI}/api/Cargo/GetAllItems`);
-  // }
-
-
   getCargo(): Observable<CargoEntity[]> {
     return this.http.get<CargoEntity[]>(`${this.API_URI}/api/Cargo/GetAllItems`);
   }
-
+  
   save(item: CargoEntity): Observable<CargoEntity> {
     return this.http.post<CargoEntity>(`${this.API_URI}/api/Cargo/Save`, item);
   }

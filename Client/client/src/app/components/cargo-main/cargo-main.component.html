@@ -1,7 +1,6 @@
 <p-card header="Cargo">
 
   <p-table #dt [value]="CargoItems" [rows]="10" [paginator]="true"
-    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
     [tableStyle]="{ 'min-width': '75rem' }" [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedProducts"
     [rowHover]="true" dataKey="id" currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros"
     [showCurrentPageReport]="true">
@@ -14,18 +13,6 @@
           (click)="showDialog()"></button>
 
       </div>
-      <!-- <div class="flex">
-
-        <button pButton pRipple label="Agregar" icon="pi pi-plus" class="p-button-success mr-2"
-          (click)="showDialog()"></button>
-
-        <button pButton pRipple label="Borrar" icon="pi pi-trash" class="p-button-danger"
-          (click)="deleteSelectedProducts()" [disabled]="!CargoItems || !CargoItems.length"></button>
-
-      </div> -->
-
-
-
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
@@ -70,7 +57,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="7">Sin registros.</td>
+        <td colspan="6">Sin registros.</td>
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
@@ -78,7 +65,8 @@
         : 0 }}</div>
     </ng-template>
   </p-table>
-  <p-dialog [(visible)]="visible" [style]="{ width: '450px' }" header="Cargo" [modal]="true" styleClass="p-fluid">
+  
+  <p-dialog [(visible)]="visibleVentena" [style]="{ width: '450px' }" header="Cargo" [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
       <div class="field">
         <label for="name">Name</label>
@@ -88,7 +76,7 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-      <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+      <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
       <button pButton pRipple label="Aceptar" icon="pi pi-check" class="p-button-text" (click)="saveItem()"></button>
     </ng-template>
   </p-dialog>

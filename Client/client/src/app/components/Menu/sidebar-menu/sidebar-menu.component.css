@@ -5,7 +5,7 @@
   left: -250px;
   width: 250px;
   transition: left 0.3s;
-  background-color: #f8f9fa;
+  background-color: #00315B;
   padding-top: 0px;
   z-index: 1000;
 }
@@ -17,7 +17,7 @@
 .sidebar-header {
   text-align: center;
   padding: 9px;
-  background-color: #343a40;
+  background-color: #00101A;
   color: white;
 }
 
@@ -45,3 +45,4 @@
 .wrapper {
   overflow-x: hidden;
 }
+

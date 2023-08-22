@@ -29,7 +29,7 @@
             <form >
               <div class="form-group">
                 <label for="name">Nombre:</label>
-                <input type="text" class="form-control" id="name" [(ngModel)]="newItem.nombre" name="name">
+                <input type="text" class="form-control" id="name" [(ngModel)]="newItem.Nombre" name="name">
               </div>
               <button type="submit" class="btn btn-primary"  (click)="saveItem()"  >Guardar</button>
             </form>
@@ -52,9 +52,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let game of TipoElementoItems">
-        <td>{{ game.nombre }}</td>
-        <td>{{ game.fechaRegistro | date: 'yyyy-MM-dd' }}</td>
-        <td>{{ game.codUsuario }}</td>
+        <td>{{ game.Nombre }}</td>
+        <td>{{ game.FechaRegistro | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ game.CodUsuario }}</td>
         <td>
           <!-- Uncomment and customize as needed -->
           <button class="btn btn-danger" (click)="Delete_Metho(game.tipoElementoId)">
@@ -72,4 +72,26 @@
       </tr>
     </tbody>
   </table>
+</div>
+
+
+<div class="card">
+  <p-table [value]="TipoElementoItems" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Nombre</th>
+              <th>Fecha Registro</th>
+              <th>Usuario</th>
+              <th>Action</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+          <tr>
+              <td>{{ product.Nombre }}</td>
+              <td>{{ product.FechaRegistro }}</td>
+              <td>{{ product.CodUsuario }}</td>
+              <td></td>
+          </tr>
+      </ng-template>
+  </p-table>
 </div>
