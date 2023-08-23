@@ -71,6 +71,12 @@ export class SidebarMenuComponent implements OnInit {
             routerLink: '/TipoElementoMain',
             command: () => this.onMenuItemClick()
 
+          },{
+            label: 'Piso',
+            icon: 'pi pi-fw pi-folder',
+            routerLink: '/PisoMain',
+            command: () => this.onMenuItemClick()
+
           },
           {
             label: 'Infraestructura',
