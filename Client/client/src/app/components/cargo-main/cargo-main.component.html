@@ -1,36 +1,47 @@
 <p-card>
-  <h1>Cargo</h1>
-  <p-table #dt [value]="CargoItems" [rows]="10" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
-    [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+
+  <div style="display: flex; justify-content: space-between;">
+    <div>
+      <h1>Cargo</h1>
+    </div>
+
+    <div>
+
+      <p-button [style]="buttonStyle" label="Agregar" icon="pi pi-plus"
+        styleClass="p-button-outlined p-button-secondary" (click)="showDialog()">
+      </p-button>
+    </div>
+
+
+  </div>
+
+
+  <p-table #dt [value]="ListaMainItems" [rows]="10" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
+    [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedItems" [rowHover]="true" dataKey="id"
     currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [showCurrentPageReport]="true">
 
     <ng-template pTemplate="caption">
 
       <div style="display: flex; justify-content: space-between;">
         <div>
-          <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary" (click)="deleteSelectedProducts()"
-            [disabled]="!CargoItems || !CargoItems.length">
+          <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
+            (click)="deleteSelectedProducts()" [disabled]="!ListaMainItems || !ListaMainItems.length">
             <i class="pi pi-trash" style="font-size: 1.5rem"></i>
           </p-button>
-          <p-button label=""  [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
-           (click)="getCargo()"
-            [disabled]="!CargoItems || !CargoItems.length">
+          <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
+            (click)="getCargo()" [disabled]="!ListaMainItems || !ListaMainItems.length">
             <i class="pi pi-replay" style="font-size: 1.5rem"></i>
           </p-button>
 
         </div>
-        <p-button [style]="buttonStyle"
-        label="Agregar" 
-         icon="pi pi-plus" styleClass="p-button-outlined p-button-secondary"
-          (click)="showDialog()">
-        </p-button>
 
-        <!-- <p-button styleClass="p-button-outlined" (click)="showDialog()">
-          <span id="bold-text">
-            <i class="pi pi-plus" style="font-size: 1.5rem;"></i>
-            Agregar
-          </span>
-        </p-button> -->
+        <div>
+          <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
+          (click)="deleteSelectedProducts()" [disabled]="!ListaMainItems || !ListaMainItems.length">
+          <i class="pi pi-file-excel" style="font-size: 1.5rem"></i>
+        </p-button>
+        </div>
+
 
       </div>
 
@@ -92,7 +103,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">Total de registros {{ CargoItems ? CargoItems.length
+      <div class="flex align-items-center justify-content-between">Total de registros {{ ListaMainItems ? ListaMainItems.length
         : 0 }}</div>
     </ng-template>
   </p-table>

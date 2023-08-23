@@ -1,6 +1,5 @@
 <div class="card flex justify-content-center">
   <p-sidebar [(visible)]="sidebarVisible" [blockScroll]="true" [style]="{'background-color':'#F5F5F5'}">
-    <!-- style="background-color: #00101A;padding: 20px;margin-left: -20px; margin-top: -20px;width: 1000px; color: white;margin-right: -50px;" -->
     <ng-template pTemplate="header">
       <div>
         <h4>
@@ -9,8 +8,8 @@
         </h4>
       </div>
     </ng-template>
-    <!-- <div class="sidebar-toggle" (click)="sidebarVisible = true"></div> -->
-    <p-panelMenu [model]="items" [multiple]="true" [style]="{'margin-left':'-19px','width':'317px'}"></p-panelMenu>
+    <p-panelMenu [model]="items" [multiple]="true"
+     [style]="{'margin-left':'-19px','width':'317px'}"></p-panelMenu>
   </p-sidebar>
 
 
@@ -23,60 +22,3 @@
     </svg>
   </i>
 </div>
-<!-- 
-
-
-
-<nav id="sidebar" [ngClass]="{'active': isSidebarExpanded}">
-    <div class="sidebar-header">
-      <h3>INFRE</h3>
-    </div>
-    <ul class="list-unstyled components">
-      <li>
-        <a routerLink="/" routerLinkActive="active" class="nav-link">Home</a>
-      </li>
-      <li>
-        <a routerLink="/InfraEstructuraMain" 
-        (click)="toggleSidebar()"
-        routerLinkActive="active" class="nav-link">InfraEstructura</a>
-      </li>
-      <li>
-        <a routerLink="/TipoElementoMain" 
-        (click)="toggleSidebar()"
-        routerLinkActive="active" class="nav-link">Tipo Elemento</a>
-      </li>
-      <li>
-        <a routerLink="/TipoInfraestructuraMain" 
-        (click)="toggleSidebar()"
-        routerLinkActive="active" class="nav-link">Tipo InfraEstructura</a>
-      </li>
-      <li>
-        <a routerLink="/PersonaNaturalMain" 
-        (click)="toggleSidebar()"
-        routerLinkActive="active" class="nav-link">Persona Natural</a>
-      </li>
-      <li>
-        <a routerLink="/EmpresaMain" 
-        (click)="toggleSidebar()"
-        routerLinkActive="active" 
-        class="nav-link">Empresa</a>
-      </li>
-      <li>
-        <a routerLink="/cargoMain" 
-        (click)="toggleSidebar()"
-        routerLinkActive="active" class="nav-link">Cargo</a>
-      </li>
-    </ul>
-   
-
-
-    <div class="sidebar-toggle" (click)="toggleSidebar()">
-      <i   [ngClass]="{'fas fa-angle-left': isSidebarExpanded, 'fas fa-angle-right': !isSidebarExpanded}">
-        <svg  width="35" height="35" fill="white" class="bi bi-list" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-        </svg>
-      </i>
-    </div>
-
-
-  </nav> -->

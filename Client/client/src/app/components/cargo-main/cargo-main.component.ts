@@ -15,8 +15,8 @@ export class CargoMainComponent {
   loading: boolean = true;
   cities: CargoEntity[] | undefined;
   selectedCity: CargoEntity | undefined;
-  CargoItems: CargoEntity[] = [];
-  selectedProducts!: CargoEntity[] | null;
+  ListaMainItems: CargoEntity[] = [];
+  selectedItems!: CargoEntity[] | null;
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private service: CargoService) {
   }
   newItem: CargoEntity = {
@@ -39,7 +39,7 @@ export class CargoMainComponent {
   getCargo() {
     this.service.getCargo().subscribe(
       respuesta => {
-        this.CargoItems = respuesta;
+        this.ListaMainItems = respuesta;
         this.GetlistaOrdenar();
       }
     )
@@ -47,9 +47,9 @@ export class CargoMainComponent {
   }
 
   GetlistaOrdenar() {
-    this.CargoItems.sort((a, b) => b.CargoId - a.CargoId);
+    this.ListaMainItems.sort((a, b) => b.CargoId - a.CargoId);
 
-    this.CargoItems.forEach((cargo, index) => {
+    this.ListaMainItems.forEach((cargo, index) => {
       cargo.Item = index + 1;
     });
 
@@ -61,14 +61,14 @@ export class CargoMainComponent {
         res => {
           if (res.CargoId != 0) {
             if (res.Action == 1) {
-              this.CargoItems.push(res);
+              this.ListaMainItems.push(res);
               this.GetlistaOrdenar();
             }
             if (res.Action == 3) {
-              const index = this.CargoItems.findIndex(cargo => cargo.CargoId === res.CargoId);
+              const index = this.ListaMainItems.findIndex(cargo => cargo.CargoId === res.CargoId);
 
               if (index >= 1) {
-                this.CargoItems[index] = res;
+                this.ListaMainItems[index] = res;
                 this.GetlistaOrdenar();
               }
             }
@@ -101,10 +101,10 @@ export class CargoMainComponent {
             res => {
               if (res) {
 
-                const index = this.CargoItems.findIndex(cargo => cargo.CargoId === Id);
+                const index = this.ListaMainItems.findIndex(cargo => cargo.CargoId === Id);
 
                 if (index !== -1) {
-                  this.CargoItems.splice(index, 1)
+                  this.ListaMainItems.splice(index, 1)
                 } else {
                   console.log('Elemento no encontrado en la lista.');
                 }
@@ -150,8 +150,8 @@ export class CargoMainComponent {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.CargoItems = this.CargoItems.filter((val) => !this.selectedProducts?.includes(val));
-        this.selectedProducts = null;
+        this.ListaMainItems = this.ListaMainItems.filter((val) => !this.selectedItems?.includes(val));
+        this.selectedItems = null;
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
       }
     });

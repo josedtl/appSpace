@@ -29,7 +29,7 @@ export class SidebarMenuComponent implements OnInit {
     this.items = [
       {
         label: 'Ingreso',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-arrow-circle-right',
         items: [
           {
             label: 'Reserva',
@@ -44,7 +44,7 @@ export class SidebarMenuComponent implements OnInit {
       },
       {
         label: 'Salida',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-arrow-circle-left',
         items: [
           {
             label: 'Liquidación',
@@ -57,24 +57,24 @@ export class SidebarMenuComponent implements OnInit {
 
       {
         label: 'Catalogo',
-        icon: 'pi pi-fw pi-calendar',
+        icon: 'pi pi-fw pi-wallet',
         items: [
           {
             label: 'Cargo',
-            icon: 'pi pi-fw pi-pencil',
+            icon: 'pi pi-fw pi-folder',
             routerLink: '/cargoMain',
             command: () => this.onMenuItemClick()
           },
           {
             label: 'Tipo Elemento',
-            icon: 'pi pi-fw pi-pencil',
+            icon: 'pi pi-fw pi-folder',
             routerLink: '/TipoElementoMain',
             command: () => this.onMenuItemClick()
 
           },
           {
             label: 'Infraestructura',
-            icon: 'pi pi-fw pi-pencil',
+            icon: 'pi pi-fw pi-folder',
             routerLink: '/Infraestructura',
             command: () => this.onMenuItemClick()
 

@@ -16,11 +16,6 @@ npm update
 
 
 
-ICONOS SVG
-https://icons.getbootstrap.com/
-
-
-
 CONFIGURAR RUTTAS EN:
 app-routing.module.ts
 
@@ -28,5 +23,5 @@ EN EL HTML SE DISEÑA EN EL MENU
 sidebar-menu.component.html
 
 
-
+PAGINA DE COMPONENTES UI PRIME
 https://primeng.org/installation
