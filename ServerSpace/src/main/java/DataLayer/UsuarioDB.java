@@ -25,7 +25,7 @@ public class UsuarioDB {
                 en.setEmpleadoId(rs.getInt("EmpleadoId"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setContrasena(rs.getString("Contrasena"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+//                en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setRegistroCodUsuario(rs.getString("RegistroCodUsuario"));
                 en.setEstado(rs.getBoolean("Estado"));
             }
@@ -52,7 +52,7 @@ public class UsuarioDB {
                 en.setEmpleadoId(rs.getInt("EmpleadoId"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setContrasena(rs.getString("Contrasena"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+//                en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setRegistroCodUsuario(rs.getString("RegistroCodUsuario"));
                 en.setEstado(rs.getBoolean("Estado"));
             }
@@ -76,7 +76,7 @@ public class UsuarioDB {
             Inj.Pmt_Integer("v_EmpleadoId", entity.getEmpleadoId(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_String("v_Contrasena", entity.getContrasena(), false);
-            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
+//            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
             Inj.Pmt_String("v_RegistroCodUsuario", entity.getRegistroCodUsuario(), false);
             Inj.Pmt_Boolean("v_Estado", entity.getEstado(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {

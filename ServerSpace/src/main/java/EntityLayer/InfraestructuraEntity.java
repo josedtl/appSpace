@@ -2,7 +2,7 @@ package EntityLayer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class InfraestructuraEntity {
 
@@ -107,12 +107,12 @@ public class InfraestructuraEntity {
     }
 
     @JsonProperty("FechaRegistro")
-    private Date fechaRegistro = null;
-    public Date getFechaRegistro() {
+    private Timestamp fechaRegistro = null;
+    public Timestamp getFechaRegistro() {
         return fechaRegistro;
     }
 
-    public void setFechaRegistro(Date fechaRegistro) {
+    public void setFechaRegistro(Timestamp fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
     }
 
