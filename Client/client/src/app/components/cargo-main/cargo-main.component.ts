@@ -21,14 +21,11 @@ export class CargoMainComponent {
   }
   newItem: CargoEntity = new CargoEntity();
 
-  switchLabel: string = 'desactivado';
   ngOnInit() {
     this.getCargo();
     this.loading = false;
   }
-  switchChanged() {
-    this.switchLabel = this.newItem.EstadoRegistro ? 'activado' : 'desactivado';
-}
+
   getCargo() {
     this.service.getCargo().subscribe(
       respuesta => {

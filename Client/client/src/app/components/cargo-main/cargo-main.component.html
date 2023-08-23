@@ -120,11 +120,11 @@
         <input type="text" pInputText id="name" [(ngModel)]="newItem.Nombre" required autofocus />
         <small class="p-error" *ngIf="submitted && !newItem.Nombre">Name is required.</small>
       </div>
+      <div style="display: flex; margin-top: 15px;">
+        <p-inputSwitch [(ngModel)]="newItem.EstadoRegistro"></p-inputSwitch>
+        <p style="margin-left: 10px;">{{ newItem.EstadoRegistro? 'Activado': 'Desactivado' }}</p>
+      </div>
 
-      <div class="card flex justify-content-center">
-        <p-inputSwitch [(ngModel)]="newItem.EstadoRegistro" (onChange)="switchChanged()"></p-inputSwitch>
-        <p>{{ switchLabel }}</p>
-    </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
