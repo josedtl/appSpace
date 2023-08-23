@@ -16,8 +16,8 @@ export class TipoElementoMainComponent implements OnInit {
   loading: boolean = true;
   cities: TipoElementoEntity[] | undefined;
   selectedCity: TipoElementoEntity | undefined;
-  TipoElementoItems: TipoElementoEntity[] = [];
-  selectedProducts!: TipoElementoEntity[] | null;
+  ListaMainItems: TipoElementoEntity[] = [];
+  selectedItems!: TipoElementoEntity[] | null;
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private service: TipoElementoServiceService) {
   }
   newItem: TipoElementoEntity = {
@@ -42,7 +42,7 @@ getTipoElemento() {
     this.service.getTipoElemento().subscribe(
        respuesta => {
         console.log();
-        this.TipoElementoItems = respuesta;
+        this.ListaMainItems = respuesta;
         this.GetlistaOrdenar();
       }
     )
@@ -50,9 +50,9 @@ getTipoElemento() {
   }
 
   GetlistaOrdenar() {
-    this.TipoElementoItems.sort((a, b) => b.TipoElementoId - a.TipoElementoId);
+    this.ListaMainItems.sort((a, b) => b.TipoElementoId - a.TipoElementoId);
 
-    this.TipoElementoItems.forEach((TipoElemento, index) => {
+    this.ListaMainItems.forEach((TipoElemento, index) => {
       TipoElemento.Item = index + 1;
     });
 
@@ -64,14 +64,14 @@ getTipoElemento() {
         res => {
           if (res.TipoElementoId != 0) {
             if (res.Action == 1) {
-              this.TipoElementoItems.push(res);
+              this.ListaMainItems.push(res);
               this.GetlistaOrdenar();
             }
             if (res.Action == 3) {
-              const index = this.TipoElementoItems.findIndex(TipoElemento => TipoElemento.TipoElementoId === res.TipoElementoId);
+              const index = this.ListaMainItems.findIndex(TipoElemento => TipoElemento.TipoElementoId === res.TipoElementoId);
 
               if (index >= 1) {
-                this.TipoElementoItems[index] = res;
+                this.ListaMainItems[index] = res;
                 this.GetlistaOrdenar();
               }
             }
@@ -104,10 +104,10 @@ getTipoElemento() {
             res => {
               if (res) {
 
-                const index = this.TipoElementoItems.findIndex(TipoElemento => TipoElemento.TipoElementoId === Id);
+                const index = this.ListaMainItems.findIndex(TipoElemento => TipoElemento.TipoElementoId === Id);
 
                 if (index !== -1) {
-                  this.TipoElementoItems.splice(index, 1)
+                  this.ListaMainItems.splice(index, 1)
                 } else {
                   console.log('Elemento no encontrado en la lista.');
                 }
@@ -147,14 +147,14 @@ getTipoElemento() {
   }
 
 
-  deleteSelectedProducts() {
+  deleteselectedItems() {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected products?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.TipoElementoItems = this.TipoElementoItems.filter((val) => !this.selectedProducts?.includes(val));
-        this.selectedProducts = null;
+        this.ListaMainItems = this.ListaMainItems.filter((val) => !this.selectedItems?.includes(val));
+        this.selectedItems = null;
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
       }
     });

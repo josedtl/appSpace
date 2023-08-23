@@ -1,20 +1,20 @@
 <p-card>
   <h1>TipoElemento</h1>
-  <p-table #dt [value]="TipoElementoItems" [rows]="10" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
-  [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+  <p-table #dt [value]="ListaMainItems" [rows]="10" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
+  [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedItems" [rowHover]="true" dataKey="id"
   currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [showCurrentPageReport]="true">
 
   <ng-template pTemplate="caption">
 
     <div style="display: flex; justify-content: space-between;">
       <div>
-        <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary" (click)="deleteSelectedProducts()"
-          [disabled]="!TipoElementoItems || !TipoElementoItems.length">
+        <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary" (click)="deleteselectedItems()"
+          [disabled]="!ListaMainItems || !ListaMainItems.length">
           <i class="pi pi-trash" style="font-size: 1.5rem"></i>
         </p-button>
         <p-button label=""  [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
          (click)="getTipoElemento()"
-          [disabled]="!TipoElementoItems || !TipoElementoItems.length">
+          [disabled]="!ListaMainItems || !ListaMainItems.length">
           <i class="pi pi-replay" style="font-size: 1.5rem"></i>
         </p-button>
 
@@ -78,7 +78,7 @@
     </tr>
   </ng-template>
   <ng-template pTemplate="summary">
-    <div class="flex align-items-center justify-content-between">Total de registros {{ TipoElementoItems ? TipoElementoItems.length
+    <div class="flex align-items-center justify-content-between">Total de registros {{ ListaMainItems ? ListaMainItems.length
       : 0 }}</div>
   </ng-template>
 </p-table>

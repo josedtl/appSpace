@@ -37,6 +37,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
+import { PisoMainComponent } from './components/piso-main/piso-main.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { SidebarModule } from 'primeng/sidebar';
     EmpresaMainComponent,
     CargoMainComponent,
     InfraestructuraMainComponent,
-    InfraestructuraSaveComponent
+    InfraestructuraSaveComponent,
+    PisoMainComponent
   ],
   imports: [
     BrowserModule,
