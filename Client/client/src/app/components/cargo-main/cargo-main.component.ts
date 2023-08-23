@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/
 import { CargoService } from '../../services/cargo/cargo.service';
 import { CargoEntity } from '../../models/Cargo/CargoEntity';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
-import {ButtonStyles } from '../../models/StylesPrime';
+import { ButtonStyles } from '../../models/StylesPrime';
 @Component({
   selector: 'app-cargo-main',
   templateUrl: './cargo-main.component.html',
@@ -19,17 +19,7 @@ export class CargoMainComponent {
   selectedItems!: CargoEntity[] | null;
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private service: CargoService) {
   }
-  newItem: CargoEntity = {
-    Item: 0,
-    CargoId: 0,
-    Nombre: '',
-    FechaRegistro: new Date(),
-    CodUsuario: 'adm ',
-    EstadoRegistro: true,
-    Action: 0,
-    Seleccion: false
-  };
-
+  newItem: CargoEntity = new CargoEntity();
 
   ngOnInit() {
     this.getCargo();
@@ -133,6 +123,7 @@ export class CargoMainComponent {
 
 
   showDialog() {
+    this.newItem = new CargoEntity();
     this.newItem.Action = 1;
     this.visibleVentena = true;
   }
