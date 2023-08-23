@@ -10,6 +10,4 @@ export class CargoEntity {
         public Action: number = 0,
         public Seleccion: boolean = false
     ) { }
-
-
 }

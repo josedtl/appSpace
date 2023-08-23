@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { ServicioBasicoMainComponent } from './components/servicio-basico-main/s
     ServicioBasicoMainComponent
   ],
   imports: [
+    InputNumberModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -79,6 +79,13 @@ export class SidebarMenuComponent implements OnInit {
 
           },
           {
+            label: 'Servicio Basico',
+            icon: 'pi pi-fw pi-folder',
+            routerLink: '/ServicioBasicoMain',
+            command: () => this.onMenuItemClick()
+
+          },
+          {
             label: 'Infraestructura',
             icon: 'pi pi-fw pi-folder',
             routerLink: '/Infraestructura',

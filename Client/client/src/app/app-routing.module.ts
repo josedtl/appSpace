@@ -21,11 +21,11 @@ const routes: Routes = [
     component: CargoMainComponent
   }, {
     path: 'PisoMain',
-    component: CargoMainComponent
+    component: PisoMainComponent
   },
   {
     path: 'ServicioBasicoMain',
-    component: CargoMainComponent
+    component: ServicioBasicoMainComponent
   }
 
 

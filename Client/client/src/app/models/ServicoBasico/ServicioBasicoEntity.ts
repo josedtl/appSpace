@@ -1,12 +1,14 @@
-export interface ServicioBasicoEntity {
-    Item: number,
-    ServicioBasicoId: number,
-    Codigo?:String,
-    Nombre?: string,
-    Descripcion?: string,
-    FechaRegistro?: Date,
-    CodUsuario?: string,
-    EstadoRegistro?: boolean,
-    Action?: number,
-    Seleccion:boolean
+export class ServicioBasicoEntity {
+    constructor(
+        public Item: number= 0,
+        public ServicioBasicoId: number= 0,
+        public Codigo:String = '',
+        public Nombre: string= '',
+        public Descripcion: string = '',
+        public FechaRegistro: Date= new Date(),
+        public CodUsuario: string = '',
+        public EstadoRegistro: boolean = false,
+        public Action: number= 0,
+        public Seleccion:boolean= false
+    ) { }
 };
