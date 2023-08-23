@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TipoElementoMainComponent } from './components/tipo-elemento-main/tipo-elemento-main.component';
 import { CargoMainComponent } from './components/cargo-main/cargo-main.component'
+import { ServicioBasicoComponent} from './components/servicio-basico/servicio-basico.component' 
+import { PisoMainComponent} from './components/piso-main/piso-main.component'
 const routes: Routes = [
   {
     path: '',
@@ -17,7 +19,10 @@ const routes: Routes = [
   {
     path: 'cargoMain',
     component: CargoMainComponent
-  },
+  }, {
+    path: 'PisoMain',
+    component: CargoMainComponent
+  }
 
 
 ];
