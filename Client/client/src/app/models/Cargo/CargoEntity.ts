@@ -6,7 +6,7 @@ export class CargoEntity {
         public Nombre: string = '',
         public FechaRegistro: Date = new Date(),
         public CodUsuario: string = '',
-        public EstadoRegistro: boolean = false,
+        public EstadoRegistro: boolean = true,
         public Action: number = 0,
         public Seleccion: boolean = false
     ) { }
