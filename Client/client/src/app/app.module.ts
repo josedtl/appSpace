@@ -35,12 +35,7 @@ import { PisoMainComponent } from './components/piso-main/piso-main.component';
     SidebarMenuComponent,
     NavigationComponent,
     CargoMainComponent,
-<<<<<<< HEAD
-    InfraestructuraMainComponent,
-    InfraestructuraSaveComponent,
     PisoMainComponent
-=======
->>>>>>> bbff5187de9923c35e318af09c914c183f04721a
   ],
   imports: [
     BrowserModule,
