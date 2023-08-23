@@ -28,9 +28,9 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { PisoMainComponent } from './components/piso-main/piso-main.component';
-import { ServicioBasicoComponent } from './components/servicio-basico/servicio-basico.component';
 
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { ServicioBasicoMainComponent } from './components/servicio-basico-main/servicio-basico-main.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +39,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
     NavigationComponent,
     CargoMainComponent,
     PisoMainComponent,
-    ServicioBasicoComponent
+    ServicioBasicoMainComponent
   ],
   imports: [
     BrowserModule,
