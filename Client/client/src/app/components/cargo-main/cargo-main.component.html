@@ -37,9 +37,9 @@
 
         <div>
           <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
-          (click)="deleteSelectedProducts()" [disabled]="!ListaMainItems || !ListaMainItems.length">
-          <i class="pi pi-file-excel" style="font-size: 1.5rem"></i>
-        </p-button>
+            (click)="deleteSelectedProducts()" [disabled]="!ListaMainItems || !ListaMainItems.length">
+            <i class="pi pi-file-excel" style="font-size: 1.5rem"></i>
+          </p-button>
         </div>
 
 
@@ -103,7 +103,8 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">Total de registros {{ ListaMainItems ? ListaMainItems.length
+      <div class="flex align-items-center justify-content-between">Total de registros {{ ListaMainItems ?
+        ListaMainItems.length
         : 0 }}</div>
     </ng-template>
   </p-table>
@@ -119,6 +120,11 @@
         <input type="text" pInputText id="name" [(ngModel)]="newItem.Nombre" required autofocus />
         <small class="p-error" *ngIf="submitted && !newItem.Nombre">Name is required.</small>
       </div>
+
+      <div class="card flex justify-content-center">
+        <p-inputSwitch [(ngModel)]="newItem.EstadoRegistro" (onChange)="switchChanged()"></p-inputSwitch>
+        <p>{{ switchLabel }}</p>
+    </div>
     </ng-template>
 
     <ng-template pTemplate="footer">

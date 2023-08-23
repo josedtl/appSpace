@@ -29,6 +29,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { PisoMainComponent } from './components/piso-main/piso-main.component';
 import { ServicioBasicoComponent } from './components/servicio-basico/servicio-basico.component';
+
+import { InputSwitchModule } from 'primeng/inputswitch';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,7 @@ import { ServicioBasicoComponent } from './components/servicio-basico/servicio-b
     StyleClassModule,
     CardModule,
     PanelModule,
-    ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule,PanelMenuModule,SidebarModule],
+    ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule,PanelMenuModule,SidebarModule,InputSwitchModule],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]
 })
