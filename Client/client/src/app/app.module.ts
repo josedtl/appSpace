@@ -36,17 +36,8 @@ import { ServicioBasicoComponent } from './components/servicio-basico/servicio-b
     SidebarMenuComponent,
     NavigationComponent,
     CargoMainComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    InfraestructuraMainComponent,
-    InfraestructuraSaveComponent,
     PisoMainComponent,
     ServicioBasicoComponent
-=======
->>>>>>> bbff5187de9923c35e318af09c914c183f04721a
-=======
-    PisoMainComponent
->>>>>>> 25c85f7ff19c903fc1a072b2adbee6ab8b872073
   ],
   imports: [
     BrowserModule,
