@@ -1,6 +1,6 @@
 import { Component, OnInit, HostBinding, ViewChild, ElementRef } from '@angular/core';
-import { CargoService } from '../../services/cargo.service';
-import { CargoEntity } from '../../models/CargoEntity';
+import { CargoService } from '../../services/cargo/cargo.service';
+import { CargoEntity } from '../../models/Cargo/CargoEntity';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import {ButtonStyles } from '../../models/StylesPrime';
 @Component({
