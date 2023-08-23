@@ -28,6 +28,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { PisoMainComponent } from './components/piso-main/piso-main.component';
+import { ServicioBasicoComponent } from './components/servicio-basico/servicio-basico.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,17 @@ import { PisoMainComponent } from './components/piso-main/piso-main.component';
     SidebarMenuComponent,
     NavigationComponent,
     CargoMainComponent,
+<<<<<<< HEAD
+<<<<<<< HEAD
+    InfraestructuraMainComponent,
+    InfraestructuraSaveComponent,
+    PisoMainComponent,
+    ServicioBasicoComponent
+=======
+>>>>>>> bbff5187de9923c35e318af09c914c183f04721a
+=======
     PisoMainComponent
+>>>>>>> 25c85f7ff19c903fc1a072b2adbee6ab8b872073
   ],
   imports: [
     BrowserModule,
