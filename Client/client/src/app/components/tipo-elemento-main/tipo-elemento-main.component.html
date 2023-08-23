@@ -1,97 +1,109 @@
-<div class="container">
-  <div>
-    <h1>Tipo de Elemento</h1>
-    <i  class="bi bi-list">
-     
-    </i>
-   
-    <!-- Botón para abrir la ventana emergente -->
-    <button class="btn btn-primary" (click)="openModal()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-      </svg>
-      Nuevo
+<p-card>
+  <h1>TipoElemento</h1>
+  <p-table #dt [value]="TipoElementoItems" [rows]="10" [paginator]="true" [tableStyle]="{ 'min-width': '75rem' }"
+  [rowsPerPageOptions]="[10, 25, 50]" [(selection)]="selectedProducts" [rowHover]="true" dataKey="id"
+  currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} registros" [showCurrentPageReport]="true">
 
-    </button>
-    
+  <ng-template pTemplate="caption">
 
-    <!-- Ventana emergente -->
-    <div #saveModal class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Guardar Nuevo Elemento</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form >
-              <div class="form-group">
-                <label for="name">Nombre:</label>
-                <input type="text" class="form-control" id="name" [(ngModel)]="newItem.Nombre" name="name">
-              </div>
-              <button type="submit" class="btn btn-primary"  (click)="saveItem()"  >Guardar</button>
-            </form>
-          </div>
-        </div>
+    <div style="display: flex; justify-content: space-between;">
+      <div>
+        <p-button label="" [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary" (click)="deleteSelectedProducts()"
+          [disabled]="!TipoElementoItems || !TipoElementoItems.length">
+          <i class="pi pi-trash" style="font-size: 1.5rem"></i>
+        </p-button>
+        <p-button label=""  [style]="buttonStyle" styleClass="p-button-outlined p-button-secondary"
+         (click)="getTipoElemento()"
+          [disabled]="!TipoElementoItems || !TipoElementoItems.length">
+          <i class="pi pi-replay" style="font-size: 1.5rem"></i>
+        </p-button>
+
       </div>
+      <p-button [style]="buttonStyle"
+      label="Agregar" 
+       icon="pi pi-plus" styleClass="p-button-outlined p-button-secondary"
+        (click)="showDialog()">
+      </p-button>
+
     </div>
 
+  </ng-template>
+
+  <ng-template pTemplate="header">
+
+    <tr>
+      <th style="width: 4rem; " id="HeaderTablaColor">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+
+      <th id="HeaderTablaColor">Nº</th>
+      <th id="HeaderTablaColor" style="min-width:15rem">Nombre </th>
+      <th id="HeaderTablaColor">Fecha de Registro</th>
+      <th id="HeaderTablaColor">Usuario </th>
+      <th id="HeaderTablaColor"></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-row>
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="row"></p-tableCheckbox>
+      </td>
+      <td>
+        {{ row.Item }}
+      </td>
+      <td>
+        {{ row.Nombre }}
+      </td>
+
+      <td>
+        {{ row.FechaRegistro | date: 'MM/dd/yyyy hh:mm' }}
+      </td>
+      <td>
+        {{ row.CodUsuario }}
+      </td>
+
+      <td>
+        <a (click)="Delete_Metho(row.tipoElementoId)" style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
+          <i class="pi pi-trash" style="color: red;"></i>
+        </a>
+        <a (click)="Update_Metho(row)" style="cursor: pointer;">
+          <i class="pi pi-pencil" style="color: orange; font-weight: bold;"></i>
+        </a>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="6">Sin registros.</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary">
+    <div class="flex align-items-center justify-content-between">Total de registros {{ TipoElementoItems ? TipoElementoItems.length
+      : 0 }}</div>
+  </ng-template>
+</p-table>
 
 
+<p-dialog [(visible)]="visibleVentena" [style]="{ width: '450px' }" header="TipoElemento" [modal]="true"
+styleClass="p-fluid">
+<ng-template pTemplate="header" style="background-color: #00315B;">
+  <h3>TipoElemento</h3>
+</ng-template>
+<ng-template pTemplate="content">
+  <div class="field">
+    <label for="name">Nombre</label>
+    <input type="text" pInputText id="name" [(ngModel)]="newItem.Nombre" required autofocus />
+    <small class="p-error" *ngIf="submitted && !newItem.Nombre">Name is required.</small>
   </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Nombre</th>
-        <th scope="col">Fecha Registro</th>
-        <th scope="col">Usuario</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let game of TipoElementoItems">
-        <td>{{ game.Nombre }}</td>
-        <td>{{ game.FechaRegistro | date: 'yyyy-MM-dd' }}</td>
-        <td>{{ game.CodUsuario }}</td>
-        <td>
-          <!-- Uncomment and customize as needed -->
-          <button class="btn btn-danger" (click)="Delete_Metho(game.tipoElementoId)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
-              <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
-            </svg>
-            </button>
-            <button class="btn btn-danger" (click)="Update_Metho(game)">
-              <svg  width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-              </svg>
-            </button>
-       
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+</ng-template>
 
+<ng-template pTemplate="footer">
+  <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+  <button pButton pRipple label="Aceptar" icon="pi pi-check" class="p-button-text" (click)="saveItem()"></button>
 
-<div class="card">
-  <p-table [value]="TipoElementoItems" [tableStyle]="{ 'min-width': '50rem' }">
-      <ng-template pTemplate="header">
-          <tr>
-              <th>Nombre</th>
-              <th>Fecha Registro</th>
-              <th>Usuario</th>
-              <th>Action</th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-          <tr>
-              <td>{{ product.Nombre }}</td>
-              <td>{{ product.FechaRegistro }}</td>
-              <td>{{ product.CodUsuario }}</td>
-              <td></td>
-          </tr>
-      </ng-template>
-  </p-table>
-</div>
+</ng-template>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+
+</p-card>
