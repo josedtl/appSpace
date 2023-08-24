@@ -23,7 +23,7 @@ public class TipoInfraestructuraDB {
                 en = new TipoInfraestructuraEntity();
                 en.setTipoInfraestructuraId(rs.getInt("TipoInfraestructuraId"));
                 en.setNombre(rs.getString("Nombre"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+//                en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -50,7 +50,7 @@ public class TipoInfraestructuraDB {
                 en = new TipoInfraestructuraEntity();
                 en.setTipoInfraestructuraId(rs.getInt("TipoInfraestructuraId"));
                 en.setNombre(rs.getString("Nombre"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+//                en.setFechaRegistro(rs.getDate("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -74,7 +74,7 @@ public class TipoInfraestructuraDB {
             Inj.Sp(Store);
             Inj.Pmt_Integer("v_TipoInfraestructuraId", entity.getTipoInfraestructuraId(), true);
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
-            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
+//            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {

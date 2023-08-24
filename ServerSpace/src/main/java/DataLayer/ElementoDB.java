@@ -11,7 +11,7 @@ public class ElementoDB {
 
     injector Inj = new injector();
 
-    public ArrayList<ElementoEntity> GetAllItems() { 
+    public ArrayList<ElementoEntity> GetAllItems() {
 
         ArrayList<ElementoEntity> DatoMemoria = new ArrayList<>();
         ElementoEntity en;
@@ -25,7 +25,7 @@ public class ElementoDB {
                 en.setEstadoElemento(rs.getInt("EstadoElemento"));
                 en.setTipoElementoId(rs.getInt("TipoElementoId"));
                 en.setDescripcion(rs.getString("Descripcion"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -33,13 +33,13 @@ public class ElementoDB {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
     }
 
-    public ArrayList<ElementoEntity> GetAllItem(int ElementoId) { 
+    public ArrayList<ElementoEntity> GetAllItem(int ElementoId) {
 
         ArrayList<ElementoEntity> DatoMemoria = new ArrayList<>();
         ElementoEntity en;
@@ -54,7 +54,7 @@ public class ElementoDB {
                 en.setEstadoElemento(rs.getInt("EstadoElemento"));
                 en.setTipoElementoId(rs.getInt("TipoElementoId"));
                 en.setDescripcion(rs.getString("Descripcion"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -62,7 +62,7 @@ public class ElementoDB {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
@@ -80,7 +80,7 @@ public class ElementoDB {
             Inj.Pmt_Integer("v_EstadoElemento", entity.getEstadoElemento(), false);
             Inj.Pmt_Integer("v_TipoElementoId", entity.getTipoElementoId(), false);
             Inj.Pmt_String("v_Descripcion", entity.getDescripcion(), false);
-            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
+            Inj.Pmt_Date("v_FechaRegistro", entity.getFechaRegistro(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {

@@ -31,7 +31,7 @@ public class InfraestructuraDB {
                 en.setInfraestructuraDimensionId(rs.getInt("InfraestructuraDimensionId"));
                 en.setAforo(rs.getInt("Aforo"));
                 en.setPisoId(rs.getInt("PisoId"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -66,7 +66,7 @@ public class InfraestructuraDB {
                 en.setInfraestructuraDimensionId(rs.getInt("InfraestructuraDimensionId"));
                 en.setAforo(rs.getInt("Aforo"));
                 en.setPisoId(rs.getInt("PisoId"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -98,7 +98,7 @@ public class InfraestructuraDB {
             Inj.Pmt_Integer("v_InfraestructuraDimensionId", entity.getInfraestructuraDimensionId(), false);
             Inj.Pmt_Integer("v_Aforo", entity.getAforo(), false);
             Inj.Pmt_Integer("v_PisoId", entity.getPisoId(), false);
-            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
+              Inj.Pmt_Date("v_FechaRegistro", entity.getFechaRegistro(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {

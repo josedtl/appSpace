@@ -5,7 +5,8 @@
  */
 package Framework;
 
-import java.sql.Date;
+//import java.sql.Date;Date
+import java.sql.Timestamp;
 
 
 
@@ -22,14 +23,14 @@ public class variable {
     private Boolean _OUTPUT = null;
     private String _ParameterName = null;
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return _Date;
     }
 
-    public void setDate(Date _Date) {
+    public void setDate(Timestamp _Date) {
         this._Date = _Date;
     }
-    private Date _Date = null;
+    private Timestamp _Date = null;
 
     /**
      * @return the _String

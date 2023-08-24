@@ -80,7 +80,7 @@ public class InfraestructuraServicioBasicoDB {
             Inj.Pmt_Integer("v_InfraestructuraId", entity.getInfraestructuraId(), false);
             Inj.Pmt_Integer("v_ServicioBasicoId", entity.getServicioBasicoId(), false);
             Inj.Pmt_Boolean("v_PagoExonerado", entity.getPagoExonerado(), false);
-            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
+//            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {

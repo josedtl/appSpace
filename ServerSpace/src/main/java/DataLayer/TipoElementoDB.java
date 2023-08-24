@@ -11,7 +11,7 @@ public class TipoElementoDB {
 
     injector Inj = new injector();
 
-    public ArrayList<TipoElementoEntity> GetAllItems() { 
+    public ArrayList<TipoElementoEntity> GetAllItems() {
 
         ArrayList<TipoElementoEntity> DatoMemoria = new ArrayList<>();
         TipoElementoEntity en;
@@ -23,7 +23,7 @@ public class TipoElementoDB {
                 en = new TipoElementoEntity();
                 en.setTipoElementoId(rs.getInt("TipoElementoId"));
                 en.setNombre(rs.getString("Nombre"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -31,13 +31,13 @@ public class TipoElementoDB {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
     }
 
-    public ArrayList<TipoElementoEntity> GetAllItem(int TipoElementoId) { 
+    public ArrayList<TipoElementoEntity> GetAllItem(int TipoElementoId) {
 
         ArrayList<TipoElementoEntity> DatoMemoria = new ArrayList<>();
         TipoElementoEntity en;
@@ -50,7 +50,7 @@ public class TipoElementoDB {
                 en = new TipoElementoEntity();
                 en.setTipoElementoId(rs.getInt("TipoElementoId"));
                 en.setNombre(rs.getString("Nombre"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -58,7 +58,7 @@ public class TipoElementoDB {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
@@ -74,7 +74,7 @@ public class TipoElementoDB {
             Inj.Sp(Store);
             Inj.Pmt_Integer("v_TipoElementoId", entity.getTipoElementoId(), true);
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
-            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
+            Inj.Pmt_Date("v_FechaRegistro", entity.getFechaRegistro(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {

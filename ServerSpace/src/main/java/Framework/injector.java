@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
 
@@ -35,7 +36,7 @@ public class injector {
     public void Pmt_Boolean(String Param, Boolean value, Boolean valueB) {
         variable v = new variable();
         v.setParameterName(Param);
-        v.setBoolean(value);
+        v.setInt(value ? 1 : 0);
         v.setOUTPUT(valueB);
         type.add(v);
         //    dat.add(value);
@@ -59,7 +60,7 @@ public class injector {
         //    dat.add(value);
     }
 
-    public void Pmt_Date(String Param, Date value, Boolean valueB) {
+    public void Pmt_Date(String Param, Timestamp value, Boolean valueB) {
         variable v = new variable();
         v.setParameterName(Param);
         v.setDate(value);
@@ -109,10 +110,10 @@ public class injector {
                     cs.setString(t.getParameterName(), t.getString());
                 }
                 if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
-                    cs.setBoolean(t.getParameterName(), t.getBoolean());
+                    cs.setInt(t.getParameterName(), t.getBoolean() ? 1 : 0);
                 }
                 if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDouble() == null) {
-                    cs.setDate(t.getParameterName(),  t.getDate());
+                    cs.setTimestamp(t.getParameterName(), t.getDate());
                 }
                 if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     if (t.getOUTPUT()) {
@@ -167,10 +168,10 @@ public class injector {
                     cs.setString(t.getParameterName(), t.getString());
                 }
                 if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
-                    cs.setBoolean(t.getParameterName(), t.getBoolean());
+                    cs.setInt(t.getParameterName(), t.getBoolean() ? 1 : 0);
                 }
                 if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDouble() == null) {
-                    cs.setDate(t.getParameterName(), t.getDate());
+                    cs.setTimestamp(t.getParameterName(), t.getDate());
                 }
                 if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
 
@@ -229,7 +230,7 @@ public class injector {
                     cs.setDouble(t.getParameterName(), t.getDouble());
                 }
                 if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDouble() == null) {
-                    cs.setDate(t.getParameterName(),  t.getDate());
+                    cs.setTimestamp(t.getParameterName(), t.getDate());
                 }
             }
 
@@ -263,7 +264,7 @@ public class injector {
                     cs.setBoolean(t.getParameterName(), t.getBoolean());
                 }
                 if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getBoolean() == null) {
-                    cs.setDate(t.getParameterName(),  t.getDate());
+                    cs.setTimestamp(t.getParameterName(), t.getDate());
                 }
                 if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
                     if (t.getOUTPUT()) {

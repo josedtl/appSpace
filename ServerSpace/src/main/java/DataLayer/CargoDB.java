@@ -2,16 +2,22 @@ package DataLayer;
 
 import EntityLayer.CargoEntity;
 import Enumerados.ProcessActionEnum;
+import Framework.Utilidades;
 import Framework.injector;
+import ch.qos.logback.classic.pattern.Util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CargoDB {
 
     injector Inj = new injector();
 
-    public ArrayList<CargoEntity> GetAllItems() { 
+    public ArrayList<CargoEntity> GetAllItems() {
 
         ArrayList<CargoEntity> DatoMemoria = new ArrayList<>();
         CargoEntity en;
@@ -19,27 +25,25 @@ public class CargoDB {
             Inj.Sp("sp_CargoAllItems");
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
-
                 en = new CargoEntity();
                 en.setCargoId(rs.getInt("CargoId"));
                 en.setNombre(rs.getString("Nombre"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 en.setPruebaId(0);
                 DatoMemoria.add(en);
 
             }
-            
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
     }
 
-    public ArrayList<CargoEntity> GetAllItem(int CargoId) { 
+    public ArrayList<CargoEntity> GetAllItem(int CargoId) {
 
         ArrayList<CargoEntity> DatoMemoria = new ArrayList<>();
         CargoEntity en;
@@ -52,7 +56,7 @@ public class CargoDB {
                 en = new CargoEntity();
                 en.setCargoId(rs.getInt("CargoId"));
                 en.setNombre(rs.getString("Nombre"));
-                en.setFechaRegistro(rs.getDate("FechaRegistro"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -60,7 +64,7 @@ public class CargoDB {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
@@ -76,7 +80,7 @@ public class CargoDB {
             Inj.Sp(Store);
             Inj.Pmt_Integer("v_CargoId", entity.getCargoId(), true);
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
-            Inj.Pmt_Date("v_FechaRegistro", new java.sql.Date(entity.getFechaRegistro().getTime()), false);
+            Inj.Pmt_String("v_FechaRegistro", Utilidades.getFechaRegistro(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
