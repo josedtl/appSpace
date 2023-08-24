@@ -32,6 +32,8 @@ import { PisoMainComponent } from './components/piso-main/piso-main.component';
 
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ServicioBasicoMainComponent } from './components/servicio-basico-main/servicio-basico-main.component';
+import { InfraestructuraMainComponent } from './components/infraestructura-main/infraestructura-main.component';
+import { TabViewModule } from 'primeng/tabview';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,10 +42,12 @@ import { ServicioBasicoMainComponent } from './components/servicio-basico-main/s
     NavigationComponent,
     CargoMainComponent,
     PisoMainComponent,
-    ServicioBasicoMainComponent
+    ServicioBasicoMainComponent,
+    InfraestructuraMainComponent
   ],
   imports: [
     InputNumberModule,
+    TabViewModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
