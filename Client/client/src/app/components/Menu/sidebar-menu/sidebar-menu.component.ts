@@ -88,7 +88,7 @@ export class SidebarMenuComponent implements OnInit {
           {
             label: 'Infraestructura',
             icon: 'pi pi-fw pi-folder',
-            routerLink: '/Infraestructura',
+            routerLink: '/InfraestructuraMain',
             command: () => this.onMenuItemClick()
 
           },
