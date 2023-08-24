@@ -2,12 +2,16 @@ package DataLayer;
 
 import EntityLayer.CargoEntity;
 import Enumerados.ProcessActionEnum;
+import Framework.Utilidades;
 import Framework.injector;
-import java.sql.Date;
+import ch.qos.logback.classic.pattern.Util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CargoDB {
 
@@ -21,7 +25,6 @@ public class CargoDB {
             Inj.Sp("sp_CargoAllItems");
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
-
                 en = new CargoEntity();
                 en.setCargoId(rs.getInt("CargoId"));
                 en.setNombre(rs.getString("Nombre"));
@@ -77,7 +80,7 @@ public class CargoDB {
             Inj.Sp(Store);
             Inj.Pmt_Integer("v_CargoId", entity.getCargoId(), true);
             Inj.Pmt_String("v_Nombre", entity.getNombre(), false);
-            Inj.Pmt_Date("v_FechaRegistro", entity.getFechaRegistro(), false);
+            Inj.Pmt_String("v_FechaRegistro", Utilidades.getFechaRegistro(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
