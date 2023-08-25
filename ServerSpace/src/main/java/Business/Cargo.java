@@ -2,9 +2,10 @@ package Business;
 
 import DataLayer.CargoDB;
 import EntityLayer.CargoEntity;
+import Models.CargoItemModel;
 import java.util.ArrayList;
 
-public class Cargo {
+public class Cargo  extends  Business.MyCode.Cargo{
 
     public ArrayList<CargoEntity> GetAllItems() {
         CargoDB BD = new CargoDB();
@@ -25,4 +26,5 @@ public class Cargo {
         CargoDB BD = new CargoDB();
         return BD.Delete(Id);
     }
+
 }

@@ -4,16 +4,11 @@ import EntityLayer.CargoEntity;
 import Enumerados.ProcessActionEnum;
 import Framework.Utilidades;
 import Framework.injector;
-import ch.qos.logback.classic.pattern.Util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class CargoDB {
+public class CargoDB extends DataLayer.MyCode.CargoDB {
 
     injector Inj = new injector();
 

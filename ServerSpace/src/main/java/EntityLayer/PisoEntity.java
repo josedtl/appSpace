@@ -6,8 +6,10 @@ import java.sql.Timestamp;
 
 public class PisoEntity {
 
+   
     @JsonProperty("PisoId")
     private int pisoId = 0;
+
     public int getPisoId() {
         return pisoId;
     }
@@ -18,6 +20,7 @@ public class PisoEntity {
 
     @JsonProperty("Codigo")
     private String codigo = "";
+
     public String getCodigo() {
         return codigo;
     }
@@ -28,6 +31,7 @@ public class PisoEntity {
 
     @JsonProperty("Valor")
     private double valor = 0;
+
     public double getValor() {
         return valor;
     }
@@ -38,6 +42,7 @@ public class PisoEntity {
 
     @JsonProperty("FechaRegistro")
     private Timestamp fechaRegistro = null;
+
     public Timestamp getFechaRegistro() {
         return fechaRegistro;
     }
@@ -48,6 +53,7 @@ public class PisoEntity {
 
     @JsonProperty("CodUsuario")
     private String codUsuario = "";
+
     public String getCodUsuario() {
         return codUsuario;
     }
@@ -58,6 +64,7 @@ public class PisoEntity {
 
     @JsonProperty("EstadoRegistro")
     private boolean estadoRegistro = false;
+
     public boolean getEstadoRegistro() {
         return estadoRegistro;
     }
@@ -65,8 +72,6 @@ public class PisoEntity {
     public void setEstadoRegistro(boolean estadoRegistro) {
         this.estadoRegistro = estadoRegistro;
     }
-
-
 
     @JsonProperty("Action")
     private ProcessActionEnum action = ProcessActionEnum.Loaded;

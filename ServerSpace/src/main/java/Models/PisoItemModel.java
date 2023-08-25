@@ -1,17 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Models;
 
 import EntityLayer.PisoEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- *
- * @author DAVID
- */
 public class PisoItemModel {
+
+    public PisoItemModel() {
+        this.pisoId = 0;
+        this.codigo = "";
+        this.valor = 0;
+           
+    }
 
     public PisoItemModel(PisoEntity Ent) {
         this.pisoId = Ent.getPisoId();
