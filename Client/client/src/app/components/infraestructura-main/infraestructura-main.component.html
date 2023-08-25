@@ -1,5 +1,3 @@
-
-
 <div class="container text-left">
     <div class="row">
       <div class="col-4">
@@ -56,7 +54,8 @@
         </ng-template> -->
     </p-table>
 </div>
-            
+
+
         </p-tabPanel>
         <p-tabPanel header="Header II">
             <ng-template pTemplate="header">
@@ -65,11 +64,16 @@
             </ng-template>
             <p-table  [scrollable]="true" scrollHeight="400px" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header">
+                    
                     <tr>
                         <th>Name</th>
                         <th>Country</th>
                         <th>Company</th>
                         <th>Representative</th>
+                        <div class="flex justify-content-center flex-wrap gap-3 mb-4">
+        
+                            <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+                        </div>
                     </tr>
                 </ng-template>
                 <!-- <ng-template pTemplate="body" let-customer>
@@ -80,6 +84,7 @@
                         <td>{{customer.representative.name}}</td>
                     </tr>
                 </ng-template> -->
+                
             </p-table>
         </p-tabPanel>
         
