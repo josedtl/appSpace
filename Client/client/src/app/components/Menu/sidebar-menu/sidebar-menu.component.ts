@@ -39,7 +39,7 @@ export class SidebarMenuComponent implements OnInit {
             label: 'Alquiler',
             icon: 'pi pi-fw pi-trash'
           }
-         
+
         ]
       },
       {
@@ -50,8 +50,8 @@ export class SidebarMenuComponent implements OnInit {
             label: 'Liquidación',
             icon: 'pi pi-fw pi-plus'
           }
-         
-         
+
+
         ]
       },
 
@@ -71,7 +71,7 @@ export class SidebarMenuComponent implements OnInit {
             routerLink: '/TipoElementoMain',
             command: () => this.onMenuItemClick()
 
-          },{
+          }, {
             label: 'Piso',
             icon: 'pi pi-fw pi-folder',
             routerLink: '/PisoMain',
@@ -89,6 +89,12 @@ export class SidebarMenuComponent implements OnInit {
             label: 'Infraestructura',
             icon: 'pi pi-fw pi-folder',
             routerLink: '/InfraestructuraMain',
+            command: () => this.onMenuItemClick()
+
+          }, {
+            label: 'Persona Natural',
+            icon: 'pi pi-fw pi-folder',
+            routerLink: '/PersonaNaturalSave',
             command: () => this.onMenuItemClick()
 
           },

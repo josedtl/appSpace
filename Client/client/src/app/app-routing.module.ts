@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TipoElementoMainComponent } from './components/tipo-elemento-main/tipo-elemento-main.component';
 import { CargoMainComponent } from './components/cargo-main/cargo-main.component'
-import { ServicioBasicoMainComponent} from './components/servicio-basico-main/servicio-basico-main.component'
-import { PisoMainComponent} from './components/piso-main/piso-main.component'
-import {InfraestructuraMainComponent } from './components/infraestructura-main/infraestructura-main.component'
+import { ServicioBasicoMainComponent } from './components/servicio-basico-main/servicio-basico-main.component'
+import { PisoMainComponent } from './components/piso-main/piso-main.component'
+import { InfraestructuraMainComponent } from './components/infraestructura-main/infraestructura-main.component'
+import { PersonaNaturalSaveComponent } from './components/PersonaNatural/persona-natural-save/persona-natural-save.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,7 +17,7 @@ const routes: Routes = [
     path: 'TipoElementoMain',
     component: TipoElementoMainComponent
   },
- 
+
   {
     path: 'cargoMain',
     component: CargoMainComponent
@@ -28,8 +29,14 @@ const routes: Routes = [
     path: 'ServicioBasicoMain',
     component: ServicioBasicoMainComponent
   },
-  { path: 'InfraestructuraMain',
-  component: InfraestructuraMainComponent
+  {
+    path: 'InfraestructuraMain',
+    component: InfraestructuraMainComponent
+  }
+  ,
+  {
+    path: 'PersonaNaturalSave',
+    component: PersonaNaturalSaveComponent
   }
 
 ];

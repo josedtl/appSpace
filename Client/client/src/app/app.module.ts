@@ -34,6 +34,9 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ServicioBasicoMainComponent } from './components/servicio-basico-main/servicio-basico-main.component';
 import { InfraestructuraMainComponent } from './components/infraestructura-main/infraestructura-main.component';
 import { TabViewModule } from 'primeng/tabview';
+import { PersonaNaturalSaveComponent } from './components/PersonaNatural/persona-natural-save/persona-natural-save.component';
+import { PersonaNaturalMainComponent } from './components/PersonaNatural/persona-natural-main/persona-natural-main.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +46,9 @@ import { TabViewModule } from 'primeng/tabview';
     CargoMainComponent,
     PisoMainComponent,
     ServicioBasicoMainComponent,
-    InfraestructuraMainComponent
+    InfraestructuraMainComponent,
+    PersonaNaturalSaveComponent,
+    PersonaNaturalMainComponent
   ],
   imports: [
     InputNumberModule,
