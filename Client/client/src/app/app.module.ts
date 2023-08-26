@@ -36,7 +36,8 @@ import { InfraestructuraMainComponent } from './components/infraestructura-main/
 import { TabViewModule } from 'primeng/tabview';
 import { PersonaNaturalSaveComponent } from './components/PersonaNatural/persona-natural-save/persona-natural-save.component';
 import { PersonaNaturalMainComponent } from './components/PersonaNatural/persona-natural-main/persona-natural-main.component';
-
+import { ImageModule } from 'primeng/image';
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,7 @@ import { PersonaNaturalMainComponent } from './components/PersonaNatural/persona
     InputTextModule,
     StyleClassModule,
     CardModule,
-    PanelModule,
+    PanelModule,ImageModule,CalendarModule,
     ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule,PanelMenuModule,SidebarModule,InputSwitchModule],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]
