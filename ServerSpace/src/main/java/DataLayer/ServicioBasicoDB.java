@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ServicioBasicoDB {
+public class ServicioBasicoDB extends DataLayer.MyCode.ServicioBasicoDB{
 
     injector Inj = new injector();
 

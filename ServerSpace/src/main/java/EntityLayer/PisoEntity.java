@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.sql.Timestamp;
 
-public class PisoEntity {
+public class PisoEntity extends EntityLayer.MyCode.PisoEntity {
 
    
     @JsonProperty("PisoId")

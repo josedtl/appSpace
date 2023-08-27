@@ -1,29 +1,28 @@
 
 package DataLayer.MyCode;
 
-import EntityLayer.CargoEntity;
+import EntityLayer.PisoEntity;
 import Framework.injector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CargoDB {
-
+public class PisoDB {
     injector Inj = new injector();
 
-    public ArrayList<CargoEntity> GetCargoLikeItem(String Nombre) {
+    public ArrayList<PisoEntity> GetPisoLikeItem(String Codigo) {
 
-        ArrayList<CargoEntity> DatoMemoria = new ArrayList<>();
-        CargoEntity en;
+        ArrayList<PisoEntity> DatoMemoria = new ArrayList<>();
+        PisoEntity en;
         try {
-            Inj.Sp("sp_CargoLikeItem");
-            Inj.Pmt_String("v_Nombre", Nombre, false);
+            Inj.Sp("sp_PisoLikeItem");
+            Inj.Pmt_String("v_Codigo", Codigo, false);
             ResultSet rs = Inj.RunSelect();
             while (rs.next()) {
 
-                en = new CargoEntity();
-                en.setCargoId(rs.getInt("CargoId"));
-                en.setNombre(rs.getString("Nombre"));
+                en = new PisoEntity();
+                en.setPisoId(rs.getInt("pisoId"));
+                en.setCodigo(rs.getString("Codigo"));
                 DatoMemoria.add(en);
 
             }
@@ -34,5 +33,4 @@ public class CargoDB {
         }
         return DatoMemoria;
     }
-
 }

@@ -4,7 +4,7 @@ import DataLayer.ServicioBasicoDB;
 import EntityLayer.ServicioBasicoEntity;
 import java.util.ArrayList;
 
-public class ServicioBasico {
+public class ServicioBasico extends Business.MyCode.ServicioBasico{
 
     public ArrayList<ServicioBasicoEntity> GetAllItems() {
         ServicioBasicoDB BD = new ServicioBasicoDB();

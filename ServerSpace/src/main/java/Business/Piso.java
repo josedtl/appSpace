@@ -4,7 +4,7 @@ import DataLayer.PisoDB;
 import EntityLayer.PisoEntity;
 import java.util.ArrayList;
 
-public class Piso {
+public class Piso extends  Business.MyCode.Piso {
 
     public ArrayList<PisoEntity> GetAllItems() {
         PisoDB BD = new PisoDB();
