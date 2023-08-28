@@ -1,15 +1,8 @@
-
 package com.api.server;
 
-import Business.Cargo;
-import Business.Piso;
-import Business.ServicioBasico;
-import EntityLayer.CargoEntity;
-import EntityLayer.PisoEntity;
-import EntityLayer.ServicioBasicoEntity;
-import Models.CargoItemModel;
-import Models.PisoItemModel;
-import Models.ServicioBasicoItemModel;
+import Business.*;
+import EntityLayer.*;
+import Models.*;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +29,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetPisoItem/{Id}")
     public ArrayList<PisoItemModel> GetPisoItem(@PathVariable int Id) {
         ArrayList<PisoItemModel> Items = new ArrayList<>();
@@ -49,7 +42,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetPisoLikeItem/{Codigo}")
     public ArrayList<PisoItemModel> GetPisoLikeItem(@PathVariable String Codigo) {
         ArrayList<PisoItemModel> Items = new ArrayList<>();
@@ -131,8 +124,8 @@ public class GeneralController {
 
         return Items;
     }
-    
-     @GetMapping("/GetServicioBasicoLikeItem/{Codigo}")
+
+    @GetMapping("/GetServicioBasicoLikeItem/{Codigo}")
     public ArrayList<ServicioBasicoItemModel> GetServicioBasicoLikeItem(@PathVariable String Codigo) {
         ArrayList<ServicioBasicoItemModel> Items = new ArrayList<>();
         ServicioBasico BS = new ServicioBasico();
@@ -144,5 +137,77 @@ public class GeneralController {
 
         return Items;
     }
-    
+
+    @GetMapping("/GetTipoDocuemntoIdentidadPersonaItems")
+    public ArrayList<TipoDocumentoIdentidadItemModel> GetTipoDocuemntoIdentidadPersonaItems() {
+
+        ArrayList<TipoDocumentoIdentidadItemModel> Items = new ArrayList<>();
+        TipoDocumentoIdentidad BS = new TipoDocumentoIdentidad();
+
+        ArrayList<TipoDocumentoIdentidadEntity> Data = BS.GetAllItems();
+
+        for (TipoDocumentoIdentidadEntity Item : Data) {
+            if (!Item.getEsEmpresa()) {
+                Items.add(new TipoDocumentoIdentidadItemModel(Item));
+            }
+        }
+
+        return Items;
+    }
+
+    @GetMapping("/GetTipoDocuemntoIdentidadItem/{Id}")
+    public ArrayList<TipoDocumentoIdentidadItemModel> GetTipoDocuemntoIdentidadItem(@PathVariable int Id) {
+
+        ArrayList<TipoDocumentoIdentidadItemModel> Items = new ArrayList<>();
+        TipoDocumentoIdentidad BS = new TipoDocumentoIdentidad();
+
+        ArrayList<TipoDocumentoIdentidadEntity> Data = BS.GetAllItems();
+
+        for (TipoDocumentoIdentidadEntity Item : Data) {
+            Items.add(new TipoDocumentoIdentidadItemModel(Item));
+        }
+
+        return Items;
+    }
+
+    @GetMapping("/GetUbigeoLikeItem/{Nombre}")
+    public ArrayList<UbigeoItemModel> GetUbigeoLikeItem(@PathVariable String Nombre) {
+        ArrayList<UbigeoItemModel> Items = new ArrayList<>();
+        Ubigeo BS = new Ubigeo();
+        ArrayList<UbigeoEntity> Data = BS.GetUbigeoLikeItem(Nombre);
+
+        for (UbigeoEntity Item : Data) {
+            Items.add(new UbigeoItemModel(Item));
+        }
+
+        return Items;
+    }
+
+    @GetMapping("/GetGeneroItems")
+    public ArrayList<GeneroItemModel> GetGeneroItems() {
+        ArrayList<GeneroItemModel> Items = new ArrayList<>();
+        Genero BS = new Genero();
+        ArrayList<GeneroEntity> Data = BS.GetAllItems();
+
+        for (GeneroEntity Item : Data) {
+            Items.add(new GeneroItemModel(Item));
+        }
+
+        return Items;
+    }
+
+    @GetMapping("/GetEstadoCivilItems")
+    public ArrayList<EstadoCivilItemModel> GetEstadoCivilItems() {
+        ArrayList<EstadoCivilItemModel> Items = new ArrayList<>();
+        EstadoCivil BS = new EstadoCivil();
+
+        ArrayList<EstadoCivilEntity> Data = BS.GetAllItems();
+
+        for (EstadoCivilEntity Item : Data) {
+            Items.add(new EstadoCivilItemModel(Item));
+        }
+
+        return Items;
+    }
+
 }
