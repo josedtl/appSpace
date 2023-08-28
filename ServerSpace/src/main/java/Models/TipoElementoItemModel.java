@@ -1,9 +1,21 @@
 
-package EntityLayer.MyCode;
+package Models;
 
+import EntityLayer.TipoElementoEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class TipoElementoEntity {
+public class TipoElementoItemModel {
+    
+    public TipoElementoItemModel() {
+        this.tipoElementoId = 0;
+        this.nombre = "";
+    }
+
+    public TipoElementoItemModel(TipoElementoEntity Ent) {
+        this.tipoElementoId = Ent.getTipoElementoId();
+        this.nombre = Ent.getNombre();
+    }
+
     
     @JsonProperty("TipoElementoId")
     private int tipoElementoId = 0;

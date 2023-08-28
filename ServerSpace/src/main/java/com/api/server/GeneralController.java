@@ -138,6 +138,49 @@ public class GeneralController {
         return Items;
     }
 
+    @GetMapping("/GetTipoInfraestructuraItems")
+    public ArrayList<TipoInfraestructuraItemModel> GetTipoInfraestructuraItems() {
+
+        ArrayList<TipoInfraestructuraItemModel> Items = new ArrayList<>();
+        TipoInfraestructura BS = new TipoInfraestructura();
+
+        ArrayList<TipoInfraestructuraEntity> Data = BS.GetAllItems();
+
+        for (TipoInfraestructuraEntity Item : Data) {
+            TipoInfraestructuraItemModel ItemParametro = new TipoInfraestructuraItemModel(Item);
+            Items.add(ItemParametro);
+        }
+
+        return Items;
+    }
+    
+    @GetMapping("/GetTipoInfraestructuraItem/{Id}")
+    public ArrayList<TipoInfraestructuraItemModel> GetTipoInfraestructuraItem(@PathVariable int Id) {
+        ArrayList<TipoInfraestructuraItemModel> Items = new ArrayList<>();
+        TipoInfraestructura BS = new TipoInfraestructura();
+        ArrayList<TipoInfraestructuraEntity> Data = BS.GetAllItem(Id);
+
+        for (TipoInfraestructuraEntity Item : Data) {
+            Items.add(new TipoInfraestructuraItemModel(Item));
+        }
+
+        return Items;
+    }
+    @GetMapping("/GetTipoInfraestructuraLikeItem/{nombre}")
+    public ArrayList<TipoInfraestructuraItemModel> GetTipoInfraestructuraLikeItem(@PathVariable String Nombre) {
+        ArrayList<TipoInfraestructuraItemModel> Items = new ArrayList<>();
+        TipoInfraestructura BS = new TipoInfraestructura();
+        ArrayList<TipoInfraestructuraEntity> Data = BS.GetTipoInfraestructuraLikeItem(Nombre);
+
+        for (TipoInfraestructuraEntity Item : Data) {
+            Items.add(new TipoInfraestructuraItemModel(Item));
+        }
+
+        return Items;
+    }
+    
+    
+    
     @GetMapping("/GetTipoDocuemntoIdentidadPersonaItems")
     public ArrayList<TipoDocumentoIdentidadItemModel> GetTipoDocuemntoIdentidadPersonaItems() {
 

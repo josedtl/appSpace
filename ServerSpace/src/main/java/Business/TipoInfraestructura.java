@@ -4,7 +4,7 @@ import DataLayer.TipoInfraestructuraDB;
 import EntityLayer.TipoInfraestructuraEntity;
 import java.util.ArrayList;
 
-public class TipoInfraestructura {
+public class TipoInfraestructura extends Business.MyCode.TipoInfraestructura{
 
     public ArrayList<TipoInfraestructuraEntity> GetAllItems() {
         TipoInfraestructuraDB BD = new TipoInfraestructuraDB();
