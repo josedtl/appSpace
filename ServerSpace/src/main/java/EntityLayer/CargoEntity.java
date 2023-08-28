@@ -3,7 +3,7 @@ package EntityLayer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.sql.Timestamp;
-import java.util.Date;
+
 
 public class CargoEntity  extends EntityLayer.MyCode.CargoEntity{
 

@@ -3,7 +3,7 @@ ng g c components/TipoElementoMain
 
 Crear Servicio
 ng g s services/TipoElementoService
-
+ng g s services/PersonaNatural/PersonaNatural
 ng g s services/cargo/cargo
 
 Ejecutar servidor

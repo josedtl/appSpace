@@ -7,6 +7,8 @@ import { ServicioBasicoMainComponent } from './components/servicio-basico-main/s
 import { PisoMainComponent } from './components/piso-main/piso-main.component'
 import { InfraestructuraMainComponent } from './components/infraestructura-main/infraestructura-main.component'
 import { PersonaNaturalSaveComponent } from './components/PersonaNatural/persona-natural-save/persona-natural-save.component';
+import { PersonaNaturalMainComponent } from './components/PersonaNatural/persona-natural-main/persona-natural-main.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -35,10 +37,18 @@ const routes: Routes = [
   }
   ,
   {
-    path: 'PersonaNaturalSave',
-    component: PersonaNaturalSaveComponent
-  }
-
+    path: 'PersonaNaturalMain',
+    component: PersonaNaturalMainComponent
+  },
+  // {
+  //   path: 'PersonaNaturalSave',
+  //   component: PersonaNaturalSaveComponent
+  // }
+  // ,
+  {
+     path: 'PersonaNaturalSave/:id',
+      component: PersonaNaturalSaveComponent 
+    }
 ];
 
 @NgModule({

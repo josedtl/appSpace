@@ -1,5 +1,5 @@
 <p-card>
-
+  <p>Valor del parámetro id: {{ id }}</p>
   <div style="display: flex; justify-content: space-between;">
     <div>
       <h1>Persona Natural</h1>
@@ -8,6 +8,7 @@
     <div>
 
       <p-button [style]="buttonStyle" label="Guardar" icon="pi pi-plus"
+      (click)="saveItem()"
         styleClass="p-button-outlined p-button-secondary">
       </p-button>
     </div>
@@ -34,8 +35,8 @@
         <div class="mb-2">
           <div class="row">
             <span class="p-fluid">
-              <label for="username">Nª Documento</label>
-              <input class="p-inputtext-sm" type="text" pInputText>
+              <label for="username">N° Documento</label>
+              <input class="p-inputtext-sm" [(ngModel)]="newItem.NumDocumento" type="text" pInputText>
             </span>
           </div>
         </div>
@@ -44,7 +45,7 @@
           <div class="row">
             <span class="p-fluid">
               <label for="username">Nombres</label>
-              <input class="p-inputtext-sm" type="text" pInputText>
+              <input class="p-inputtext-sm" [(ngModel)]="newItem.Nombres" type="text" pInputText>
             </span>
           </div>
         </div>
@@ -54,7 +55,7 @@
           <div class="row">
             <span class="p-fluid">
               <label for="username">Apellido Paterno</label>
-              <input class="p-inputtext-sm" type="text" pInputText>
+              <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoMaterno" type="text" pInputText>
             </span>
           </div>
         </div>
@@ -64,7 +65,7 @@
           <div class="row">
             <span class="p-fluid">
               <label for="username">Apellido Materno</label>
-              <input class="p-inputtext-sm" type="text" pInputText>
+              <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoMaterno" type="text" pInputText>
             </span>
           </div>
         </div>
@@ -74,11 +75,12 @@
     <div class="col-md-9">
       <div class="box">
         <p-tabView styleClass="tabview-custom">
-          <p-tabPanel>
+          <p-tabPanel >
             <ng-template pTemplate="header">
               <i class="pi pi-calendar"></i>
               <span>Residencia </span>
             </ng-template>
+
             <div class="mb-2">
               <div class="row ">
                 <span class="p-fluid">
@@ -95,7 +97,7 @@
               <div class="row">
                 <span class="p-fluid">
                   <label for="username">Dirección</label>
-                  <input class="p-inputtext-sm" type="text" pInputText>
+                  <input class="p-inputtext-sm" [(ngModel)]="newItem.Direccion" type="text" pInputText>
                 </span>
               </div>
             </div>
@@ -142,9 +144,9 @@
                     <div class="row">
                       <span class="p-fluid">
                         <label for="username">Fecha de Nacimiento</label>
-
-                        <p-calendar [touchUI]="false" class="p-inputtext-sm" [readonlyInput]="true"></p-calendar>
-
+                        <p-calendar [touchUI]="false"
+                        [(ngModel)]="newItem.FechaNacimiento"
+                        class="p-inputtext-sm" [readonlyInput]="true"></p-calendar>
                       </span>
                     </div>
                   </div>

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputNumberModule } from 'primeng/inputnumber';
-
+import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TipoElementoMainComponent } from './components/tipo-elemento-main/tipo-elemento-main.component';
@@ -68,8 +68,10 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     StyleClassModule,
     CardModule,
     PanelModule,ImageModule,CalendarModule,DropdownModule,AutoCompleteModule,
+  
     ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule,PanelMenuModule,SidebarModule,InputSwitchModule],
   providers: [ConfirmationService, MessageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule { }

@@ -1,11 +1,13 @@
-import { Component, OnInit, importProvidersFrom } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ButtonStyles, DropdownStyles } from '../../../models/StylesPrime';
 import { TipoDocumentoIdentidadItemModel } from '../..//../models/General/TipoDocumentoIdentidadItemModel'
 import { UbigeoItemModel } from '../..//../models/General/UbigeoItemModel'
 import { GeneroItemModel } from '../..//../models/General/GeneroItemModel'
 import { EstadoCivilItemModel } from '../..//../models/General/EstadoCivilItemModel'
 import { GeneralService } from '../..//../services/General/general.service'
-
+import { PersonaNaturalService } from '../..//../services/PersonaNatural/persona-natural.service'
+import { PersonaNaturalSaveModel } from '../../../models/PersonaNatural/PersonaNaturalSaveModel';
+import { ActivatedRoute } from '@angular/router';
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -19,16 +21,16 @@ interface AutoCompleteCompleteEvent {
 export class PersonaNaturalSaveComponent implements OnInit {
 
   TipoDocumentoIdentidadItems: TipoDocumentoIdentidadItemModel[] = [];
-  SelectTipoDocumentoIdentidadItem: TipoDocumentoIdentidadItemModel | undefined;
+  SelectTipoDocumentoIdentidadItem: TipoDocumentoIdentidadItemModel = new TipoDocumentoIdentidadItemModel;
 
   UbigeoItems: UbigeoItemModel[] = [];
-  SelectUbigeoItem: UbigeoItemModel | undefined;
+  SelectUbigeoItem: UbigeoItemModel = new UbigeoItemModel;
 
   GeneroItems: GeneroItemModel[] = [];
-  SelectGeneroItem: GeneroItemModel | undefined;
+  SelectGeneroItem: GeneroItemModel = new GeneroItemModel;
 
   EstadoCivilItems: EstadoCivilItemModel[] = [];
-  SelectEstadoCivilItem: EstadoCivilItemModel | undefined;
+  SelectEstadoCivilItem: EstadoCivilItemModel = new EstadoCivilItemModel;
 
 
 
@@ -40,15 +42,36 @@ export class PersonaNaturalSaveComponent implements OnInit {
   DropdownStyle = DropdownStyles.Data;
 
 
-  constructor(private serviceGeneral: GeneralService) {
-  }
+  constructor(private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
 
+    
+  }
+  newItem: PersonaNaturalSaveModel = new PersonaNaturalSaveModel; 
+
+  id: number = 0;
   ngOnInit() {
+
     this.GetTipoDocuemntoIdentidadPersonaItems();
     this.GetGeneroItems();
     this.GetEstadoCivilItems();
+    
+    this.route.params.subscribe(params => {
+      this.id = +params['id']; // Convierte el valor a número
+      
+    });
+    
+    this.getPersonaNatural(this.id);
+
   }
 
+  getPersonaNatural(Id: number) {
+    this.personanaturalService.GetAllItem(Id).subscribe(
+      respuesta => {
+        this.newItem = respuesta[0];
+
+      }
+    )
+  }
 
   GetTipoDocuemntoIdentidadPersonaItems() {
     this.serviceGeneral.GetTipoDocuemntoIdentidadPersonaItems().subscribe(
@@ -81,6 +104,25 @@ export class PersonaNaturalSaveComponent implements OnInit {
         this.UbigeoItems = respuesta;
       }
     )
+  }
+
+
+  saveItem() {
+
+    this.newItem.UbigeoId = this.SelectUbigeoItem.UbigeoId;
+    this.newItem.TipoDocumentoIdentidadId = this.SelectTipoDocumentoIdentidadItem.TipoDocumentoIdentidadId;
+    this.newItem.GeneroId = this.SelectGeneroItem.GeneroId;
+    this.newItem.EstadoCivilId = this.SelectEstadoCivilItem.EstadoCivilId;
+    this.newItem.Action = 1;
+    this.personanaturalService.save(this.newItem)
+      .subscribe(
+        res => {
+          if (res.PersonaNaturalId != 0) {
+            console.log(res);
+          }
+        },
+        err => console.error(err)
+      )
   }
 
 }

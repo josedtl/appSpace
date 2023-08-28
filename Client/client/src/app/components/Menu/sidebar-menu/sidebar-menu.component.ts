@@ -94,7 +94,7 @@ export class SidebarMenuComponent implements OnInit {
           }, {
             label: 'Persona Natural',
             icon: 'pi pi-fw pi-folder',
-            routerLink: '/PersonaNaturalSave',
+            routerLink: '/PersonaNaturalMain',
             command: () => this.onMenuItemClick()
 
           },

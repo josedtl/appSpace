@@ -3,6 +3,7 @@ import { CargoService } from '../../services/cargo/cargo.service';
 import { CargoEntity } from '../../models/Cargo/CargoEntity';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { ButtonStyles } from '../../models/StylesPrime';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cargo-main',
   templateUrl: './cargo-main.component.html',
@@ -17,7 +18,7 @@ export class CargoMainComponent {
   selectedCity: CargoEntity | undefined;
   ListaMainItems: CargoEntity[] = [];
   selectedItems!: CargoEntity[] | null;
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private service: CargoService) {
+  constructor(private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService, private service: CargoService) {
   }
   newItem: CargoEntity = new CargoEntity();
 
