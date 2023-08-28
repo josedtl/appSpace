@@ -167,6 +167,7 @@ public class GeneralController {
         return Items;
     }
     @GetMapping("/GetTipoInfraestructuraLikeItem/{nombre}")
+    
     public ArrayList<TipoInfraestructuraItemModel> GetTipoInfraestructuraLikeItem(@PathVariable String Nombre) {
         ArrayList<TipoInfraestructuraItemModel> Items = new ArrayList<>();
         TipoInfraestructura BS = new TipoInfraestructura();
@@ -179,6 +180,47 @@ public class GeneralController {
         return Items;
     }
     
+    @GetMapping("/GetSucursalItems")
+    public ArrayList<SucursalItemModel> GetSucursalItems() {
+
+        ArrayList<SucursalItemModel> Items = new ArrayList<>();
+        Sucursal BS = new Sucursal();
+
+        ArrayList<SucursalEntity> Data = BS.GetAllItems();
+
+        for (SucursalEntity Item : Data) {
+            SucursalItemModel ItemParametro = new SucursalItemModel(Item);
+            Items.add(ItemParametro);
+        }
+
+        return Items;
+    }
+    
+    @GetMapping("/GetSucursalItem/{Id}")
+    public ArrayList<SucursalItemModel> GetSucursalItem(@PathVariable int Id) {
+        ArrayList<SucursalItemModel> Items = new ArrayList<>();
+        Sucursal BS = new Sucursal();
+        ArrayList<SucursalEntity> Data = BS.GetAllItem(Id);
+
+        for (SucursalEntity Item : Data) {
+            Items.add(new SucursalItemModel(Item));
+        }
+
+        return Items;
+    }
+    
+    @GetMapping("/GetSucursalLikeItem/{Codigo}")
+    public ArrayList<SucursalItemModel> GetSucursalLikeItem(@PathVariable String Codigo) {
+        ArrayList<SucursalItemModel> Items = new ArrayList<>();
+        Sucursal BS = new Sucursal();
+        ArrayList<SucursalEntity> Data = BS.GetSucursalLikeItem(Codigo);
+
+        for (SucursalEntity Item : Data) {
+            Items.add(new SucursalItemModel(Item));
+        }
+
+        return Items;
+    }
     
     
     @GetMapping("/GetTipoDocuemntoIdentidadPersonaItems")
