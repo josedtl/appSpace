@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.sql.Timestamp;
 
-public class TipoInfraestructuraEntity {
+public class TipoInfraestructuraEntity extends EntityLayer.MyCode.TipoInfraestructuraEntity{
 
     @JsonProperty("TipoInfraestructuraId")
     private int tipoInfraestructuraId = 0;

@@ -1,13 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package EntityLayer.MyCode;
 
-/**
- *
- * @author RUTH
- */
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class InfraestructuraEntity {
-    
+     @JsonProperty("InfraestructuraId")
+    private int infraestructuraId = 0;
+    public int getInfraestructuraId() {
+        return infraestructuraId;
+    }
+
+    public void setInfraestructuraId(int infraestructuraId) {
+        this.infraestructuraId = infraestructuraId;
+    }
 }
