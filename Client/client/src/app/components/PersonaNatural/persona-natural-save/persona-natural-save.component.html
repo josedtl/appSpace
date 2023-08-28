@@ -21,43 +21,53 @@
       <div class="box">
 
 
-        <div class="mb-3">
-          <div class="row" >
-            <label for="username" >Tipo de Documento</label>
-            <p-dropdown [options]="TipoDocumentoIdentidadItems" [(ngModel)]="SelectTipoDocumentoIdentidadItem" class="p-inputtext-sm"
-              [style]="{ width: '100%' }" optionLabel="Alias"></p-dropdown>
+        <div class="mb-2">
+          <div class="row">
+            <span class="p-fluid">
+              <label for="username">Tipo de Documento</label>
+              <p-dropdown [options]="TipoDocumentoIdentidadItems" [(ngModel)]="SelectTipoDocumentoIdentidadItem"
+                class="p-inputtext-sm" optionLabel="Alias"></p-dropdown>
+            </span>
           </div>
         </div>
 
-        <div class="mb-3">
-          <div class="row" id="DivContendor">
-            <label for="username" id="IdContenedorDiv">Nª Documento</label>
-            <input id="IdContenedorInput" class="p-inputtext-sm full-width" type="text" pInputText>
+        <div class="mb-2">
+          <div class="row">
+            <span class="p-fluid">
+              <label for="username">Nª Documento</label>
+              <input class="p-inputtext-sm" type="text" pInputText>
+            </span>
           </div>
         </div>
 
-        <div class="mb-3">
-          <div class="row" id="DivContendor">
-            <label for="username" id="IdContenedorDiv">Nombre</label>
-            <input id="IdContenedorInput" class="p-inputtext-sm" type="text" pInputText>
+        <div class="mb-2">
+          <div class="row">
+            <span class="p-fluid">
+              <label for="username">Nombres</label>
+              <input class="p-inputtext-sm" type="text" pInputText>
+            </span>
           </div>
         </div>
 
 
-        <div class="mb-3">
-          <div class="row" id="DivContendor">
-            <label for="username" id="IdContenedorDiv">Apellido Paterno</label>
-            <input id="IdContenedorInput" class="p-inputtext-sm" type="text" pInputText>
+        <div class="mb-2">
+          <div class="row">
+            <span class="p-fluid">
+              <label for="username">Apellido Paterno</label>
+              <input class="p-inputtext-sm" type="text" pInputText>
+            </span>
           </div>
         </div>
 
-        <div class="mb-3">
-          <div class="row" id="DivContendor">
-            <label for="username" id="IdContenedorDiv">Apellido Materno</label>
-            <input id="IdContenedorInput" class="p-inputtext-sm" type="text" pInputText>
+
+        <div class="mb-2">
+          <div class="row">
+            <span class="p-fluid">
+              <label for="username">Apellido Materno</label>
+              <input class="p-inputtext-sm" type="text" pInputText>
+            </span>
           </div>
         </div>
-
 
       </div>
     </div>
@@ -69,18 +79,24 @@
               <i class="pi pi-calendar"></i>
               <span>Residencia </span>
             </ng-template>
-
-            <div class="mb-3">
-              <div class="p-col">
-                <label for="username" class="form-label">Ubigeo</label>
-                <input id="username" class="form-control" type="text" pInputText>
+            <div class="mb-2">
+              <div class="row ">
+                <span class="p-fluid">
+                  <label for="username">Ubigeo</label>
+                  <p-autoComplete [(ngModel)]="SelectUbigeoItem" class="p-inputtext-sm full-width"
+                    [forceSelection]="true" [suggestions]="UbigeoItems"
+                    (completeMethod)="GetUbigeoLikeItemEvent($event)" field="DesUbigeo"></p-autoComplete>
+                </span>
               </div>
             </div>
 
-            <div class="mb-3">
-              <div class="p-col">
-                <label for="username" class="form-label">Direcciòn</label>
-                <input id="username" class="form-control" type="text" pInputText>
+
+            <div class="mb-2">
+              <div class="row">
+                <span class="p-fluid">
+                  <label for="username">Dirección</label>
+                  <input class="p-inputtext-sm" type="text" pInputText>
+                </span>
               </div>
             </div>
 
@@ -102,42 +118,61 @@
             <div>
               <div class="row">
                 <div class="col-md-8">
-                  <div class="mb-3">
-                    <div class="p-col">
-                      <label for="username" class="form-label">Ruta de Foto</label>
-                      <input id="username" class="form-control" type="text" pInputText>
+                
+                  <div class="mb-2">
+                    <div class="row">
+                      <span class="p-fluid">
+                        <label for="username">Ruta de Foto</label>
+                        <input class="p-inputtext-sm" [(ngModel)]="RutaImagen"  type="text" pInputText>
+                      </span>
                     </div>
                   </div>
+
+
                   <div class="card flex justify-content-center">
-                    <p-image src="https://drive.google.com/file/d/10fNEPy_CuKM1vf3ZLMBbd8aRUubO9BZQ/view" alt="Image"
+                    <p-image   [src]="RutaImagen" alt="Image"
                       [preview]="true"></p-image>
+                      <!-- <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" /> -->
                   </div>
                 </div>
                 <div class="col-md-4">
 
-                  <div class="mb-3">
-                    <div class="p-col">
-                      <label for="username" class="form-label">Fecha de Nacimiento</label>
-                      <p-calendar [touchUI]="true" class="form-control" [readonlyInput]="true"></p-calendar>
 
+                  <div class="mb-3">
+                    <div class="row">
+                      <span class="p-fluid">
+                        <label for="username">Fecha de Nacimiento</label>
+
+                        <p-calendar [touchUI]="false" class="p-inputtext-sm" [readonlyInput]="true"></p-calendar>
+
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="mb-2">
+                    <div class="row">
+                      <span class="p-fluid">
+                        <label for="username">Genero</label>
+                        <p-dropdown [options]="GeneroItems"
+                          [(ngModel)]="SelectGeneroItem" class="p-inputtext-sm"
+                          optionLabel="Nombre"></p-dropdown>
+                      </span>
                     </div>
                   </div>
 
 
 
-                  <div class="mb-3">
-                    <div class="p-col">
-                      <label for="username" class="form-label">Genero</label>
-                      <input id="username" class="form-control" type="text" pInputText>
+                  <div class="mb-2">
+                    <div class="row">
+                      <span class="p-fluid">
+                        <label for="username">Estado civil</label>
+                        <p-dropdown [options]="EstadoCivilItems"
+                          [(ngModel)]="SelectEstadoCivilItem" class="p-inputtext-sm"
+                          optionLabel="Nombre"></p-dropdown>
+                      </span>
                     </div>
                   </div>
 
-                  <div class="mb-3">
-                    <div class="p-col">
-                      <label for="username" class="form-label">Estado Civil</label>
-                      <input id="username" class="form-control" type="text" pInputText>
-                    </div>
-                  </div>
 
                 </div>
               </div>

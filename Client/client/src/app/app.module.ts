@@ -39,6 +39,7 @@ import { PersonaNaturalMainComponent } from './components/PersonaNatural/persona
 import { ImageModule } from 'primeng/image';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +67,7 @@ import { DropdownModule } from 'primeng/dropdown';
     InputTextModule,
     StyleClassModule,
     CardModule,
-    PanelModule,ImageModule,CalendarModule,DropdownModule,
+    PanelModule,ImageModule,CalendarModule,DropdownModule,AutoCompleteModule,
     ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule,PanelMenuModule,SidebarModule,InputSwitchModule],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent]
