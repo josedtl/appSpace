@@ -31,7 +31,7 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
   EstadoCivilItems: EstadoCivilItemModel[] = [];
   SelectEstadoCivilItem: EstadoCivilItemModel = new EstadoCivilItemModel;
-
+  date: Date = new Date;
 
 
   RutaImagen: string = 'https://as1.ftcdn.net/v2/jpg/04/56/58/14/1000_F_456581427_5XpGqNqCwLAGwaFFvxVGvnW2teOfJ0ZL.jpg';
@@ -44,9 +44,9 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
 
-    
+
   }
-  newItem: PersonaNaturalSaveModel = new PersonaNaturalSaveModel; 
+  newItem: PersonaNaturalSaveModel = new PersonaNaturalSaveModel;
 
   id: number = 0;
   ngOnInit() {
@@ -54,20 +54,48 @@ export class PersonaNaturalSaveComponent implements OnInit {
     this.GetTipoDocuemntoIdentidadPersonaItems();
     this.GetGeneroItems();
     this.GetEstadoCivilItems();
-    
+
     this.route.params.subscribe(params => {
       this.id = +params['id']; // Convierte el valor a número
-      
-    });
-    
-    this.getPersonaNatural(this.id);
 
+    });
+
+    this.getPersonaNatural(this.id);
+  }
+
+  getUbigeoItem(Id: number) {
+    this.serviceGeneral.GetUbigeoItem(Id).subscribe(
+      respuesta => {
+        this.SelectUbigeoItem = respuesta[0];
+      }
+    )
+  }
+
+  GetGeneroItem(Id: number) {
+    this.serviceGeneral.GetGeneroItem(Id).subscribe(
+      respuesta => {
+        this.SelectGeneroItem = respuesta[0];
+      }
+    )
+  }
+
+  GetEstadoCivilItem(Id: number) {
+    this.serviceGeneral.GetEstadoCivilItem(Id).subscribe(
+      respuesta => {
+        this.SelectEstadoCivilItem = respuesta[0];
+      }
+    )
   }
 
   getPersonaNatural(Id: number) {
     this.personanaturalService.GetAllItem(Id).subscribe(
       respuesta => {
         this.newItem = respuesta[0];
+        this.getUbigeoItem(this.newItem.UbigeoId)
+        this.GetGeneroItem(this.newItem.GeneroId)
+        this.GetEstadoCivilItem(this.newItem.EstadoCivilId)
+
+        this.date = this.newItem.FechaNacimiento
 
       }
     )
@@ -108,12 +136,11 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
 
   saveItem() {
-
+    this.newItem.Action = this.newItem.PersonaNaturalId > 0 ? 3 : 1;
     this.newItem.UbigeoId = this.SelectUbigeoItem.UbigeoId;
     this.newItem.TipoDocumentoIdentidadId = this.SelectTipoDocumentoIdentidadItem.TipoDocumentoIdentidadId;
     this.newItem.GeneroId = this.SelectGeneroItem.GeneroId;
     this.newItem.EstadoCivilId = this.SelectEstadoCivilItem.EstadoCivilId;
-    this.newItem.Action = 1;
     this.personanaturalService.save(this.newItem)
       .subscribe(
         res => {

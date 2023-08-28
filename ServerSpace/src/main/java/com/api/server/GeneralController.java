@@ -267,7 +267,19 @@ public class GeneralController {
 
         return Items;
     }
+    @GetMapping("/GetUbigeoItem/{Id}")
+    public ArrayList<UbigeoItemModel> GetUbigeoItem(@PathVariable int Id) {
+        ArrayList<UbigeoItemModel> Items = new ArrayList<>();
+        Ubigeo BS = new Ubigeo();
+        ArrayList<UbigeoEntity> Data = BS.GetAllItem(Id);
 
+        for (UbigeoEntity Item : Data) {
+            Items.add(new UbigeoItemModel(Item));
+        }
+
+        return Items;
+    }
+    
     @GetMapping("/GetGeneroItems")
     public ArrayList<GeneroItemModel> GetGeneroItems() {
         ArrayList<GeneroItemModel> Items = new ArrayList<>();
@@ -280,7 +292,21 @@ public class GeneralController {
 
         return Items;
     }
+    @GetMapping("/GetGeneroItem/{Id}")
+    public ArrayList<GeneroItemModel> GetGeneroItem(@PathVariable int Id)  {
+        ArrayList<GeneroItemModel> Items = new ArrayList<>();
+        Genero BS = new Genero();
+        ArrayList<GeneroEntity> Data = BS.GetAllItem(Id);
 
+        for (GeneroEntity Item : Data) {
+            Items.add(new GeneroItemModel(Item));
+        }
+
+        return Items;
+    }
+
+    
+    
     @GetMapping("/GetEstadoCivilItems")
     public ArrayList<EstadoCivilItemModel> GetEstadoCivilItems() {
         ArrayList<EstadoCivilItemModel> Items = new ArrayList<>();
@@ -295,4 +321,18 @@ public class GeneralController {
         return Items;
     }
 
+    
+      @GetMapping("/GetEstadoCivilItem/{Id}")
+    public ArrayList<EstadoCivilItemModel> GetEstadoCivilItem(@PathVariable int Id) {
+        ArrayList<EstadoCivilItemModel> Items = new ArrayList<>();
+        EstadoCivil BS = new EstadoCivil();
+
+        ArrayList<EstadoCivilEntity> Data = BS.GetAllItem(Id);
+
+        for (EstadoCivilEntity Item : Data) {
+            Items.add(new EstadoCivilItemModel(Item));
+        }
+
+        return Items;
+    }
 }

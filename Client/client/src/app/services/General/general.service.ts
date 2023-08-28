@@ -20,12 +20,24 @@ export class GeneralService {
   GetUbigeoLikeItem(Nombre: string): Observable<UbigeoItemModel[]> {
     return this.http.get<UbigeoItemModel[]>(`${this.API_URI}/api/General/GetUbigeoLikeItem/${Nombre}`);
   }
-
+  GetUbigeoItem(Id: number): Observable<UbigeoItemModel[]> {
+    return this.http.get<UbigeoItemModel[]>(`${this.API_URI}/api/General/GetUbigeoItem/${Id}`);
+  }
+  
   GetGeneroItems(): Observable<GeneroItemModel[]> {
     return this.http.get<GeneroItemModel[]>(`${this.API_URI}/api/General/GetGeneroItems`);
+  }
+
+  GetGeneroItem(Id: number): Observable<GeneroItemModel[]> {
+    return this.http.get<GeneroItemModel[]>(`${this.API_URI}/api/General/GetGeneroItem/${Id}`);
   }
 
   GetEstadoCivilItems(): Observable<EstadoCivilItemModel[]> {
     return this.http.get<EstadoCivilItemModel[]>(`${this.API_URI}/api/General/GetEstadoCivilItems`);
   }
+
+  GetEstadoCivilItem(Id: number): Observable<EstadoCivilItemModel[]> {
+    return this.http.get<EstadoCivilItemModel[]>(`${this.API_URI}/api/General/GetEstadoCivilItems/${Id}`);
+  }
+
 }

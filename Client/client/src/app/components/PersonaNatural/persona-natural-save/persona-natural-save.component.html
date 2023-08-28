@@ -1,5 +1,4 @@
 <p-card>
-  <p>Valor del parámetro id: {{ id }}</p>
   <div style="display: flex; justify-content: space-between;">
     <div>
       <h1>Persona Natural</h1>
@@ -7,8 +6,7 @@
 
     <div>
 
-      <p-button [style]="buttonStyle" label="Guardar" icon="pi pi-plus"
-      (click)="saveItem()"
+      <p-button [style]="buttonStyle" label="Guardar" icon="pi pi-plus" (click)="saveItem()"
         styleClass="p-button-outlined p-button-secondary">
       </p-button>
     </div>
@@ -51,12 +49,27 @@
         </div>
 
 
+
         <div class="mb-2">
           <div class="row">
-            <span class="p-fluid">
-              <label for="username">Apellido Paterno</label>
-              <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoMaterno" type="text" pInputText>
-            </span>
+            <div class="col-md-6">
+              <div class="row">
+                <span class="p-fluid">
+                  <label for="username">Apellido Paterno</label>
+                  <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoPaterno" type="text" pInputText>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <!-- Apellido Materno -->
+                <div class="row">
+                  <span class="p-fluid">
+                    <label for="username">Apellido Materno</label>
+                    <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoMaterno" type="text" pInputText>
+                  </span>
+              </div>
+
+            </div>
           </div>
         </div>
 
@@ -64,18 +77,47 @@
         <div class="mb-2">
           <div class="row">
             <span class="p-fluid">
-              <label for="username">Apellido Materno</label>
-              <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoMaterno" type="text" pInputText>
+              <label for="username">Fecha de Nacimiento</label>
+              <p-calendar [touchUI]="false" [(ngModel)]="date" class="p-inputtext-sm"
+                [readonlyInput]="true"></p-calendar>
             </span>
           </div>
         </div>
+
+
+        <div class="mb-2">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row">
+                <span class="p-fluid">
+                  <label for="username">Genero</label>
+                  <p-dropdown [options]="GeneroItems" [(ngModel)]="SelectGeneroItem" class="p-inputtext-sm"
+                    optionLabel="Nombre"></p-dropdown>      </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <!-- Apellido Materno -->
+                <div class="row">
+                  <span class="p-fluid">
+                    <label for="username">Estado civil</label>
+                    <p-dropdown [options]="EstadoCivilItems" [(ngModel)]="SelectEstadoCivilItem"
+                      class="p-inputtext-sm" optionLabel="Nombre"></p-dropdown>
+                 </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
 
       </div>
     </div>
     <div class="col-md-9">
       <div class="box">
         <p-tabView styleClass="tabview-custom">
-          <p-tabPanel >
+          <p-tabPanel>
             <ng-template pTemplate="header">
               <i class="pi pi-calendar"></i>
               <span>Residencia </span>
@@ -110,7 +152,7 @@
             </ng-template>
 
           </p-tabPanel>
-          <p-tabPanel header="Header III">
+          <!-- <p-tabPanel header="Header III">
             <ng-template pTemplate="header">
               <i class="pi pi-search"></i>
               <span>Datos adicionales</span>
@@ -120,68 +162,28 @@
             <div>
               <div class="row">
                 <div class="col-md-8">
-                
+
                   <div class="mb-2">
                     <div class="row">
                       <span class="p-fluid">
                         <label for="username">Ruta de Foto</label>
-                        <input class="p-inputtext-sm" [(ngModel)]="RutaImagen"  type="text" pInputText>
+                        <input class="p-inputtext-sm" [(ngModel)]="RutaImagen" type="text" pInputText>
                       </span>
                     </div>
                   </div>
 
 
                   <div class="card flex justify-content-center">
-                    <p-image   [src]="RutaImagen" alt="Image"
-                      [preview]="true"></p-image>
-                      <!-- <img [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name" width="100" class="shadow-4" /> -->
+                    <img src="http://drive.google.com/uc?export=view&id=1-I22Z1MavkYVmxiA2ewPhkag5ARAB1se"
+                      alt="Mi imagen en Google Drive">
                   </div>
                 </div>
-                <div class="col-md-4">
-
-
-                  <div class="mb-3">
-                    <div class="row">
-                      <span class="p-fluid">
-                        <label for="username">Fecha de Nacimiento</label>
-                        <p-calendar [touchUI]="false"
-                        [(ngModel)]="newItem.FechaNacimiento"
-                        class="p-inputtext-sm" [readonlyInput]="true"></p-calendar>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="mb-2">
-                    <div class="row">
-                      <span class="p-fluid">
-                        <label for="username">Genero</label>
-                        <p-dropdown [options]="GeneroItems"
-                          [(ngModel)]="SelectGeneroItem" class="p-inputtext-sm"
-                          optionLabel="Nombre"></p-dropdown>
-                      </span>
-                    </div>
-                  </div>
-
-
-
-                  <div class="mb-2">
-                    <div class="row">
-                      <span class="p-fluid">
-                        <label for="username">Estado civil</label>
-                        <p-dropdown [options]="EstadoCivilItems"
-                          [(ngModel)]="SelectEstadoCivilItem" class="p-inputtext-sm"
-                          optionLabel="Nombre"></p-dropdown>
-                      </span>
-                    </div>
-                  </div>
-
-
-                </div>
+          
               </div>
             </div>
 
 
-          </p-tabPanel>
+          </p-tabPanel> -->
         </p-tabView>
       </div>
     </div>
