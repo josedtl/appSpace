@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PersonaNaturalService } from '../../../services/PersonaNatural/persona-natural.service';
-import { PersonaNaturalSaveModel } from '../../../models/PersonaNatural/PersonaNaturalSaveModel';
+import { PersonaNaturalMainModel } from '../../../models/PersonaNatural/PersonaNaturalMainModel';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 import { ButtonStyles } from '../../../models/StylesPrime';
 import { Router } from '@angular/router';
@@ -14,10 +14,10 @@ export class PersonaNaturalMainComponent {
   buttonStyle = ButtonStyles.primary;
   visibleVentena: boolean = false;
   loading: boolean = true;
-  cities: PersonaNaturalSaveModel[] | undefined;
-  selectedCity: PersonaNaturalSaveModel | undefined;
-  ListaMainItems: PersonaNaturalSaveModel[] = [];
-  selectedItems!: PersonaNaturalSaveModel[] | null;
+  cities: PersonaNaturalMainModel[] | undefined;
+  selectedCity: PersonaNaturalMainModel | undefined;
+  ListaMainItems: PersonaNaturalMainModel[] = [];
+  selectedItems!: PersonaNaturalMainModel[] | null;
 
   constructor(private router: Router,  private personanaturalServiceService: PersonaNaturalService) {
   }
@@ -32,7 +32,7 @@ export class PersonaNaturalMainComponent {
   }
 
   GetAllItems() {
-    this.personanaturalServiceService.GetAllItems().subscribe(
+    this.personanaturalServiceService.GetPersonaNaturalMainItems().subscribe(
       respuesta => {
         this.ListaMainItems = respuesta;
         this.GetlistaOrdenar();

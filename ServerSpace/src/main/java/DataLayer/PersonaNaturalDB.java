@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PersonaNaturalDB {
+public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB{
 
     injector Inj = new injector();
 

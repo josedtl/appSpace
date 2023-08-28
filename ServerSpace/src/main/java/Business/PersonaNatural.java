@@ -4,7 +4,7 @@ import DataLayer.PersonaNaturalDB;
 import EntityLayer.PersonaNaturalEntity;
 import java.util.ArrayList;
 
-public class PersonaNatural {
+public class PersonaNatural extends Business.MyCode.PersonaNatural{
 
     public ArrayList<PersonaNaturalEntity> GetAllItems() {
         PersonaNaturalDB BD = new PersonaNaturalDB();

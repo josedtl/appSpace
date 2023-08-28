@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PersonaNaturalSaveModel } from '../../models/PersonaNatural/PersonaNaturalSaveModel'
+import { PersonaNaturalMainModel } from '../../models/PersonaNatural/PersonaNaturalMainModel'
+
 import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root'
@@ -26,5 +28,9 @@ export class PersonaNaturalService {
   }
   delete(id: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.API_URI}/api/PersonaNatural/Delete/${id}`);
+  }
+
+  GetPersonaNaturalMainItems(): Observable<PersonaNaturalMainModel[]> {
+    return this.http.get<PersonaNaturalMainModel[]>(`${this.API_URI}/api/PersonaNatural/GetPersonaNaturalMainItems`);
   }
 }

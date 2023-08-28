@@ -2,6 +2,7 @@ package com.api.server;
 
 import Business.PersonaNatural;
 import EntityLayer.PersonaNaturalEntity;
+import Models.PersonaNaturalMainModel;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,5 +39,18 @@ public class PersonaNaturalController {
     public Boolean Delete(@PathVariable int Id) {
         PersonaNatural BS = new PersonaNatural();
         return BS.Delete(Id);
+    }
+
+    @GetMapping("/GetPersonaNaturalMainItems")
+    public ArrayList<PersonaNaturalMainModel> GetPersonaNaturalMainItems() {
+        PersonaNatural BS = new PersonaNatural();
+        ArrayList<PersonaNaturalMainModel> Items = new ArrayList<>();
+        ArrayList<PersonaNaturalEntity> Data = BS.GetPersonaNaturalMainItems();
+
+        for (PersonaNaturalEntity Item : Data) {
+            Items.add(new PersonaNaturalMainModel(Item));
+        }
+
+        return Items;
     }
 }

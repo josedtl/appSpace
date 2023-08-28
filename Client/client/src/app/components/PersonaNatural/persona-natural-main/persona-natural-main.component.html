@@ -55,7 +55,11 @@
         </th>
 
         <th id="HeaderTablaColor">Nº</th>
-        <th id="HeaderTablaColor" style="min-width:15rem">Nombre </th>
+        <th id="HeaderTablaColor" style="min-width:7rem">Tipo </th>
+        <th id="HeaderTablaColor" style="min-width:10rem">Documento </th>
+        <th id="HeaderTablaColor" style="min-width:14rem">Nombre </th>
+        <th id="HeaderTablaColor" style="min-width:12rem">Apellido Paterno </th>
+        <th id="HeaderTablaColor" style="min-width:12rem">Ap3ellido Matermo </th>
         <th id="HeaderTablaColor">Fecha de Registro</th>
         <th id="HeaderTablaColor">Usuario </th>
         <th id="HeaderTablaColor"></th>
@@ -66,13 +70,12 @@
         <td>
           <p-tableCheckbox [value]="row"></p-tableCheckbox>
         </td>
-        <td>
-          {{ row.Item }}
-        </td>
-        <td>
-          {{ row.Nombre }}
-        </td>
-
+        <td> {{ row.Item }} </td>
+        <td> {{ row.NomDocumento }} </td>
+        <td> {{ row.NumDocumento }} </td>
+        <td> {{ row.Nombres }} </td>
+        <td> {{ row.ApellidoPaterno }} </td>
+        <td> {{ row.ApellidoMaterno }} </td>
         <td>
           {{ row.FechaRegistro | date: 'dd/MM/yyyy hh:mm' }}
         </td>
@@ -81,15 +84,10 @@
         </td>
 
         <td>
-          <!-- <p-button icon="pi pi-trash" (click)="Delete_Metho(row.CargoId)"
-              styleClass="p-button-sm p-button-danger p-button-text p-button-raised">
-            </p-button>
-            <p-button icon="pi pi-pencil" (click)="Update_Metho(row)"
-              styleClass="p-button-sm p-button-warning p-button-text p-button-raised">
-            </p-button> -->
-
-          <a (click)="Delete_Metho(row.PersonaNaturalId)" style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
-            <i class="pi pi-trash" style="color: red;"></i>
+     
+          <a (click)="Delete_Metho(row.PersonaNaturalId)"
+            style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
+            <i class="pi pi-eye" style="color: #00315B;"></i>
           </a>
         </td>
       </tr>

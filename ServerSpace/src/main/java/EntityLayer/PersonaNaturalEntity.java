@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.sql.Timestamp;
 
-public class PersonaNaturalEntity {
+public class PersonaNaturalEntity extends EntityLayer.MyCode.PersonaNaturalEntity {
 
     @JsonProperty("PersonaNaturalId")
     private int personaNaturalId = 0;
+
     public int getPersonaNaturalId() {
         return personaNaturalId;
     }
@@ -18,6 +19,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("TipoDocumentoIdentidadId")
     private int tipoDocumentoIdentidadId = 0;
+
     public int getTipoDocumentoIdentidadId() {
         return tipoDocumentoIdentidadId;
     }
@@ -28,6 +30,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("NumDocumento")
     private String numDocumento = "";
+
     public String getNumDocumento() {
         return numDocumento;
     }
@@ -38,6 +41,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("Nombres")
     private String nombres = "";
+
     public String getNombres() {
         return nombres;
     }
@@ -48,6 +52,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("ApellidoPaterno")
     private String apellidoPaterno = "";
+
     public String getApellidoPaterno() {
         return apellidoPaterno;
     }
@@ -58,6 +63,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("ApellidoMaterno")
     private String apellidoMaterno = "";
+
     public String getApellidoMaterno() {
         return apellidoMaterno;
     }
@@ -68,6 +74,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("FechaNacimiento")
     private Timestamp fechaNacimiento = null;
+
     public Timestamp getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -78,6 +85,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("UbigeoId")
     private int ubigeoId = 0;
+
     public int getUbigeoId() {
         return ubigeoId;
     }
@@ -88,6 +96,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("Direccion")
     private String direccion = "";
+
     public String getDireccion() {
         return direccion;
     }
@@ -98,6 +107,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("Telefono")
     private String telefono = "";
+
     public String getTelefono() {
         return telefono;
     }
@@ -108,6 +118,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("Correo")
     private String correo = "";
+
     public String getCorreo() {
         return correo;
     }
@@ -118,6 +129,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("GeneroId")
     private int generoId = 0;
+
     public int getGeneroId() {
         return generoId;
     }
@@ -128,6 +140,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("EstadoCivilId")
     private int estadoCivilId = 0;
+
     public int getEstadoCivilId() {
         return estadoCivilId;
     }
@@ -138,6 +151,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("FechaRegistro")
     private Timestamp fechaRegistro = null;
+
     public Timestamp getFechaRegistro() {
         return fechaRegistro;
     }
@@ -148,6 +162,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("CodUsuario")
     private String codUsuario = "";
+
     public String getCodUsuario() {
         return codUsuario;
     }
@@ -158,6 +173,7 @@ public class PersonaNaturalEntity {
 
     @JsonProperty("EstadoRegistro")
     private boolean estadoRegistro = false;
+
     public boolean getEstadoRegistro() {
         return estadoRegistro;
     }
@@ -165,8 +181,6 @@ public class PersonaNaturalEntity {
     public void setEstadoRegistro(boolean estadoRegistro) {
         this.estadoRegistro = estadoRegistro;
     }
-
-
 
     @JsonProperty("Action")
     private ProcessActionEnum action = ProcessActionEnum.Loaded;
