@@ -40,6 +40,7 @@ import { ImageModule } from 'primeng/image';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     ServicioBasicoMainComponent,
     InfraestructuraMainComponent,
     PersonaNaturalSaveComponent,
-    PersonaNaturalMainComponent
+    PersonaNaturalMainComponent,
+    LoginComponent
   ],
   imports: [
     InputNumberModule,

@@ -8,6 +8,9 @@ ng g s services/TipoElementoService
 ng g s services/PersonaNatural/PersonaNatural
 ng g s services/cargo/cargo
 
+ng g s services/Auth
+
+
 Ejecutar servidor
 npm start
 

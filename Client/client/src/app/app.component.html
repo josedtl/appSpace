@@ -1,6 +1,4 @@
-<!-- <app-tipo-elemento-main></app-tipo-elemento-main>
-<app-tipo-infraestructura-main></app-tipo-infraestructura-main>
-<router-outlet></router-outlet> -->
+
 
 <app-navigation></app-navigation>
 <div class="wrapper">
@@ -12,5 +10,20 @@
     </div>
   </div>
 
-
- 
+<!-- 
+  <div class="wrapper">
+    <ng-container *ngIf="isLoggedIn()">
+      <app-navigation></app-navigation>
+      <div class="wrapper">
+        <app-sidebar-menu></app-sidebar-menu>
+        <div id="content">
+          <div class="container-fluid">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!isLoggedIn()">
+      <app-login></app-login>
+    </ng-container>
+  </div> -->

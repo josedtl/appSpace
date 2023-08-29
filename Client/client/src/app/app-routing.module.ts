@@ -8,12 +8,12 @@ import { PisoMainComponent } from './components/piso-main/piso-main.component'
 import { InfraestructuraMainComponent } from './components/infraestructura-main/infraestructura-main.component'
 import { PersonaNaturalSaveComponent } from './components/PersonaNatural/persona-natural-save/persona-natural-save.component';
 import { PersonaNaturalMainComponent } from './components/PersonaNatural/persona-natural-main/persona-natural-main.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    component: LoginComponent,pathMatch: 'full'
   },
   {
     path: 'TipoElementoMain',
@@ -46,9 +46,9 @@ const routes: Routes = [
   // }
   // ,
   {
-     path: 'PersonaNaturalSave/:id',
-      component: PersonaNaturalSaveComponent 
-    }
+    path: 'PersonaNaturalSave/:id',
+    component: PersonaNaturalSaveComponent
+  }
 ];
 
 @NgModule({
