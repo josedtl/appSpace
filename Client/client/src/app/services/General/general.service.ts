@@ -37,7 +37,7 @@ export class GeneralService {
   }
 
   GetEstadoCivilItem(Id: number): Observable<EstadoCivilItemModel[]> {
-    return this.http.get<EstadoCivilItemModel[]>(`${this.API_URI}/api/General/GetEstadoCivilItems/${Id}`);
+    return this.http.get<EstadoCivilItemModel[]>(`${this.API_URI}/api/General/GetEstadoCivilItem/${Id}`);
   }
 
 }

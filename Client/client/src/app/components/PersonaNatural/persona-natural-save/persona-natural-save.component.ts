@@ -43,7 +43,7 @@ export class PersonaNaturalSaveComponent implements OnInit {
   DropdownStyle = DropdownStyles.Data;
 
 
-  constructor( private messageService: MessageService,private confirmationService: ConfirmationService,private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
+  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
 
 
   }
@@ -61,7 +61,13 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
     });
 
-    this.getPersonaNatural(this.id);
+
+    if (this.id > 0) {
+
+      this.getPersonaNatural(this.id);
+    }
+
+
   }
 
   getUbigeoItem(Id: number) {
@@ -95,9 +101,8 @@ export class PersonaNaturalSaveComponent implements OnInit {
         this.getUbigeoItem(this.newItem.UbigeoId)
         this.GetGeneroItem(this.newItem.GeneroId)
         this.GetEstadoCivilItem(this.newItem.EstadoCivilId)
-
-        this.date = this.newItem.FechaNacimiento
-
+        this.date = new Date(this.newItem.FechaNacimiento);
+        console.log(this.newItem.FechaNacimiento);
       }
     )
   }
@@ -145,12 +150,13 @@ export class PersonaNaturalSaveComponent implements OnInit {
       rejectLabel: 'No',
       accept: () => {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
- 
+
         this.newItem.Action = this.newItem.PersonaNaturalId > 0 ? 3 : 1;
         this.newItem.UbigeoId = this.SelectUbigeoItem.UbigeoId;
         this.newItem.TipoDocumentoIdentidadId = this.SelectTipoDocumentoIdentidadItem.TipoDocumentoIdentidadId;
         this.newItem.GeneroId = this.SelectGeneroItem.GeneroId;
         this.newItem.EstadoCivilId = this.SelectEstadoCivilItem.EstadoCivilId;
+        this.newItem.FechaNacimiento=this.date;
         this.personanaturalService.save(this.newItem)
           .subscribe(
             res => {
@@ -180,7 +186,7 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
 
 
-  
+
   }
 
 }
