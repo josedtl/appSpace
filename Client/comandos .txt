@@ -1,5 +1,7 @@
 Crear Componente
 ng g c components/TipoElementoMain
+ng g c components/PersonaNatural/PersonaNaturalMain
+ng g c components/PersonaNatural/PersonaNaturalSave
 
 Crear Servicio
 ng g s services/TipoElementoService
