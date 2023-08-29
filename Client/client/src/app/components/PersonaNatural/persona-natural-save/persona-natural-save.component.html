@@ -20,22 +20,28 @@
       <div class="box">
 
 
-        <div class="mb-2">
-          <div class="row">
-            <span class="p-fluid">
-              <label for="username">Tipo de Documento</label>
-              <p-dropdown [options]="TipoDocumentoIdentidadItems" [(ngModel)]="SelectTipoDocumentoIdentidadItem"
-                class="p-inputtext-sm" optionLabel="Alias"></p-dropdown>
-            </span>
-          </div>
-        </div>
 
         <div class="mb-2">
           <div class="row">
-            <span class="p-fluid">
-              <label for="username">N° Documento</label>
-              <input class="p-inputtext-sm" [(ngModel)]="newItem.NumDocumento" type="text" pInputText>
-            </span>
+            <div class="col-md-6">
+              <div class="row">
+                <span class="p-fluid">
+                  <label for="username">Tipo de Documento</label>
+                  <p-dropdown [options]="TipoDocumentoIdentidadItems" [(ngModel)]="SelectTipoDocumentoIdentidadItem"
+                    class="p-inputtext-sm" optionLabel="Alias"></p-dropdown>
+                </span>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <!-- Apellido Materno -->
+              <div class="row">
+                <span class="p-fluid">
+                  <label for="username">N° Documento</label>
+                  <input class="p-inputtext-sm" [(ngModel)]="newItem.NumDocumento" type="text" pInputText>
+                </span>
+              </div>
+
+            </div>
           </div>
         </div>
 
@@ -62,11 +68,11 @@
             </div>
             <div class="col-md-6">
               <!-- Apellido Materno -->
-                <div class="row">
-                  <span class="p-fluid">
-                    <label for="username">Apellido Materno</label>
-                    <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoMaterno" type="text" pInputText>
-                  </span>
+              <div class="row">
+                <span class="p-fluid">
+                  <label for="username">Apellido Materno</label>
+                  <input class="p-inputtext-sm" [(ngModel)]="newItem.ApellidoMaterno" type="text" pInputText>
+                </span>
               </div>
 
             </div>
@@ -86,23 +92,46 @@
 
 
         <div class="mb-2">
+          <div class="row ">
+            <span class="p-fluid">
+              <label for="username">Ubigeo</label>
+              <p-autoComplete [(ngModel)]="SelectUbigeoItem" class="p-inputtext-sm full-width" [forceSelection]="true"
+                [suggestions]="UbigeoItems" (completeMethod)="GetUbigeoLikeItemEvent($event)"
+                field="DesUbigeo"></p-autoComplete>
+            </span>
+          </div>
+        </div>
+
+
+        <div class="mb-2">
+          <div class="row">
+            <span class="p-fluid">
+              <label for="username">Dirección</label>
+              <input class="p-inputtext-sm" [(ngModel)]="newItem.Direccion" type="text" pInputText>
+            </span>
+          </div>
+        </div>
+
+
+
+        <div class="mb-2">
           <div class="row">
             <div class="col-md-6">
               <div class="row">
                 <span class="p-fluid">
                   <label for="username">Genero</label>
                   <p-dropdown [options]="GeneroItems" [(ngModel)]="SelectGeneroItem" class="p-inputtext-sm"
-                    optionLabel="Nombre"></p-dropdown>      </span>
+                    optionLabel="Nombre"></p-dropdown> </span>
               </div>
             </div>
             <div class="col-md-6">
               <!-- Apellido Materno -->
-                <div class="row">
-                  <span class="p-fluid">
-                    <label for="username">Estado civil</label>
-                    <p-dropdown [options]="EstadoCivilItems" [(ngModel)]="SelectEstadoCivilItem"
-                      class="p-inputtext-sm" optionLabel="Nombre"></p-dropdown>
-                 </span>
+              <div class="row">
+                <span class="p-fluid">
+                  <label for="username">Estado civil</label>
+                  <p-dropdown [options]="EstadoCivilItems" [(ngModel)]="SelectEstadoCivilItem" class="p-inputtext-sm"
+                    optionLabel="Nombre"></p-dropdown>
+                </span>
               </div>
 
             </div>
@@ -117,73 +146,18 @@
     <div class="col-md-9">
       <div class="box">
         <p-tabView styleClass="tabview-custom">
-          <p-tabPanel>
-            <ng-template pTemplate="header">
-              <i class="pi pi-calendar"></i>
-              <span>Residencia </span>
-            </ng-template>
-
-            <div class="mb-2">
-              <div class="row ">
-                <span class="p-fluid">
-                  <label for="username">Ubigeo</label>
-                  <p-autoComplete [(ngModel)]="SelectUbigeoItem" class="p-inputtext-sm full-width"
-                    [forceSelection]="true" [suggestions]="UbigeoItems"
-                    (completeMethod)="GetUbigeoLikeItemEvent($event)" field="DesUbigeo"></p-autoComplete>
-                </span>
-              </div>
-            </div>
-
-
-            <div class="mb-2">
-              <div class="row">
-                <span class="p-fluid">
-                  <label for="username">Dirección</label>
-                  <input class="p-inputtext-sm" [(ngModel)]="newItem.Direccion" type="text" pInputText>
-                </span>
-              </div>
-            </div>
-
-          </p-tabPanel>
-          <p-tabPanel header="Header II">
+          <p-tabPanel header="Medio de Comunicaciòn">
             <ng-template pTemplate="header">
               <i class="pi pi-user"></i>
               <span>Medio de comunicación</span>
             </ng-template>
 
+
+
+            
+
           </p-tabPanel>
-          <!-- <p-tabPanel header="Header III">
-            <ng-template pTemplate="header">
-              <i class="pi pi-search"></i>
-              <span>Datos adicionales</span>
-              <i class="pi pi-cog"></i>
-            </ng-template>
-
-            <div>
-              <div class="row">
-                <div class="col-md-8">
-
-                  <div class="mb-2">
-                    <div class="row">
-                      <span class="p-fluid">
-                        <label for="username">Ruta de Foto</label>
-                        <input class="p-inputtext-sm" [(ngModel)]="RutaImagen" type="text" pInputText>
-                      </span>
-                    </div>
-                  </div>
-
-
-                  <div class="card flex justify-content-center">
-                    <img src="http://drive.google.com/uc?export=view&id=1-I22Z1MavkYVmxiA2ewPhkag5ARAB1se"
-                      alt="Mi imagen en Google Drive">
-                  </div>
-                </div>
           
-              </div>
-            </div>
-
-
-          </p-tabPanel> -->
         </p-tabView>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { GeneralService } from '../..//../services/General/general.service'
 import { PersonaNaturalService } from '../..//../services/PersonaNatural/persona-natural.service'
 import { PersonaNaturalSaveModel } from '../../../models/PersonaNatural/PersonaNaturalSaveModel';
 import { ActivatedRoute } from '@angular/router';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -42,12 +43,12 @@ export class PersonaNaturalSaveComponent implements OnInit {
   DropdownStyle = DropdownStyles.Data;
 
 
-  constructor(private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
+  constructor( private messageService: MessageService,private confirmationService: ConfirmationService,private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
 
 
   }
   newItem: PersonaNaturalSaveModel = new PersonaNaturalSaveModel;
-
+  activeIndex: number = 0;
   id: number = 0;
   ngOnInit() {
 
@@ -136,20 +137,50 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
 
   saveItem() {
-    this.newItem.Action = this.newItem.PersonaNaturalId > 0 ? 3 : 1;
-    this.newItem.UbigeoId = this.SelectUbigeoItem.UbigeoId;
-    this.newItem.TipoDocumentoIdentidadId = this.SelectTipoDocumentoIdentidadItem.TipoDocumentoIdentidadId;
-    this.newItem.GeneroId = this.SelectGeneroItem.GeneroId;
-    this.newItem.EstadoCivilId = this.SelectEstadoCivilItem.EstadoCivilId;
-    this.personanaturalService.save(this.newItem)
-      .subscribe(
-        res => {
-          if (res.PersonaNaturalId != 0) {
-            console.log(res);
-          }
-        },
-        err => console.error(err)
-      )
+
+    this.confirmationService.confirm({
+      message: '¿Deseas guardar el registro?',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sí',
+      rejectLabel: 'No',
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+ 
+        this.newItem.Action = this.newItem.PersonaNaturalId > 0 ? 3 : 1;
+        this.newItem.UbigeoId = this.SelectUbigeoItem.UbigeoId;
+        this.newItem.TipoDocumentoIdentidadId = this.SelectTipoDocumentoIdentidadItem.TipoDocumentoIdentidadId;
+        this.newItem.GeneroId = this.SelectGeneroItem.GeneroId;
+        this.newItem.EstadoCivilId = this.SelectEstadoCivilItem.EstadoCivilId;
+        this.personanaturalService.save(this.newItem)
+          .subscribe(
+            res => {
+              if (res.PersonaNaturalId != 0) {
+                console.log(res);
+              }
+            },
+            err => console.error(err)
+          )
+
+      },
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   }
 
 }
