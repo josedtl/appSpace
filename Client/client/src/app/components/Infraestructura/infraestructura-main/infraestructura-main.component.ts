@@ -19,10 +19,10 @@ export class InfraestructuraMainComponent {
   selectedItems!: InfraestructuraMainModel[] | null;
 
 
-  constructor(private router: Router,  private InfraestructuraServiceService: InfraestructuraService) {
+  constructor(private router: Router,  private InfraestructuralServiceService: InfraestructuraService) {
   }
   ngOnInit() {
-    this.GetAllItems();
+   // this.GetAllItems();
     this.loading = false;
   }
 
@@ -31,15 +31,15 @@ export class InfraestructuraMainComponent {
     this.router.navigate(['/InfraestructuraMain', id]);
   }
 
-  GetAllItems() {
-    this.InfraestructuraServiceService.GetInfraestructuraMainItems().subscribe(
-      respuesta => {
-        this.ListaMainItems = respuesta;
-        this.GetlistaOrdenar();
-      }
-    )
+  // GetAllItems() {
+  //   this.InfraestructuraServiceService.GetInfraestructuraMainItems().subscribe(
+  //     respuesta => {
+  //       this.ListaMainItems = respuesta;
+  //       this.GetlistaOrdenar();
+  //     }
+  //   )
 
-  }
+  // }
   GetlistaOrdenar() {
     this.ListaMainItems.sort((a, b) => b.InfraestructuraId - a.InfraestructuraId);
 
@@ -58,6 +58,9 @@ export class InfraestructuraMainComponent {
   }
   Delete_Metho(Id: number) {
     this.router.navigate(['/InfraestructuraSave', Id]);
+   
+
+
 
   }
 }

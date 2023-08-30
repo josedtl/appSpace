@@ -28,9 +28,9 @@ export class InfraestructuraService {
     return this.http.delete<boolean>(`${this.API_URI}/api/Infraestructura/Delete/${id}`);
   }
 
-  GetInfraestructuraMainItems(): Observable<InfraestructuraMainModel[]> {
-    return this.http.get<InfraestructuraMainModel[]>(`${this.API_URI}/api/Infraestructura/GetInfraestructuraMainItems`);
-  }
+  // GetInfraestructuraMainItems(): Observable<InfraestructuraMainModel[]> {
+  //   return this.http.get<InfraestructuraMainModel[]>(`${this.API_URI}/api/Infraestructura/GetInfraestructuraMainItems`);
+  // }
 }
 
 
