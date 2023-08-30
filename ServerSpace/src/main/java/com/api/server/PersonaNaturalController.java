@@ -2,7 +2,9 @@ package com.api.server;
 
 import Business.PersonaNatural;
 import EntityLayer.PersonaNaturalEntity;
+import Enumerados.ProcessActionEnum;
 import Models.PersonaNaturalMainModel;
+import Models.PersonaNaturalSaveModel;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,10 +31,45 @@ public class PersonaNaturalController {
     }
 
     @PostMapping("/Save")
-    public PersonaNaturalEntity Save(@RequestBody PersonaNaturalEntity Ent) {
+    public PersonaNaturalSaveModel Save(@RequestBody PersonaNaturalSaveModel ItemModel) {
         PersonaNatural BS = new PersonaNatural();
-        BS.Save(Ent);
-        return Ent;
+        PersonaNaturalEntity Ent = new PersonaNaturalEntity();
+
+        Ent.setPersonaNaturalId(ItemModel.getPersonaNaturalId());
+        Ent.setTipoDocumentoIdentidadId(ItemModel.getTipoDocumentoIdentidadId());
+        Ent.setNumDocumento(ItemModel.getNumDocumento());
+        Ent.setNombres(ItemModel.getNombres());
+        Ent.setApellidoPaterno(ItemModel.getApellidoPaterno());
+        Ent.setApellidoMaterno(ItemModel.getApellidoMaterno());
+        Ent.setFechaNacimiento(ItemModel.getFechaNacimiento());
+        Ent.setUbigeoId(ItemModel.getUbigeoId());
+        Ent.setDireccion(ItemModel.getDireccion());
+        Ent.setTelefono(ItemModel.getTelefono());
+        Ent.setCorreo(ItemModel.getCorreo());
+        Ent.setGeneroId(ItemModel.getGeneroId());
+        Ent.setEstadoCivilId(ItemModel.getEstadoCivilId());
+        Ent.setFechaRegistro(ItemModel.getFechaRegistro());
+        Ent.setCodUsuario(ItemModel.getCodUsuario());
+        Ent.setEstadoRegistro(ItemModel.getEstadoRegistro());
+
+        switch (ItemModel.getAction()) {
+            case 0:
+                Ent.setAction(ProcessActionEnum.Loaded);
+                break;
+            case 1:
+                Ent.setAction(ProcessActionEnum.Add);
+                break;
+            case 2:
+                Ent.setAction(ProcessActionEnum.Delete);
+                break;
+            case 3:
+                Ent.setAction(ProcessActionEnum.Update);
+                break;
+        }
+
+        Ent = BS.Save(Ent);
+        ItemModel.setPersonaNaturalId(Ent.getPersonaNaturalId());
+        return ItemModel;
     }
 
     @DeleteMapping("/Delete/{Id}")

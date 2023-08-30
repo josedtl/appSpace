@@ -18,6 +18,7 @@ public class PersonaNatural extends Business.MyCode.PersonaNatural{
 
     public PersonaNaturalEntity Save(PersonaNaturalEntity Item) {
         PersonaNaturalDB BD = new PersonaNaturalDB();
+        
         return BD.Save(Item);
     }
 
