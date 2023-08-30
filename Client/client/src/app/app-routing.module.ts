@@ -50,7 +50,7 @@ const routes: Routes = [
     component: InfraestructuraMainComponent
   },
   {
-    path: 'InfraestructuraSave',
+    path: 'InfraestructuraSave/:id',
     component: InfraestructuraSaveComponent
   }
 ];
