@@ -9,8 +9,8 @@ def map_mysql_to_java_type(mysql_type):
         "decimal": "double",  # Usamos BigDecimal para campos decimales
         "varchar": "String",
         "char": "String",
-        "datetime": "Date",
-        "date": "Date",
+        "datetime": "Timestamp",
+        "date": "Timestamp",
         "bit": "boolean"
         # Agrega más mapeos según sea necesario
     }
@@ -82,8 +82,8 @@ def generate_class_from_sql(script, output_path):
             class_code += f'                en.set{attribute_name}(rs.getString("{attribute_name}"));\n'
         elif attribute_type == "double":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
-        elif attribute_type == "Date":
-            class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
+        elif attribute_type == "Timestamp":
+            class_code += f'                en.set{attribute_name}(rs.getTimestamp("{attribute_name}"));\n'
         elif attribute_type == "boolean":
             class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
 
@@ -123,8 +123,8 @@ def generate_class_from_sql(script, output_path):
             class_code += f'                en.set{attribute_name}(rs.getString("{attribute_name}"));\n'
         elif attribute_type == "double":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
-        elif attribute_type == "Date":
-            class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
+        elif attribute_type == "Timestamp":
+            class_code += f'                en.set{attribute_name}(rs.getTimestamp("{attribute_name}"));\n'
         elif attribute_type == "boolean":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
 
@@ -164,8 +164,8 @@ def generate_class_from_sql(script, output_path):
             class_code += f'            Inj.Pmt_String("v_{attribute_name}", entity.get{attribute_name}(), false);\n'
         elif attribute_type == "double":
             class_code += f'            Inj.Pmt_Double("v_{attribute_name}", entity.get{attribute_name}(), false);\n'
-        elif attribute_type == "Date":
-            class_code += f'            Inj.Pmt_Date("v_{attribute_name}", new java.sql.Date(entity.get{attribute_name}().getTime()), false);\n'
+        elif attribute_type == "Timestamp":
+            class_code += f'            Inj.Pmt_String("v_{attribute_name}", new java.sql.Date(entity.get{attribute_name}().getTime()), false);\n'
         elif attribute_type == "boolean":
             class_code += f'            Inj.Pmt_Boolean("v_{attribute_name}", entity.get{attribute_name}(), false);\n'
 
