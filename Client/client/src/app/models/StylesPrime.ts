@@ -4,6 +4,13 @@ export class ButtonStyles {
     };
   }
 
+  export class ButtonLoginStyles {
+    static primary = {
+      color: '#027FAB',
+      with: '100%'
+    };
+  }
+
 
 
 
