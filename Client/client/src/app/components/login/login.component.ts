@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
-
+import { ButtonLoginStyles } from '../../../app/models/StylesPrime';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,6 +13,7 @@ export class LoginComponent {
   autenticacionExitosa: boolean = true;
   constructor(private authService: AuthService, private router: Router) { }
 
+  buttonStyle = ButtonLoginStyles.primary;
 
   login() {
     if (this.autenticacionExitosa) {
