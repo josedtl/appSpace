@@ -41,6 +41,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { LoginComponent } from './components/login/login.component';
+import { InfraestructuraSaveComponent } from './components/Infraestructura/infraestructura-save/infraestructura-save.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,8 @@ import { LoginComponent } from './components/login/login.component';
     InfraestructuraMainComponent,
     PersonaNaturalSaveComponent,
     PersonaNaturalMainComponent,
-    LoginComponent
+    LoginComponent,
+    InfraestructuraSaveComponent
   ],
   imports: [
     InputNumberModule,
