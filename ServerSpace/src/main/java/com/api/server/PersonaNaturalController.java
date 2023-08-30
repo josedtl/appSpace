@@ -3,6 +3,7 @@ package com.api.server;
 import Business.PersonaNatural;
 import EntityLayer.PersonaNaturalEntity;
 import Enumerados.ProcessActionEnum;
+import Framework.Utilidades;
 import Models.PersonaNaturalMainModel;
 import Models.PersonaNaturalSaveModel;
 import java.util.ArrayList;
@@ -51,21 +52,7 @@ public class PersonaNaturalController {
         Ent.setFechaRegistro(ItemModel.getFechaRegistro());
         Ent.setCodUsuario(ItemModel.getCodUsuario());
         Ent.setEstadoRegistro(ItemModel.getEstadoRegistro());
-
-        switch (ItemModel.getAction()) {
-            case 0:
-                Ent.setAction(ProcessActionEnum.Loaded);
-                break;
-            case 1:
-                Ent.setAction(ProcessActionEnum.Add);
-                break;
-            case 2:
-                Ent.setAction(ProcessActionEnum.Delete);
-                break;
-            case 3:
-                Ent.setAction(ProcessActionEnum.Update);
-                break;
-        }
+        Ent.setAction(Utilidades.ConvetEnumAction(ItemModel.getAction()));
 
         Ent = BS.Save(Ent);
         ItemModel.setPersonaNaturalId(Ent.getPersonaNaturalId());
