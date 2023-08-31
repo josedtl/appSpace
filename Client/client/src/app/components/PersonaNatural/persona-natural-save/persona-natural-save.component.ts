@@ -170,23 +170,6 @@ export class PersonaNaturalSaveComponent implements OnInit {
       },
 
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   }
 
 }

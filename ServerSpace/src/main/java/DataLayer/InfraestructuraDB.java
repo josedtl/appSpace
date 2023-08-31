@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class InfraestructuraDB {
+public class InfraestructuraDB extends DataLayer.MyCode.InfraestructuraDB {
 
     injector Inj = new injector();
 

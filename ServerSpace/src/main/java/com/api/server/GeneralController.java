@@ -166,8 +166,8 @@ public class GeneralController {
 
         return Items;
     }
-    @GetMapping("/GetTipoInfraestructuraLikeItem/{nombre}")
     
+    @GetMapping("/GetTipoInfraestructuraLikeItem/{nombre}")
     public ArrayList<TipoInfraestructuraItemModel> GetTipoInfraestructuraLikeItem(@PathVariable String Nombre) {
         ArrayList<TipoInfraestructuraItemModel> Items = new ArrayList<>();
         TipoInfraestructura BS = new TipoInfraestructura();
@@ -267,6 +267,7 @@ public class GeneralController {
 
         return Items;
     }
+  
     @GetMapping("/GetUbigeoItem/{Id}")
     public ArrayList<UbigeoItemModel> GetUbigeoItem(@PathVariable int Id) {
         ArrayList<UbigeoItemModel> Items = new ArrayList<>();
@@ -292,6 +293,7 @@ public class GeneralController {
 
         return Items;
     }
+ 
     @GetMapping("/GetGeneroItem/{Id}")
     public ArrayList<GeneroItemModel> GetGeneroItem(@PathVariable int Id)  {
         ArrayList<GeneroItemModel> Items = new ArrayList<>();
