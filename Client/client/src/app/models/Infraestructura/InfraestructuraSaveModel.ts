@@ -8,7 +8,6 @@ export class InfraestructuraSaveModel {
         public CodigoInterno: string = '',
         public Descripcion: string = '',
         public TipoInfraestructuraId: number = 0,
-        public InfraestructuraDimensionId: number = 0,
         public Aforo: number = 0,
         public PisoId: number = 0,
         public FechaRegistro: Date = new Date,
