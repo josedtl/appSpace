@@ -15,6 +15,7 @@ public class PersonaNaturalMedioComunicacionEntity {
     public void setPersonaNaturalMedioComunicacionId(int personaNaturalMedioComunicacionId) {
         this.personaNaturalMedioComunicacionId = personaNaturalMedioComunicacionId;
     }
+//    aca
 
     @JsonProperty("PersonaNaturalId")
     private int personaNaturalId = 0;
