@@ -6,6 +6,7 @@ package EntityLayer.MyCode;
 
 import EntityLayer.PersonaNaturalMedioComunicacionEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,13 +26,13 @@ public class PersonaNaturalEntity {
     }
 
     @JsonProperty("PersonaNaturalMedioComunicacioDetalle")
-    private PersonaNaturalMedioComunicacionEntity personaNaturalMedioComunicacioDetalle = null;
-
-    public PersonaNaturalMedioComunicacionEntity getDetalleMedioComunicacion() {
+    private ArrayList<PersonaNaturalMedioComunicacionEntity>  personaNaturalMedioComunicacioDetalle = new ArrayList<>();
+    
+    public ArrayList<PersonaNaturalMedioComunicacionEntity>  getDetalleMedioComunicacion() {
         return personaNaturalMedioComunicacioDetalle;
     }
 
-    public void setDetalleMedioComunicacion(PersonaNaturalMedioComunicacionEntity ItemDetalle) {
+    public void setDetalleMedioComunicacion(ArrayList<PersonaNaturalMedioComunicacionEntity>  ItemDetalle) {
         this.personaNaturalMedioComunicacioDetalle = ItemDetalle;
     }
     

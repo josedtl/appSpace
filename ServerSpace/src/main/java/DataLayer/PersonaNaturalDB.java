@@ -122,8 +122,16 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
                 Inj.RunUpdate();
             }
 
-//            for ( ) {
-//            }
+            if (entity.getDetalleMedioComunicacion() != null && entity.getDetalleMedioComunicacion().size() > 0) {
+                for (var detalle : entity.getDetalleMedioComunicacion()) {
+                    PersonaNaturalMedioComunicacionDB DB_Detalle = new PersonaNaturalMedioComunicacionDB();
+                    if (detalle.getAction() == ProcessActionEnum.Delete.getValor()) {
+                        DB_Detalle.Delete(detalle.getPersonaNaturalMedioComunicacionId());
+                    } else {
+                        DB_Detalle.Save(detalle);
+                    }
+                }
+            }
 
         } catch (Exception ex) {
             throw new UnsupportedOperationException("Datalater : " + ex);
