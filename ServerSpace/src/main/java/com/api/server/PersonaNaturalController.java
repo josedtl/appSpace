@@ -2,9 +2,11 @@ package com.api.server;
 
 import Business.PersonaNatural;
 import EntityLayer.PersonaNaturalEntity;
+import EntityLayer.PersonaNaturalMedioComunicacionEntity;
 import Enumerados.ProcessActionEnum;
 import Framework.Utilidades;
 import Models.PersonaNaturalMainModel;
+import Models.PersonaNaturalMedioComunicacionSaveModel;
 import Models.PersonaNaturalSaveModel;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -54,9 +56,41 @@ public class PersonaNaturalController {
         Ent.setEstadoRegistro(ItemModel.getEstadoRegistro());
         Ent.setAction(Utilidades.ConvetEnumAction(ItemModel.getAction()));
 
+        if (ItemModel.getDetalleMedioComunicacion() != null && ItemModel.getDetalleMedioComunicacion().size() > 0) {
+            ArrayList<PersonaNaturalMedioComunicacionEntity> Detalle_Ent = new ArrayList<>();
+            PersonaNaturalMedioComunicacionEntity Item_Ent = new PersonaNaturalMedioComunicacionEntity();
+            for (var ItemModelDetalle : ItemModel.getDetalleMedioComunicacion()) {
+
+                Item_Ent = new PersonaNaturalMedioComunicacionEntity();
+
+                Item_Ent.setPersonaNaturalMedioComunicacionId(ItemModelDetalle.getPersonaNaturalMedioComunicacionId());
+                Item_Ent.setPersonaNaturalId(ItemModelDetalle.getPersonaNaturalId());
+                Item_Ent.setMedioComunicacionId(ItemModelDetalle.getMedioComunicacionId());
+                Item_Ent.setDato(ItemModelDetalle.getDato());
+                Item_Ent.setFechaRegistro(ItemModelDetalle.getFechaRegistro());
+                Item_Ent.setCodUsuario(ItemModelDetalle.getCodUsuario());
+                Item_Ent.setEstadoRegistro(ItemModelDetalle.getEstadoRegistro());
+                Item_Ent.setAction(Utilidades.ConvetEnumAction(ItemModelDetalle.getAction()));
+
+                Detalle_Ent.add(Item_Ent);
+            }
+            Ent.setDetalleMedioComunicacion(Detalle_Ent);
+        }
+
         Ent = BS.Save(Ent);
         ItemModel.setPersonaNaturalId(Ent.getPersonaNaturalId());
         return ItemModel;
+    }
+
+    @GetMapping("/GetSave")
+    public PersonaNaturalSaveModel GetSave() {
+
+        PersonaNaturalSaveModel Item = new PersonaNaturalSaveModel();
+        PersonaNaturalMedioComunicacionSaveModel Detalle = new PersonaNaturalMedioComunicacionSaveModel();
+
+        Item.getDetalleMedioComunicacion().add(new PersonaNaturalMedioComunicacionSaveModel());
+
+        return Item;
     }
 
     @DeleteMapping("/Delete/{Id}")

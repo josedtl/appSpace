@@ -3,8 +3,31 @@ package Models;
 import Enumerados.ProcessActionEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 public class PersonaNaturalSaveModel {
+
+    public PersonaNaturalSaveModel() {
+        // You can set default values for properties here
+        this.personaNaturalId = 0;
+        this.tipoDocumentoIdentidadId = 0;
+        this.numDocumento = "";
+        this.nombres = "";
+        this.apellidoPaterno = "";
+        this.apellidoMaterno = "";
+        this.fechaNacimiento = null;
+        this.ubigeoId = 0;
+        this.direccion = "";
+        this.telefono = "";
+        this.correo = "";
+        this.generoId = 0;
+        this.estadoCivilId = 0;
+        this.fechaRegistro = null;
+        this.codUsuario = "";
+        this.estadoRegistro = false;
+        this.action = ProcessActionEnum.Loaded;
+        this.detalleMedioComunicacion = new ArrayList<>();
+    }
 
     @JsonProperty("PersonaNaturalId")
     private int personaNaturalId = 0;
@@ -191,6 +214,17 @@ public class PersonaNaturalSaveModel {
 
     public void setAction(ProcessActionEnum Action) {
         this.action = Action;
+    }
+
+    @JsonProperty("DetalleMedioComunicacion")
+    private ArrayList<PersonaNaturalMedioComunicacionSaveModel> detalleMedioComunicacion = new ArrayList<>();
+
+    public ArrayList<PersonaNaturalMedioComunicacionSaveModel> getDetalleMedioComunicacion() {
+        return detalleMedioComunicacion;
+    }
+
+    public void setDetalleMedioComunicacion(ArrayList<PersonaNaturalMedioComunicacionSaveModel> ItemDetalle) {
+        this.detalleMedioComunicacion = ItemDetalle;
     }
 
 }

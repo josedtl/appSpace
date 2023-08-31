@@ -2,6 +2,7 @@ package DataLayer;
 
 import EntityLayer.PersonaNaturalMedioComunicacionEntity;
 import Enumerados.ProcessActionEnum;
+import Framework.Utilidades;
 import Framework.injector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,7 +12,7 @@ public class PersonaNaturalMedioComunicacionDB {
 
     injector Inj = new injector();
 
-    public ArrayList<PersonaNaturalMedioComunicacionEntity> GetAllItems() { 
+    public ArrayList<PersonaNaturalMedioComunicacionEntity> GetAllItems() {
 
         ArrayList<PersonaNaturalMedioComunicacionEntity> DatoMemoria = new ArrayList<>();
         PersonaNaturalMedioComunicacionEntity en;
@@ -25,6 +26,7 @@ public class PersonaNaturalMedioComunicacionDB {
                 en.setPersonaNaturalId(rs.getInt("PersonaNaturalId"));
                 en.setMedioComunicacionId(rs.getInt("MedioComunicacionId"));
                 en.setDato(rs.getString("Dato"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -32,13 +34,13 @@ public class PersonaNaturalMedioComunicacionDB {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
     }
 
-    public ArrayList<PersonaNaturalMedioComunicacionEntity> GetAllItem(int PersonaNaturalMedioComunicacionId) { 
+    public ArrayList<PersonaNaturalMedioComunicacionEntity> GetAllItem(int PersonaNaturalMedioComunicacionId) {
 
         ArrayList<PersonaNaturalMedioComunicacionEntity> DatoMemoria = new ArrayList<>();
         PersonaNaturalMedioComunicacionEntity en;
@@ -53,6 +55,7 @@ public class PersonaNaturalMedioComunicacionDB {
                 en.setPersonaNaturalId(rs.getInt("PersonaNaturalId"));
                 en.setMedioComunicacionId(rs.getInt("MedioComunicacionId"));
                 en.setDato(rs.getString("Dato"));
+                en.setFechaRegistro(rs.getTimestamp("FechaRegistro"));
                 en.setCodUsuario(rs.getString("CodUsuario"));
                 en.setEstadoRegistro(rs.getBoolean("EstadoRegistro"));
                 DatoMemoria.add(en);
@@ -60,7 +63,7 @@ public class PersonaNaturalMedioComunicacionDB {
             }
 
         } catch (SQLException e) {
-            System.out.println("ERROR "+e);
+            System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);
         }
         return DatoMemoria;
@@ -78,6 +81,7 @@ public class PersonaNaturalMedioComunicacionDB {
             Inj.Pmt_Integer("v_PersonaNaturalId", entity.getPersonaNaturalId(), false);
             Inj.Pmt_Integer("v_MedioComunicacionId", entity.getMedioComunicacionId(), false);
             Inj.Pmt_String("v_Dato", entity.getDato(), false);
+            Inj.Pmt_String("v_FechaRegistro", Utilidades.getFechaRegistro(), false);
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
