@@ -122,8 +122,8 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
                 Inj.RunUpdate();
             }
 
-            for ( ) {
-            }
+//            for ( ) {
+//            }
 
         } catch (Exception ex) {
             throw new UnsupportedOperationException("Datalater : " + ex);
