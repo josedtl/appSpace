@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Framework;
 
 import java.sql.Connection;
@@ -14,18 +9,13 @@ import java.sql.DriverManager;
  */
 public class Conexion {
 
-//    private String usuario = "dtimo";
-//    private String pass = "123456";
-//    private String host = "localhost";
-//    private String nombre_BD = "DBAlmacenLogistico";
-    private Connection con = null;
-
     private String URL = "jdbc:mysql://localhost:3306/spaceDB?autoReconnect=true&useSSL=false";
     private String usuario = "root";
     private String contraseña = "123456";
     private String driver = "com.mysql.jdbc.Driver";
 
     public Connection ConexionBD() {
+        Connection con = null;
         try {
 
 //            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver").newInstance();

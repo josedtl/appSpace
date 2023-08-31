@@ -2,9 +2,11 @@ package Business;
 
 import DataLayer.PersonaNaturalDB;
 import EntityLayer.PersonaNaturalEntity;
+import Framework.injectorOther;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PersonaNatural extends Business.MyCode.PersonaNatural{
+public class PersonaNatural extends Business.MyCode.PersonaNatural {
 
     public ArrayList<PersonaNaturalEntity> GetAllItems() {
         PersonaNaturalDB BD = new PersonaNaturalDB();
@@ -17,9 +19,17 @@ public class PersonaNatural extends Business.MyCode.PersonaNatural{
     }
 
     public PersonaNaturalEntity Save(PersonaNaturalEntity Item) {
-        PersonaNaturalDB BD = new PersonaNaturalDB();
-        
-        return BD.Save(Item);
+        try {
+            injectorOther.IniciarTranssaccion(true);
+            PersonaNaturalDB BD = new PersonaNaturalDB();
+            BD.SaveAlter(Item);
+            injectorOther.FinalizarTranssaccion();
+        } catch (Exception ex) {
+            System.out.println("ERROR " + ex);
+            throw new UnsupportedOperationException("MENSAJE :" + ex);
+        }
+        return Item;
+
     }
 
     public Boolean Delete(int Id) {

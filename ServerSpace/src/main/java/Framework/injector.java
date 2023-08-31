@@ -294,4 +294,119 @@ public class injector {
         }
         return RunValue;
     }
+
+    public Integer RunInsertAllter() {
+        Boolean OUTPUT = false;
+        String sum = "";
+        String suma = "";
+        Integer RunValue = 1;
+        int con = 0;
+
+        for (int i = 0; i < type.size(); i++) {
+            sum += ",?";
+        }
+        suma = sum.substring(1);
+        String parameter = "{CALL " + getSp() + "(" + suma + ")}";
+        try {
+            cn.ConexionBD().setAutoCommit(false); // Iniciar una transacción
+            CallableStatement csCabecera = cn.ConexionBD().prepareCall("" + parameter);
+            for (variable t : type) {
+                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
+                    csCabecera.setString(t.getParameterName(), t.getString());
+                }
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
+                    csCabecera.setInt(t.getParameterName(), t.getBoolean() ? 1 : 0);
+                }
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDouble() == null) {
+                    csCabecera.setTimestamp(t.getParameterName(), t.getDate());
+                }
+                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
+                    if (t.getOUTPUT()) {
+                        csCabecera.registerOutParameter(t.getParameterName(), Types.INTEGER);
+                        OUTPUT = true;
+                    } else {
+                        csCabecera.setInt(t.getParameterName(), t.getInt());
+
+                        if (con == 0) {
+                            RunValue = t.getInt();
+                            con += 1;
+                        }
+
+                    }
+                }
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
+                    csCabecera.setDouble(t.getParameterName(), t.getDouble());
+                }
+            }
+            csCabecera.executeUpdate();
+
+            if (OUTPUT) {
+                RunValue = csCabecera.getInt(1);
+            }
+
+//            cs.close();
+        } catch (SQLException ex) {
+
+            throw new UnsupportedOperationException("INJECTOR :" + ex);
+
+        }
+        return RunValue;
+    }
+
+    public Integer RunInsertAllterDetalle() {
+        Boolean OUTPUT = false;
+        String sum = "";
+        String suma = "";
+        Integer RunValue = 1;
+        int con = 0;
+
+        for (int i = 0; i < type.size(); i++) {
+            sum += ",?";
+        }
+        String parameter = "{CALL " + getSp() + "(" + suma + ")}";
+        try {
+            CallableStatement csDetalle = cn.ConexionBD().prepareCall("" + parameter);
+            for (variable t : type) {
+                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
+                    csDetalle.setString(t.getParameterName(), t.getString());
+                }
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
+                    csDetalle.setInt(t.getParameterName(), t.getBoolean() ? 1 : 0);
+                }
+                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDouble() == null) {
+                    csDetalle.setTimestamp(t.getParameterName(), t.getDate());
+                }
+                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
+                    if (t.getOUTPUT()) {
+                        csDetalle.registerOutParameter(t.getParameterName(), Types.INTEGER);
+                        OUTPUT = true;
+                    } else {
+                        csDetalle.setInt(t.getParameterName(), t.getInt());
+
+                        if (con == 0) {
+                            RunValue = t.getInt();
+                            con += 1;
+                        }
+
+                    }
+                }
+                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
+                    csDetalle.setDouble(t.getParameterName(), t.getDouble());
+                }
+            }
+            csDetalle.executeUpdate();
+
+            if (OUTPUT) {
+                RunValue = csDetalle.getInt(1);
+            }
+            cn.ConexionBD().commit(); // Confirmar la transacción
+//            cs.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new UnsupportedOperationException("INJECTOR :" + ex);
+
+        }
+        return RunValue;
+    }
 }
