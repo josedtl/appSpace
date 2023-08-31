@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB{
+public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
 
     injector Inj = new injector();
 
@@ -120,6 +120,9 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB{
             }
             if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
                 Inj.RunUpdate();
+            }
+
+            for ( ) {
             }
 
         } catch (Exception ex) {

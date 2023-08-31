@@ -4,6 +4,7 @@
  */
 package EntityLayer.MyCode;
 
+import EntityLayer.PersonaNaturalMedioComunicacionEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -22,4 +23,18 @@ public class PersonaNaturalEntity {
     public void setNomDocumento(String nomDocumento) {
         this.nomDocumento = nomDocumento;
     }
+
+    @JsonProperty("PersonaNaturalMedioComunicacioDetalle")
+    private PersonaNaturalMedioComunicacionEntity personaNaturalMedioComunicacioDetalle = null;
+
+    public PersonaNaturalMedioComunicacionEntity getDetalleMedioComunicacion() {
+        return personaNaturalMedioComunicacioDetalle;
+    }
+
+    public void setDetalleMedioComunicacion(PersonaNaturalMedioComunicacionEntity ItemDetalle) {
+        this.personaNaturalMedioComunicacioDetalle = ItemDetalle;
+    }
+    
+    
+
 }

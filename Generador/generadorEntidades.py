@@ -8,8 +8,8 @@ def map_mysql_to_java_type(mysql_type):
         "decimal": "double",  # Usamos BigDecimal para campos decimales
         "varchar": "String",
         "char": "String",
-        "datetime": "Date",
-        "date": "Date",
+        "datetime": "Timestamp",
+        "date": "Timestamp",
         "bit": "boolean"
         # Agrega más mapeos según sea necesario
     }
@@ -41,7 +41,7 @@ def generate_class_from_sql(script, output_path):
     class_code = f"package EntityLayer;\n\n"
     class_code += "import com.fasterxml.jackson.annotation.JsonProperty;\n"
     class_code += "import Enumerados.ProcessActionEnum;\n"
-    class_code += "import java.util.Date;\n\n"
+    class_code += "import java.sql.Timestamp;\n\n"
     
     class_code += f"public class {class_name} {{\n\n"
     
@@ -57,7 +57,7 @@ def generate_class_from_sql(script, output_path):
             class_code += f"    private {attribute_type} {java_attribute_name} = \"\";\n"
         elif attribute_type == "BigDecimal":
             class_code += f"    private {attribute_type} {java_attribute_name} = null;\n"
-        elif attribute_type == "Date":
+        elif attribute_type == "Timestamp":
             class_code += f"    private {attribute_type} {java_attribute_name} = null;\n"
         elif attribute_type == "boolean":
             class_code += f"    private {attribute_type} {java_attribute_name} = false;\n"
