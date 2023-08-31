@@ -1,12 +1,13 @@
-package EntityLayer;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+package Models;
+
 import Enumerados.ProcessActionEnum;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Timestamp;
 
-public class InfraestructuraEntity {
+public class InfraestructuraSaveModel {
 
-    @JsonProperty("InfraestructuraId")
+      @JsonProperty("InfraestructuraId")
     private int infraestructuraId = 0;
     public int getInfraestructuraId() {
         return infraestructuraId;
@@ -138,7 +139,6 @@ public class InfraestructuraEntity {
 
     @JsonProperty("Action")
     private ProcessActionEnum action = ProcessActionEnum.Loaded;
-
     public int getAction() {
         return action.getValor();
     }

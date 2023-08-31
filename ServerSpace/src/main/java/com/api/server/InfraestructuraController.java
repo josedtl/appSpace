@@ -2,6 +2,7 @@ package com.api.server;
 
 import Business.Infraestructura;
 import EntityLayer.InfraestructuraEntity;
+import Models.InfraestructuraMainModel;
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +36,22 @@ public class InfraestructuraController {
     }
 
     @DeleteMapping("/Delete/{Id}")
-    public Boolean Delete(@PathVariable int Id) {
+  
+   public Boolean Delete(@PathVariable int Id) {
         Infraestructura BS = new Infraestructura();
         return BS.Delete(Id);
+    }
+ 
+   @GetMapping("/GetPersonaNaturalMainItems")
+    public ArrayList<InfraestructuraMainModel> GetInfraestructuraMainItems() {
+        Infraestructura BS = new Infraestructura();
+        ArrayList<InfraestructuraMainModel> Items = new ArrayList<>();
+        ArrayList<InfraestructuraEntity> Data = BS.GetInfraestructuraMainItems();
+
+        for (InfraestructuraEntity Item : Data) {
+            Items.add(new InfraestructuraMainModel(Item));
+        }
+
+        return Items;
     }
 }
