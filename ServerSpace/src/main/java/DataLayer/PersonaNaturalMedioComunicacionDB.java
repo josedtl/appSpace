@@ -5,7 +5,7 @@ import Enumerados.ProcessActionEnum;
 import Framework.Conexion;
 import Framework.Utilidades;
 import Framework.injector;
-import Framework.injectorOther;
+import Framework.Inj;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -142,28 +142,28 @@ public class PersonaNaturalMedioComunicacionDB {
     public PersonaNaturalMedioComunicacionEntity SaveOther(PersonaNaturalMedioComunicacionEntity entity) {
         Boolean State = null;
         try {
-            injectorOther.IniciarTranssaccion(false);
+            Inj.IniciarTranssaccion(false);
             String Store = "sp_PersonaNaturalMedioComunicacion_Save";
             if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
                 Store = "sp_PersonaNaturalMedioComunicacion_Update";
             }
-            injectorOther.Sp(Store);
-            injectorOther.Pmt_Integer("v_PersonaNaturalMedioComunicacionId", entity.getPersonaNaturalMedioComunicacionId(), true);
-            injectorOther.Pmt_Integer("v_PersonaNaturalId", entity.getPersonaNaturalId(), false);
-            injectorOther.Pmt_Integer("v_MedioComunicacionId", entity.getMedioComunicacionId(), false);
-            injectorOther.Pmt_String("v_Dato", entity.getDato(), false);
-            injectorOther.Pmt_String("v_FechaRegistro", Utilidades.getFechaRegistro(), false);
-            injectorOther.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
-            injectorOther.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
+            Inj.Sp(Store);
+            Inj.Pmt_Integer("v_PersonaNaturalMedioComunicacionId", entity.getPersonaNaturalMedioComunicacionId(), true);
+            Inj.Pmt_Integer("v_PersonaNaturalId", entity.getPersonaNaturalId(), false);
+            Inj.Pmt_Integer("v_MedioComunicacionId", entity.getMedioComunicacionId(), false);
+            Inj.Pmt_String("v_Dato", entity.getDato(), false);
+            Inj.Pmt_String("v_FechaRegistro", Utilidades.getFechaRegistro(), false);
+            Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
+            Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
-                int Id = injectorOther.RunInsert();
+                int Id = Inj.RunInsert();
                 State = Id > 0;
                 if (State) {
                     entity.setPersonaNaturalMedioComunicacionId(Id);
                 }
             }
             if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
-//                injectorOther.RunUpdate();
+//                Inj.RunUpdate();
             }
 
         } catch (Exception ex) {

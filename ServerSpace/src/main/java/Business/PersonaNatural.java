@@ -2,7 +2,7 @@ package Business;
 
 import DataLayer.PersonaNaturalDB;
 import EntityLayer.PersonaNaturalEntity;
-import Framework.injectorOther;
+import Framework.Inj;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,6 +10,13 @@ public class PersonaNatural extends Business.MyCode.PersonaNatural {
 
     public ArrayList<PersonaNaturalEntity> GetAllItems() {
         PersonaNaturalDB BD = new PersonaNaturalDB();
+        try {
+            Inj.IniciarTranssaccionConsulta();
+
+        } catch (Exception ex) {
+            System.out.println("ERROR " + ex);
+            throw new UnsupportedOperationException("MENSAJE :" + ex);
+        }
         return BD.GetAllItems();
     }
 
@@ -20,10 +27,10 @@ public class PersonaNatural extends Business.MyCode.PersonaNatural {
 
     public PersonaNaturalEntity Save(PersonaNaturalEntity Item) {
         try {
-            injectorOther.IniciarTranssaccion(true);
+            Inj.IniciarTranssaccion(true);
             PersonaNaturalDB BD = new PersonaNaturalDB();
-            BD.SaveAlter(Item);
-            injectorOther.FinalizarTranssaccion();
+            BD.Save(Item);
+            Inj.FinalizarTranssaccion();
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);

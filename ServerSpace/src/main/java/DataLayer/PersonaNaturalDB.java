@@ -2,19 +2,13 @@ package DataLayer;
 
 import EntityLayer.PersonaNaturalEntity;
 import Enumerados.ProcessActionEnum;
-import Framework.Conexion;
+import Framework.Inj;
 import Framework.Utilidades;
-import Framework.injector;
-import Framework.injectorOther;
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
-
-    injector Inj = new injector();
 
     public ArrayList<PersonaNaturalEntity> GetAllItems() {
 
@@ -94,6 +88,7 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
     public PersonaNaturalEntity Save(PersonaNaturalEntity entity) {
         Boolean State = null;
         try {
+            Inj.IniciarTranssaccion(false);
             String Store = "sp_PersonaNatural_Save";
             if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
                 Store = "sp_PersonaNatural_Update";
@@ -116,7 +111,7 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
-                int Id = Inj.RunInsertAllter();
+                int Id = Inj.RunInsert();
                 State = Id > 0;
                 if (State) {
                     entity.setPersonaNaturalId(Id);
@@ -162,31 +157,31 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
     public PersonaNaturalEntity SaveAlter(PersonaNaturalEntity entity) {
         Boolean State = null;
         try {
-            injectorOther.IniciarTranssaccion(false);
+            Inj.IniciarTranssaccion(false);
 
 //            String procedimientoCabecera = "{CALL sp_PersonaNatural_Save(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
             String Store = "sp_PersonaNatural_Save";
             if (entity.getAction() == ProcessActionEnum.Update.getValor()) {
                 Store = "sp_PersonaNatural_Update";
             }
-            injectorOther.Sp(Store);
+            Inj.Sp(Store);
 
-            injectorOther.Pmt_Integer("v_PersonaNaturalId", entity.getPersonaNaturalId(), true);
-            injectorOther.Pmt_Integer("v_TipoDocumentoIdentidadId", entity.getTipoDocumentoIdentidadId(), false);
-            injectorOther.Pmt_String("v_NumDocumento", entity.getNumDocumento(), false);
-            injectorOther.Pmt_String("v_Nombres", entity.getNombres(), false);
-            injectorOther.Pmt_String("v_ApellidoPaterno", entity.getApellidoPaterno(), false);
-            injectorOther.Pmt_String("v_ApellidoMaterno", entity.getApellidoMaterno(), false);
-            injectorOther.Pmt_String("v_FechaNacimiento", entity.getFechaNacimiento().toString(), false);
-            injectorOther.Pmt_Integer("v_UbigeoId", entity.getUbigeoId(), false);
-            injectorOther.Pmt_String("v_Direccion", entity.getDireccion(), false);
-            injectorOther.Pmt_String("v_Telefono", entity.getTelefono(), false);
-            injectorOther.Pmt_String("v_Correo", entity.getCorreo(), false);
-            injectorOther.Pmt_Integer("v_GeneroId", entity.getGeneroId(), false);
-            injectorOther.Pmt_Integer("v_EstadoCivilId", entity.getEstadoCivilId(), false);
-            injectorOther.Pmt_String("v_FechaRegistro", Utilidades.getFechaRegistro(), false);
-            injectorOther.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
-            injectorOther.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
+            Inj.Pmt_Integer("v_PersonaNaturalId", entity.getPersonaNaturalId(), true);
+            Inj.Pmt_Integer("v_TipoDocumentoIdentidadId", entity.getTipoDocumentoIdentidadId(), false);
+            Inj.Pmt_String("v_NumDocumento", entity.getNumDocumento(), false);
+            Inj.Pmt_String("v_Nombres", entity.getNombres(), false);
+            Inj.Pmt_String("v_ApellidoPaterno", entity.getApellidoPaterno(), false);
+            Inj.Pmt_String("v_ApellidoMaterno", entity.getApellidoMaterno(), false);
+            Inj.Pmt_String("v_FechaNacimiento", entity.getFechaNacimiento().toString(), false);
+            Inj.Pmt_Integer("v_UbigeoId", entity.getUbigeoId(), false);
+            Inj.Pmt_String("v_Direccion", entity.getDireccion(), false);
+            Inj.Pmt_String("v_Telefono", entity.getTelefono(), false);
+            Inj.Pmt_String("v_Correo", entity.getCorreo(), false);
+            Inj.Pmt_Integer("v_GeneroId", entity.getGeneroId(), false);
+            Inj.Pmt_Integer("v_EstadoCivilId", entity.getEstadoCivilId(), false);
+            Inj.Pmt_String("v_FechaRegistro", Utilidades.getFechaRegistro(), false);
+            Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
+            Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
 
 //            stmtCabecera.setInt("v_PersonaNaturalId", entity.getPersonaNaturalId());
 //            stmtCabecera.setInt("v_TipoDocumentoIdentidadId", entity.getTipoDocumentoIdentidadId());
@@ -210,7 +205,7 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
 //            entity.setPersonaNaturalId(PersonaNatruralId);
 //            
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
-                int Id = injectorOther.RunInsert();
+                int Id = Inj.RunInsert();
                 State = Id > 0;
                 if (State) {
                     entity.setPersonaNaturalId(Id);
@@ -248,7 +243,7 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
                     }
                 }
             }
-//            injectorOther.FinalizarTranssaccion();
+//            Inj.FinalizarTranssaccion();
 
 //            conn.commit(); // Confirmar la transacción
             System.out.println("Venta y detalle guardados correctamente.");

@@ -1,14 +1,13 @@
 package DataLayer.MyCode;
 
 import EntityLayer.PersonaNaturalEntity;
-import Framework.injector;
+import Framework.Inj;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PersonaNaturalDB {
 
-    injector Inj = new injector();
 
     public ArrayList<PersonaNaturalEntity> GetPersonaNaturalMainItems() {
 
