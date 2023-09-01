@@ -1,29 +1,29 @@
+<!-- TODA LA AREA -->
 <p-card>
+  <!-- HEADER -->
   <div style="display: flex; justify-content: space-between;">
     <div>
       <h1>Persona Natural</h1>
     </div>
-
     <div>
-
       <p-button [style]="buttonStyle" label="Guardar" icon="pi pi-plus" (click)="saveItem()"
         styleClass="p-button-outlined p-button-secondary">
       </p-button>
     </div>
 
-
   </div>
 
-
+<!-- BODY -->
   <div class="row">
+    <!-- COLUMNA 1  (DIVIDIDO EN 3) -->
     <div class="col-md-3">
       <div class="box">
 
-
-
+        <!-- FILA 1 -->
         <div class="mb-2">
           <div class="row">
             <div class="col-md-6">
+              <!-- TIPO DE DOCUMENTO -->
               <div class="row">
                 <span class="p-fluid">
                   <label for="username" style="font-weight: 500;">Tipo de Documento</label>
@@ -33,7 +33,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <!-- Apellido Materno -->
+              <!-- NUMERO DE DOCUMENTO -->
               <div class="row">
                 <span class="p-fluid">
                   <label for="username" style="font-weight: 500;">N° Documento</label>
@@ -45,7 +45,9 @@
           </div>
         </div>
 
+        <!-- FILA 2 --> 
         <div class="mb-2">
+          <!-- NOMBRE -->
           <div class="row">
             <span class="p-fluid">
               <label for="username" style="font-weight: 500;">Nombres</label>
@@ -54,11 +56,11 @@
           </div>
         </div>
 
-
-
+        <!-- FILA 3 -->
         <div class="mb-2">
           <div class="row">
             <div class="col-md-6">
+              <!-- APELLIDO PATERNO -->
               <div class="row">
                 <span class="p-fluid">
                   <label for="username" style="font-weight: 500;">Apellido Paterno</label>
@@ -67,7 +69,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <!-- Apellido Materno -->
+              <!-- APELLIDO MATERNO -->
               <div class="row">
                 <span class="p-fluid">
                   <label for="username" style="font-weight: 500;">Apellido Materno</label>
@@ -79,8 +81,9 @@
           </div>
         </div>
 
-
+        <!-- FILA 4 -->
         <div class="mb-2">
+          <!-- FECHA NACIMIENTO -->
           <div class="row">
             <span class="p-fluid">
               <label for="username" style="font-weight: 500;">Fecha de Nacimiento</label>
@@ -97,8 +100,9 @@
           </div>
         </div>
 
-
+        <!-- FILA 5 -->
         <div class="mb-2">
+          <!-- UBIGEO -->
           <div class="row ">
             <span class="p-fluid">
               <label for="username" style="font-weight: 500;">Ubigeo</label>
@@ -109,8 +113,9 @@
           </div>
         </div>
 
-
+        <!-- FILA 6 -->
         <div class="mb-2">
+          <!-- DIRECCION -->
           <div class="row">
             <span class="p-fluid">
               <label for="username" style="font-weight: 500;">Dirección</label>
@@ -119,11 +124,11 @@
           </div>
         </div>
 
-
-
+        <!-- FILA 7 -->
         <div class="mb-2">
           <div class="row">
             <div class="col-md-6">
+              <!-- GENERO -->
               <div class="row">
                 <span class="p-fluid">
                   <label for="username" style="font-weight: 500;">Genero</label>
@@ -132,7 +137,7 @@
               </div>
             </div>
             <div class="col-md-6">
-              <!-- Apellido Materno -->
+              <!-- ESTADO CIVIL -->
               <div class="row">
                 <span class="p-fluid">
                   <label for="username" style="font-weight: 500;">Estado civil</label>
@@ -145,11 +150,10 @@
           </div>
         </div>
 
-
-
-
       </div>
     </div>
+
+    <!-- COLUMNA 2  (DIVIDIDO EN 9) -->
     <div class="col-md-9">
       <div class="box">
         <p-tabView styleClass="tabview-custom">
@@ -194,6 +198,7 @@
     </div>
   </div>
 
+  <!-- MENSAJE DE CONFIRMACION -->
   <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
 
 </p-card>
