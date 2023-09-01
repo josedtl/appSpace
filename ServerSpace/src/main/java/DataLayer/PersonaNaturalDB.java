@@ -183,27 +183,6 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
             Inj.Pmt_String("v_CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("v_EstadoRegistro", entity.getEstadoRegistro(), false);
 
-//            stmtCabecera.setInt("v_PersonaNaturalId", entity.getPersonaNaturalId());
-//            stmtCabecera.setInt("v_TipoDocumentoIdentidadId", entity.getTipoDocumentoIdentidadId());
-//            stmtCabecera.setString("v_NumDocumento", entity.getNumDocumento());
-//            stmtCabecera.setString("v_Nombres", entity.getNombres());
-//            stmtCabecera.setString("v_ApellidoPaterno", entity.getApellidoPaterno());
-//            stmtCabecera.setString("v_ApellidoMaterno", entity.getApellidoMaterno());
-//            stmtCabecera.setString("v_FechaNacimiento", entity.getFechaNacimiento().toString());
-//            stmtCabecera.setInt("v_UbigeoId", entity.getUbigeoId());
-//            stmtCabecera.setString("v_Direccion", entity.getDireccion());
-//            stmtCabecera.setString("v_Telefono", entity.getTelefono());
-//            stmtCabecera.setString("v_Correo", entity.getCorreo());
-//            stmtCabecera.setInt("v_GeneroId", entity.getGeneroId());
-//            stmtCabecera.setInt("v_EstadoCivilId", entity.getEstadoCivilId());
-//            stmtCabecera.setString("v_FechaRegistro", Utilidades.getFechaRegistro());
-//            stmtCabecera.setString("v_CodUsuario", entity.getCodUsuario());
-//            stmtCabecera.setBoolean("v_EstadoRegistro", entity.getEstadoRegistro());
-//            stmtCabecera.executeUpdate();
-            // Obtener el valor de venta_id generado por el procedimiento
-//            int PersonaNatruralId = stmtCabecera.getInt(1);
-//            entity.setPersonaNaturalId(PersonaNatruralId);
-//            
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
                 int Id = Inj.RunInsert();
                 State = Id > 0;
@@ -215,21 +194,6 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
                 Inj.RunUpdate();
             }
 
-//
-//            for (var Detalle : entity.getDetalleMedioComunicacion()) {
-//
-//                String procedimientoDetalle = "{CALL sp_PersonaNaturalMedioComunicacion_Save(?, ?, ?, ?, ?, ?, ?)}";
-//                CallableStatement stmtDetalle = conn.prepareCall(procedimientoDetalle);
-//                stmtDetalle.setInt("v_PersonaNaturalMedioComunicacionId", Detalle.getPersonaNaturalMedioComunicacionId());
-//                stmtDetalle.setInt("v_PersonaNaturalId", PersonaNatruralId);
-//                stmtDetalle.setInt("v_MedioComunicacionId", Detalle.getMedioComunicacionId());
-//                stmtDetalle.setString("v_Dato", Detalle.getDato());
-//                stmtDetalle.setString("v_FechaRegistro", Utilidades.getFechaRegistro());
-//                stmtDetalle.setString("v_CodUsuario", Detalle.getCodUsuario());
-//                stmtDetalle.setBoolean("v_EstadoRegistro", Detalle.getEstadoRegistro());
-//
-//                stmtDetalle.executeUpdate();
-//            }
             if (entity.getDetalleMedioComunicacion() != null && entity.getDetalleMedioComunicacion().size() > 0) {
                 for (var detalle : entity.getDetalleMedioComunicacion()) {
 
@@ -239,19 +203,17 @@ public class PersonaNaturalDB extends DataLayer.MyCode.PersonaNaturalDB {
                         DB_Detalle.Delete(detalle.getPersonaNaturalMedioComunicacionId());
                     } else {
 
-                        DB_Detalle.SaveOther(detalle);
+                        DB_Detalle.Save(detalle);
                     }
                 }
             }
-//            Inj.FinalizarTranssaccion();
 
-//            conn.commit(); // Confirmar la transacción
             System.out.println("Venta y detalle guardados correctamente.");
         } catch (SQLException e) {
 //            conn.rollback();
 //            if (conn != null) {
 //                conn.rollback(); // Revierte la transacción en caso de error
-//            }
+//            } 
             e.printStackTrace();
         } finally {
 //            if (conn != null) {
