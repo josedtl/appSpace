@@ -7,6 +7,7 @@ import { EstadoCivilItemModel } from '../..//../models/General/EstadoCivilItemMo
 import { GeneralService } from '../..//../services/General/general.service'
 import { PersonaNaturalService } from '../..//../services/PersonaNatural/persona-natural.service'
 import { PersonaNaturalSaveModel } from '../../../models/PersonaNatural/PersonaNaturalSaveModel';
+import { PersonaNaturalMedioComunicacionSaveModel } from '../../../models/PersonaNatural/PersonaNaturalMedioComunicacionSaveModel'
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 interface AutoCompleteCompleteEvent {
@@ -21,6 +22,9 @@ interface AutoCompleteCompleteEvent {
 })
 export class PersonaNaturalSaveComponent implements OnInit {
 
+
+
+  visibleVentena: boolean = false;
   TipoDocumentoIdentidadItems: TipoDocumentoIdentidadItemModel[] = [];
   SelectTipoDocumentoIdentidadItem: TipoDocumentoIdentidadItemModel = new TipoDocumentoIdentidadItemModel;
 
@@ -156,7 +160,7 @@ export class PersonaNaturalSaveComponent implements OnInit {
         this.newItem.TipoDocumentoIdentidadId = this.SelectTipoDocumentoIdentidadItem.TipoDocumentoIdentidadId;
         this.newItem.GeneroId = this.SelectGeneroItem.GeneroId;
         this.newItem.EstadoCivilId = this.SelectEstadoCivilItem.EstadoCivilId;
-        this.newItem.FechaNacimiento=this.date;
+        this.newItem.FechaNacimiento = this.date;
         this.personanaturalService.save(this.newItem)
           .subscribe(
             res => {
@@ -170,6 +174,22 @@ export class PersonaNaturalSaveComponent implements OnInit {
       },
 
     });
+  }
+
+  productDialog: boolean = false;
+  submitted: boolean = false;
+  hideDialog() {
+    this.productDialog = false;
+    this.submitted = false;
+    this.visibleVentena = false;
+  }
+
+  newItemDetalle: PersonaNaturalMedioComunicacionSaveModel = new PersonaNaturalMedioComunicacionSaveModel();
+
+  showDialog() {
+    this.newItemDetalle = new PersonaNaturalMedioComunicacionSaveModel();
+    this.newItem.Action = 1;
+    this.visibleVentena = true;
   }
 
 }

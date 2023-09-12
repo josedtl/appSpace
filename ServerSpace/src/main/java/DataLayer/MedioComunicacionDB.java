@@ -2,15 +2,14 @@ package DataLayer;
 
 import EntityLayer.MedioComunicacionEntity;
 import Enumerados.ProcessActionEnum;
+import Framework.Inj;
 import Framework.Utilidades;
-import Framework.injector;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MedioComunicacionDB {
 
-    injector Inj = new injector();
 
     public ArrayList<MedioComunicacionEntity> GetAllItems() {
 

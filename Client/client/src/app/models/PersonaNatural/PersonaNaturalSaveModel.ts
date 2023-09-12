@@ -1,7 +1,8 @@
+import { PersonaNaturalMedioComunicacionSaveModel } from "./PersonaNaturalMedioComunicacionSaveModel";
 
 export class PersonaNaturalSaveModel {
     constructor(
-        public Item : number=0,
+        public Item: number = 0,
         public PersonaNaturalId: number = 0,
         public TipoDocumentoIdentidadId: number = 0,
         public NumDocumento: string = '',
@@ -19,6 +20,8 @@ export class PersonaNaturalSaveModel {
         public CodUsuario: string = '',
         public EstadoRegistro: boolean = true,
         public Action: number = 0,
+        public PersonaNaturalMedioComunicacioDetalle: PersonaNaturalMedioComunicacionSaveModel = new PersonaNaturalMedioComunicacionSaveModel()
+
     ) { }
 }
 

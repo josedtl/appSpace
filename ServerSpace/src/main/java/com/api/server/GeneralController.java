@@ -153,7 +153,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetTipoInfraestructuraItem/{Id}")
     public ArrayList<TipoInfraestructuraItemModel> GetTipoInfraestructuraItem(@PathVariable int Id) {
         ArrayList<TipoInfraestructuraItemModel> Items = new ArrayList<>();
@@ -166,7 +166,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetTipoInfraestructuraLikeItem/{nombre}")
     public ArrayList<TipoInfraestructuraItemModel> GetTipoInfraestructuraLikeItem(@PathVariable String Nombre) {
         ArrayList<TipoInfraestructuraItemModel> Items = new ArrayList<>();
@@ -179,7 +179,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetSucursalItems")
     public ArrayList<SucursalItemModel> GetSucursalItems() {
 
@@ -195,7 +195,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetSucursalItem/{Id}")
     public ArrayList<SucursalItemModel> GetSucursalItem(@PathVariable int Id) {
         ArrayList<SucursalItemModel> Items = new ArrayList<>();
@@ -208,7 +208,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetSucursalLikeItem/{Codigo}")
     public ArrayList<SucursalItemModel> GetSucursalLikeItem(@PathVariable String Codigo) {
         ArrayList<SucursalItemModel> Items = new ArrayList<>();
@@ -221,8 +221,7 @@ public class GeneralController {
 
         return Items;
     }
-    
-    
+
     @GetMapping("/GetTipoDocuemntoIdentidadPersonaItems")
     public ArrayList<TipoDocumentoIdentidadItemModel> GetTipoDocuemntoIdentidadPersonaItems() {
 
@@ -267,7 +266,7 @@ public class GeneralController {
 
         return Items;
     }
-  
+
     @GetMapping("/GetUbigeoItem/{Id}")
     public ArrayList<UbigeoItemModel> GetUbigeoItem(@PathVariable int Id) {
         ArrayList<UbigeoItemModel> Items = new ArrayList<>();
@@ -280,7 +279,7 @@ public class GeneralController {
 
         return Items;
     }
-    
+
     @GetMapping("/GetGeneroItems")
     public ArrayList<GeneroItemModel> GetGeneroItems() {
         ArrayList<GeneroItemModel> Items = new ArrayList<>();
@@ -293,9 +292,9 @@ public class GeneralController {
 
         return Items;
     }
- 
+
     @GetMapping("/GetGeneroItem/{Id}")
-    public ArrayList<GeneroItemModel> GetGeneroItem(@PathVariable int Id)  {
+    public ArrayList<GeneroItemModel> GetGeneroItem(@PathVariable int Id) {
         ArrayList<GeneroItemModel> Items = new ArrayList<>();
         Genero BS = new Genero();
         ArrayList<GeneroEntity> Data = BS.GetAllItem(Id);
@@ -307,8 +306,6 @@ public class GeneralController {
         return Items;
     }
 
-    
-    
     @GetMapping("/GetEstadoCivilItems")
     public ArrayList<EstadoCivilItemModel> GetEstadoCivilItems() {
         ArrayList<EstadoCivilItemModel> Items = new ArrayList<>();
@@ -323,8 +320,7 @@ public class GeneralController {
         return Items;
     }
 
-    
-      @GetMapping("/GetEstadoCivilItem/{Id}")
+    @GetMapping("/GetEstadoCivilItem/{Id}")
     public ArrayList<EstadoCivilItemModel> GetEstadoCivilItem(@PathVariable int Id) {
         ArrayList<EstadoCivilItemModel> Items = new ArrayList<>();
         EstadoCivil BS = new EstadoCivil();
@@ -337,4 +333,19 @@ public class GeneralController {
 
         return Items;
     }
+
+    @GetMapping("/GetMedioComunicacionItems")
+    public ArrayList<MedioComunicacionItemModel> GetMedioComunicacionItems() {
+        ArrayList<MedioComunicacionItemModel> Items = new ArrayList<>();
+        MedioComunicacion BS = new MedioComunicacion();
+
+        ArrayList<MedioComunicacionEntity> Data = BS.GetAllItems();
+
+        for (MedioComunicacionEntity Item : Data) {
+            Items.add(new MedioComunicacionItemModel(Item));
+        }
+
+        return Items;
+    }
+
 }
