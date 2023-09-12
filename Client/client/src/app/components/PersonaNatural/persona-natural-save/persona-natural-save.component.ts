@@ -4,12 +4,14 @@ import { TipoDocumentoIdentidadItemModel } from '../..//../models/General/TipoDo
 import { UbigeoItemModel } from '../..//../models/General/UbigeoItemModel'
 import { GeneroItemModel } from '../..//../models/General/GeneroItemModel'
 import { EstadoCivilItemModel } from '../..//../models/General/EstadoCivilItemModel'
+import { MedioComunicacionItemModel } from '../..//../models/General/MedioComunicacionItemModel'
 import { GeneralService } from '../..//../services/General/general.service'
 import { PersonaNaturalService } from '../..//../services/PersonaNatural/persona-natural.service'
 import { PersonaNaturalSaveModel } from '../../../models/PersonaNatural/PersonaNaturalSaveModel';
 import { PersonaNaturalMedioComunicacionSaveModel } from '../../../models/PersonaNatural/PersonaNaturalMedioComunicacionSaveModel'
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { ThisReceiver } from '@angular/compiler';
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -36,6 +38,11 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
   EstadoCivilItems: EstadoCivilItemModel[] = [];
   SelectEstadoCivilItem: EstadoCivilItemModel = new EstadoCivilItemModel;
+
+  MedioComunicacionItems: MedioComunicacionItemModel[] = [];
+  SelectMedioComunicacionItem: MedioComunicacionItemModel = new MedioComunicacionItemModel;
+
+
   date: Date = new Date;
 
 
@@ -59,7 +66,7 @@ export class PersonaNaturalSaveComponent implements OnInit {
     this.GetTipoDocuemntoIdentidadPersonaItems();
     this.GetGeneroItems();
     this.GetEstadoCivilItems();
-
+    this.GetMedioComunicacionItems();
     this.route.params.subscribe(params => {
       this.id = +params['id']; // Convierte el valor a número
 
@@ -134,6 +141,14 @@ export class PersonaNaturalSaveComponent implements OnInit {
     )
   }
 
+  GetMedioComunicacionItems() {
+    this.serviceGeneral.GetMedioComunicacionItems().subscribe(
+      respuesta => {
+        this.MedioComunicacionItems = respuesta;
+        console.log(respuesta);
+      }
+    )
+  }
 
   GetUbigeoLikeItemEvent(event: AutoCompleteCompleteEvent) {
     let query = event.query;
@@ -161,6 +176,9 @@ export class PersonaNaturalSaveComponent implements OnInit {
         this.newItem.GeneroId = this.SelectGeneroItem.GeneroId;
         this.newItem.EstadoCivilId = this.SelectEstadoCivilItem.EstadoCivilId;
         this.newItem.FechaNacimiento = this.date;
+
+        console.log(this.newItem);
+
         this.personanaturalService.save(this.newItem)
           .subscribe(
             res => {
@@ -192,4 +210,19 @@ export class PersonaNaturalSaveComponent implements OnInit {
     this.visibleVentena = true;
   }
 
+
+
+  saveItemDetalle() {
+
+    this.newItemDetalle.Action = 1;
+    this.newItemDetalle.NomMedioComunicacion = this.SelectMedioComunicacionItem.Nombre;
+    this.newItemDetalle.MedioComunicacionId = this.SelectMedioComunicacionItem.MedioComunicacionId;
+    if (this.newItem.DetalleMedioComunicacion == null) this.newItem.DetalleMedioComunicacion = [];
+    this.newItem.DetalleMedioComunicacion.push(this.newItemDetalle);
+
+    this.newItem.DetalleMedioComunicacion.forEach((Item, index) => {
+      Item.Item = index + 1;
+    });
+    this.hideDialog();
+  }
 }

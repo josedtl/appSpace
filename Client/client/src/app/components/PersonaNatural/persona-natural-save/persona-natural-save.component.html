@@ -158,7 +158,7 @@
             </ng-template>
 
 
-            <p-table [tableStyle]="{ 'min-width': '50rem' }">
+            <p-table #dt   [value]="newItem.DetalleMedioComunicacion"  [tableStyle]="{ 'min-width': '50rem' }">
 
 
               <ng-template pTemplate="caption">
@@ -204,10 +204,31 @@
                   <th id="HeaderTablaColor"></th>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <ng-template pTemplate="body" let-row>
                 <tr>
-                  <td *ngFor="let col of columns">
-                    {{ rowData[col.field] }}
+                  <td>
+                    <p-tableCheckbox [value]="row"></p-tableCheckbox>
+                  </td>
+                  <td> {{ row.Item }} </td>
+                  <td> {{ row.NomMedioComunicacion }} </td>
+                  <td> {{ row.Dato }} </td>
+                  <td>
+                    {{ row.FechaRegistro | date: 'dd/MM/yyyy hh:mm' }}
+                  </td>
+                  <td>
+                    {{ row.CodUsuario }}
+                  </td>
+          
+                  <td>
+               
+                    <a 
+                      style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
+                      <i class="pi pi-trash" style="color: #00315B;"></i>
+                    </a>
+                    <a 
+                    style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
+                    <i class="pi pi-pencil" style="color: #00315B;"></i>
+                  </a>
                   </td>
                 </tr>
               </ng-template>
@@ -241,8 +262,8 @@
             <div class="row">
               <span class="p-fluid">
                 <label for="username" style="font-weight: 500;">Tipo</label>
-                <p-dropdown [options]="TipoDocumentoIdentidadItems" [(ngModel)]="SelectTipoDocumentoIdentidadItem"
-                  class="p-inputtext-sm" optionLabel="Alias"></p-dropdown>
+                <p-dropdown [options]="MedioComunicacionItems" [(ngModel)]="SelectMedioComunicacionItem"
+                  class="p-inputtext-sm" optionLabel="Nombre"></p-dropdown>
               </span>
             </div>
           </div>
@@ -263,7 +284,7 @@
 
     <ng-template pTemplate="footer">
       <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-      <button pButton pRipple label="Aceptar" icon="pi pi-check" class="p-button-text" (click)="showDialog()"></button>
+      <button pButton pRipple label="Aceptar" icon="pi pi-check" class="p-button-text" (click)="saveItemDetalle()"></button>
 
     </ng-template>
   </p-dialog>

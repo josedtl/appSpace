@@ -5,6 +5,7 @@ import { UbigeoItemModel } from '../../models/General/UbigeoItemModel'
 import { GeneroItemModel } from '../../models/General/GeneroItemModel'
 import { EstadoCivilItemModel } from '../../models/General/EstadoCivilItemModel'
 import { Observable } from 'rxjs/internal/Observable';
+import { MedioComunicacionItemModel } from '../../models/General/MedioComunicacionItemModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,6 +39,10 @@ export class GeneralService {
 
   GetEstadoCivilItem(Id: number): Observable<EstadoCivilItemModel[]> {
     return this.http.get<EstadoCivilItemModel[]>(`${this.API_URI}/api/General/GetEstadoCivilItem/${Id}`);
+  }
+
+  GetMedioComunicacionItems(): Observable<MedioComunicacionItemModel[]> {
+    return this.http.get<MedioComunicacionItemModel[]>(`${this.API_URI}/api/General/GetMedioComunicacionItems`);
   }
 
 }

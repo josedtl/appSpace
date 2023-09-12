@@ -20,7 +20,7 @@ export class PersonaNaturalSaveModel {
         public CodUsuario: string = '',
         public EstadoRegistro: boolean = true,
         public Action: number = 0,
-        public PersonaNaturalMedioComunicacioDetalle: PersonaNaturalMedioComunicacionSaveModel = new PersonaNaturalMedioComunicacionSaveModel()
+        public DetalleMedioComunicacion: PersonaNaturalMedioComunicacionSaveModel[] =[]
 
     ) { }
 }
