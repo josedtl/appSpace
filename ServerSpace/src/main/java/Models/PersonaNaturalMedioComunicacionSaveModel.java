@@ -4,6 +4,7 @@
  */
 package Models;
 
+import EntityLayer.PersonaNaturalMedioComunicacionEntity;
 import Enumerados.ProcessActionEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.sql.Timestamp;
@@ -23,6 +24,18 @@ public class PersonaNaturalMedioComunicacionSaveModel {
         this.codUsuario = "";
         this.estadoRegistro = false;
         this.action = ProcessActionEnum.Loaded;
+    }
+
+    public PersonaNaturalMedioComunicacionSaveModel(PersonaNaturalMedioComunicacionEntity Item) {
+        this.personaNaturalMedioComunicacionId = Item.getPersonaNaturalMedioComunicacionId();
+        this.personaNaturalId = Item.getPersonaNaturalId();
+        this.medioComunicacionId = Item.getMedioComunicacionId();
+        this.dato = Item.getDato();
+        this.fechaRegistro = Item.getFechaRegistro();
+        this.codUsuario = Item.getCodUsuario();
+        this.estadoRegistro = Item.getEstadoRegistro();
+        this.action = ProcessActionEnum.Loaded;
+        this.nomMedioComunicacion = Item.getNomMedioComunicacion();
     }
 
     @JsonProperty("PersonaNaturalMedioComunicacionId")
@@ -111,5 +124,16 @@ public class PersonaNaturalMedioComunicacionSaveModel {
 
     public void setAction(ProcessActionEnum Action) {
         this.action = Action;
+    }
+
+    @JsonProperty("NomMedioComunicacion")
+    private String nomMedioComunicacion = "";
+
+    public String getNomMedioComunicacion() {
+        return nomMedioComunicacion;
+    }
+
+    public void setNomMedioComunicacion(String nomMedioComunicacion) {
+        this.nomMedioComunicacion = nomMedioComunicacion;
     }
 }

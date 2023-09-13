@@ -69,14 +69,15 @@ export class PersonaNaturalSaveComponent implements OnInit {
     this.GetMedioComunicacionItems();
     this.route.params.subscribe(params => {
       this.id = +params['id']; // Convierte el valor a número
-
     });
-
 
     if (this.id > 0) {
 
       this.getPersonaNatural(this.id);
+      this.getPersonaNaturalMedioComunicacion(this.id);
     }
+
+
 
 
   }
@@ -114,6 +115,13 @@ export class PersonaNaturalSaveComponent implements OnInit {
         this.GetEstadoCivilItem(this.newItem.EstadoCivilId)
         this.date = new Date(this.newItem.FechaNacimiento);
         console.log(this.newItem.FechaNacimiento);
+      }
+    )
+  }
+  getPersonaNaturalMedioComunicacion(Id: number) {
+    this.personanaturalService.GetMedioComunicacionDetalle(Id).subscribe(
+      respuesta => {
+        this.newItem.DetalleMedioComunicacion = respuesta;
       }
     )
   }

@@ -4,6 +4,7 @@ import { PersonaNaturalSaveModel } from '../../models/PersonaNatural/PersonaNatu
 import { PersonaNaturalMainModel } from '../../models/PersonaNatural/PersonaNaturalMainModel'
 
 import { Observable } from 'rxjs/internal/Observable';
+import { PersonaNaturalMedioComunicacionSaveModel } from '../../models/PersonaNatural/PersonaNaturalMedioComunicacionSaveModel';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,4 +34,10 @@ export class PersonaNaturalService {
   GetPersonaNaturalMainItems(): Observable<PersonaNaturalMainModel[]> {
     return this.http.get<PersonaNaturalMainModel[]>(`${this.API_URI}/api/PersonaNatural/GetPersonaNaturalMainItems`);
   }
+
+  GetMedioComunicacionDetalle(id: number): Observable<PersonaNaturalMedioComunicacionSaveModel[]> {
+    return this.http.get<PersonaNaturalMedioComunicacionSaveModel[]>(`${this.API_URI}/api/PersonaNatural/GetMedioComunicacionDetalle/${id}`);
+  }
+
+
 }

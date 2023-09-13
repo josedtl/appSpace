@@ -1,6 +1,7 @@
 package com.api.server;
 
 import Business.PersonaNatural;
+import Business.PersonaNaturalMedioComunicacion;
 import EntityLayer.PersonaNaturalEntity;
 import EntityLayer.PersonaNaturalMedioComunicacionEntity;
 import Enumerados.ProcessActionEnum;
@@ -111,4 +112,18 @@ public class PersonaNaturalController {
 
         return Items;
     }
+
+    @GetMapping("/GetMedioComunicacionDetalle/{Id}")
+    public ArrayList<PersonaNaturalMedioComunicacionSaveModel> GetMedioComunicacionDetalle(@PathVariable int Id) {
+        PersonaNaturalMedioComunicacion BS = new PersonaNaturalMedioComunicacion();
+        ArrayList<PersonaNaturalMedioComunicacionSaveModel> Items = new ArrayList<>();
+        ArrayList<PersonaNaturalMedioComunicacionEntity> Data = BS.GetMedioComunicacionDetalle(Id);
+
+        for (PersonaNaturalMedioComunicacionEntity Item : Data) {
+            Items.add(new PersonaNaturalMedioComunicacionSaveModel(Item));
+        }
+
+        return Items;
+    }
+
 }

@@ -4,7 +4,7 @@ import DataLayer.PersonaNaturalMedioComunicacionDB;
 import EntityLayer.PersonaNaturalMedioComunicacionEntity;
 import java.util.ArrayList;
 
-public class PersonaNaturalMedioComunicacion {
+public class PersonaNaturalMedioComunicacion extends Business.MyCode.PersonaNaturalMedioComunicacion {
 
     public ArrayList<PersonaNaturalMedioComunicacionEntity> GetAllItems() {
         PersonaNaturalMedioComunicacionDB BD = new PersonaNaturalMedioComunicacionDB();

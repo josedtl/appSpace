@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import Enumerados.ProcessActionEnum;
 import java.sql.Timestamp;
 
-public class PersonaNaturalMedioComunicacionEntity {
+public class PersonaNaturalMedioComunicacionEntity extends EntityLayer.MyCode.PersonaNaturalMedioComunicacionEntity {
 
     @JsonProperty("PersonaNaturalMedioComunicacionId")
     private int personaNaturalMedioComunicacionId = 0;
+
     public int getPersonaNaturalMedioComunicacionId() {
         return personaNaturalMedioComunicacionId;
     }
@@ -19,6 +20,7 @@ public class PersonaNaturalMedioComunicacionEntity {
 
     @JsonProperty("PersonaNaturalId")
     private int personaNaturalId = 0;
+
     public int getPersonaNaturalId() {
         return personaNaturalId;
     }
@@ -29,6 +31,7 @@ public class PersonaNaturalMedioComunicacionEntity {
 
     @JsonProperty("MedioComunicacionId")
     private int medioComunicacionId = 0;
+
     public int getMedioComunicacionId() {
         return medioComunicacionId;
     }
@@ -39,6 +42,7 @@ public class PersonaNaturalMedioComunicacionEntity {
 
     @JsonProperty("Dato")
     private String dato = "";
+
     public String getDato() {
         return dato;
     }
@@ -48,7 +52,8 @@ public class PersonaNaturalMedioComunicacionEntity {
     }
 
     @JsonProperty("FechaRegistro")
-     private Timestamp fechaRegistro = null;
+    private Timestamp fechaRegistro = null;
+
     public Timestamp getFechaRegistro() {
         return fechaRegistro;
     }
@@ -59,6 +64,7 @@ public class PersonaNaturalMedioComunicacionEntity {
 
     @JsonProperty("CodUsuario")
     private String codUsuario = "";
+
     public String getCodUsuario() {
         return codUsuario;
     }
@@ -69,6 +75,7 @@ public class PersonaNaturalMedioComunicacionEntity {
 
     @JsonProperty("EstadoRegistro")
     private boolean estadoRegistro = false;
+
     public boolean getEstadoRegistro() {
         return estadoRegistro;
     }
@@ -76,8 +83,6 @@ public class PersonaNaturalMedioComunicacionEntity {
     public void setEstadoRegistro(boolean estadoRegistro) {
         this.estadoRegistro = estadoRegistro;
     }
-
-
 
     @JsonProperty("Action")
     private ProcessActionEnum action = ProcessActionEnum.Loaded;
