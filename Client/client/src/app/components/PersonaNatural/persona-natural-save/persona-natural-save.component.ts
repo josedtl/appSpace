@@ -24,8 +24,6 @@ interface AutoCompleteCompleteEvent {
 })
 export class PersonaNaturalSaveComponent implements OnInit {
 
-
-
   visibleVentena: boolean = false;
   TipoDocumentoIdentidadItems: TipoDocumentoIdentidadItemModel[] = [];
   SelectTipoDocumentoIdentidadItem: TipoDocumentoIdentidadItemModel = new TipoDocumentoIdentidadItemModel;
@@ -42,66 +40,53 @@ export class PersonaNaturalSaveComponent implements OnInit {
   MedioComunicacionItems: MedioComunicacionItemModel[] = [];
   SelectMedioComunicacionItem: MedioComunicacionItemModel = new MedioComunicacionItemModel;
 
-
   date: Date = new Date;
-
-
-  RutaImagen: string = 'https://as1.ftcdn.net/v2/jpg/04/56/58/14/1000_F_456581427_5XpGqNqCwLAGwaFFvxVGvnW2teOfJ0ZL.jpg';
-
-
 
   buttonStyle = ButtonStyles.primary;
   DropdownStyle = DropdownStyles.Data;
-
-
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
-
-
-  }
   newItem: PersonaNaturalSaveModel = new PersonaNaturalSaveModel;
   activeIndex: number = 0;
   id: number = 0;
-  ngOnInit() {
 
-    this.GetTipoDocuemntoIdentidadPersonaItems();
-    this.GetGeneroItems();
-    this.GetEstadoCivilItems();
-    this.GetMedioComunicacionItems();
+  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
+
+  }
+  ngOnInit() : void {
+    this.CargadoInicial();
     this.route.params.subscribe(params => {
-      this.id = +params['id']; // Convierte el valor a número
+      this.id = +params['id'];
     });
-
+    
     if (this.id > 0) {
 
       this.getPersonaNatural(this.id);
-      this.getPersonaNaturalMedioComunicacion(this.id);
     }
-
-
-
-
   }
 
-  getUbigeoItem(Id: number) {
-    this.serviceGeneral.GetUbigeoItem(Id).subscribe(
+  CargadoInicial() {
+
+    this.serviceGeneral.GetMedioComunicacionItems().subscribe(
       respuesta => {
-        this.SelectUbigeoItem = respuesta[0];
+        this.MedioComunicacionItems = respuesta;
+        console.log(respuesta);
       }
     )
-  }
 
-  GetGeneroItem(Id: number) {
-    this.serviceGeneral.GetGeneroItem(Id).subscribe(
+    this.serviceGeneral.GetTipoDocuemntoIdentidadPersonaItems().subscribe(
       respuesta => {
-        this.SelectGeneroItem = respuesta[0];
+        this.TipoDocumentoIdentidadItems = respuesta;
       }
     )
-  }
 
-  GetEstadoCivilItem(Id: number) {
-    this.serviceGeneral.GetEstadoCivilItem(Id).subscribe(
+    this.serviceGeneral.GetGeneroItems().subscribe(
       respuesta => {
-        this.SelectEstadoCivilItem = respuesta[0];
+        this.GeneroItems = respuesta;
+      }
+    )
+
+    this.serviceGeneral.GetEstadoCivilItems().subscribe(
+      respuesta => {
+        this.EstadoCivilItems = respuesta;
       }
     )
   }
@@ -110,54 +95,36 @@ export class PersonaNaturalSaveComponent implements OnInit {
     this.personanaturalService.GetAllItem(Id).subscribe(
       respuesta => {
         this.newItem = respuesta[0];
-        this.getUbigeoItem(this.newItem.UbigeoId)
-        this.GetGeneroItem(this.newItem.GeneroId)
-        this.GetEstadoCivilItem(this.newItem.EstadoCivilId)
+
+        this.serviceGeneral.GetUbigeoItem(this.newItem.UbigeoId).subscribe(
+          respuesta => {
+            this.SelectUbigeoItem = respuesta[0];
+          }
+        )
+
+        this.serviceGeneral.GetGeneroItem(this.newItem.GeneroId).subscribe(
+          respuesta => {
+            this.SelectGeneroItem = respuesta[0];
+          }
+        )
+
+        this.serviceGeneral.GetEstadoCivilItem(this.newItem.EstadoCivilId).subscribe(
+          respuesta => {
+            this.SelectEstadoCivilItem = respuesta[0];
+          }
+        )
         this.date = new Date(this.newItem.FechaNacimiento);
-        console.log(this.newItem.FechaNacimiento);
       }
     )
-  }
-  getPersonaNaturalMedioComunicacion(Id: number) {
+
     this.personanaturalService.GetMedioComunicacionDetalle(Id).subscribe(
       respuesta => {
         this.newItem.DetalleMedioComunicacion = respuesta;
       }
     )
-  }
 
-  GetTipoDocuemntoIdentidadPersonaItems() {
-    this.serviceGeneral.GetTipoDocuemntoIdentidadPersonaItems().subscribe(
-      respuesta => {
-        this.TipoDocumentoIdentidadItems = respuesta;
-      }
-    )
-  }
-  GetGeneroItems() {
-    this.serviceGeneral.GetGeneroItems().subscribe(
-      respuesta => {
-        this.GeneroItems = respuesta;
-      }
-    )
-  }
 
-  GetEstadoCivilItems() {
-    this.serviceGeneral.GetEstadoCivilItems().subscribe(
-      respuesta => {
-        this.EstadoCivilItems = respuesta;
-      }
-    )
   }
-
-  GetMedioComunicacionItems() {
-    this.serviceGeneral.GetMedioComunicacionItems().subscribe(
-      respuesta => {
-        this.MedioComunicacionItems = respuesta;
-        console.log(respuesta);
-      }
-    )
-  }
-
   GetUbigeoLikeItemEvent(event: AutoCompleteCompleteEvent) {
     let query = event.query;
     this.serviceGeneral.GetUbigeoLikeItem(query.toLowerCase()).subscribe(
@@ -226,11 +193,32 @@ export class PersonaNaturalSaveComponent implements OnInit {
     this.newItemDetalle.NomMedioComunicacion = this.SelectMedioComunicacionItem.Nombre;
     this.newItemDetalle.MedioComunicacionId = this.SelectMedioComunicacionItem.MedioComunicacionId;
     if (this.newItem.DetalleMedioComunicacion == null) this.newItem.DetalleMedioComunicacion = [];
-    this.newItem.DetalleMedioComunicacion.push(this.newItemDetalle);
+
+
+
+    const index = this.newItem.DetalleMedioComunicacion.findIndex(Item => Item === this.newItemDetalle);
+
+    // if (index !== -1) {
+    //   this.newItem.DetalleMedioComunicacion.splice(index, 1)
+    // } else {
+    //   console.log('Elemento no encontrado en la lista.');
+    // }
+
+    if (index === -1) {
+      this.newItem.DetalleMedioComunicacion.push(this.newItemDetalle);
+    }
 
     this.newItem.DetalleMedioComunicacion.forEach((Item, index) => {
       Item.Item = index + 1;
     });
     this.hideDialog();
+  }
+
+  Update_Metho(data: PersonaNaturalMedioComunicacionSaveModel) {
+    this.showDialog();
+    data.Action = 3
+    this.newItemDetalle = data;
+    this.SelectMedioComunicacionItem.Nombre = this.newItemDetalle.NomMedioComunicacion;
+    this.SelectMedioComunicacionItem.MedioComunicacionId = this.newItemDetalle.MedioComunicacionId;
   }
 }
