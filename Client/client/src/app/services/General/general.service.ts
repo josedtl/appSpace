@@ -24,7 +24,7 @@ export class GeneralService {
   GetUbigeoItem(Id: number): Observable<UbigeoItemModel[]> {
     return this.http.get<UbigeoItemModel[]>(`${this.API_URI}/api/General/GetUbigeoItem/${Id}`);
   }
-  
+
   GetGeneroItems(): Observable<GeneroItemModel[]> {
     return this.http.get<GeneroItemModel[]>(`${this.API_URI}/api/General/GetGeneroItems`);
   }

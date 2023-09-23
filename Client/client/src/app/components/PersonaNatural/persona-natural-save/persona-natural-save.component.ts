@@ -48,51 +48,62 @@ export class PersonaNaturalSaveComponent implements OnInit {
   activeIndex: number = 0;
   id: number = 0;
 
+  DetalleMedioComunicacion_Item: PersonaNaturalMedioComunicacionSaveModel[] = [];
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private route: ActivatedRoute, private serviceGeneral: GeneralService, private personanaturalService: PersonaNaturalService) {
 
   }
-  ngOnInit() : void {
-    this.CargadoInicial();
-    this.route.params.subscribe(params => {
-      this.id = +params['id'];
-    });
-    
-    if (this.id > 0) {
-
-      this.getPersonaNatural(this.id);
-    }
-  }
-
-  CargadoInicial() {
-
-    this.serviceGeneral.GetMedioComunicacionItems().subscribe(
+  async ngOnInit() {
+    await this.serviceGeneral.GetMedioComunicacionItems().subscribe(
       respuesta => {
         this.MedioComunicacionItems = respuesta;
         console.log(respuesta);
+      }, error => {
+        console.log(error)
       }
     )
 
-    this.serviceGeneral.GetTipoDocuemntoIdentidadPersonaItems().subscribe(
+    await this.CargadoInicial();
+    this.route.params.subscribe(params => {
+      this.id = +params['id'];
+    });
+
+    if (this.id > 0) {
+
+      await this.getPersonaNatural(this.id);
+    }
+  }
+
+  async CargadoInicial() {
+
+
+    await this.serviceGeneral.GetTipoDocuemntoIdentidadPersonaItems().subscribe(
       respuesta => {
         this.TipoDocumentoIdentidadItems = respuesta;
+      }, error => {
+        console.log(error)
       }
     )
 
-    this.serviceGeneral.GetGeneroItems().subscribe(
+    await this.serviceGeneral.GetGeneroItems().subscribe(
       respuesta => {
         this.GeneroItems = respuesta;
+      }, error => {
+        console.log(error)
       }
     )
 
-    this.serviceGeneral.GetEstadoCivilItems().subscribe(
+    await this.serviceGeneral.GetEstadoCivilItems().subscribe(
       respuesta => {
         this.EstadoCivilItems = respuesta;
+      }, error => {
+        console.log(error)
       }
     )
   }
 
-  getPersonaNatural(Id: number) {
-    this.personanaturalService.GetAllItem(Id).subscribe(
+  async getPersonaNatural(Id: number) {
+
+    await this.personanaturalService.GetAllItem(Id).subscribe(
       respuesta => {
         this.newItem = respuesta[0];
 
@@ -117,17 +128,38 @@ export class PersonaNaturalSaveComponent implements OnInit {
       }
     )
 
-    this.personanaturalService.GetMedioComunicacionDetalle(Id).subscribe(
+
+    await this.personanaturalService.GetMedioComunicacionDetalle(Id).subscribe(
       respuesta => {
+        this.newItem.DetalleMedioComunicacion = [];
         this.newItem.DetalleMedioComunicacion = respuesta;
+
+
+        this.ListaDetalle();
+        // this.DetalleMedioComunicacion_Item = respuesta;
+        console.log(respuesta)
+      }, error => {
+        console.log(error)
       }
     )
 
 
   }
-  GetUbigeoLikeItemEvent(event: AutoCompleteCompleteEvent) {
+
+  async ListaDetalle() {
+    this.DetalleMedioComunicacion_Item = [];
+    await this.newItem.DetalleMedioComunicacion.forEach((ItemData, index) => {
+
+      if (ItemData.Action != 2) {
+        ItemData.Item = index + 1;
+        this.DetalleMedioComunicacion_Item.push(ItemData);
+      }
+    });
+
+  }
+  async GetUbigeoLikeItemEvent(event: AutoCompleteCompleteEvent) {
     let query = event.query;
-    this.serviceGeneral.GetUbigeoLikeItem(query.toLowerCase()).subscribe(
+    await this.serviceGeneral.GetUbigeoLikeItem(query.toLowerCase()).subscribe(
       respuesta => {
         this.UbigeoItems = respuesta;
       }
@@ -135,9 +167,9 @@ export class PersonaNaturalSaveComponent implements OnInit {
   }
 
 
-  saveItem() {
+  async saveItem() {
 
-    this.confirmationService.confirm({
+    await this.confirmationService.confirm({
       message: '¿Deseas guardar el registro?',
       icon: 'pi pi-exclamation-triangle',
       acceptLabel: 'Sí',
@@ -221,4 +253,33 @@ export class PersonaNaturalSaveComponent implements OnInit {
     this.SelectMedioComunicacionItem.Nombre = this.newItemDetalle.NomMedioComunicacion;
     this.SelectMedioComunicacionItem.MedioComunicacionId = this.newItemDetalle.MedioComunicacionId;
   }
+  async DeleteDetalle_Metho(data: PersonaNaturalMedioComunicacionSaveModel) {
+    await this.confirmationService.confirm({
+      message: '¿Deseas Eliminar el registro?',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Sí',
+      rejectLabel: 'No',
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+
+        data.Action = 2
+
+        const index = this.newItem.DetalleMedioComunicacion.findIndex(cargo => cargo.PersonaNaturalMedioComunicacionId == data.PersonaNaturalMedioComunicacionId);
+        console.log('bORRANDO');
+        if (index !== -1) {
+          this.newItem.DetalleMedioComunicacion[index].Action = 2;
+          this.ListaDetalle();
+        } else {
+          console.log('Elemento no encontrado en la lista.');
+        }
+
+
+
+      },
+
+    });
+
+  }
+
+
 }

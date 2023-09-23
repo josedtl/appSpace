@@ -84,7 +84,7 @@
         </td>
 
         <td>
-     
+
           <a (click)="Delete_Metho(row.PersonaNaturalId)"
             style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
             <i class="pi pi-eye" style="color: #00315B;"></i>
@@ -104,4 +104,8 @@
     </ng-template>
   </p-table>
 
+
+  <div class="centered-content">
+    <p-progressSpinner *ngIf="showSpinner" [style]="{ 'width.px': 50, 'height.px': 50 }"></p-progressSpinner>
+  </div>
 </p-card>

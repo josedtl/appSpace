@@ -40,8 +40,9 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { LoginComponent } from './components/login/login.component';
-import {InfraestructuraMainComponent } from './components/Infraestructura/infraestructura-main/infraestructura-main.component';
+import { InfraestructuraMainComponent } from './components/Infraestructura/infraestructura-main/infraestructura-main.component';
 import { InfraestructuraSaveComponent } from './components/Infraestructura/infraestructura-save/infraestructura-save.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,9 +72,9 @@ import { InfraestructuraSaveComponent } from './components/Infraestructura/infra
     InputTextModule,
     StyleClassModule,
     CardModule,
-    PanelModule,ImageModule,CalendarModule,DropdownModule,AutoCompleteModule,
-  
-    ConfirmDialogModule, ConfirmPopupModule,ToolbarModule,ToastModule,PanelMenuModule,SidebarModule,InputSwitchModule],
+    PanelModule, ImageModule, CalendarModule, DropdownModule, AutoCompleteModule, ProgressSpinnerModule,
+
+    ConfirmDialogModule, ConfirmPopupModule, ToolbarModule, ToastModule, PanelMenuModule, SidebarModule, InputSwitchModule],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
   exports: [RouterModule]

@@ -38,6 +38,9 @@ export class PersonaNaturalService {
   GetMedioComunicacionDetalle(id: number): Observable<PersonaNaturalMedioComunicacionSaveModel[]> {
     return this.http.get<PersonaNaturalMedioComunicacionSaveModel[]>(`${this.API_URI}/api/PersonaNatural/GetMedioComunicacionDetalle/${id}`);
   }
+  GetMedioComunicacionDetalleAlle(id: number): Observable<PersonaNaturalMedioComunicacionSaveModel[]> {
+    return this.http.get<PersonaNaturalMedioComunicacionSaveModel[]>(`${this.API_URI}/api/PersonaNatural/GetMedioComunicacionDetalle/${id}`);
+  }
 
 
 }

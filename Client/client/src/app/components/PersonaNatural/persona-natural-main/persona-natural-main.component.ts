@@ -18,32 +18,30 @@ export class PersonaNaturalMainComponent {
   selectedCity: PersonaNaturalMainModel | undefined;
   ListaMainItems: PersonaNaturalMainModel[] = [];
   selectedItems!: PersonaNaturalMainModel[] | null;
-
-  constructor(private router: Router,  private personanaturalServiceService: PersonaNaturalService) {
+  showSpinner: boolean = false;
+  constructor(private router: Router, private personanaturalServiceService: PersonaNaturalService) {
   }
-  ngOnInit() {
-    this.GetAllItems();
+  async ngOnInit() {
+    this.showSpinner = true;
+    await this.GetAllItems();
     this.loading = false;
   }
 
-  irADestino() {
-    const id = 123; // Tu valor de parámetro
-    this.router.navigate(['/PersonaNaturalMain', id]);
-  }
-
-  GetAllItems() {
-    this.personanaturalServiceService.GetPersonaNaturalMainItems().subscribe(
+  async GetAllItems() {
+    this.showSpinner = true;
+    await this.personanaturalServiceService.GetPersonaNaturalMainItems().subscribe(
       respuesta => {
         this.ListaMainItems = respuesta;
         this.GetlistaOrdenar();
+        this.showSpinner = false;
       }
     )
 
   }
-  GetlistaOrdenar() {
-    this.ListaMainItems.sort((a, b) => b.PersonaNaturalId - a.PersonaNaturalId);
+  async GetlistaOrdenar() {
+    await this.ListaMainItems.sort((a, b) => b.PersonaNaturalId - a.PersonaNaturalId);
 
-    this.ListaMainItems.forEach((cargo, index) => {
+    await this.ListaMainItems.forEach((cargo, index) => {
       cargo.Item = index + 1;
     });
 
@@ -58,9 +56,5 @@ export class PersonaNaturalMainComponent {
   }
   Delete_Metho(Id: number) {
     this.router.navigate(['/PersonaNaturalSave', Id]);
-   
-
-
-
   }
 }

@@ -4,6 +4,7 @@ import Business.*;
 import EntityLayer.*;
 import Models.*;
 import java.util.ArrayList;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -333,7 +334,7 @@ public class GeneralController {
 
         return Items;
     }
-
+    @Async
     @GetMapping("/GetMedioComunicacionItems")
     public ArrayList<MedioComunicacionItemModel> GetMedioComunicacionItems() {
         ArrayList<MedioComunicacionItemModel> Items = new ArrayList<>();

@@ -9,6 +9,8 @@ public class CargoItemModel {
         this.cargoId = 0;
         this.nombre = "";
     }
+    
+    
 
     public CargoItemModel(CargoEntity Ent) {
         this.cargoId = Ent.getCargoId();

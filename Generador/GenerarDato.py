@@ -250,7 +250,8 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
 
     class_code += f"import EntityLayer.{class_nameEntity};\n"
     class_code += "import Enumerados.ProcessActionEnum;\n"
-    class_code += "import Framework.injector;\n"
+    class_code += "import Framework.Inj;\n"
+    class_code += "import Framework.Utilidades;\n"
     class_code += "import java.sql.ResultSet;\n"
     class_code += "import java.sql.SQLException;\n"
     class_code += "import java.util.ArrayList;\n\n"
@@ -284,7 +285,7 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
         elif attribute_type == "double":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
         elif attribute_type == "Date":
-            class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getTimestamp("{attribute_name}"));\n'
         elif attribute_type == "boolean":
             class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
     class_code += "                DatoMemoria.add(en);\n\n"
@@ -325,7 +326,7 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
         elif attribute_type == "double":
             class_code += f'                en.set{attribute_name}(rs.getInt("{attribute_name}"));\n'
         elif attribute_type == "Date":
-            class_code += f'                en.set{attribute_name}(rs.getDate("{attribute_name}"));\n'
+            class_code += f'                en.set{attribute_name}(rs.getTimestamp("{attribute_name}"));\n'
         elif attribute_type == "boolean":
             class_code += f'                en.set{attribute_name}(rs.getBoolean("{attribute_name}"));\n'
     class_code += "                DatoMemoria.add(en);\n\n"
@@ -366,7 +367,7 @@ def generate_class_from_sqlDatos(attributesData:[], output_path):
         elif attribute_type == "double":
             class_code += f'            Inj.Pmt_Double("v_{attribute_name}", entity.get{attribute_name}(), false);\n'
         elif attribute_type == "Date":
-            class_code += f'            Inj.Pmt_Date("v_{attribute_name}", new java.sql.Date(entity.get{attribute_name}().getTime()), false);\n'
+            class_code += f'            Inj.Pmt_Date("v_{attribute_name}", entity.get{attribute_name}().toString(), false);\n'
         elif attribute_type == "boolean":
             class_code += f'            Inj.Pmt_Boolean("v_{attribute_name}", entity.get{attribute_name}(), false);\n'
 

@@ -158,7 +158,7 @@
             </ng-template>
 
 
-            <p-table #dt   [value]="newItem.DetalleMedioComunicacion"  [tableStyle]="{ 'min-width': '50rem' }">
+            <p-table #dt   [value]="DetalleMedioComunicacion_Item"  [tableStyle]="{ 'min-width': '50rem' }">
 
 
               <ng-template pTemplate="caption">
@@ -221,7 +221,7 @@
           
                   <td>
                
-                    <a 
+                    <a (click)="DeleteDetalle_Metho(row)"
                       style="cursor: pointer;font-weight: bold;margin-right: 20px; ">
                       <i class="pi pi-trash" style="color: #00315B;"></i>
                     </a>
