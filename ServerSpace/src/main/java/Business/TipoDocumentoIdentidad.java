@@ -20,9 +20,9 @@ public class TipoDocumentoIdentidad {
         TipoDocumentoIdentidadDB BD = new TipoDocumentoIdentidadDB();
         return BD.Save(Item);
     }
-
+    
     public Boolean Delete(int Id) {
         TipoDocumentoIdentidadDB BD = new TipoDocumentoIdentidadDB();
         return BD.Delete(Id);
-    }
+}
 }
