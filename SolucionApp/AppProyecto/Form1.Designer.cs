@@ -34,7 +34,7 @@
             txtTotalBruto = new TextBox();
             button1 = new Button();
             rbtnPlantilla = new RadioButton();
-            rdtnHonorarios = new RadioButton();
+            rbtnHonorarios = new RadioButton();
             panel1 = new Panel();
             ckbFamiliar = new CheckBox();
             ckbPension = new CheckBox();
@@ -47,40 +47,43 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(236, 83);
+            label1.Location = new Point(270, 111);
             label1.Name = "label1";
-            label1.Size = new Size(46, 15);
+            label1.Size = new Size(58, 20);
             label1.TabIndex = 0;
             label1.Text = "Sueldo:";
             // 
             // txtSueldo
             // 
-            txtSueldo.Location = new Point(288, 80);
+            txtSueldo.Location = new Point(329, 107);
+            txtSueldo.Margin = new Padding(3, 4, 3, 4);
             txtSueldo.Name = "txtSueldo";
-            txtSueldo.Size = new Size(100, 23);
+            txtSueldo.Size = new Size(114, 27);
             txtSueldo.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(145, 388);
+            label2.Location = new Point(166, 517);
             label2.Name = "label2";
-            label2.Size = new Size(116, 15);
+            label2.Size = new Size(148, 20);
             label2.TabIndex = 5;
             label2.Text = "Sueldo Total a Pagar:";
             // 
             // txtTotalBruto
             // 
-            txtTotalBruto.Location = new Point(289, 385);
+            txtTotalBruto.Location = new Point(330, 513);
+            txtTotalBruto.Margin = new Padding(3, 4, 3, 4);
             txtTotalBruto.Name = "txtTotalBruto";
-            txtTotalBruto.Size = new Size(100, 23);
+            txtTotalBruto.Size = new Size(114, 27);
             txtTotalBruto.TabIndex = 6;
             // 
             // button1
             // 
-            button1.Location = new Point(463, 298);
+            button1.Location = new Point(529, 397);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(86, 31);
             button1.TabIndex = 7;
             button1.Text = "Calcular";
             button1.UseVisualStyleBackColor = true;
@@ -89,41 +92,45 @@
             // rbtnPlantilla
             // 
             rbtnPlantilla.AutoSize = true;
-            rbtnPlantilla.Location = new Point(34, 31);
+            rbtnPlantilla.Location = new Point(39, 41);
+            rbtnPlantilla.Margin = new Padding(3, 4, 3, 4);
             rbtnPlantilla.Name = "rbtnPlantilla";
-            rbtnPlantilla.Size = new Size(67, 19);
+            rbtnPlantilla.Size = new Size(83, 24);
             rbtnPlantilla.TabIndex = 8;
             rbtnPlantilla.TabStop = true;
             rbtnPlantilla.Text = "Plantilla";
             rbtnPlantilla.UseVisualStyleBackColor = true;
             // 
-            // rdtnHonorarios
+            // rbtnHonorarios
             // 
-            rdtnHonorarios.AutoSize = true;
-            rdtnHonorarios.Location = new Point(166, 31);
-            rdtnHonorarios.Name = "rdtnHonorarios";
-            rdtnHonorarios.Size = new Size(84, 19);
-            rdtnHonorarios.TabIndex = 9;
-            rdtnHonorarios.TabStop = true;
-            rdtnHonorarios.Text = "Honorarios";
-            rdtnHonorarios.UseVisualStyleBackColor = true;
+            rbtnHonorarios.AutoSize = true;
+            rbtnHonorarios.Location = new Point(190, 41);
+            rbtnHonorarios.Margin = new Padding(3, 4, 3, 4);
+            rbtnHonorarios.Name = "rbtnHonorarios";
+            rbtnHonorarios.Size = new Size(104, 24);
+            rbtnHonorarios.TabIndex = 9;
+            rbtnHonorarios.TabStop = true;
+            rbtnHonorarios.Text = "Honorarios";
+            rbtnHonorarios.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
             panel1.Controls.Add(ckbFamiliar);
             panel1.Controls.Add(ckbPension);
             panel1.Controls.Add(ckbEssalud);
-            panel1.Location = new Point(288, 230);
+            panel1.Location = new Point(329, 307);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(113, 91);
+            panel1.Size = new Size(129, 121);
             panel1.TabIndex = 10;
             // 
             // ckbFamiliar
             // 
             ckbFamiliar.AutoSize = true;
-            ckbFamiliar.Location = new Point(27, 66);
+            ckbFamiliar.Location = new Point(31, 88);
+            ckbFamiliar.Margin = new Padding(3, 4, 3, 4);
             ckbFamiliar.Name = "ckbFamiliar";
-            ckbFamiliar.Size = new Size(78, 19);
+            ckbFamiliar.Size = new Size(94, 24);
             ckbFamiliar.TabIndex = 13;
             ckbFamiliar.Text = "P.Familiar";
             ckbFamiliar.UseVisualStyleBackColor = true;
@@ -131,9 +138,10 @@
             // ckbPension
             // 
             ckbPension.AutoSize = true;
-            ckbPension.Location = new Point(27, 41);
+            ckbPension.Location = new Point(31, 55);
+            ckbPension.Margin = new Padding(3, 4, 3, 4);
             ckbPension.Name = "ckbPension";
-            ckbPension.Size = new Size(68, 19);
+            ckbPension.Size = new Size(81, 24);
             ckbPension.TabIndex = 12;
             ckbPension.Text = "Pension";
             ckbPension.UseVisualStyleBackColor = true;
@@ -141,9 +149,10 @@
             // ckbEssalud
             // 
             ckbEssalud.AutoSize = true;
-            ckbEssalud.Location = new Point(27, 16);
+            ckbEssalud.Location = new Point(31, 21);
+            ckbEssalud.Margin = new Padding(3, 4, 3, 4);
             ckbEssalud.Name = "ckbEssalud";
-            ckbEssalud.Size = new Size(65, 19);
+            ckbEssalud.Size = new Size(80, 24);
             ckbEssalud.TabIndex = 11;
             ckbEssalud.Text = "Essalud";
             ckbEssalud.UseVisualStyleBackColor = true;
@@ -151,20 +160,22 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(rbtnPlantilla);
-            groupBox1.Controls.Add(rdtnHonorarios);
-            groupBox1.Location = new Point(288, 134);
+            groupBox1.Controls.Add(rbtnHonorarios);
+            groupBox1.Location = new Point(329, 179);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(264, 79);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(302, 105);
             groupBox1.TabIndex = 11;
             groupBox1.TabStop = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
             BackgroundImageLayout = ImageLayout.Center;
-            ClientSize = new Size(1017, 614);
+            ClientSize = new Size(901, 666);
             Controls.Add(groupBox1);
             Controls.Add(panel1);
             Controls.Add(button1);
@@ -172,6 +183,7 @@
             Controls.Add(label2);
             Controls.Add(txtSueldo);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
@@ -190,7 +202,7 @@
         private TextBox txtTotalBruto;
         private Button button1;
         private RadioButton rbtnPlantilla;
-        private RadioButton rdtnHonorarios;
+        private RadioButton rbtnHonorarios;
         private Panel panel1;
         private CheckBox ckbEssalud;
         private CheckBox ckbFamiliar;
