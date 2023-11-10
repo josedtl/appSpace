@@ -29,13 +29,11 @@ export class PersonaNaturalMainComponent {
 
   async GetAllItems() {
     this.showSpinner = true;
-    await this.personanaturalServiceService.GetPersonaNaturalMainItems().subscribe(
-      respuesta => {
-        this.ListaMainItems = respuesta;
-        this.GetlistaOrdenar();
-        this.showSpinner = false;
-      }
-    )
+    const respuesta = await this.personanaturalServiceService.GetPersonaNaturalMainItems();
+    console.log(respuesta);
+    this.ListaMainItems = respuesta;
+    this.GetlistaOrdenar();
+    this.showSpinner = false;
 
   }
   async GetlistaOrdenar() {

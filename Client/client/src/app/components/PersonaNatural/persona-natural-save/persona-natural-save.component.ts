@@ -103,46 +103,37 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
   async getPersonaNatural(Id: number) {
 
-    await this.personanaturalService.GetAllItem(Id).subscribe(
+    const Rest_Cabecera = await this.personanaturalService.GetAllItem(Id);
+
+    this.newItem = Rest_Cabecera[0];
+
+    this.serviceGeneral.GetUbigeoItem(this.newItem.UbigeoId).subscribe(
       respuesta => {
-        this.newItem = respuesta[0];
-
-        this.serviceGeneral.GetUbigeoItem(this.newItem.UbigeoId).subscribe(
-          respuesta => {
-            this.SelectUbigeoItem = respuesta[0];
-          }
-        )
-
-        this.serviceGeneral.GetGeneroItem(this.newItem.GeneroId).subscribe(
-          respuesta => {
-            this.SelectGeneroItem = respuesta[0];
-          }
-        )
-
-        this.serviceGeneral.GetEstadoCivilItem(this.newItem.EstadoCivilId).subscribe(
-          respuesta => {
-            this.SelectEstadoCivilItem = respuesta[0];
-          }
-        )
-        this.date = new Date(this.newItem.FechaNacimiento);
+        this.SelectUbigeoItem = respuesta[0];
       }
     )
 
-
-    await this.personanaturalService.GetMedioComunicacionDetalle(Id).subscribe(
+    this.serviceGeneral.GetGeneroItem(this.newItem.GeneroId).subscribe(
       respuesta => {
-        this.newItem.DetalleMedioComunicacion = [];
-        this.newItem.DetalleMedioComunicacion = respuesta;
-
-
-        this.ListaDetalle();
-        // this.DetalleMedioComunicacion_Item = respuesta;
-        console.log(respuesta)
-      }, error => {
-        console.log(error)
+        this.SelectGeneroItem = respuesta[0];
       }
     )
 
+    this.serviceGeneral.GetEstadoCivilItem(this.newItem.EstadoCivilId).subscribe(
+      respuesta => {
+        this.SelectEstadoCivilItem = respuesta[0];
+      }
+    )
+    this.date = new Date(this.newItem.FechaNacimiento);
+
+
+
+
+    const resp_Detalle = await this.personanaturalService.GetMedioComunicacionDetalle(Id);
+
+    this.newItem.DetalleMedioComunicacion = [];
+    this.newItem.DetalleMedioComunicacion = resp_Detalle;
+    this.ListaDetalle();
 
   }
 
@@ -186,15 +177,13 @@ export class PersonaNaturalSaveComponent implements OnInit {
 
         console.log(this.newItem);
 
-        this.personanaturalService.save(this.newItem)
-          .subscribe(
-            res => {
-              if (res.PersonaNaturalId != 0) {
-                console.log(res);
-              }
-            },
-            err => console.error(err)
-          )
+        this.personanaturalService.save(this.newItem).then(Respuesta => {
+          if (Respuesta.PersonaNaturalId != 0)
+
+            console.log(Respuesta);
+        });
+
+       
 
       },
 
