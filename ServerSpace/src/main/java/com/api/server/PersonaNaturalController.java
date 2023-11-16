@@ -4,12 +4,13 @@ import Business.PersonaNatural;
 import Business.PersonaNaturalMedioComunicacion;
 import EntityLayer.PersonaNaturalEntity;
 import EntityLayer.PersonaNaturalMedioComunicacionEntity;
-import Enumerados.ProcessActionEnum;
 import Framework.Utilidades;
 import Models.PersonaNaturalMainModel;
 import Models.PersonaNaturalMedioComunicacionSaveModel;
 import Models.PersonaNaturalSaveModel;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,10 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @RequestMapping("/api/PersonaNatural")
-public class PersonaNaturalController {
+public class PersonaNaturalController extends Configuracion {
 
+//    @Autowired
+//    private Environment environment;
     @GetMapping("/GetAllItems")
     public ArrayList<PersonaNaturalEntity> GetAllItems() {
+
+//        DataConfi();
+        DataConfi();
+//        System.out.println("Variable estática: " +  );
+//        return new ArrayList<>();
         PersonaNatural BS = new PersonaNatural();
         return BS.GetAllItems();
     }
