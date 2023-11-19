@@ -1,46 +1,112 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { PersonaNaturalSaveModel } from '../../models/PersonaNatural/PersonaNaturalSaveModel'
 import { PersonaNaturalMainModel } from '../../models/PersonaNatural/PersonaNaturalMainModel'
-
-import { Observable } from 'rxjs/internal/Observable';
+import { apiGeneral } from '../axios-config';
 import { PersonaNaturalMedioComunicacionSaveModel } from '../../models/PersonaNatural/PersonaNaturalMedioComunicacionSaveModel';
 @Injectable({
   providedIn: 'root'
 })
 export class PersonaNaturalService {
 
-  API_URI = 'http://localhost:8080';
+
+  constructor() { }
 
 
-  constructor(private http: HttpClient) { }
+  async GetAllItems(): Promise<PersonaNaturalSaveModel[]> {
+    try {
 
-  GetAllItems(): Observable<PersonaNaturalSaveModel[]> {
-    return this.http.get<PersonaNaturalSaveModel[]>(`${this.API_URI}/api/PersonaNatural/GetAllItems`);
+      const response = await apiGeneral.get(`api/PersonaNatural/GetAllItems`);
+      return response.data;
+
+    } catch (error) {
+
+      throw error;
+
+    }
   }
 
-  GetAllItem(id: number): Observable<PersonaNaturalSaveModel[]> {
-    return this.http.get<PersonaNaturalSaveModel[]>(`${this.API_URI}/api/PersonaNatural/GetAllItem/${id}`);
+  async GetAllItem(id: number): Promise<PersonaNaturalSaveModel[]> {
+    try {
+
+      const response = await apiGeneral.get(`api/PersonaNatural/GetAllItem/${id}`);
+      return response.data;
+
+    } catch (error) {
+
+      throw error;
+
+    }
+  }
+
+  async save(item: PersonaNaturalSaveModel): Promise<PersonaNaturalSaveModel> {
+    try {
+      const response = await apiGeneral.post(`api/PersonaNatural/Save`, item, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
   }
 
 
-  save(item: PersonaNaturalSaveModel): Observable<PersonaNaturalSaveModel> {
-    return this.http.post<PersonaNaturalSaveModel>(`${this.API_URI}/api/PersonaNatural/Save`, item);
-  }
-  delete(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.API_URI}/api/PersonaNatural/Delete/${id}`);
+  async delete(id: number): Promise<PersonaNaturalSaveModel[]> {
+    try {
+
+      const response = await apiGeneral.delete(`api/PersonaNatural/Delete/${id}`);
+
+      return response.data;
+
+    } catch (error) {
+
+      throw error;
+
+    }
   }
 
-  GetPersonaNaturalMainItems(): Observable<PersonaNaturalMainModel[]> {
-    return this.http.get<PersonaNaturalMainModel[]>(`${this.API_URI}/api/PersonaNatural/GetPersonaNaturalMainItems`);
+  async GetPersonaNaturalMainItems(): Promise<PersonaNaturalMainModel[]> {
+    try {
+
+      const response = await apiGeneral.get(`api/PersonaNatural/GetPersonaNaturalMainItems`);
+      console.log(response)
+      return response.data;
+
+    } catch (error) {
+
+      throw error;
+
+    }
   }
 
-  GetMedioComunicacionDetalle(id: number): Observable<PersonaNaturalMedioComunicacionSaveModel[]> {
-    return this.http.get<PersonaNaturalMedioComunicacionSaveModel[]>(`${this.API_URI}/api/PersonaNatural/GetMedioComunicacionDetalle/${id}`);
+  async GetMedioComunicacionDetalle(id: number): Promise<PersonaNaturalMedioComunicacionSaveModel[]> {
+    try {
+
+      const response = await apiGeneral.get(`api/PersonaNatural/GetMedioComunicacionDetalle/${id}`);
+      return response.data;
+
+    } catch (error) {
+
+      throw error;
+
+    }
   }
-  GetMedioComunicacionDetalleAlle(id: number): Observable<PersonaNaturalMedioComunicacionSaveModel[]> {
-    return this.http.get<PersonaNaturalMedioComunicacionSaveModel[]>(`${this.API_URI}/api/PersonaNatural/GetMedioComunicacionDetalle/${id}`);
+
+  async GetMedioComunicacionDetalleAlle(id: number): Promise<PersonaNaturalMedioComunicacionSaveModel[]> {
+    try {
+
+      const response = await apiGeneral.get(`api/PersonaNatural/GetMedioComunicacionDetalle/${id}`);
+      return response.data;
+
+    } catch (error) {
+
+      throw error;
+
+    }
   }
+
 
 
 }
