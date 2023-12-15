@@ -12,75 +12,123 @@ namespace AppProyecto
 
         }
 
+
+
+        private Double Rest_Porcentaje(Double Cantidad, Double Porcentaje)
+        {
+            Double Resultado = (Cantidad + Porcentaje) / 100;
+            return Resultado;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             double Sueldo = double.Parse(this.txtSueldo.Text);
             Boolean m_Planilla = rbtnPlantilla.Checked;
             Boolean m_Honorario = rbtnHonorarios.Checked;
-            Boolean m_essalud = ckbEssalud.Checked;
-            Boolean m_pension = ckbPension.Checked;
-            Boolean m_pFamiliar = ckbFamiliar.Checked;
 
-            double essalud = Sueldo * 0.09;
-            double pension = Sueldo * 0.11;
-            double pFamiliar = Sueldo *0.03;
-            double sueldoTotal = 0 ;
 
-            double honorario = Sueldo * 0.07;
+            Boolean Fla_EsSalud = ckbEssalud.Checked;
+            Boolean Fla_Pension = ckbPension.Checked;
+            Boolean Fla_Familiar = ckbFamiliar.Checked;
 
-            if (m_Planilla)
+
+            double essalud = 0;
+            double pension = 0;
+            double pFamiliar = 0;
+            double sueldoTotal = 0;
+            double DescuentoHonorario = 0;
+
+
+
+            if (m_Planilla == true)
             {
-                if (ckbEssalud.Checked && ckbPension.Checked && ckbFamiliar.Checked)
-                {
-                    sueldoTotal = Sueldo +pFamiliar - essalud - pension;
-                    txtTotalBruto.Text = "$" + sueldoTotal;
-                }
-                if (ckbEssalud.Checked && ckbPension.Checked)
-                {
-                    sueldoTotal = Sueldo - pension - essalud;
-                    txtTotalBruto.Text = "$" + sueldoTotal;
-                }
-                if (ckbEssalud.Checked && ckbFamiliar.Checked)
-                {
-                    sueldoTotal = Sueldo + pFamiliar - essalud;
-                    txtTotalBruto.Text = "$" + sueldoTotal;
-                }
-                if (ckbPension.Checked && ckbFamiliar.Checked)
-                {
-                    sueldoTotal = Sueldo + pFamiliar - pension;
-                    txtTotalBruto.Text = "$" + sueldoTotal;
-                }
 
-                if (ckbEssalud.Checked)
+                if (Fla_EsSalud)
                 {
-                    essalud = Sueldo - essalud;
-                    txtTotalBruto.Text = "" + essalud;
-
-                }if (ckbPension.Checked){
-                    pension = Sueldo -pension;
-                    txtTotalBruto.Text = "" + pension;
-                }
-                if (ckbFamiliar.Checked)
-                {
-                    pFamiliar = Sueldo + pFamiliar;
-                    txtTotalBruto.Text = "" + pFamiliar;
+                    essalud = Rest_Porcentaje(Sueldo, 9);
 
                 }
+                if (Fla_Familiar)
+                {
+                    pFamiliar = Rest_Porcentaje(Sueldo, 3);
+
+                }
+                if (Fla_Pension )
+                {
+                    pension = Rest_Porcentaje(Sueldo, 11);
+                }
+                sueldoTotal = (Sueldo - essalud - pension) + pFamiliar;
 
             }
             if (m_Honorario)
             {
-                txtTotalBruto.Text = "" + Sueldo;
                 if (Sueldo > 1500)
                 {
-                    sueldoTotal = Sueldo - honorario;
-                    txtTotalBruto.Text = "" + sueldoTotal;
+                    DescuentoHonorario = Rest_Porcentaje(Sueldo, 7);
                 }
+                sueldoTotal = Sueldo - DescuentoHonorario;
             }
-                
-            
+
+
+
+
+            txtTotalBruto.Text = "" + sueldoTotal;
+
+
+            //if (m_Planilla == true)
+            //{
+            //    if (ckbEssalud.Checked == true && ckbPension.Checked == true && ckbFamiliar.Checked == true)
+            //    {
+            //        sueldoTotal = Sueldo + pFamiliar - pension - essalud;
+            //        txtTotalBruto.Text = "$ " + sueldoTotal;
+            //    }
+            //    else if (ckbEssalud.Checked == true && ckbPension.Checked == true)
+            //    {
+            //        sueldoTotal = Sueldo - pension - essalud;
+            //        txtTotalBruto.Text = "$ " + sueldoTotal;
+            //    }
+            //    else if (ckbEssalud.Checked == true && ckbFamiliar.Checked == true)
+            //    {
+            //        sueldoTotal = Sueldo + pFamiliar - essalud;
+            //        txtTotalBruto.Text = "$ " + sueldoTotal;
+            //    }
+            //    else if (ckbPension.Checked == true && ckbFamiliar.Checked == true)
+            //    {
+            //        sueldoTotal = Sueldo + pFamiliar - pension;
+            //        txtTotalBruto.Text = "$ " + sueldoTotal;
+            //    }
+
+            //    else if (ckbEssalud.Checked == true)
+            //    {
+            //        sueldoTotal = Sueldo - essalud;
+            //        txtTotalBruto.Text = "$ " + sueldoTotal;
+
+            //    }
+            //    else if (ckbPension.Checked == true)
+            //    {
+            //        sueldoTotal = Sueldo - pension;
+            //        txtTotalBruto.Text = "$ " + sueldoTotal;
+            //    }
+            //    else
+            //    {
+            //        sueldoTotal = Sueldo + pFamiliar;
+            //        txtTotalBruto.Text = "$ " + sueldoTotal;
+
+            //    }
+            //    //if (ckbFamiliar.Checked == true)
+            //}
+            //if (m_Honorario == true)
+            //{
+            //    txtTotalBruto.Text = "" + Sueldo;
+            //    if (Sueldo > 1500)
+            //    {
+            //        sueldoTotal = Sueldo - honorario;
+            //        txtTotalBruto.Text = "" + sueldoTotal;
+            //    }
+            //}
+
+
         }
 
-        
+
     }
 }
