@@ -2,17 +2,20 @@
 using Space.DataLayer;
 
 
-namespace Space.BusinessLayer;
-
-public class Endidad
+namespace Space.BusinessLayer
 {
-    public List<EntidadEntity> GetEndidad()
+
+
+    public class Endidad
     {
+        public List<EntidadEntity> GetEndidad()
+        {
 
-        EndidadDB DB = new EndidadDB();
+            EndidadDB DB = new EndidadDB();
 
-        return DB.GetEndidad();
+            return DB.GetEndidad();
+
+        }
 
     }
-
 }
