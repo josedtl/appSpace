@@ -12,7 +12,6 @@ namespace Space.EntityLayer
             this.TipoEntidadId = GetInt32Default();
             this.TipoDocumentoIdentidadId = GetInt32Default();
             this.NumDocumento = GetStringDefault();
-            this.NombreCompleto = GetStringDefault();
             this.FechaRegistro = GetDateTimeDefault();
             this.CodUsuario = GetStringDefault();
             this.UbigeoId = GetInt32Default();
@@ -31,9 +30,6 @@ namespace Space.EntityLayer
         [JsonPropertyName("NumDocumento")]
         public String NumDocumento { get; set; }
 
-        [JsonPropertyName("NombreCompleto")]
-        public String NombreCompleto { get; set; }
-
         [JsonPropertyName("FechaRegistro")]
         public DateTime FechaRegistro { get; set; }
 
@@ -43,6 +39,93 @@ namespace Space.EntityLayer
         [JsonPropertyName("UbigeoId")]
         public Int32 UbigeoId { get; set; }
 
+
+
+
+        [JsonPropertyName("Nombres")]
+        public String Nombres { get; set; }
+
+        [JsonPropertyName("ApellidoPaterno")]
+        public String ApellidoPaterno { get; set; }
+        [JsonPropertyName("ApellidoMaterno")]
+        public String ApellidoMaterno { get; set; }
+
+        [JsonPropertyName("FechaNacimiento")]
+        public DateTime FechaNacimiento { get; set; }
+
+        [JsonPropertyName("Direccion")]
+        public String Direccion { get; set; }
+
+        [JsonPropertyName("Telefono")]
+        public String Telefono { get; set; }
+
+        [JsonPropertyName("Correo")]
+        public String Correo { get; set; }
+
+        [JsonPropertyName("SexoId")]
+        public Int32 SexoId { get; set; }
+
+        [JsonPropertyName("EstadoCivilId")]
+        public Int32 EstadoCivilId { get; set; }
+    }
+
+
+    public partial class EntidadDatoEntity : Utilitario
+    {
+        public EntidadDatoEntity()
+               : base()
+        {
+            this.Nombres = GetStringDefault();
+            this.ApellidoPaterno = GetStringDefault();
+            this.ApellidoMaterno = GetStringDefault();
+            this.FechaNacimiento = GetDateTimeDefault();
+            this.Direccion = GetStringDefault();
+            this.Telefono = GetStringDefault();
+            this.Correo = GetStringDefault();
+            this.SexoId = GetInt32Default();
+            this.EstadoCivilId = GetInt32Default();
+        }
+        public EntidadDatoEntity(EntidadEntity i)
+            : base()
+        {
+            this.Nombres = i.Nombres;
+            this.ApellidoPaterno = i.ApellidoPaterno;
+            this.ApellidoMaterno = i.ApellidoMaterno;
+            this.FechaNacimiento = i.FechaNacimiento;
+            this.Direccion = i.Direccion;
+            this.Telefono = i.Telefono;
+            this.Correo = i.Correo;
+            this.SexoId = i.SexoId;
+            this.EstadoCivilId = i.EstadoCivilId;
+        }
+
+
+
+        [JsonPropertyName("Nombres")]
+        public String Nombres { get; set; }
+
+        [JsonPropertyName("ApellidoPaterno")]
+        public String ApellidoPaterno { get; set; }
+        [JsonPropertyName("ApellidoMaterno")]
+        public String ApellidoMaterno { get; set; }
+
+        [JsonPropertyName("FechaNacimiento")]
+        public DateTime FechaNacimiento { get; set; }
+
+        [JsonPropertyName("Direccion")]
+        public String Direccion { get; set; }
+
+        [JsonPropertyName("Telefono")]
+        public String Telefono { get; set; }
+
+        [JsonPropertyName("Correo")]
+        public String Correo { get; set; }
+
+        [JsonPropertyName("SexoId")]
+        public Int32 SexoId { get; set; }
+
+        [JsonPropertyName("EstadoCivilId")]
+        public Int32 EstadoCivilId { get; set; }
     }
 }
 

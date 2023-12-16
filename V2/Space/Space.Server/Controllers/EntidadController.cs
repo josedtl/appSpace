@@ -28,5 +28,21 @@ namespace Space.Server.Controllers
         }
 
 
+        [HttpPost]
+        [Route("Save")]
+        public EntidadEntity Save(EntidadEntity Item)
+        {
+            try
+            {
+                Endidad DB = new Endidad();
+                return DB.Save(Item);
+
+            }
+            catch (Exception ex)
+            {
+                throw new HttpRequestException(ex.Message);
+            }
+        }
+
     }
 }

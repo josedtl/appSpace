@@ -8,7 +8,7 @@ using Space.EntityLayer;
 namespace Space.DataLayer
 {
 
-    public class EndidadDB
+    public class EntidadDatoDB
     {
         public List<EntidadEntity> GetEndidad()
         {

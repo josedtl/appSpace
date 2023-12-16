@@ -17,5 +17,15 @@ namespace Space.BusinessLayer
 
         }
 
+
+        public EntidadEntity Save(EntidadEntity Item)
+        {
+
+            EndidadDB DB = new EndidadDB();
+
+            return DB.Save(Item);
+
+        }
+
     }
 }
