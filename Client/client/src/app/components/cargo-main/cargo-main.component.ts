@@ -114,6 +114,7 @@ export class CargoMainComponent {
 
 
   }
+  
   Update_Metho(data: CargoEntity) {
     this.showDialog();
     data.Action = 3
