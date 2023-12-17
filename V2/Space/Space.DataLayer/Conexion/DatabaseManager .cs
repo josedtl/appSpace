@@ -9,7 +9,7 @@ namespace Datos.Conexion
 
         //192.168.18.14
         private readonly SqlConnection _connection;
-        private string connectionString = "Data Source=localhost;Initial Catalog=SpaceDB;User ID=dev;Password=123456789;";
+        private string connectionString = "Data Source=localhost, 14333;Initial Catalog=SpaceDB;User ID=sa;Password=Admin123;";
         public DatabaseManager()
         {
             _connection = new SqlConnection(connectionString);

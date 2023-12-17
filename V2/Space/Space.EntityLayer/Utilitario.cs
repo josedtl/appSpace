@@ -1,28 +1,30 @@
-﻿namespace Space.EntityLayer;
-
-public class Utilitario
+﻿namespace Space.EntityLayer
 {
-
-    public Int32 GetInt32Default()
+    public class Utilitario
     {
-        return 0;
+
+        public Int32 GetInt32Default()
+        {
+            return 0;
+        }
+
+        public Boolean GetBooleanDefault()
+        {
+            return false;
+        }
+
+        public String GetStringDefault()
+        {
+            return String.Empty;
+        }
+
+        public DateTime GetDateTimeDefault()
+        {
+            return new DateTime();
+        }
+
+
+
     }
-
-   public Boolean GetBooleanDefault()
-    {
-        return false;
-    }
-
-   public String GetStringDefault()
-    {
-        return String.Empty;
-    }
-
-   public DateTime GetDateTimeDefault()
-    {
-        return new DateTime();
-    }
-
-
 
 }
