@@ -11,7 +11,6 @@ class PersonaEntity {
     ApellidoPaterno: string = "";
     ApellidoMaterno: string = "";
 }
-
 function Page() {
 
     const [FlaState, setFlaState] = useState<string>("d");
