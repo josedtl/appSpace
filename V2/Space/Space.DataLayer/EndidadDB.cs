@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.ComponentModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using Datos.Conexion;
@@ -70,24 +71,62 @@ namespace Space.DataLayer
 
 
 
-            EntidadDatoEntity EntDato = new EntidadDatoEntity(Ent);
+            EntCampoTypeDB entCampoTypeDB = new EntCampoTypeDB();
 
-            //EntidadEntity persona = new PersonaNatural
-            //{
-            //    Nombre = "Juan",
-            //    Edad = 30,
-            //    DNI = "12345678"
-            //    // ... inicializar otros atributos
-            //};
+            var ItemDataType = entCampoTypeDB.Get_CampoType_PersonaNatural();
+
+
+
+            EntidadDatoEntity EntDato = new EntidadDatoEntity(Ent);
 
             Type tipoPersona = EntDato.GetType();
             PropertyInfo[] propiedades = tipoPersona.GetProperties();
 
             foreach (PropertyInfo propiedad in propiedades)
             {
+
+                Type tipoDato = propiedad.PropertyType; // Obtener el tipo de dato de la propiedad
+
                 string nombrePropiedad = propiedad.Name;
                 object valorPropiedad = propiedad.GetValue(EntDato);
-                Console.WriteLine($"Nombre del atributo: {nombrePropiedad}, Valor: {valorPropiedad}");
+                Console.WriteLine($"Nombre del atributo: {nombrePropiedad}, Valor: {valorPropiedad},  Tipo de dato: {tipoDato}");
+
+                EntDatoDB entDatoDB = new EntDatoDB();
+
+
+                String? m_ValorAlfaNumerico = null;
+                DateTime? m_ValorFecha = null;
+                Int32? m_ListaRelacionId = null;
+
+
+                Int32 Index = ItemDataType.FindIndex(S => S.Campo == nombrePropiedad);
+
+                if (Index == -1) continue;
+
+
+                switch (ItemDataType[Index].Type)
+                {
+                    case "Array":
+                        m_ListaRelacionId = (Int32)valorPropiedad;
+                        break;
+                    case "Datetime":
+                        m_ValorFecha = (DateTime)valorPropiedad;
+                        break;
+                    default:
+                        m_ValorAlfaNumerico = valorPropiedad.ToString();
+                        break;
+
+                }
+
+                entDatoDB.Save(new EntDatoEntity
+                {
+                    EntDatoId = 0,
+                    EntidadId = Ent.EntidadId,
+                    ValorAlfaNumerico = m_ValorAlfaNumerico,
+                    ValorFecha = m_ValorFecha,
+                    ListaRelacionId = m_ListaRelacionId,
+                    EntCampoId = ItemDataType[Index].EntCampoId
+                });
 
             }
 
