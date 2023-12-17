@@ -40,7 +40,7 @@ function Page() {
                 <div className=" col-span-10 px-10 py-1 ">
                     Persona Natural MAIN
                 </div>
-                <div className=" col-span-2 px-2 py-2 ">
+                <div className=" col-span-2 px-2 py-2 bg-right">
                     <TButtonPrimary>
                         Aceptar
                     </TButtonPrimary>
