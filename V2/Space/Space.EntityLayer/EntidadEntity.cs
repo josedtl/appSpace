@@ -1,128 +1,131 @@
-using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace Space.EntityLayer
 {
-    public partial class EntidadEntity  : Utilitario
+    public partial class EntidadEntity : Utilitario
     {
-		private Int32 m_EntidadId;
-		private Int32? m_TipoEntidadId;
-		private Boolean m_EsEmpresa;
-		private Int32? m_TipoDocumentoIdentidadId;
-		private String m_NumDocumento;
-		private String m_NombreCompleto;
-		private DateTime m_FechaRegistro;
-		private String m_CodUsuario;
-		private Int32? m_UbigeoId;
-		
 
         public EntidadEntity()
             : base()
         {
-			m_EntidadId = GetInt32Default();
-			m_TipoEntidadId = null;
-			m_EsEmpresa = GetBooleanDefault();
-			m_TipoDocumentoIdentidadId = null;
-			m_NumDocumento = GetStringDefault();
-			m_NombreCompleto = GetStringDefault();
-			m_FechaRegistro = GetDateTimeDefault();
-			m_CodUsuario = GetStringDefault();
-			m_UbigeoId = null;
+            this.EntidadId = GetInt32Default();
+            this.TipoEntidadId = GetInt32Default();
+            this.TipoDocumentoIdentidadId = GetInt32Default();
+            this.NumDocumento = GetStringDefault();
+            this.FechaRegistro = GetDateTimeDefault();
+            this.CodUsuario = GetStringDefault();
+            this.UbigeoId = GetInt32Default();
         }
 
-		public Int32 EntidadId
-		{
-			get { return m_EntidadId; }
-			set
-			{
-				Int32 oldValue = m_EntidadId;
-				if (oldValue == value) return;
-				m_EntidadId = value;
-			}
-		}
-		public Int32? TipoEntidadId
-		{
-			get { return m_TipoEntidadId; }
-			set
-			{
-				Int32? oldValue = m_TipoEntidadId;
-				if (oldValue == value) return;
-				m_TipoEntidadId = value;
-			}
-		}
-		public Boolean EsEmpresa
-		{
-			get { return m_EsEmpresa; }
-			set
-			{
-				Boolean oldValue = m_EsEmpresa;
-				if (oldValue == value) return;
-				m_EsEmpresa = value;
-			}
-		}
-		public Int32? TipoDocumentoIdentidadId
-		{
-			get { return m_TipoDocumentoIdentidadId; }
-			set
-			{
-				Int32? oldValue = m_TipoDocumentoIdentidadId;
-				if (oldValue == value) return;
-				m_TipoDocumentoIdentidadId = value;
-			}
-		}
-		public String NumDocumento
-		{
-			get { return m_NumDocumento; }
-			set
-			{
-				String oldValue = m_NumDocumento;
-				if (oldValue == value) return;
-				m_NumDocumento = value;
-			}
-		}
-		public String NombreCompleto
-		{
-			get { return m_NombreCompleto; }
-			set
-			{
-				String oldValue = m_NombreCompleto;
-				if (oldValue == value) return;
-				m_NombreCompleto = value;
-			}
-		}
-		public DateTime FechaRegistro
-		{
-			get { return m_FechaRegistro; }
-			set
-			{
-				DateTime oldValue = m_FechaRegistro;
-				if (oldValue == value) return;
-				m_FechaRegistro = value;
-			}
-		}
-		public String CodUsuario
-		{
-			get { return m_CodUsuario; }
-			set
-			{
-				String oldValue = m_CodUsuario;
-				if (oldValue == value) return;
-				m_CodUsuario = value;
-			}
-		}
-		public Int32? UbigeoId
-		{
-			get { return m_UbigeoId; }
-			set
-			{
-				Int32? oldValue = m_UbigeoId;
-				if (oldValue == value) return;
-				m_UbigeoId = value;
-			}
-		}
-       
-		
+        [JsonPropertyName("EntidadId")]
+        public Int32 EntidadId { get; set; }
+
+        [JsonPropertyName("TipoEntidadId")]
+
+        public Int32 TipoEntidadId { get; set; }
+
+        [JsonPropertyName("TipoDocumentoIdentidadId")]
+        public Int32 TipoDocumentoIdentidadId { get; set; }
+
+        [JsonPropertyName("NumDocumento")]
+        public String NumDocumento { get; set; }
+
+        [JsonPropertyName("FechaRegistro")]
+        public DateTime FechaRegistro { get; set; }
+
+        [JsonPropertyName("CodUsuario")]
+        public String CodUsuario { get; set; }
+
+        [JsonPropertyName("UbigeoId")]
+        public Int32 UbigeoId { get; set; }
+
+
+
+
+        [JsonPropertyName("Nombres")]
+        public String Nombres { get; set; }
+
+        [JsonPropertyName("ApellidoPaterno")]
+        public String ApellidoPaterno { get; set; }
+        [JsonPropertyName("ApellidoMaterno")]
+        public String ApellidoMaterno { get; set; }
+
+        [JsonPropertyName("FechaNacimiento")]
+        public DateTime FechaNacimiento { get; set; }
+
+        [JsonPropertyName("Direccion")]
+        public String Direccion { get; set; }
+
+        [JsonPropertyName("Telefono")]
+        public String Telefono { get; set; }
+
+        [JsonPropertyName("Correo")]
+        public String Correo { get; set; }
+
+        [JsonPropertyName("SexoId")]
+        public Int32 SexoId { get; set; }
+
+        [JsonPropertyName("EstadoCivilId")]
+        public Int32 EstadoCivilId { get; set; }
+    }
+
+
+    public partial class EntidadDatoEntity : Utilitario
+    {
+        public EntidadDatoEntity()
+               : base()
+        {
+            this.Nombres = GetStringDefault();
+            this.ApellidoPaterno = GetStringDefault();
+            this.ApellidoMaterno = GetStringDefault();
+            this.FechaNacimiento = GetDateTimeDefault();
+            this.Direccion = GetStringDefault();
+            this.Telefono = GetStringDefault();
+            this.Correo = GetStringDefault();
+            this.SexoId = GetInt32Default();
+            this.EstadoCivilId = GetInt32Default();
+        }
+        public EntidadDatoEntity(EntidadEntity i)
+            : base()
+        {
+            this.Nombres = i.Nombres;
+            this.ApellidoPaterno = i.ApellidoPaterno;
+            this.ApellidoMaterno = i.ApellidoMaterno;
+            this.FechaNacimiento = i.FechaNacimiento;
+            this.Direccion = i.Direccion;
+            this.Telefono = i.Telefono;
+            this.Correo = i.Correo;
+            this.SexoId = i.SexoId;
+            this.EstadoCivilId = i.EstadoCivilId;
+        }
+
+
+
+        [JsonPropertyName("Nombres")]
+        public String Nombres { get; set; }
+
+        [JsonPropertyName("ApellidoPaterno")]
+        public String ApellidoPaterno { get; set; }
+        [JsonPropertyName("ApellidoMaterno")]
+        public String ApellidoMaterno { get; set; }
+
+        [JsonPropertyName("FechaNacimiento")]
+        public DateTime FechaNacimiento { get; set; }
+
+        [JsonPropertyName("Direccion")]
+        public String Direccion { get; set; }
+
+        [JsonPropertyName("Telefono")]
+        public String Telefono { get; set; }
+
+        [JsonPropertyName("Correo")]
+        public String Correo { get; set; }
+
+        [JsonPropertyName("SexoId")]
+        public Int32 SexoId { get; set; }
+
+        [JsonPropertyName("EstadoCivilId")]
+        public Int32 EstadoCivilId { get; set; }
     }
 }
 

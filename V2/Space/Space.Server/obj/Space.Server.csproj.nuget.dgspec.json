@@ -1,36 +1,43 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj": {}
+    "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj": {
+    "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj",
+        "projectUniqueName": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj",
         "projectName": "Space.BusinessLayer",
-        "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj",
-        "packagesPath": "C:\\Users\\DAVID\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\obj\\",
+        "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj",
+        "packagesPath": "C:\\Users\\RUTH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.BusinessLayer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DAVID\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\RUTH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj": {
-                "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj"
+              "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj": {
+                "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj"
               },
-              "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
-                "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj"
+              "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
+                "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj"
               }
             }
           }
@@ -60,34 +67,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj": {
+    "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj",
         "projectName": "Space.DataLayer",
-        "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj",
-        "packagesPath": "C:\\Users\\DAVID\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.DataLayer\\obj\\",
+        "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.DataLayer\\Space.DataLayer.csproj",
+        "packagesPath": "C:\\Users\\RUTH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.DataLayer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DAVID\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\RUTH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
-                "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj"
+              "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
+                "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj"
               }
             }
           }
@@ -123,26 +137,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
+    "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj",
+        "projectUniqueName": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj",
         "projectName": "Space.EntityLayer",
-        "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj",
-        "packagesPath": "C:\\Users\\DAVID\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\obj\\",
+        "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj",
+        "packagesPath": "C:\\Users\\RUTH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DAVID\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\RUTH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -176,37 +197,44 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj": {
+    "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj",
+        "projectUniqueName": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj",
         "projectName": "Space.Server",
-        "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj",
-        "packagesPath": "C:\\Users\\DAVID\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.Server\\obj\\",
+        "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.Server\\Space.Server.csproj",
+        "packagesPath": "C:\\Users\\RUTH\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.Server\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\DAVID\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\RUTH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj": {
-                "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj"
+              "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj": {
+                "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj"
               },
-              "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
-                "projectPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj"
+              "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj": {
+                "projectPath": "C:\\Users\\RUTH\\Documents\\GitHub\\Space\\appSpace\\V2\\Space\\Space.EntityLayer\\Space.EntityLayer.csproj"
               }
             }
           }
@@ -249,7 +277,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
