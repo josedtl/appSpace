@@ -101,7 +101,6 @@ namespace Space.DataLayer
 
                 Int32 Index = ItemDataType.FindIndex(S => S.Campo == nombrePropiedad);
 
-
                 if (Index == -1) continue;
 
 
@@ -132,6 +131,94 @@ namespace Space.DataLayer
             }
 
             return Ent;
+
+        }
+
+
+
+
+        public EntidadEntity SaveAlter(EntidadEntity Ent)
+        {
+            DatabaseManager dbManager = new DatabaseManager();
+            string connectionString = "Data Source=tu_servidor;Initial Catalog=nombre_base_datos;User ID=usuario;Password=contraseña";
+
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            SqlConnection connection = new SqlConnection(connectionString);
+            connection.Open();
+            SqlTransaction transaction = connection.BeginTransaction();
+
+
+            transaction.Rollback();
+                // 1. Insertar la cabecera utilizando el procedimiento almacenado
+                SqlCommand insertCabeceraCmd = new SqlCommand("InsertarCabecera", connection, transaction);
+                insertCabeceraCmd.CommandType = CommandType.StoredProcedure;
+
+                // Configurar el parámetro de salida para obtener el Id de la cabecera insertada
+
+
+
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@EntidadId", Ent.EntidadId)
+                {
+                    Direction = ParameterDirection.InputOutput,
+                    SqlDbType = SqlDbType.Int,
+                    Size = 4,
+
+                });
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@TipoEntidadId", Ent.TipoEntidadId)
+                {
+                    Direction = ParameterDirection.Input,
+                    SqlDbType = SqlDbType.Int,
+                    Size = 4,
+                });
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@TipoDocumentoIdentidadId", Ent.TipoDocumentoIdentidadId)
+                {
+                    Direction = ParameterDirection.Input,
+                    SqlDbType = SqlDbType.Int,
+                    Size = 4,
+                });
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@NumDocumento", Ent.NumDocumento)
+                {
+                    Direction = ParameterDirection.Input,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 11,
+                });
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@NombreCompleto", Ent.Nombres + " " + Ent.ApellidoPaterno + " " + Ent.ApellidoMaterno)
+                {
+                    Direction = ParameterDirection.Input,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 50,
+                });
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@FechaRegistro", Ent.FechaRegistro)
+                {
+                    Direction = ParameterDirection.Input,
+                    SqlDbType = SqlDbType.DateTime,
+                    Size = 12,
+                });
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@CodUsuario", Ent.CodUsuario)
+                {
+                    Direction = ParameterDirection.Input,
+                    SqlDbType = SqlDbType.VarChar,
+                    Size = 15,
+                });
+                insertCabeceraCmd.Parameters.Add(new SqlParameter("@UbigeoId", Ent.UbigeoId)
+                {
+                    Direction = ParameterDirection.Input,
+                    SqlDbType = SqlDbType.Int,
+                    Size = 4,
+                });
+                // Ejecutar el procedimiento almacenado para insertar la cabecera
+                insertCabeceraCmd.ExecuteNonQuery();
+
+                // Obtener el valor de la variable OUT (IdCabecera) después de la ejecución del procedimiento
+                Ent.EntidadId = Convert.ToInt32(insertCabeceraCmd.Parameters["@EntidadId"].Value);
+
+                // ... (resto del código para insertar el detalle o realizar otras operaciones)
+
+                // Realizar el commit si todo se ejecutó correctamente
+                transaction.Commit();
+
+                return Ent;
+          
 
         }
     }

@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Space.EntityLayer", "Space.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Space.Server", "Space.Server\Space.Server.csproj", "{D0637C31-B0C2-4F13-980A-93C3947A0E88}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DRFramework", "DRFramework\DRFramework.csproj", "{11A70EF3-5EDC-4083-BE46-5A5077548A7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{D0637C31-B0C2-4F13-980A-93C3947A0E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0637C31-B0C2-4F13-980A-93C3947A0E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0637C31-B0C2-4F13-980A-93C3947A0E88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11A70EF3-5EDC-4083-BE46-5A5077548A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A70EF3-5EDC-4083-BE46-5A5077548A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A70EF3-5EDC-4083-BE46-5A5077548A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A70EF3-5EDC-4083-BE46-5A5077548A7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
