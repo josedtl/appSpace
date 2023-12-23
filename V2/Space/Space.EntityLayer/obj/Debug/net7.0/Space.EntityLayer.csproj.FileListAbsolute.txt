@@ -10,3 +10,14 @@ C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Debug\ne
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\refint\Space.EntityLayer.dll
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.pdb
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\ref\Space.EntityLayer.dll
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\bin\Debug\net7.0\Space.EntityLayer.deps.json
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\bin\Debug\net7.0\Space.EntityLayer.dll
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\bin\Debug\net7.0\Space.EntityLayer.pdb
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.AssemblyInfoInputs.cache
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.AssemblyInfo.cs
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.dll
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\refint\Space.EntityLayer.dll
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.pdb
+C:\Users\RUTH\Documents\GitHub\Space\appSpace\V2\Space\Space.EntityLayer\obj\Debug\net7.0\ref\Space.EntityLayer.dll

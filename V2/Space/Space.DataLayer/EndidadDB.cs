@@ -101,6 +101,7 @@ namespace Space.DataLayer
 
                 Int32 Index = ItemDataType.FindIndex(S => S.Campo == nombrePropiedad);
 
+
                 if (Index == -1) continue;
 
 
