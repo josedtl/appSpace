@@ -37,25 +37,28 @@ function Page() {
 
         <>
             <div className="grid grid-cols-12 px-2 py-5" >
-                <div className=" col-span-10 px-10 py-1 ">
+                <div className=" col-span-10 px-5 py-1 ">
                     Persona Natural MAIN
                 </div>
-                <div className=" col-span-2 px-2 py-2 bg-right">
+                <div className=" col-span-1 px-1 py-1 bg-right">
                     <TButtonPrimary>
                         Aceptar
                     </TButtonPrimary>
+                </div>
+                <div className=" col-span-1 px-1 py-1 bg-right">
                     <TButtonPrimary>
                         Cancelar
                     </TButtonPrimary>
                 </div>
+             
             </div>
-
-
 
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg px-5">
-                <TableMain/>
+                <TableMain />
 
             </div>
+
+
 
         </>
     )
