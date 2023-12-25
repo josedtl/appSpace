@@ -5,7 +5,7 @@ dotnet new webapi -n MiProyectoWebAPI
 EJECUTAR EL PROYECTO
 dotnet run
 dotnet watch run
-
+cd
 CREAR BIBLIOTECA DE CLASES
 dotnet new classlib -n Datos
 dotnet new classlib -n Entidades
