@@ -6,6 +6,7 @@ import Input from '@/Components/ui/Input';
 import LabelDR from '@/Components/ui/LabelDR';
 import TButtonPrimary from '@/Components/ui/Button/TButtonPrimary'
 import TableMain from "@/Components/ui/Table/TableMain";
+import TButtonAgregar from '@/Components/ui/Button/TButtonAgregar'
 
 class PersonaEntity {
     Nombres: string = "";
@@ -41,15 +42,11 @@ function Page() {
                     Persona Natural MAIN
                 </div>
                 <div className=" col-span-1 px-1 py-1 bg-right">
-                    <TButtonPrimary>
+                    <TButtonAgregar >
                         Aceptar
-                    </TButtonPrimary>
+                    </TButtonAgregar>
                 </div>
-                <div className=" col-span-1 px-1 py-1 bg-right">
-                    <TButtonPrimary>
-                        Cancelar
-                    </TButtonPrimary>
-                </div>
+
              
             </div>
 
