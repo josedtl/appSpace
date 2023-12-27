@@ -1,5 +1,6 @@
 import React from "react";
 import TButtonEditar from '@/Components/ui/Button/TButtonEditar'
+import TButtonEliminar from '@/Components/ui/Button/TButtonEliminar'
 
 interface Props extends React.TableHTMLAttributes<HTMLTableElement> { }
 
@@ -68,8 +69,8 @@ function TableMain(props: Props) {
                         <div>
                             <TButtonEditar>
                             </TButtonEditar>
+                        <TButtonEliminar/>
                         </div>
-
                     </td>
 
                 </tr>
