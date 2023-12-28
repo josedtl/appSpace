@@ -2802,13 +2802,9 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\DAVID\\.nuget\\packages\\": {}
-=======
     "C:\\Users\\DAVID\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
->>>>>>> 4b2a83b85db66d29c156c7bb3c6064a4d029e82a
   },
   "project": {
     "version": "1.0.0",
@@ -2819,10 +2815,6 @@
       "packagesPath": "C:\\Users\\DAVID\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.Server\\obj\\",
       "projectStyle": "PackageReference",
-<<<<<<< HEAD
-      "configFilePaths": [
-        "C:\\Users\\DAVID\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -2831,18 +2823,14 @@
         "C:\\Users\\DAVID\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
->>>>>>> 4b2a83b85db66d29c156c7bb3c6064a4d029e82a
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-<<<<<<< HEAD
-=======
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "C:\\Program Files\\dotnet\\library-packs": {},
         "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
->>>>>>> 4b2a83b85db66d29c156c7bb3c6064a4d029e82a
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2896,12 +2884,16 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
->>>>>>> 4b2a83b85db66d29c156c7bb3c6064a4d029e82a
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.Server\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
