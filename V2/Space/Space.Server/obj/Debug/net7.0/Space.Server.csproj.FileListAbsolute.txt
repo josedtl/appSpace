@@ -122,3 +122,5 @@ C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.Server\obj\Debug\net7.0\
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.Server\obj\Debug\net7.0\Space.Server.pdb
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.Server\obj\Debug\net7.0\Space.Server.genruntimeconfig.cache
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.Server\obj\Debug\net7.0\ref\Space.Server.dll
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.Server\bin\Debug\net7.0\DRFramework.dll
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.Server\bin\Debug\net7.0\DRFramework.pdb

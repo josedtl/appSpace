@@ -13,7 +13,7 @@ namespace Space.BusinessLayer
 
             EndidadDB DB = new EndidadDB();
 
-            return DB.GetEndidad();
+            return DB.GetEndidadAlter();
 
         }
 

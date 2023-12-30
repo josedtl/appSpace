@@ -28,3 +28,5 @@ C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.DataLayer\obj\Debug\net7
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.DataLayer\obj\Debug\net7.0\refint\Space.DataLayer.dll
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.DataLayer\obj\Debug\net7.0\Space.DataLayer.pdb
 C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.DataLayer\obj\Debug\net7.0\ref\Space.DataLayer.dll
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.DataLayer\bin\Debug\net7.0\DRFramework.dll
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.DataLayer\bin\Debug\net7.0\DRFramework.pdb

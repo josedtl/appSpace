@@ -532,6 +532,14 @@
           }
         }
       },
+      "DRFramework/1.0.0": {
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "runtime": {
+          "DRFramework.dll": {}
+        }
+      },
       "Space.BusinessLayer/1.0.0": {
         "dependencies": {
           "Space.DataLayer": "1.0.0",
@@ -543,6 +551,7 @@
       },
       "Space.DataLayer/1.0.0": {
         "dependencies": {
+          "DRFramework": "1.0.0",
           "Microsoft.Data.SqlClient": "5.1.2",
           "Space.EntityLayer": "1.0.0",
           "System.Data.SqlClient": "4.8.5"
@@ -934,6 +943,11 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "DRFramework/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "Space.BusinessLayer/1.0.0": {
       "type": "project",

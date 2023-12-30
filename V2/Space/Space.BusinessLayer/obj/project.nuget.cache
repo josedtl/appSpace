@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DxuVJGVPYxYOzHAAIt7vV5if2JgvR+0U0hejevMP30XCGMOkN/3LJFh38OPn7oJ6cOAFiuEPwig0lxvYDSj8rw==",
+  "dgSpecHash": "sslPFNoDifjf4FfjgbiQioY41ZPqzhzVjsyybPToqUQDHQ1ZRUuUMFCoQtWwyju7o7+LT48EkB9jZzfohioMAw==",
   "success": true,
   "projectFilePath": "C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\Space.BusinessLayer.csproj",
   "expectedPackageFiles": [
@@ -51,12 +51,5 @@
     "C:\\Users\\DAVID\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\DAVID\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema al leer el archivo de caché C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

@@ -802,10 +802,24 @@
           }
         }
       },
+      "DRFramework/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.5"
+        },
+        "compile": {
+          "bin/placeholder/DRFramework.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DRFramework.dll": {}
+        }
+      },
       "Space.DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "DRFramework": "1.0.0",
           "Microsoft.Data.SqlClient": "5.1.2",
           "Space.EntityLayer": "1.0.0",
           "System.Data.SqlClient": "4.8.5"
@@ -2307,6 +2321,11 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "DRFramework/1.0.0": {
+      "type": "project",
+      "path": "../DRFramework/DRFramework.csproj",
+      "msbuildProject": "../DRFramework/DRFramework.csproj"
+    },
     "Space.DataLayer/1.0.0": {
       "type": "project",
       "path": "../Space.DataLayer/Space.DataLayer.csproj",
@@ -2396,13 +2415,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problema al leer el archivo de caché C:\\Users\\DAVID\\Documents\\GitHub\\appSpace\\V2\\Space\\Space.BusinessLayer\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

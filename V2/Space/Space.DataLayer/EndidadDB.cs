@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Reflection;
 using Datos.Conexion;
 using Space.EntityLayer;
+using DRFramework;
 
 
 namespace Space.DataLayer
@@ -221,6 +222,39 @@ namespace Space.DataLayer
           
 
         }
+
+        public List<EntidadEntity> GetEndidadAlter()
+        {
+            List<EntidadEntity> ListaData = new List<EntidadEntity>();
+            Conexion.StartTransaction();
+            Conexion.Store("sp_PersonaAll");
+            SqlDataReader reader = Conexion.ReaderData();
+            EntidadEntity Item = null;
+            while (reader.Read())
+            {
+                Item = null;
+                Item = new EntidadEntity();
+
+                Item.EntidadId = Convert.ToInt32(reader["EntidadId"]);
+                Item.NumDocumento = reader["NumDocumento"].ToString();
+                //Item.Nombres = reader["Nombres"].ToString();
+                //Item.ApellidoPaterno = reader["ApellidoPaterno"].ToString();
+                //Item.ApellidoMaterno = reader["ApellidoMaterno"].ToString();
+                //Item.FechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
+                //Item.Direccion = reader["Direccion"].ToString();
+                //Item.Telefono = reader["Telefono"].ToString();
+                //Item.Correo = reader["Correo"].ToString();
+                //Item.SexoId = Convert.ToInt32(reader["SexoId"].ToString());
+                //Item.EstadoCivilId = Convert.ToInt32(reader["EstadoCivilId"].ToString());
+
+                ListaData.Add(Item);
+            }
+            reader.Close();
+            //Conexion.EndTransaction();
+
+            return ListaData;
+        }
+
     }
 
 }

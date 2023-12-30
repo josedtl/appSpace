@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\DRFramework\DRFramework.csproj" />
     <ProjectReference Include="..\Space.EntityLayer\Space.EntityLayer.csproj" />
   </ItemGroup>
 
