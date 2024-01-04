@@ -1,0 +1,12 @@
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\bin\Release\net7.0\Space.EntityLayer.deps.json
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\bin\Release\net7.0\Space.EntityLayer.dll
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\bin\Release\net7.0\Space.EntityLayer.pdb
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\Space.EntityLayer.csproj.AssemblyReference.cache
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\Space.EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\Space.EntityLayer.AssemblyInfoInputs.cache
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\Space.EntityLayer.AssemblyInfo.cs
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\Space.EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\Space.EntityLayer.dll
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\refint\Space.EntityLayer.dll
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\Space.EntityLayer.pdb
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\Space.EntityLayer\obj\Release\net7.0\ref\Space.EntityLayer.dll

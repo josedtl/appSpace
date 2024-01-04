@@ -10,7 +10,7 @@ using DRFramework;
 namespace Space.DataLayer
 {
 
-    public class EndidadDB
+    public class EndidadDB : BaseDB
     {
         public List<EntidadEntity> GetEndidad()
         {
@@ -25,15 +25,15 @@ namespace Space.DataLayer
 
                 Item.EntidadId = Convert.ToInt32(reader["EntidadId"]);
                 Item.NumDocumento = reader["NumDocumento"].ToString();
-                //Item.Nombres = reader["Nombres"].ToString();
-                //Item.ApellidoPaterno = reader["ApellidoPaterno"].ToString();
-                //Item.ApellidoMaterno = reader["ApellidoMaterno"].ToString();
-                //Item.FechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
-                //Item.Direccion = reader["Direccion"].ToString();
-                //Item.Telefono = reader["Telefono"].ToString();
-                //Item.Correo = reader["Correo"].ToString();
-                //Item.SexoId = Convert.ToInt32(reader["SexoId"].ToString());
-                //Item.EstadoCivilId = Convert.ToInt32(reader["EstadoCivilId"].ToString());
+                Item.Nombres = reader["Nombres"].ToString();
+                Item.ApellidoPaterno = reader["ApellidoPaterno"].ToString();
+                Item.ApellidoMaterno = reader["ApellidoMaterno"].ToString();
+                Item.FechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
+                Item.Direccion = reader["Direccion"].ToString();
+                Item.Telefono = reader["Telefono"].ToString();
+                Item.Correo = reader["Correo"].ToString();
+                Item.SexoId = Convert.ToInt32(reader["SexoId"].ToString());
+                Item.EstadoCivilId = Convert.ToInt32(reader["EstadoCivilId"].ToString());
 
                 ListaData.Add(Item);
             }
@@ -135,9 +135,6 @@ namespace Space.DataLayer
 
         }
 
-
-
-
         public EntidadEntity SaveAlter(EntidadEntity Ent)
         {
             DatabaseManager dbManager = new DatabaseManager();
@@ -150,108 +147,92 @@ namespace Space.DataLayer
 
 
             transaction.Rollback();
-                // 1. Insertar la cabecera utilizando el procedimiento almacenado
-                SqlCommand insertCabeceraCmd = new SqlCommand("InsertarCabecera", connection, transaction);
-                insertCabeceraCmd.CommandType = CommandType.StoredProcedure;
+            // 1. Insertar la cabecera utilizando el procedimiento almacenado
+            SqlCommand insertCabeceraCmd = new SqlCommand("InsertarCabecera", connection, transaction);
+            insertCabeceraCmd.CommandType = CommandType.StoredProcedure;
 
-                // Configurar el parámetro de salida para obtener el Id de la cabecera insertada
+            // Configurar el parámetro de salida para obtener el Id de la cabecera insertada
 
 
 
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@EntidadId", Ent.EntidadId)
-                {
-                    Direction = ParameterDirection.InputOutput,
-                    SqlDbType = SqlDbType.Int,
-                    Size = 4,
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@EntidadId", Ent.EntidadId)
+            {
+                Direction = ParameterDirection.InputOutput,
+                SqlDbType = SqlDbType.Int,
+                Size = 4,
 
-                });
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@TipoEntidadId", Ent.TipoEntidadId)
-                {
-                    Direction = ParameterDirection.Input,
-                    SqlDbType = SqlDbType.Int,
-                    Size = 4,
-                });
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@TipoDocumentoIdentidadId", Ent.TipoDocumentoIdentidadId)
-                {
-                    Direction = ParameterDirection.Input,
-                    SqlDbType = SqlDbType.Int,
-                    Size = 4,
-                });
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@NumDocumento", Ent.NumDocumento)
-                {
-                    Direction = ParameterDirection.Input,
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 11,
-                });
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@NombreCompleto", Ent.Nombres + " " + Ent.ApellidoPaterno + " " + Ent.ApellidoMaterno)
-                {
-                    Direction = ParameterDirection.Input,
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 50,
-                });
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@FechaRegistro", Ent.FechaRegistro)
-                {
-                    Direction = ParameterDirection.Input,
-                    SqlDbType = SqlDbType.DateTime,
-                    Size = 12,
-                });
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@CodUsuario", Ent.CodUsuario)
-                {
-                    Direction = ParameterDirection.Input,
-                    SqlDbType = SqlDbType.VarChar,
-                    Size = 15,
-                });
-                insertCabeceraCmd.Parameters.Add(new SqlParameter("@UbigeoId", Ent.UbigeoId)
-                {
-                    Direction = ParameterDirection.Input,
-                    SqlDbType = SqlDbType.Int,
-                    Size = 4,
-                });
-                // Ejecutar el procedimiento almacenado para insertar la cabecera
-                insertCabeceraCmd.ExecuteNonQuery();
+            });
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@TipoEntidadId", Ent.TipoEntidadId)
+            {
+                Direction = ParameterDirection.Input,
+                SqlDbType = SqlDbType.Int,
+                Size = 4,
+            });
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@TipoDocumentoIdentidadId", Ent.TipoDocumentoIdentidadId)
+            {
+                Direction = ParameterDirection.Input,
+                SqlDbType = SqlDbType.Int,
+                Size = 4,
+            });
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@NumDocumento", Ent.NumDocumento)
+            {
+                Direction = ParameterDirection.Input,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 11,
+            });
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@NombreCompleto", Ent.Nombres + " " + Ent.ApellidoPaterno + " " + Ent.ApellidoMaterno)
+            {
+                Direction = ParameterDirection.Input,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 50,
+            });
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@FechaRegistro", Ent.FechaRegistro)
+            {
+                Direction = ParameterDirection.Input,
+                SqlDbType = SqlDbType.DateTime,
+                Size = 12,
+            });
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@CodUsuario", Ent.CodUsuario)
+            {
+                Direction = ParameterDirection.Input,
+                SqlDbType = SqlDbType.VarChar,
+                Size = 15,
+            });
+            insertCabeceraCmd.Parameters.Add(new SqlParameter("@UbigeoId", Ent.UbigeoId)
+            {
+                Direction = ParameterDirection.Input,
+                SqlDbType = SqlDbType.Int,
+                Size = 4,
+            });
+            // Ejecutar el procedimiento almacenado para insertar la cabecera
+            insertCabeceraCmd.ExecuteNonQuery();
 
-                // Obtener el valor de la variable OUT (IdCabecera) después de la ejecución del procedimiento
-                Ent.EntidadId = Convert.ToInt32(insertCabeceraCmd.Parameters["@EntidadId"].Value);
+            // Obtener el valor de la variable OUT (IdCabecera) después de la ejecución del procedimiento
+            Ent.EntidadId = Convert.ToInt32(insertCabeceraCmd.Parameters["@EntidadId"].Value);
 
-                // ... (resto del código para insertar el detalle o realizar otras operaciones)
+            // ... (resto del código para insertar el detalle o realizar otras operaciones)
 
-                // Realizar el commit si todo se ejecutó correctamente
-                transaction.Commit();
+            // Realizar el commit si todo se ejecutó correctamente
+            transaction.Commit();
 
-                return Ent;
-          
+            return Ent;
+
 
         }
 
         public List<EntidadEntity> GetEndidadAlter()
         {
             List<EntidadEntity> ListaData = new List<EntidadEntity>();
-            Conexion.StartTransaction();
+            Conexion.OpenConnection();
             Conexion.Store("sp_PersonaAll");
             SqlDataReader reader = Conexion.ReaderData();
-            EntidadEntity Item = null;
+            FillSchemeTable(reader);
             while (reader.Read())
             {
-                Item = null;
-                Item = new EntidadEntity();
-
-                Item.EntidadId = Convert.ToInt32(reader["EntidadId"]);
-                Item.NumDocumento = reader["NumDocumento"].ToString();
-                //Item.Nombres = reader["Nombres"].ToString();
-                //Item.ApellidoPaterno = reader["ApellidoPaterno"].ToString();
-                //Item.ApellidoMaterno = reader["ApellidoMaterno"].ToString();
-                //Item.FechaNacimiento = Convert.ToDateTime(reader["FechaNacimiento"]);
-                //Item.Direccion = reader["Direccion"].ToString();
-                //Item.Telefono = reader["Telefono"].ToString();
-                //Item.Correo = reader["Correo"].ToString();
-                //Item.SexoId = Convert.ToInt32(reader["SexoId"].ToString());
-                //Item.EstadoCivilId = Convert.ToInt32(reader["EstadoCivilId"].ToString());
-
-                ListaData.Add(Item);
+                EntidadEntity entity = new EntidadEntity();
+                if (FillFrom<EntidadEntity>(reader, entity)) ListaData.Add(entity);
             }
             reader.Close();
-            //Conexion.EndTransaction();
-
             return ListaData;
         }
 
