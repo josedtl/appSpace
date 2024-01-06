@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>C:\Users\DAVID\Desktop\Service</_PublishTargetUrl>
-    <History>True|2024-01-04T04:51:10.1822304Z;True|2024-01-03T23:47:00.3392282-05:00;False|2024-01-03T23:45:26.3474472-05:00;</History>
+    <_PublishTargetUrl>C:\inetpub\wwwroot\ServiceSpace</_PublishTargetUrl>
+    <History>True|2024-01-04T06:04:05.2755004Z;False|2024-01-04T01:00:21.2167012-05:00;False|2024-01-04T00:59:26.3627049-05:00;False|2024-01-04T00:58:24.9353787-05:00;True|2024-01-03T23:51:10.1822304-05:00;True|2024-01-03T23:47:00.3392282-05:00;False|2024-01-03T23:45:26.3474472-05:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>

@@ -1,0 +1,1 @@
+C:\Users\DAVID\Documents\GitHub\appSpace\V2\Space\ClientApp\ClientApp.csproj;x64
