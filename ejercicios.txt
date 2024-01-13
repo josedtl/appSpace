@@ -1,4 +1,0 @@
-1  Verificar si son Par o inpar y si es 0 , tambien verificar si es positivo o negativo .
-2 Realizar un contador que sumen de 3 en 3 la cual cuando llege un nnumero par que le añada a la respuesta , es par 
-3 Realizar una figura que con asteriscos la cual reealize un triangulo con 10 filas 
-4 Realizar un programa que ingrese el sueldo bruto , que tenga opciones de Essalud(9%) , Pencion(11%) , si tiene pencion familiar que le sume el  3% , y si es por honario , que no tenga descuentos. Si el servicio por honorario pasa los 1500 se descontara el 7%
