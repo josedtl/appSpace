@@ -15,8 +15,8 @@ export type PropsModel = {
 
 export type PropsTable = {
     DataList: any[];
-    updateState: any;
-    deleteItemFromState: any;
+    updateState?: any;
+    deleteItemFromState?: any;
     EsTabla: boolean
 }
 

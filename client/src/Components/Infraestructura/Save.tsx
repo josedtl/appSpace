@@ -392,7 +392,7 @@ const Save = () => {
       {contextHolderAdd}
       <Row>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-          <Title level={3}> {Ent.ProductoId > 0 ? 'Producto' : 'Agregar Producto'}</Title>
+          <Title level={3}> {Ent.ProductoId > 0 ? 'Infraestructura' : 'Infraestructura'}</Title>
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Button

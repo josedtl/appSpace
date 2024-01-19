@@ -50,6 +50,7 @@ const Root: React.FC = () => {
       ]),
     getItem('Catalogo', 'C1', <BlockOutlined />,
       [
+        getItem(<Link to="/Infraestructura">Infraestructura</Link>, 'C1_INFRA'),
         getItem(<Link to="/Categoria">Categoria</Link>, 'C1_1'),
         getItem(<Link to="/Marca">Marca</Link>, 'C1_2'),
         getItem(<Link to="/Modelo">Modelo</Link>, 'C1_3'),

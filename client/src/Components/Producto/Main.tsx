@@ -3,18 +3,22 @@ import DataTable from './DataTable';
 import { ProductoEntity } from '../../Models/ProductoEntity';
 import ProductoService from '../../Service/ProductoService';
 import { Col, Row, Typography, Card, Button, Spin, Input } from 'antd';
-import { ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain , ButtonAddMain} from '../../Styles/Button'
-import { SizeMainButtonSecondary ,SizeButtonPrimary} from '../../Styles/Type'
+import { ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain, ButtonAddMain } from '../../Styles/Button'
+import { SizeMainButtonSecondary, SizeButtonPrimary } from '../../Styles/Type'
 import { IconLoad, IconTabla, IconCard, IconReport, IconFiltro, IconAdd } from '../../Styles/Icons'
 import { Link } from "react-router-dom";
+
+
+
 function Main() {
+
   useEffect(() => {
     getItems();
   }, []);
   const sProducto = new ProductoService();
 
   const [items, setItems] = useState<ProductoEntity[]>([]);
-  const [CargarPage, setCargarPage] = React.useState(true);
+  const [CargarPage, setCargarPage] = React.useState(false);
   const [disabled, setDisabled] = useState(false);
   const [Busqueda, setBusqueda] = useState<string>('');
   const toggle = () => {
@@ -50,7 +54,7 @@ function Main() {
     <Spin spinning={CargarPage} tip="Cargando" size="large">
       <Row>
 
-      <Col xs={18} sm={18} md={12} lg={12} xl={12}>
+        <Col xs={18} sm={18} md={12} lg={12} xl={12}>
           <Title level={2}> Producto</Title>
         </Col>
 
@@ -62,7 +66,7 @@ function Main() {
               icon={IconAdd}
             />
 
-         
+
           </Link>
         </Col>
 
