@@ -17,6 +17,13 @@ import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { useParams } from 'react-router-dom';
 import { ButtonAddMain } from '../../Styles/Button'
 
+
+import {ImfraestructuraEntity  } from '../../Models/InfraestructuraEntity';
+import  sImfraestructuraService from '../../Service/InfraestructuraService';
+import {  InfraListaEntity} from '../../Models/InfraListaEntity';
+import sInfraListaService from '../../Service/InfraListaService';
+import InfraListaService from '../../Service/InfraListaService';
+
 const Save = () => {
   const { Id } = useParams();
   const idNumero = Number(Id?.toString());
@@ -25,7 +32,18 @@ const Save = () => {
   const initialProducto = new ProductoEntity();
   const [Ent, setEnt] = useState<ProductoEntity>(initialProducto);
   const { Title } = Typography;
-  const [CargarPage, setCargarPage] = React.useState(false);
+  const [CargarPage, setCargarPage] = React.useState(false)
+  const sInfraListaService = new InfraListaService();
+
+//   const addItemToStateInfraLista = async (item: InfraListaEntity) => {
+//     const Resp_InfraLista = await sInfraListaService.getInfraLista(item.ListaId);
+//     setOptionsCategoria(Resp_InfraLista);
+//     Ent.ListaId = Resp_InfraLista[0].ListaId;
+
+//   };
+
+
+
 
   const addItemToStateCategoria = async (item: CategoriaEntity) => {
     const Resp_Categoria = await sGeneral.GetCategoriaItem(item.CategoriaId);
@@ -101,33 +119,33 @@ const Save = () => {
 
   ];
 
-  const [TabsItems] = useState<any>([
-    {
-      label: (
-        < >
-          {/* <AndroidOutlined /> */}
-          <Title style={{ fontSize: '18px' }}>
-            Tarifa
-          </Title>
-        </>
-      ),
-      key: 1,
-      children:
-        <span>
+//   const [TabsItems] = useState<any>([
+//     {
+//       label: (
+//         < >
+//           {/* <AndroidOutlined /> */}
+//           <Title style={{ fontSize: '18px' }}>
+//             Tarifa
+//           </Title>
+//         </>
+//       ),
+//       key: 1,
+//       children:
+//         <span>
 
-          <Row>
-            <Col xs={24}>
-              <Table
-                columns={columns}
-                size="small"
-                scroll={{ y: '100%' }}
-              />
-            </Col>
-          </Row >
-        </span>
-    },
+//           <Row>
+//             <Col xs={24}>
+//               <Table
+//                 columns={columns}
+//                 size="small"
+//                 scroll={{ y: '100%' }}
+//               />
+//             </Col>
+//           </Row >
+//         </span>
+//     },
 
-  ]);
+//   ]);
 
 
   const [optionsCategoria, setOptionsCategoria] = useState<CategoriaEntity[]>([]);
@@ -135,6 +153,7 @@ const Save = () => {
   const [optionsMarca, setOptionsMarca] = useState<MarcaEntity[]>([]);
   const [optionsModelo, setOptionsModelo] = useState<ModeloEntity[]>([]);
   const [optionsUM, setOptionsUM] = useState<UnidadMedidaEntity[]>([]);
+  const [optionsLista, setOptionsLista] = useState<InfraListaEntity[]>([]);
 
   const handleSearchCategoria = async (value: string) => {
     try {
@@ -174,6 +193,14 @@ const Save = () => {
     }
   };
 
+  const handleSearchInfraLista = async (value: string) => {
+    try {
+      const responseInfraLista = await sGeneral.GetModeloItemLike(value);
+      setOptionsModelo(responseInfraLista);
+    } catch (error) {
+      console.error('Error al buscar categorías:', error);
+    }
+  };
 
 
   const getCargarDatos = async () => {
@@ -390,7 +417,7 @@ const Save = () => {
 
       {contextHolder}
       {contextHolderAdd}
-      <Row>
+      <Row>        
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Title level={3}> {Ent.ProductoId > 0 ? 'Infraestructura' : 'Infraestructura'}</Title>
         </Col>
@@ -400,33 +427,20 @@ const Save = () => {
             onClick={Guardar_Total}
             size={"large"}
             icon={<SaveFilled />}
-          />
+            />
 
         </Col>
+       
       </Row>
       <Row>
         <Col xs={24} sm={10} md={8} lg={7} xl={6}>
 
 
-          <Row>
-            <Col span={24}>
-              <label>Codigo</label>
-            </Col>
-            <Col span={24}>
-              <Input
-                status={ValCodigo}
-                type="text"
-                name="Codigo"
-                style={{ marginTop: '5px', marginBottom: '10px' }}
-                onChange={onChangeText}
-                value={Ent.Codigo === null ? "" : Ent.Codigo}
-              />
-            </Col>
-          </Row>
+          
 
           <Row>
             <Col span={24}>
-              <label>Categoria</label>
+              <label>SucursalId</label>
             </Col>
             <Col span={24}>
               <Select
@@ -453,116 +467,34 @@ const Save = () => {
           </Row>
 
 
-
-
           <Row>
             <Col span={24}>
-              <label>Tipo Producto</label>
-            </Col>
-            <Col span={24}>
-              <Select
-                status={ValTipoProducto}
-                showSearch
-                style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
-                defaultActiveFirstOption={false}
-                filterOption={false}
-                onSearch={handleSearchTipoProducto}
-                value={Ent.TipoProductoId === 0 ? null : Ent.TipoProductoId}
-                key={Ent.TipoProductoId}
-                onChange={onChangeTipoProducto}
-              >
-                {optionsTipoProducto.map((TipoProducto) => (
-                  <Select.Option key={TipoProducto.TipoProductoId} value={TipoProducto.TipoProductoId}>
-                    {TipoProducto.Nombre}
-                  </Select.Option>
-                ))}
-              </Select>
-              <MDTipoProducto buttonLabel="Enlace"
-                addItemToState={addItemToStateTipoProducto}
-                item={new TipoProductoEntity()} />
-
-
-
-
-            </Col>
-          </Row>
-
-
-
-          <Row>
-            <Col span={24}>
-              <label>Marca</label>
-            </Col>
-            <Col span={24}>
-              <Select
-                showSearch
-                status={ValMarca}
-                style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
-                defaultActiveFirstOption={false}
-                filterOption={false}
-                onSearch={handleSearchMarca}
-                value={Ent.MarcaId === 0 ? null : Ent.MarcaId}
-                key={Ent.MarcaId}
-                onChange={onChangeMarca}
-              >
-                {optionsMarca.map((Marca) => (
-                  <Select.Option key={Marca.MarcaId} value={Marca.MarcaId}>
-                    {Marca.Nombre}
-                  </Select.Option>
-                ))}
-              </Select>
-
-              <MDMarca buttonLabel="Enlace"
-                addItemToState={addItemToStateMarca}
-                item={new MarcaEntity()} />
-
-
-
-            </Col>
-          </Row>
-
-          <Row>
-            <Col span={24}>
-              <label>Modelo</label>
-            </Col>
-            <Col span={24}>
-              <Select
-                showSearch
-                status={ValModelo}
-                style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
-                defaultActiveFirstOption={false}
-                filterOption={false}
-                onSearch={handleSearchModelo}
-                value={Ent.ModeloId === 0 ? null : Ent.ModeloId}
-                key={Ent.ModeloId}
-                onChange={onChangeModelo}
-              >
-                {optionsModelo.map((Modelo) => (
-                  <Select.Option key={Modelo.ModeloId} value={Modelo.ModeloId}>
-                    {Modelo.Nombre}
-                  </Select.Option>
-                ))}
-              </Select>
-              <MDModelo buttonLabel="Enlace"
-                addItemToState={addItemToStateModelo}
-                item={new ModeloEntity()} />
-
-
-
-            </Col>
-          </Row>
-          <Row>
-            <Col span={24}>
-              <label>Nombre</label>
+              <label>CodigoSistema</label>
             </Col>
             <Col span={24}>
               <Input
+                status={ValCodigo}
                 type="text"
-                name="Nombre"
-                status={ValNombre}
+                name="InfraestructuraId"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
-                value={Ent.Nombre === null ? "" : Ent.Nombre}
+                value={Ent.Codigo === null ? "" : Ent.Codigo}
+              />
+            </Col>
+          </Row>
+
+          <Row>
+            <Col span={24}>
+              <label>CodigoInterno</label>
+            </Col>
+            <Col span={24}>
+              <Input
+                status={ValCodigo}
+                type="text"
+                name="InfraestructuraId"
+                style={{ marginTop: '5px', marginBottom: '10px' }}
+                onChange={onChangeText}
+                value={Ent.Codigo === null ? "" : Ent.Codigo}
               />
             </Col>
           </Row>
@@ -573,55 +505,77 @@ const Save = () => {
             </Col>
             <Col span={24}>
               <Input
-                type="TextArea"
-
-                name="Descripcion"
-                status={ValDescripcion}
+                status={ValCodigo}
+                type="text"
+                name="InfraestructuraId"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
-                value={Ent.Descripcion === null ? "" : Ent.Descripcion}
+                value={Ent.Codigo === null ? "" : Ent.Codigo}
               />
-
             </Col>
           </Row>
 
+
           <Row>
             <Col span={24}>
-              <label>Unidad de Medida</label>
+              <label>TipoInfraestructuraId</label>
             </Col>
             <Col span={24}>
               <Select
-                allowClear
-                status={ValUnidadMedida}
-                style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                status={ValCategoria}
+                showSearch
+                style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
-                value={Ent.UnidadMedidaId === 0 ? null : Ent.UnidadMedidaId}
-                key={Ent.UnidadMedidaId}
-                onChange={onChangeUM}
+                onSearch={handleSearchCategoria}
+                value={Ent.CategoriaId === 0 ? null : Ent.CategoriaId}
+                key={Ent.CategoriaId}
+                onChange={onChangeCategoria}
               >
-                {optionsUM.map((UM) => (
-                  <Select.Option key={UM.UnidadMedidaId} value={UM.UnidadMedidaId}>
-                    {UM.Nombre}
+                {optionsCategoria.map((categoria) => (
+                  <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
+                    {categoria.Nombre}
                   </Select.Option>
                 ))}
               </Select>
+              <MDCategoria buttonLabel="Enlace"
+                addItemToState={addItemToStateCategoria}
+                item={new CategoriaEntity()} />
+            </Col>
+          </Row>
 
-
+          <Row>
+            <Col span={24}>
+              <label>InfraestructuraDimendonId</label>
+            </Col>
+            <Col span={24}>
+              <Select
+                status={ValCategoria}
+                showSearch
+                style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
+                defaultActiveFirstOption={false}
+                filterOption={false}
+                onSearch={handleSearchCategoria}
+                value={Ent.CategoriaId === 0 ? null : Ent.CategoriaId}
+                key={Ent.CategoriaId}
+                onChange={onChangeCategoria}
+              >
+                {optionsCategoria.map((categoria) => (
+                  <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
+                    {categoria.Nombre}
+                  </Select.Option>
+                ))}
+              </Select>
+              <MDCategoria buttonLabel="Enlace"
+                addItemToState={addItemToStateCategoria}
+                item={new CategoriaEntity()} />
             </Col>
           </Row>
 
 
-
-
-
-
           <Row>
-            <Col span={12}>
-
-              <Row>
                 <Col span={24}>
-                  <label>Reserva</label>
+                  <label>Aforo</label>
                 </Col>
                 <Col span={24}>
                   <Input
@@ -632,39 +586,44 @@ const Save = () => {
                     value={Ent.Reserva === null ? "" : Ent.Reserva}
                   />
                 </Col>
-              </Row>
+          </Row>
 
-
+          <Row>
+            <Col span={24}>
+              <label>PisoId</label>
             </Col>
-            <Col span={12}>
-
-
-              <Row>
-                <Col span={24}>
-                  <label>Stock</label>
-                </Col>
-                <Col span={24}>
-                  <Input
-                    type="number"
-                    name="Stock"
-                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                    onChange={onChangeText}
-                    value={Ent.Stock === null ? "" : Ent.Stock}
-                  />
-                </Col>
-              </Row>
-
-
+            <Col span={24}>
+              <Select
+                status={ValCategoria}
+                showSearch
+                style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
+                defaultActiveFirstOption={false}
+                filterOption={false}
+                onSearch={handleSearchCategoria}
+                value={Ent.CategoriaId === 0 ? null : Ent.CategoriaId}
+                key={Ent.CategoriaId}
+                onChange={onChangeCategoria}
+              >
+                {optionsCategoria.map((categoria) => (
+                  <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
+                    {categoria.Nombre}
+                  </Select.Option>
+                ))}
+              </Select>
+              <MDCategoria buttonLabel="Enlace"
+                addItemToState={addItemToStateCategoria}
+                item={new CategoriaEntity()} />
             </Col>
           </Row>
 
+
         </Col>
 
-        <Col xs={24} sm={14} md={16} lg={17} xl={18}>
+        {/* <Col xs={24} sm={14} md={16} lg={17} xl={18}>
           <Tabs
             style={{ marginLeft: '20px' }}
             type="line" items={TabsItems} />
-        </Col>
+        </Col> */}
       </Row>
     </Spin>
   );

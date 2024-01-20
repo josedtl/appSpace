@@ -62,3 +62,37 @@ export class InfraestructuraMainModel {
         this.EstadoRegistro = true;
     }
 }
+
+export class InfraestructuraSaveModel {
+    Item:number;
+    InfraestructuraId: number;
+    SucursalId: number;
+    Estado: boolean;
+    CodigoSistema: string;
+    CodigoInterno: string;
+    Descripcion: string;
+    TipoInfraestructuraId: number;
+    InfraestructuraDimendonId: number;
+    Aforo: number;
+    PisoId: number;
+    FechaRegistro: Date;
+    CodUsuario: string;
+    EstadoRegistro: boolean;
+     
+    constructor() {
+        this.Item=0;
+        this.InfraestructuraId = 0;
+        this.SucursalId = 0;
+        this.Estado = true;
+        this.CodigoSistema = "";
+        this.CodigoInterno = "";
+        this.Descripcion = "";
+        this.TipoInfraestructuraId =0;
+        this.InfraestructuraDimendonId = 0;
+        this.Aforo = 0;
+        this.PisoId = 0;
+        this.FechaRegistro = new Date();
+        this.CodUsuario = "";
+        this.EstadoRegistro = true;
+    }
+}
