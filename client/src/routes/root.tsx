@@ -50,15 +50,18 @@ const Root: React.FC = () => {
       ]),
     getItem('Catalogo', 'C1', <BlockOutlined />,
       [
+        getItem(<Link to="/TipoDocumento/C0012">Tipo Documento</Link>, 'C0012'),
+        getItem(<Link to="/Sexo/C0008">Sexo</Link>, 'C0008'),
+        getItem(<Link to="/EstadoCivil/C0009">Estado Civil</Link>, 'C0009'),
         getItem(<Link to="/Infraestructura">Infraestructura</Link>, 'C1_INFRA'),
-        getItem(<Link to="/Categoria">Categoria</Link>, 'C1_1'),
-        getItem(<Link to="/Marca">Marca</Link>, 'C1_2'),
-        getItem(<Link to="/Modelo">Modelo</Link>, 'C1_3'),
-        getItem(<Link to="/TipoProducto">Tipo de producto</Link>, 'C1_4'),
+        // getItem(<Link to="/Categoria">Categoria</Link>, 'C1_1'),
+        // getItem(<Link to="/Marca">Marca</Link>, 'C1_2'),
+        // getItem(<Link to="/Modelo">Modelo</Link>, 'C1_3'),
+        // getItem(<Link to="/TipoProducto">Tipo de producto</Link>, 'C1_4'),
         getItem(<Link to="/Producto">Producto</Link>, 'C1_5'),
         getItem(<Link to="/PersonaNatural">Persona Natural</Link>, 'C1_6'),
         getItem(<Link to="/Empresa">Empresa</Link>, 'C1_7'),
-        getItem(<Link to="/Cliente">Cliente</Link>, 'C1_8'),
+        // getItem(<Link to="/Cliente">Cliente</Link>, 'C1_8'),
       ]),
   ];
   return (
@@ -77,9 +80,9 @@ const Root: React.FC = () => {
         }}
         style={{
           background: '#001529',
-          height:'calc(14px + 100vh)',
-          marginTop:'0px',
-          marginLeft :'-10px'
+          height: 'calc(14px + 100vh)',
+          marginTop: '0px',
+          marginLeft: '-10px'
         }}
       >
         <div style={{ height: '175px', width: '200px', background: '#B1B1B1' }} className="demo-logo-vertical" >
@@ -90,7 +93,7 @@ const Root: React.FC = () => {
           mode="inline"
           defaultSelectedKeys={['1']}
           items={items}
-     
+
         >
 
         </Menu>
@@ -110,8 +113,8 @@ const Root: React.FC = () => {
 
 
           <h3 style={{ color: 'white', float: 'right', marginTop: '-2px', marginRight: '10px' }}>David Timo</h3>
-    
-    
+
+
         </Header>
         <Content
           style={{

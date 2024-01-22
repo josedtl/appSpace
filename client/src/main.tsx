@@ -36,7 +36,9 @@ import PageEmpresaSave from "./Components/Empresa/Save";
 import PageCliente from "./Components/Cliente/Main";
 import PageInfraestructura from './Components/Infraestructura/Main';
 import PageInfraestrucutraSave from './Components/Infraestructura/Save';
-
+import PageListaRelacionMain from './Components/ListaRelacion/Main';
+import PageSexoMain from './Components/ListaRelacion/Main';
+import PageEstadoCivilMain from './Components/ListaRelacion/Main';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,7 +59,10 @@ const router = createBrowserRouter([
       { path: "EmpresaSave/:Id", element: <PageEmpresaSave />, },
       { path: "Cliente", element: <PageCliente />, },
       {path : "Infraestructura", element:<PageInfraestructura/>},
-      {path : "InfraestructuraSave/:Id", element:<PageInfraestrucutraSave/>}
+      {path : "InfraestructuraSave/:Id", element:<PageInfraestrucutraSave/>},
+      {path : "TipoDocumento/:Id", element:<PageListaRelacionMain/>},
+      {path : "Sexo/:Id", element:<PageSexoMain/>},
+      {path : "EstadoCivil/:Id", element:<PageEstadoCivilMain/>}
     ],
   },
 ]);
