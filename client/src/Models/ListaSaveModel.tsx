@@ -1,6 +1,6 @@
 
 
-export class ListaRelacionEntity {
+export class ListaSaveModel {
     Cont:number;
     ListaId: number;
     CampoId: number;

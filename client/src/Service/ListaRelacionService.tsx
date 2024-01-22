@@ -1,4 +1,4 @@
-import { ListaRelacionEntity } from '../Models/ListaRelacionEntity';
+import { ListaRelacionEntity } from '../Models/ListaSaveModel';
 import { apiLg } from './axios-config';
 
 class ListaRelacionService {

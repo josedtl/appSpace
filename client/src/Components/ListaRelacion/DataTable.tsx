@@ -1,7 +1,7 @@
 import React from 'react';
 import ModalItem from '../ListaRelacion/ModalItem'
 import ListaRelacionService from '../../Service/ListaRelacionService'
-import { ListaRelacionEntity } from '../../Models/ListaRelacionEntity';
+import { ListaSaveModel } from '../../Models/ListaSaveModel';
 import { DeleteFilled, ExclamationCircleOutlined } from '@ant-design/icons';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import { Card, Col, Row, Button, Table, Modal } from 'antd';
@@ -45,7 +45,7 @@ const DataTable: React.FC<PropsTable> = (props) => {
             fixed: 'right',
             width: 100,
             key: 'action',
-            render: ( record: ListaRelacionEntity) => 
+            render: ( record: ListaSaveModel) => 
                 <span>
 
                     <Button

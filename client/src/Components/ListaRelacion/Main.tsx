@@ -7,13 +7,13 @@ import { SizeMainButtonSecondary } from '../../Styles/Type'
 import { IconLoad, IconTabla, IconCard, IconReport, IconFiltro } from '../../Styles/Icons'
 import { useParams } from 'react-router-dom';
 import ListaRelacionService from '../../Service/ListaRelacionService';
-import { ListaRelacionEntity } from '../../Models/ListaRelacionEntity';
+import { ListaSaveModel } from '../../Models/ListaSaveModel';
 
 function Page() {
   const { Id } = useParams();
   const Codigo_Item = String(Id?.toString());
   const sListaRelacion = new ListaRelacionService();
-  const [items, setItems] = useState<ListaRelacionEntity[]>([]);
+  const [items, setItems] = useState<ListaSaveModel[]>([]);
   const [messageAdd, contextHolderAdd] = message.useMessage();
   const [CargarPage, setCargarPage] = React.useState(true);
   const [disabled, setDisabled] = useState(false);
@@ -21,7 +21,7 @@ function Page() {
   const [Busqueda, setBusqueda] = useState<string>('');
 
 
-  const addItemToState = (item: ListaRelacionEntity) => {
+  const addItemToState = (item: ListaSaveModel) => {
     setItems([...items, item]);
     messageAdd.open({
       type: 'success',
@@ -32,7 +32,7 @@ function Page() {
   const toggle = () => {
     setDisabled(!disabled);
   };
-  const updateState = (item: ListaRelacionEntity) => {
+  const updateState = (item: ListaSaveModel) => {
     const itemIndex = items.findIndex((data) => data.ListaId === item.ListaId);
     const newArray = [...items.slice(0, itemIndex), item, ...items.slice(itemIndex + 1)];
     setItems(newArray);
@@ -83,7 +83,7 @@ function Page() {
         </Col>
 
         <Col xs={6} sm={6} md={12} lg={12} xl={12}>
-          <ModalItem buttonLabel="" addItemToState={addItemToState} item={new ListaRelacionEntity()} />
+          <ModalItem buttonLabel="" addItemToState={addItemToState} item={new ListaSaveModel()} />
         </Col>
 
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>

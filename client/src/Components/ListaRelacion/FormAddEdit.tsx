@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ListaRelacionEntity } from '../../Models/ListaRelacionEntity'
+import { ListaSaveModel } from '../../Models/ListaSaveModel'
 import ListaRelacionService from '../../Service/ListaRelacionService';
 import { Button, Form, Input, Row, Col } from 'antd';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
@@ -9,8 +9,8 @@ import { ButtonAcceptModel } from '../../Styles/Button'
 const AddEditForm: React.FC<PropsModel> = (props) => {
     const sMarca = new ListaRelacionService();
 
-    const initialMarca = new ListaRelacionEntity();
-    const [Ent, setEnt] = useState<ListaRelacionEntity>(initialMarca);
+    const initialMarca = new ListaSaveModel();
+    const [Ent, setEnt] = useState<ListaSaveModel>(initialMarca);
     const [FlaState, setFlaState] = useState<Boolean>(false);
     const [form] = Form.useForm();
     const [ValDato, setValDato] = useState<InputStatus>('');
