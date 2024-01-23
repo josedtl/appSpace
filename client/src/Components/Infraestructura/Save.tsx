@@ -1,380 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
-import { Tabs, Table, message, Select, Button, Col, Row, Typography, Modal, Spin, Input } from 'antd';
+import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input } from 'antd';
 import { CategoriaEntity } from '../../Models/CategoriaEntity';
-import { TipoProductoEntity } from '../../Models/TipoProductoEntity';
-import { MarcaEntity } from '../../Models/MarcaEntity';
-import { ModeloEntity } from '../../Models/ModeloEntity';
-import { ProductoEntity } from '../../Models/ProductoEntity';
-import GeneralService from '../../Service/GeneralService';
-import { UnidadMedidaEntity } from '../../Models/UnidadMedidaEntity';
-import ProductoService from '../../Service/ProductoService';
 import MDCategoria from '../Categoria/ModalItem';
-import MDTipoProducto from '../TipoProducto/ModalItem';
-import MDMarca from '../Marca/ModalItem';
-import MDModelo from '../Modelo/ModalItem';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { useParams } from 'react-router-dom';
 import { ButtonAddMain } from '../../Styles/Button'
-
-
-import {ImfraestructuraEntity  } from '../../Models/InfraestructuraEntity';
-import  sImfraestructuraService from '../../Service/InfraestructuraService';
-import {  InfraListaEntity} from '../../Models/InfraListaEntity';
-import sInfraListaService from '../../Service/InfraListaService';
+import { ImfraestructuraEntity } from '../../Models/InfraestructuraEntity';
+import { InfraListaModel } from '../../Models/InfraListaEntity';
 import InfraListaService from '../../Service/InfraListaService';
 
 const Save = () => {
+
+  // ****************************************************VARIABLES GLOBALES**********************************************************
   const { Id } = useParams();
   const idNumero = Number(Id?.toString());
-  const sGeneral = new GeneralService();
-  const sProducto = new ProductoService();
-  const initialProducto = new ProductoEntity();
-  const [Ent, setEnt] = useState<ProductoEntity>(initialProducto);
+  const sInfraListaService = new InfraListaService();
+  const initialInfraestructura = new ImfraestructuraEntity();
+  const [Ent, setEnt] = useState<ImfraestructuraEntity>(initialInfraestructura);
   const { Title } = Typography;
   const [CargarPage, setCargarPage] = React.useState(false)
-  const sInfraListaService = new InfraListaService();
-
-//   const addItemToStateInfraLista = async (item: InfraListaEntity) => {
-//     const Resp_InfraLista = await sInfraListaService.getInfraLista(item.ListaId);
-//     setOptionsCategoria(Resp_InfraLista);
-//     Ent.ListaId = Resp_InfraLista[0].ListaId;
-
-//   };
 
 
+  // *******************REGION LOAD***********************************************************************************************
+  useEffect(() => {
 
 
-  const addItemToStateCategoria = async (item: CategoriaEntity) => {
-    const Resp_Categoria = await sGeneral.GetCategoriaItem(item.CategoriaId);
-    setOptionsCategoria(Resp_Categoria);
-    Ent.CategoriaId = Resp_Categoria[0].CategoriaId;
-
-  };
-
-  const addItemToStateMarca = async (item: MarcaEntity) => {
-    const Resp_Marca = await sGeneral.GetMarcaItem(item.MarcaId);
-    setOptionsMarca(Resp_Marca);
-    Ent.MarcaId = Resp_Marca[0].MarcaId;
-
-  };
-  const addItemToStateModelo = async (item: ModeloEntity) => {
-    const Resp_Modelo = await sGeneral.GetModeloItem(item.ModeloId);
-    setOptionsModelo(Resp_Modelo);
-    Ent.ModeloId = Resp_Modelo[0].ModeloId;
-
-  };
-  const addItemToStateTipoProducto = async (item: TipoProductoEntity) => {
-    const Resp_TipoProducto = await sGeneral.GetTipoProductoItem(item.TipoProductoId);
-    setOptionsTipoProducto(Resp_TipoProducto);
-    Ent.TipoProductoId = Resp_TipoProducto[0].TipoProductoId;
-
-  };
+  }, []);
+  // *******************END REGION LOAD*******************************************************************************************
 
 
-  const columns = [
-    {
-      title: 'Nº',
-      dataIndex: 'Cont',
-      key: 'Cont',
-      width: '50px',
-    },
-    {
-      title: 'UnidadMeida',
-      dataIndex: 'UnidadMeida',
-      key: 'UnidadMeida',
+  // ******************REGION SUCURAL COMBO LIKE *********************************************************************************
 
-    },
-    {
-      title: 'Cantidad ',
-      dataIndex: 'Cantidad',
-      key: 'Cantidad',
-      width: '80px',
-    },
-    {
-      title: 'Moneda',
-      dataIndex: 'Moneda',
-      key: 'Moneda',
-      width: '100px',
-    }, {
-      title: 'ValorVenta',
-      dataIndex: 'ValorVenta',
-      key: 'ValorVenta',
-      width: '100px',
-    }, {
-      title: 'ValorCompra',
-      dataIndex: 'ValorCompra',
-      key: 'ValorCompra',
-      width: '100px',
-    }, {
-      title: 'Fecha Vigencia',
-      dataIndex: 'FechaVigencia',
-      key: 'FechaVigencia',
-      width: '100px',
-    }, {
-      title: 'Action',
-      key: 'action',
-      width: '100px'
-    },
-
-  ];
-
-//   const [TabsItems] = useState<any>([
-//     {
-//       label: (
-//         < >
-//           {/* <AndroidOutlined /> */}
-//           <Title style={{ fontSize: '18px' }}>
-//             Tarifa
-//           </Title>
-//         </>
-//       ),
-//       key: 1,
-//       children:
-//         <span>
-
-//           <Row>
-//             <Col xs={24}>
-//               <Table
-//                 columns={columns}
-//                 size="small"
-//                 scroll={{ y: '100%' }}
-//               />
-//             </Col>
-//           </Row >
-//         </span>
-//     },
-
-//   ]);
-
-
-  const [optionsCategoria, setOptionsCategoria] = useState<CategoriaEntity[]>([]);
-  const [optionsTipoProducto, setOptionsTipoProducto] = useState<TipoProductoEntity[]>([]);
-  const [optionsMarca, setOptionsMarca] = useState<MarcaEntity[]>([]);
-  const [optionsModelo, setOptionsModelo] = useState<ModeloEntity[]>([]);
-  const [optionsUM, setOptionsUM] = useState<UnidadMedidaEntity[]>([]);
-  const [optionsLista, setOptionsLista] = useState<InfraListaEntity[]>([]);
-
-  const handleSearchCategoria = async (value: string) => {
+  // ---Variables de sucursal
+  const [ValSucursal, setValSucursal] = useState<InputStatus>('');
+  const [selectedSucursal, setSelectedSucursal] = useState<number | undefined>(undefined);
+  const [optionsSucursal, setOptionsSucural] = useState<InfraListaModel[]>([]);
+  // ---Traerpor el servicio las sucurales
+  const Buscar_Sucursal = async (value: string) => {
     try {
-      const responseCategoria = await sGeneral.GetCategoriaItemLike(value);
-      setOptionsCategoria(responseCategoria);
+      const responseSucursal = await sInfraListaService.getInfraListaLike('0001', value);
+      setOptionsSucural(responseSucursal);
     } catch (error) {
       console.error('Error al buscar categorías:', error);
     }
   };
 
-  const handleSearchTipoProducto = async (value: string) => {
-    try {
-      const responseTipoProducto = await sGeneral.GetTipoProductoItemLike(value);
-      setOptionsTipoProducto(responseTipoProducto);
-    } catch (error) {
-      console.error('Error al buscar categorías:', error);
-    }
+  // --- Seleccioonar el valor 
+  const onChangeSucursal = async (value: number) => {
+    setValSucursal('');
+    Ent.SucursalId = value;
+    setSelectedSucursal(value)
   };
 
+  // ******************END REGION SUCURAL COMBO LIKE ****************************************************************************
 
 
-  const handleSearchMarca = async (value: string) => {
-    try {
-      const responseMarca = await sGeneral.GetMarcaItemLike(value);
-      setOptionsMarca(responseMarca);
-    } catch (error) {
-      console.error('Error al buscar categorías:', error);
-    }
-  };
-
-  const handleSearchModelo = async (value: string) => {
-    try {
-      const responseModelo = await sGeneral.GetModeloItemLike(value);
-      setOptionsModelo(responseModelo);
-    } catch (error) {
-      console.error('Error al buscar categorías:', error);
-    }
-  };
-
-  const handleSearchInfraLista = async (value: string) => {
-    try {
-      const responseInfraLista = await sGeneral.GetModeloItemLike(value);
-      setOptionsModelo(responseInfraLista);
-    } catch (error) {
-      console.error('Error al buscar categorías:', error);
-    }
-  };
 
 
-  const getCargarDatos = async () => {
 
-    console.log(idNumero)
-    if (idNumero > 0) {
 
-      const Resp_Producto = await sProducto.getItem(idNumero);
 
-      // const responseInfraLista= await sInfraListaService.getInfraLista(idNumero);
 
-      const Resp_Categoria = await sGeneral.GetCategoriaItem(Resp_Producto[0].CategoriaId);
-      setOptionsCategoria(Resp_Categoria);
 
-      const Resp_TipoProducto = await sGeneral.GetTipoProductoItem(Resp_Producto[0].TipoProductoId);
-      setOptionsTipoProducto(Resp_TipoProducto);
 
-      const Resp_Marca = await sGeneral.GetMarcaItem(Resp_Producto[0].MarcaId);
-      setOptionsMarca(Resp_Marca);
 
-      const Resp_Modelo = await sGeneral.GetModeloItem(Resp_Producto[0].ModeloId);
-      setOptionsModelo(Resp_Modelo);
 
-      // const Resp_InfraLista= await sInfraListaService.getInfraLista(Resp_InfraLista[0].ListaId);
-      // setOptionsLista(Resp_InfraLista);
-
-      setEnt(Resp_Producto[0]);
-    }
-
-    // setCargarPage(false);
-  };
   const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
 
-    setValCodigo('');
-    setValNombre('');
-    setValDescripcion('');
     setEnt({
       ...Ent,
       [e.target.name]: e.target.value.toUpperCase()
     });
 
   };
-  const [selectedCategoria, setSelectedCategoria] = useState<number | undefined>(undefined);
-  const [selectedTipoProducto, setSelectedTipoProducto] = useState<number | undefined>(undefined);
-  const [selectedMarca, setSelectedMarca] = useState<number | undefined>(undefined);
-  const [selectedModelo, setSelectedModelo] = useState<number | undefined>(undefined);
-  const [selectedUM, setSelectedUM] = useState<number | undefined>(undefined);
-
   const [ValCodigo, setValCodigo] = useState<InputStatus>('');
-  const [ValCategoria, setValCategoria] = useState<InputStatus>('');
-  const [ValTipoProducto, setValTipoProducto] = useState<InputStatus>('');
-  const [ValMarca, setValMarca] = useState<InputStatus>('');
-  const [ValModelo, setValModelo] = useState<InputStatus>('');
-  const [ValNombre, setValNombre] = useState<InputStatus>('');
-  const [ValDescripcion, setValDescripcion] = useState<InputStatus>('');
-  const [ValUnidadMedida, setValUnidadMedida] = useState<InputStatus>('');
-
-
-
-  const onChangeCategoria = async (value: number) => {
-    setValCategoria('');
-    Ent.CategoriaId = value;
-    setSelectedCategoria(value)
-  };
-
-  const onChangeTipoProducto = async (value: number) => {
-    setValTipoProducto('');
-    Ent.TipoProductoId = value;
-    setSelectedTipoProducto(value)
-  };
-
-
-  const onChangeMarca = async (value: number) => {
-    setValMarca('');
-    Ent.MarcaId = value;
-    setSelectedMarca(value)
-  };
-
-
-  const onChangeModelo = async (value: number) => {
-    setValModelo('');
-    Ent.ModeloId = value;
-    setSelectedModelo(value)
-  };
-
-  const onChangeUM = async (value: number) => {
-    setValUnidadMedida('');
-    Ent.UnidadMedidaId = value;
-    setSelectedUM(value)
-  };
-
-  // const CategoriaSelectLIst = () => {
-
-  //   return (
-  //     optionsCategoria.map((categoria) => (
-  //       <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
-  //         {categoria.Nombre}
-  //       </Select.Option>
-  //     ))
-  //   )
-  // }
-
 
 
 
   const [modal, contextHolder] = Modal.useModal();
   const [messageAdd, contextHolderAdd] = message.useMessage();
-  const AddProducto = async () => {
-    const savedItem = await sProducto.saveItem(Ent);
-    if (savedItem) {
 
-      messageAdd.open({
-        type: 'success',
-        content: 'Se guardó correctamente.',
-      });
-    } else {
-    }
-  }
 
 
   const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
-    selectedCategoria;
-    selectedTipoProducto;
-    selectedMarca;
-    selectedModelo;
-    selectedUM;
-    if (Ent.Codigo === '') {
-      setValCodigo('error');
-      messageAdd.open({ type: 'error', content: 'Ingrese Codigo.', });
-      return;
-    }
-    if (Ent.CategoriaId === 0) {
-      setValCategoria('error');
-      messageAdd.open({ type: 'error', content: 'Seleccione una categoria.', });
-      return;
-    }
-    if (Ent.TipoProductoId === 0) {
-      setValTipoProducto('error');
-      messageAdd.open({ type: 'error', content: 'Seleccione una tipo de producto.', });
-      return;
-    }
-
-    if (Ent.MarcaId === 0) {
-      setValMarca('error');
-      messageAdd.open({ type: 'error', content: 'Seleccione una marca.', });
-      return;
-    }
-
-
-    if (Ent.ModeloId === 0) {
-      setValModelo('error');
-      messageAdd.open({ type: 'error', content: 'Seleccione un Modelo.', });
-      return;
-    }
-
-    if (Ent.Nombre === '') {
-      setValNombre('error');
-      messageAdd.open({ type: 'error', content: 'Ingrese un Nombre.', });
-      return;
-    }
-
-    if (Ent.Descripcion === '') {
-      setValDescripcion('error');
-      messageAdd.open({ type: 'error', content: 'Ingrese un Nombre.', });
-      return;
-    }
-
-    if (Ent.UnidadMedidaId === 0) {
-      setValUnidadMedida('error');
-      messageAdd.open({ type: 'error', content: 'Seleccione una unidad de medida.', });
-      return;
-    }
+    selectedSucursal;
 
 
     modal.confirm({
@@ -385,12 +96,11 @@ const Save = () => {
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        Ent.CodUsuario = "adm";
-        Ent.Action = 1;
-        Ent.FechaRegistro = new Date();
-        Ent.EstadoRegistro = true
-        Ent.Action = Ent.ProductoId == 0 ? 1 : 3;
-        AddProducto();
+        // Ent.CodUsuario = "adm";
+        // Ent.FechaRegistro = new Date();
+        // Ent.EstadoRegistro = true
+        // Ent.Action = Ent.ProductoId == 0 ? 1 : 3;
+        // AddProducto();
       },
       onCancel() {
         console.log('Cancel');
@@ -400,20 +110,6 @@ const Save = () => {
   };
 
 
-  useEffect(() => {
-    async function cargarItem() {
-
-      // setCargarPage(true);
-      const Resp_UM = await sGeneral.GetUnidadMedidaItems();
-      setOptionsUM(Resp_UM);
-      await getCargarDatos();
-    }
-
-
-    cargarItem();
-
-
-  }, []);
 
   return (
     <Spin spinning={CargarPage} tip="Cargando" size="large">
@@ -421,9 +117,9 @@ const Save = () => {
 
       {contextHolder}
       {contextHolderAdd}
-      <Row>        
+      <Row>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-          <Title level={3}> {Ent.ProductoId > 0 ? 'Infraestructura' : 'Infraestructura'}</Title>
+          <Title level={3}> {Ent.InfraestructuraId > 0 ? 'Infraestructura' : 'Infraestructura'}</Title>
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Button
@@ -431,42 +127,41 @@ const Save = () => {
             onClick={Guardar_Total}
             size={"large"}
             icon={<SaveFilled />}
-            />
+          />
 
         </Col>
-       
+
       </Row>
       <Row>
         <Col xs={24} sm={10} md={8} lg={7} xl={6}>
 
 
-          
+
 
           <Row>
             <Col span={24}>
-              <label>SucursalId</label>
+              <label>Sucursal</label>
             </Col>
             <Col span={24}>
               <Select
-                status={ValCategoria}
+                status={ValSucursal}
                 showSearch
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
-                onSearch={handleSearchCategoria}
-                value={Ent.CategoriaId === 0 ? null : Ent.CategoriaId}
-                key={Ent.CategoriaId}
-                onChange={onChangeCategoria}
+                onSearch={Buscar_Sucursal}
+                value={Ent.SucursalId === 0 ? null : Ent.SucursalId}
+                key={Ent.SucursalId}
+                onChange={onChangeSucursal}
               >
-                {optionsCategoria.map((categoria) => (
-                  <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
-                    {categoria.Nombre}
+                {optionsSucursal.map((SucursalItem) => (
+                  <Select.Option key={SucursalItem.ListaId} value={SucursalItem.ListaId}>
+                    {SucursalItem.Nombre}
                   </Select.Option>
                 ))}
               </Select>
-              <MDCategoria buttonLabel="Enlace"
-                addItemToState={addItemToStateCategoria}
-                item={new CategoriaEntity()} />
+              {/* <MDCategoria buttonLabel="Enlace"
+                item={new CategoriaEntity()} /> */}
             </Col>
           </Row>
 
@@ -482,7 +177,6 @@ const Save = () => {
                 name="InfraestructuraId"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
-                value={Ent.Codigo === null ? "" : Ent.Codigo}
               />
             </Col>
           </Row>
@@ -498,7 +192,6 @@ const Save = () => {
                 name="InfraestructuraId"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
-                value={Ent.Codigo === null ? "" : Ent.Codigo}
               />
             </Col>
           </Row>
@@ -514,7 +207,6 @@ const Save = () => {
                 name="InfraestructuraId"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
-                value={Ent.Codigo === null ? "" : Ent.Codigo}
               />
             </Col>
           </Row>
@@ -526,24 +218,14 @@ const Save = () => {
             </Col>
             <Col span={24}>
               <Select
-                status={ValCategoria}
                 showSearch
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
-                onSearch={handleSearchCategoria}
-                value={Ent.CategoriaId === 0 ? null : Ent.CategoriaId}
-                key={Ent.CategoriaId}
-                onChange={onChangeCategoria}
               >
-                {optionsCategoria.map((categoria) => (
-                  <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
-                    {categoria.Nombre}
-                  </Select.Option>
-                ))}
+
               </Select>
               <MDCategoria buttonLabel="Enlace"
-                addItemToState={addItemToStateCategoria}
                 item={new CategoriaEntity()} />
             </Col>
           </Row>
@@ -554,42 +236,31 @@ const Save = () => {
             </Col>
             <Col span={24}>
               <Select
-                status={ValCategoria}
                 showSearch
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
-                onSearch={handleSearchCategoria}
-                value={Ent.CategoriaId === 0 ? null : Ent.CategoriaId}
-                key={Ent.CategoriaId}
-                onChange={onChangeCategoria}
               >
-                {optionsCategoria.map((categoria) => (
-                  <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
-                    {categoria.Nombre}
-                  </Select.Option>
-                ))}
+
               </Select>
               <MDCategoria buttonLabel="Enlace"
-                addItemToState={addItemToStateCategoria}
                 item={new CategoriaEntity()} />
             </Col>
           </Row>
 
 
           <Row>
-                <Col span={24}>
-                  <label>Aforo</label>
-                </Col>
-                <Col span={24}>
-                  <Input
-                    type="number"
-                    name="Reserva"
-                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                    onChange={onChangeText}
-                    value={Ent.Reserva === null ? "" : Ent.Reserva}
-                  />
-                </Col>
+            <Col span={24}>
+              <label>Aforo</label>
+            </Col>
+            <Col span={24}>
+              <Input
+                type="number"
+                name="Reserva"
+                style={{ marginTop: '5px', marginBottom: '10px' }}
+                onChange={onChangeText}
+              />
+            </Col>
           </Row>
 
           <Row>
@@ -598,24 +269,14 @@ const Save = () => {
             </Col>
             <Col span={24}>
               <Select
-                status={ValCategoria}
                 showSearch
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
-                onSearch={handleSearchCategoria}
-                value={Ent.CategoriaId === 0 ? null : Ent.CategoriaId}
-                key={Ent.CategoriaId}
-                onChange={onChangeCategoria}
               >
-                {optionsCategoria.map((categoria) => (
-                  <Select.Option key={categoria.CategoriaId} value={categoria.CategoriaId}>
-                    {categoria.Nombre}
-                  </Select.Option>
-                ))}
+
               </Select>
               <MDCategoria buttonLabel="Enlace"
-                addItemToState={addItemToStateCategoria}
                 item={new CategoriaEntity()} />
             </Col>
           </Row>
