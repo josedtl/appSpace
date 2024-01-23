@@ -210,6 +210,8 @@ const Save = () => {
 
       const Resp_Producto = await sProducto.getItem(idNumero);
 
+      // const responseInfraLista= await sInfraListaService.getInfraLista(idNumero);
+
       const Resp_Categoria = await sGeneral.GetCategoriaItem(Resp_Producto[0].CategoriaId);
       setOptionsCategoria(Resp_Categoria);
 
@@ -222,6 +224,8 @@ const Save = () => {
       const Resp_Modelo = await sGeneral.GetModeloItem(Resp_Producto[0].ModeloId);
       setOptionsModelo(Resp_Modelo);
 
+      // const Resp_InfraLista= await sInfraListaService.getInfraLista(Resp_InfraLista[0].ListaId);
+      // setOptionsLista(Resp_InfraLista);
 
       setEnt(Resp_Producto[0]);
     }
