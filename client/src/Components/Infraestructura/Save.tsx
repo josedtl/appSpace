@@ -36,21 +36,91 @@ const Save = () => {
   const [ValSucursal, setValSucursal] = useState<InputStatus>('');
   const [selectedSucursal, setSelectedSucursal] = useState<number | undefined>(undefined);
   const [optionsSucursal, setOptionsSucural] = useState<InfraListaModel[]>([]);
-  // ---Traerpor el servicio las sucurales
+
+  // ---Variables de TipoInfraestructura
+  const [ValTipoInfraestructura, setValTipoInfraestructura] = useState<InputStatus>('');
+  const [selectedTipoInfraestructura, setSelectedTipoInfraestructura] = useState<number | undefined>(undefined);
+  const [optionsTipoInfraestructura, setOptionsTipoInfraestructura] = useState<InfraListaModel[]>([]);
+  
+  // ---Variables de InfraestructuraDimension
+  const [ValInfraestructuraDimension, setValInfraestructuraDimension] = useState<InputStatus>('');
+  const [selectedInfraestructuraDimension, setSelectedInfraestructuraDimension] = useState<number | undefined>(undefined);
+  const [optionsInfraestructuraDimension, setOptionsInfraestructuraDimension] = useState<InfraListaModel[]>([]);
+  
+    // ---Variables de Piso
+    const [ValPiso, setValPiso] = useState<InputStatus>('');
+    const [selectedPiso, setSelectedPiso] = useState<number | undefined>(undefined);
+    const [optionsPiso, setOptionsPiso] = useState<InfraListaModel[]>([]);
+  
+
+  // ---Traer por el servicio las sucurales
   const Buscar_Sucursal = async (value: string) => {
     try {
       const responseSucursal = await sInfraListaService.getInfraListaLike('0001', value);
       setOptionsSucural(responseSucursal);
     } catch (error) {
-      console.error('Error al buscar categorías:', error);
+      console.error('Error al buscar Sucursal:', error);
     }
   };
+
+    // ---Traer por el servicio TipoInfraestructura
+  const Buscar_TipoInfraestructura = async (value: string) => {
+    try {
+      const responseTipoInfraestructura = await sInfraListaService.getInfraListaLike('0006', value);
+      setOptionsTipoInfraestructura(responseTipoInfraestructura);
+    } catch (error) {
+      console.error('Error al buscar Tipo de Infraestructura:', error);
+    }
+  };
+
+  
+  // ---Traer por el servicio InfraestructuraDimension
+  const Buscar_InfraestructuraDimension = async (value: string) => {
+    try {
+      const responseInfraestructuraDimension = await sInfraListaService.getInfraListaLike('0007', value);
+      setOptionsInfraestructuraDimension(responseInfraestructuraDimension);
+    } catch (error) {
+      console.error('Error al buscar Infraestructura Dimension:', error);
+    }
+  };
+
+// ---Traer por el servicio Piso
+const Buscar_Piso = async (value: string) => {
+  try {
+    const responsePiso = await sInfraListaService.getInfraListaLike('0009', value);
+    setOptionsPiso(responsePiso);
+  } catch (error) {
+    console.error('Error al buscar Piso:', error);
+  }
+};
+
 
   // --- Seleccioonar el valor 
   const onChangeSucursal = async (value: number) => {
     setValSucursal('');
     Ent.SucursalId = value;
     setSelectedSucursal(value)
+  };
+  
+    // --- Seleccioonar el valor 
+  const onChangTipoInfraestructura = async (value: number) => {
+    setValTipoInfraestructura('');
+    Ent.TipoInfraestructuraId = value;
+    setSelectedTipoInfraestructura(value)
+  };
+
+  // --- Seleccioonar el valor 
+  const onChangInfraestructuraDimension = async (value: number) => {
+    setValInfraestructuraDimension('');
+    Ent.InfraestructuraDimensionId = value;
+    setSelectedInfraestructuraDimension(value)
+  };
+
+   // --- Seleccioonar el valor 
+   const onChangPiso = async (value: number) => {
+    setValPiso('');
+    Ent.PisoId = value;
+    setSelectedPiso(value)
   };
 
   // ******************END REGION SUCURAL COMBO LIKE ****************************************************************************
@@ -165,7 +235,6 @@ const Save = () => {
             </Col>
           </Row>
 
-
           <Row>
             <Col span={24}>
               <label>CodigoSistema</label>
@@ -174,7 +243,7 @@ const Save = () => {
               <Input
                 status={ValCodigo}
                 type="text"
-                name="InfraestructuraId"
+                name="CodigoSistema"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
               />
@@ -189,7 +258,7 @@ const Save = () => {
               <Input
                 status={ValCodigo}
                 type="text"
-                name="InfraestructuraId"
+                name="CodigoInterno"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
               />
@@ -204,7 +273,7 @@ const Save = () => {
               <Input
                 status={ValCodigo}
                 type="text"
-                name="InfraestructuraId"
+                name="Descripcion"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
               />
@@ -214,39 +283,59 @@ const Save = () => {
 
           <Row>
             <Col span={24}>
-              <label>TipoInfraestructuraId</label>
+              <label>Tipo Infraestructura</label>
             </Col>
             <Col span={24}>
               <Select
+                status={ValTipoInfraestructura}
                 showSearch
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
+                onSearch={Buscar_TipoInfraestructura}
+                value={Ent.TipoInfraestructuraId === 0 ? null : Ent.TipoInfraestructuraId}
+                key={Ent.TipoInfraestructuraId}
+                onChange={onChangTipoInfraestructura}
               >
-
+                {optionsTipoInfraestructura.map((TipoInfraestructuraItem) => (
+                  <Select.Option key={TipoInfraestructuraItem.ListaId} value={TipoInfraestructuraItem.ListaId}>
+                    {TipoInfraestructuraItem.Nombre}
+                  </Select.Option>
+                ))}
               </Select>
-              <MDCategoria buttonLabel="Enlace"
-                item={new CategoriaEntity()} />
+              {/* <MDCategoria buttonLabel="Enlace"
+                item={new CategoriaEntity()} /> */}
             </Col>
           </Row>
 
           <Row>
             <Col span={24}>
-              <label>InfraestructuraDimendonId</label>
+              <label>Infraestructura Dimension</label>
             </Col>
             <Col span={24}>
               <Select
+                status={ValInfraestructuraDimension}
                 showSearch
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
+                onSearch={Buscar_InfraestructuraDimension}
+                value={Ent.InfraestructuraDimensionId === 0 ? null : Ent.InfraestructuraDimensionId}
+                key={Ent.InfraestructuraDimensionId}
+                onChange={onChangInfraestructuraDimension}
               >
-
+                {optionsInfraestructuraDimension.map((InfraestructuraDimensionItem) => (
+                  <Select.Option key={InfraestructuraDimensionItem.ListaId} value={InfraestructuraDimensionItem.ListaId}>
+                    {InfraestructuraDimensionItem.Nombre}
+                  </Select.Option>
+                ))}
               </Select>
-              <MDCategoria buttonLabel="Enlace"
-                item={new CategoriaEntity()} />
+              {/* <MDCategoria buttonLabel="Enlace"
+                item={new CategoriaEntity()} /> */}
             </Col>
           </Row>
+
+
 
 
           <Row>
@@ -256,7 +345,7 @@ const Save = () => {
             <Col span={24}>
               <Input
                 type="number"
-                name="Reserva"
+                name="Aforo"
                 style={{ marginTop: '5px', marginBottom: '10px' }}
                 onChange={onChangeText}
               />
@@ -265,19 +354,28 @@ const Save = () => {
 
           <Row>
             <Col span={24}>
-              <label>PisoId</label>
+              <label>Piso</label>
             </Col>
             <Col span={24}>
               <Select
+                status={ValPiso}
                 showSearch
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
+                onSearch={Buscar_Piso}
+                value={Ent.PisoId === 0 ? null : Ent.PisoId}
+                key={Ent.PisoId}
+                onChange={onChangPiso}
               >
-
+                {optionsPiso.map((PisoItem) => (
+                  <Select.Option key={PisoItem.ListaId} value={PisoItem.ListaId}>
+                    {PisoItem.Nombre}
+                  </Select.Option>
+                ))}
               </Select>
-              <MDCategoria buttonLabel="Enlace"
-                item={new CategoriaEntity()} />
+              {/* <MDCategoria buttonLabel="Enlace"
+                item={new CategoriaEntity()} /> */}
             </Col>
           </Row>
 
