@@ -35,6 +35,8 @@ function Main ()  {
   const getItems = async () => {
     const itemsg = await sPersonaNatural.getMainItems();
     setItems(itemsg);
+
+    console.log(itemsg);
     setCargarPage(false);
 
   };

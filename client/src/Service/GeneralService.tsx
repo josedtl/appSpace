@@ -365,13 +365,13 @@ class GeneralService {
     try {
 
       const EntLike = new EntidadLikeModel();
-      EntLike.Valor1 = codigo;
-      const response = await apiLg.post(`api/General/GetUbigeoItemLike`, EntLike, {
+      EntLike.Value = codigo;
+      const response = await apiLg.post(`api/General/GetUbigeoBuscarLike`, EntLike, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      return response.data.Value;
+      return response.data ;
     } catch (error) {
       throw error;
     }

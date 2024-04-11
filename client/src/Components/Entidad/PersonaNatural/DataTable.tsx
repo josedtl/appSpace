@@ -22,8 +22,8 @@ const DataTable: React.FC<PropsTable> = (props) => {
         },
         {
             title: 'Documento',
-            dataIndex: 'NomDocumento',
-            key: 'NomDocumento',
+            dataIndex: 'TipoDocumento',
+            key: 'TipoDocumento',
         },
         {
             title: 'Numero',

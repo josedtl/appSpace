@@ -16,9 +16,8 @@ export class PersonaNaturalEntity {
     EstadoCivilId: number | null;
     FechaRegistro: Date;
     CodUsuario: string;
-    EstadoRegistro: boolean;
     Action: ProcessActionEnum
-    NomDocumento: string;
+    TipoDocumento: string;
     constructor() {
         this.PersonaNaturalId = 0;
         this.TipoDocumentoIdentidadId = 0;
@@ -35,8 +34,7 @@ export class PersonaNaturalEntity {
         this.EstadoCivilId = 0;
         this.FechaRegistro = new Date();
         this.CodUsuario = '';
-        this.EstadoRegistro = false;
         this.Action = ProcessActionEnum.Add;
-        this.NomDocumento = '';
+        this.TipoDocumento = '';
     }
 }

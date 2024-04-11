@@ -42,6 +42,7 @@ const Save = () => {
     try {
       const response = await sGeneralService.GetUbigeoItemLikeApi(value);
       setOptionsUbigeo(response);
+      console.log(response)
     } catch (error) {
       console.error('Error al buscar Ubigeo:', error);
     }
@@ -201,7 +202,6 @@ const Save = () => {
         Ent.FechaNacimiento = new Date(fecha);
         Ent.CodUsuario = "adm";
         Ent.FechaRegistro = new Date();
-        Ent.EstadoRegistro = true
         Ent.Action = Ent.PersonaNaturalId == 0 ? ProcessActionEnum.Add : ProcessActionEnum.Update;
         AddPersonaNatural();
       },
@@ -223,7 +223,7 @@ const Save = () => {
     const Resp_Sexo = await sEntLista.getItems('C0008');
     setOptionsSexo(Resp_Sexo);
 
-    const Resp_EC = await sEntLista.getItems('C0008');
+    const Resp_EC = await sEntLista.getItems('C0009');
     setOptionsEstadoCivil(Resp_EC);
 
     // console.log(idNumero)

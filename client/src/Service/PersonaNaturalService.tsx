@@ -33,14 +33,15 @@ class PersonaNaturalService {
 
   async saveItem(item: PersonaNaturalEntity): Promise<PersonaNaturalEntity | null> {
     try {
-      const response = await axios.post(`${URL}/api/PersonaNatural/Save/`, item, {
+
+      const response = await apiLg.post(`api/PersonaNatural/Registrar`, item, {
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
       if (response.status === 200) {
-        return response.data.Value;
+        return response.data;
       } else {
         console.log('Save operation failed');
         return null;
