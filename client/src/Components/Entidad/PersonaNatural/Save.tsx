@@ -132,6 +132,18 @@ const Save = () => {
     } else {
     }
   }
+  const updatePersonaNatural = async () => {
+    console.log(Ent);
+    const savedItem = await sPersonaNatural.UpdateItem(Ent);
+    if (savedItem) {
+
+      messageAdd.open({
+        type: 'success',
+        content: 'Se Actualizo correctamente.',
+      });
+    } else {
+    }
+  }
 
 
   const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -203,7 +215,16 @@ const Save = () => {
         Ent.CodUsuario = "adm";
         Ent.FechaRegistro = new Date();
         Ent.Action = Ent.PersonaNaturalId == 0 ? ProcessActionEnum.Add : ProcessActionEnum.Update;
-        AddPersonaNatural();
+
+        if (Ent.PersonaNaturalId == 0) {
+
+          AddPersonaNatural();
+
+        } else {
+          updatePersonaNatural();
+
+        }
+
       },
       onCancel() {
         console.log('Cancel');
@@ -226,27 +247,28 @@ const Save = () => {
     const Resp_EC = await sEntLista.getItems('C0009');
     setOptionsEstadoCivil(Resp_EC);
 
-    // console.log(idNumero)
-    // Ent.Action = ProcessActionEnum.Add
-    // if (idNumero > 0) {
+    console.log(idNumero)
+    Ent.Action = ProcessActionEnum.Add
+    if (idNumero > 0) {
 
-    //   const Resp_PersonaNatural = await sPersonaNatural.GetCabeceraItem(idNumero);
-    //   setEnt(Resp_PersonaNatural[0]);
-    //   console.log(Resp_PersonaNatural[0]);
-
-
-    //   if (Resp_PersonaNatural[0].UbigeoId != null) {
-    //     const Resp_Ubigeo = await sGeneralService.GetUbigeoItemApi(Resp_PersonaNatural[0].UbigeoId);
-    //     setOptionsUbigeo(Resp_Ubigeo);
-    //   }
-
-    //   const dateFNC = moment(Resp_PersonaNatural[0].FechaNacimiento).format('YYYY-MM-DD')
-    //   setFechaNacimientoItem(dateFNC);
+      const Resp_PersonaNatural = await sPersonaNatural.GetCabeceraItem(idNumero);
+      setEnt(Resp_PersonaNatural[0]);
+      console.log(Resp_PersonaNatural[0]);
 
 
+      if (Resp_PersonaNatural[0].UbigeoId != null) {
+        const Resp_Ubigeo = await sGeneralService.GetUbigeoItemApi(Resp_PersonaNatural[0].UbigeoId);
+
+        setOptionsUbigeo(Resp_Ubigeo);
+      }
+
+      const dateFNC = moment(Resp_PersonaNatural[0].FechaNacimiento).format('YYYY-MM-DD')
+      setFechaNacimientoItem(dateFNC);
 
 
-    // }
+
+
+    }
 
     setCargarPage(false);
   };
