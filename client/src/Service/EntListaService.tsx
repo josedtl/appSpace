@@ -28,8 +28,8 @@ class EntListaService {
     try {
 
       const EntLike = new EntidadLikeModel();
-      EntLike.Valor1 = codigo;
-      EntLike.Valor2 = value;
+      // EntLike.Valor1 = codigo;
+      // EntLike.Valor2 = value;
       const response = await apiLg.post(`api/EntLista/GetItemLike`, EntLike, {
         headers: {
           'Content-Type': 'application/json',

@@ -52,6 +52,27 @@ class PersonaNaturalService {
     }
   }
 
+  async UpdateItem(item: PersonaNaturalEntity): Promise<PersonaNaturalEntity | null> {
+    try {
+
+      const response = await apiLg.post(`api/PersonaNatural/Actualizar`, item, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.status === 200) {
+        return response.data;
+      } else {
+        console.log('Save operation failed');
+        return null;
+      }
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
   async getItem(Id :number): Promise<PersonaNaturalEntity[]> {
     try {
       const response = await axios.get(`${URL}/api/PersonaNatural/GetItem/${Id}`);
@@ -79,8 +100,8 @@ class PersonaNaturalService {
 
   async GetCabeceraItem(Id: number): Promise<PersonaNaturalEntity[]> {
     try {
-      const response = await apiLg.get(`api/PersonaNatural/GetCabeceraItem/${Id}`);
-      return response.data.Value;
+      const response = await apiLg.get(`api/PersonaNatural/GetPersonaNaturalItem/${Id}`);
+      return response.data;
     } catch (error) {
       throw error;
     }

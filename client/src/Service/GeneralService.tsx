@@ -379,8 +379,8 @@ class GeneralService {
 
   async GetUbigeoItemApi(Value: number): Promise<UbigeoEntity[]> {
     try {
-      const response = await apiLg.get(`api/General/GetUbigeoItem/${Value}/`);
-      return response.data.Value;
+      const response = await apiLg.get(`api/General/GetUbigeoItem/${Value}`);
+      return response.data;
     } catch (error) {
       throw error;
     }
