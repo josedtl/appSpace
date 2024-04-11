@@ -3,11 +3,11 @@ import DataTable from './DataTable';
 import { PersonaNaturalEntity } from '../../../Models/PersonaNaturalEntity';
 import PersonaNaturalService from '../../../Service/PersonaNaturalService';
 import { Col, Row, Typography, Card, Button, Spin, Input } from 'antd';
-import { ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain , ButtonAddMain} from '../../../Styles/Button'
-import { SizeMainButtonSecondary ,SizeButtonPrimary} from '../../../Styles/Type'
+import { ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain, ButtonAddMain } from '../../../Styles/Button'
+import { SizeMainButtonSecondary, SizeButtonPrimary } from '../../../Styles/Type'
 import { IconLoad, IconTabla, IconCard, IconReport, IconFiltro, IconAdd } from '../../../Styles/Icons'
 import { Link } from "react-router-dom";
-function Main ()  {
+function Main() {
   useEffect(() => {
     getItems();
   }, []);
@@ -52,7 +52,7 @@ function Main ()  {
     <Spin spinning={CargarPage} tip="Cargando" size="large">
       <Row>
 
-      <Col xs={18} sm={18} md={12} lg={12} xl={12}>
+        <Col xs={18} sm={18} md={12} lg={12} xl={12}>
           <Title level={2}> PersonaNatural</Title>
         </Col>
 
@@ -64,7 +64,7 @@ function Main ()  {
               icon={IconAdd}
             />
 
-         
+
           </Link>
         </Col>
 

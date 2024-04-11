@@ -36,6 +36,8 @@ import PageOrdenCompra from "./Components/OrdenCompra/Main";
 import PageOrdenCompraSave from "./Components/OrdenCompra/OrdenCompraDetalle/Save";
 import PageRecepcion from "./Components/Recepcion/Main";
 import PageRecepcionSave from "./Components/Recepcion/RecepcionDetalle/Save";
+import PageTarifaMain from "./Components/Tarifa/Main"
+import PageTarifaSave from "./Components/Tarifa/Save"
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +64,9 @@ const router = createBrowserRouter([
       { path: "OrdenCompraSave/:Id", element: <PageOrdenCompraSave />, },
       { path: "Recepcion", element: <PageRecepcion />, },
       { path: "RecepcionSave/:Id", element: <PageRecepcionSave />, },
+      { path: "Tarifa", element: <PageTarifaMain />, },
+      { path: "TarifaSave/:Id", element: <PageTarifaSave />, }
+
     ],
   },
 ]);
