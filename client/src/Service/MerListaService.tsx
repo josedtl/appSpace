@@ -1,4 +1,3 @@
-import { EntListaModel } from '../Models/EntListaEntity';
 import { EntidadLikeModel } from '../Models/EntidadLikeModel';
 import { MerListaEntity, MerListaTituloModel } from '../Models/MerListaEntity';
 import { apiLg } from './axios-config';
@@ -7,7 +6,7 @@ class MerListaService {
 
   async getItems(Codigo :string): Promise<MerListaEntity[]> {
     try {
-      const response = await apiLg.get(`api/MerLista/GetItems/${Codigo}`);
+      const response = await apiLg.get(`api/InfraLista/GetInfraLista_Main/${Codigo}`);
       return response.data.Value;
 
     } catch (error) {
@@ -17,7 +16,7 @@ class MerListaService {
 
   async deleteItem(CategoriaId: number): Promise<boolean> {
     try {
-      const response = await apiLg.delete(`api/Categoria/Delete/${CategoriaId}`);
+      const response = await apiLg.delete(`api/InfraLista/Delete/${CategoriaId}`);
       return response.data.Value;
     } catch (error) {
       throw error;
@@ -27,7 +26,7 @@ class MerListaService {
 
   async saveItem(item: MerListaEntity): Promise<MerListaEntity | null> {
     try {
-      const response = await apiLg.post(`api/MerLista/Save`, item, {
+      const response = await apiLg.post(`api/InfraLista/Save`, item, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -43,9 +42,7 @@ class MerListaService {
     try {
 
       const EntLike = new EntidadLikeModel();
-      EntLike.Valor1 = codigo;
-      EntLike.Valor2 = value;
-      const response = await apiLg.post(`api/MerLista/GetItemLike`, EntLike, {
+      const response = await apiLg.post(`api/InfraLista/GetItemLike`, EntLike, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -59,7 +56,7 @@ class MerListaService {
 
   async getItem(Id: number): Promise<MerListaEntity[]> {
     try {
-      const response = await apiLg.get(`api/MerLista/GetItem/${Id}`);
+      const response = await apiLg.get(`api/InfraLista/GetItem/${Id}`);
       return response.data.Value;
     } catch (error) {
       throw error;

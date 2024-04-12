@@ -59,8 +59,6 @@ class MercaderiaService {
     try {
 
       const EntLike = new EntidadLikeModel();
-      EntLike.Valor1 = codigo;
-      EntLike.ValorInt1 = value;
       const response = await axios.post(`${URL}/api/Mercaderia/GetMercaderiaLikeCategoria`, EntLike, {
         headers: {
           'Content-Type': 'application/json',
