@@ -3,18 +3,19 @@ import { apiLg } from './axios-config';
 
 class TarifaService {
 
+  ServiceName: string = 'Tarifa';
 
   async getItems(): Promise<TarifaMainEntity[]> {
     try {
-
-      const response = await apiLg.get(`api/Tarifa/GetTarifaMain`);
-      console.log(response);
-      return response.data.value;
-
-    } catch (error) {
-      throw error;
+      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerMain`);
+      return response.status === 200 ? response.data.Value : [];
+    } catch (err) {
+      return [];
     }
   }
+
+
+  
 
 }
 
