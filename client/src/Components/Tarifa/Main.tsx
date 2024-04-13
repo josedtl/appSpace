@@ -23,7 +23,7 @@ function Main() {
 
     const GetMainTarifa = async () => {
 
-        const data =await sTarifa.getItems();
+        const data =await sTarifa.ObtenerMain();
         setListaMain(data);
 
 

@@ -5,7 +5,7 @@ class TarifaService {
 
   ServiceName: string = 'Tarifa';
 
-  async getItems(): Promise<TarifaMainEntity[]> {
+  async ObtenerMain(): Promise<TarifaMainEntity[]> {
     try {
       const response = await apiLg.get(`api/${this.ServiceName}/ObtenerMain`);
       return response.status === 200 ? response.data.Value : [];
