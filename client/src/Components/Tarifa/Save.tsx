@@ -3,16 +3,19 @@ import { SaveFilled } from '@ant-design/icons';
 import { ButtonAddMain } from '../../Styles/Button'
 import type { RadioChangeEvent } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { TarifaSaveModel } from '../../Models/TarifaEntity';
+import { TarifaSaveModel, TarifaBuscarRecursoModel } from '../../Models/TarifaEntity';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { UnidadMedidaModel } from '../../Models/UnidadMedidaEntity';
 import { MonedaModel } from '../../Models/MonedaModel';
-import GeneralService from '../../Service/GeneralService'
+import GeneralService from '../../Service/GeneralService';
+
+import TarifaService from '../../Service/TarifaService';
 
 
 const Save = () => {
     const [value, setValue] = useState(1);
     const sGeneral = new GeneralService();
+    const sTarifa = new TarifaService();
 
     const initialTarifaMain = new TarifaSaveModel();
     const [Ent, setEnt] = useState<TarifaSaveModel>(initialTarifaMain);
@@ -25,12 +28,22 @@ const Save = () => {
     const [ValCodigo, setValCodigo] = useState<InputStatus>('');
     const [ValCosto] = useState<InputStatus>('');
 
-
+    const [OptionMoneda, setOptionsMoneda] = useState<MonedaModel[]>([]);
     const [optionsUnidadMedida, setOptionsUnidadMedida] = useState<UnidadMedidaModel[]>([]);
+
+    const [ValRecurso, setValRecurso] = useState<InputStatus>('');
+    const [selectedRecurso, setSelectedRecurso] = useState<number | undefined>(undefined);
+    const [OptionRecurso, setOptionsRecurso] = useState<TarifaBuscarRecursoModel[]>([]);
 
     const onChange = (e: RadioChangeEvent) => {
         setNumeroState(e.target.value);
 
+    };
+
+    const onChangeRecurso = async (value: number) => {
+        setValRecurso('');
+        Ent.ObjetoReferenciaId = value;
+        setSelectedRecurso(value)
     };
 
 
@@ -41,6 +54,14 @@ const Save = () => {
         setSelectedUnidadMedida(value)
         console.log(value)
     };
+    const onChangeMoneda = async (value: number) => {
+        ValCodigo;
+        setValMoneda('');
+        Ent.MonedaId = value;
+        setSelectedMoneda(value)
+        console.log(value)
+    };
+
 
     const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEnt({
@@ -55,6 +76,8 @@ const Save = () => {
         selectedUnidadMedida;
 
         console.log(Ent);
+        const response = sTarifa.Registrar(Ent);
+        console.log(response);
 
 
     };
@@ -66,10 +89,24 @@ const Save = () => {
 
     async function getCargarDatos() {
         const sltUnidadMedida = await sGeneral.ObtenerUnidadMedidaItems();
+        const sltMoneda = await sGeneral.ObtenerMonedaItems();
+
+        setOptionsMoneda(sltMoneda);
 
         setOptionsUnidadMedida(sltUnidadMedida);
         console.log(sltUnidadMedida);
     }
+
+    const handleSearchBuscarRecurso = async (value: string) => {
+        try {
+            const response = await sTarifa.BuscarRecurso(value, FlaNumero);
+            setOptionsRecurso(response);
+            console.log(response)
+        } catch (error) {
+            console.error('Error al buscar Ubigeo:', error);
+        }
+    };
+
 
     const { Title } = Typography;
     return (
@@ -98,9 +135,9 @@ const Save = () => {
 
                                 <Radio.Group
                                     style={{ marginTop: '5px', marginBottom: '10px' }}>
+                                    <Radio value={0} onChange={onChange}   >Servicio</Radio>
                                     <Radio value={1} onChange={onChange}   >Infraestructura</Radio>
-                                    <Radio value={2} onChange={onChange}   >Servicio</Radio>
-                                    <Radio value={3} onChange={onChange}  >Producto</Radio>
+                                    <Radio value={2} onChange={onChange}  >Producto</Radio>
                                 </Radio.Group>
 
 
@@ -116,11 +153,21 @@ const Save = () => {
                         </Col>
                         <Col span={24}>
                             <Select className="custom-select"
+                                status={ValRecurso}
                                 showSearch
                                 style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                                 defaultActiveFirstOption={false}
                                 filterOption={false}
-                            >
+                                onSearch={handleSearchBuscarRecurso}
+                                value={Ent.ObjetoReferenciaId === 0 ? null : Ent.ObjetoReferenciaId}
+                                key={Ent.ObjetoReferenciaId}
+                                onChange={onChangeRecurso}
+
+                            >{OptionRecurso.map((row) => (
+                                <Select.Option className="custom-option" key={row.ObjetoReferenciaId} value={row.ObjetoReferenciaId}>
+                                    {row.NomCompleto}
+                                </Select.Option>
+                            ))}
                             </Select>
 
                         </Col>
@@ -156,9 +203,8 @@ const Save = () => {
                             />
                         </Col>
                     </Row>
-
                     <Row>
-                        <Col span={12}>
+                        <Col span={24}>
                             <Row>
                                 <Col span={24}>
                                     <label>Unidad de Medida</label>
@@ -184,7 +230,8 @@ const Save = () => {
                                 </Col>
                             </Row>
                         </Col>
-
+                    </Row>
+                    <Row>
                         <Col span={12}>
                             <Row>
                                 <Col span={24}>
@@ -192,19 +239,25 @@ const Save = () => {
                                 </Col>
                                 <Col span={24}>
                                     <Select
+                                        status={ValMoneda}
                                         allowClear
                                         style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                                         defaultActiveFirstOption={false}
                                         filterOption={false}
+                                        value={Ent.MonedaId === 0 ? null : Ent.MonedaId}
+                                        key={Ent.MonedaId}
+                                        onChange={onChangeMoneda}
                                     >
+                                        {OptionMoneda.map((row) => (
+                                            <Select.Option key={row.MonedaId} value={row.MonedaId}>
+                                                {row.Simbolo}
+                                            </Select.Option>
+                                        ))}
                                     </Select>
                                 </Col>
                             </Row>
                         </Col>
-
-                    </Row>
-                    <Row>
-                        <Col span={24}>
+                        <Col span={12}>
                             <Row>
                                 <Col span={24}>
                                     <label>Costo</label>
@@ -222,8 +275,16 @@ const Save = () => {
                                 </Col>
 
                             </Row>
+
+
+
                         </Col>
+
+
+
                     </Row>
+
+
 
                 </Col>
 

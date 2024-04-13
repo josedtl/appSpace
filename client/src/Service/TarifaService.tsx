@@ -23,7 +23,7 @@ class TarifaService {
       const response = await apiLg.post(`api/${this.ServiceName}/Registrar`, item, {
         headers: { 'Content-Type': 'application/json', },
       });
-      return response.status === 200 ? response.data : [];
+      return response.status === 200 ? response.data.Value : [];
     } catch (error) {
       console.log(error);
       return new TarifaSaveModel();
