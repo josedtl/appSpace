@@ -2,25 +2,31 @@ import { Row, Col, Typography, Button, Select, Input, DatePicker, Radio, InputNu
 import { SaveFilled } from '@ant-design/icons';
 import { ButtonAddMain } from '../../Styles/Button'
 import type { RadioChangeEvent } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TarifaSaveModel } from '../../Models/TarifaEntity';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
-import { UnidadMedidaEntity  } from '../../Models/UnidadMedidaEntity';
+import { UnidadMedidaModel } from '../../Models/UnidadMedidaEntity';
+import { MonedaModel } from '../../Models/MonedaModel';
+import GeneralService from '../../Service/GeneralService'
+
 
 const Save = () => {
     const [value, setValue] = useState(1);
+    const sGeneral = new GeneralService();
 
     const initialTarifaMain = new TarifaSaveModel();
     const [Ent, setEnt] = useState<TarifaSaveModel>(initialTarifaMain);
     const [FlaNumero, setNumeroState] = useState<number>(0);
     const [selectedUnidadMedida, setSelectedUnidadMedida] = useState<number | undefined>(undefined);
     const [ValUnidadMedida, setValUnidadMedida] = useState<InputStatus>('');
+    const [selectedMoneda, setSelectedMoneda] = useState<number | undefined>(undefined);
+    const [ValMoneda, setValMoneda] = useState<InputStatus>('');
+
     const [ValCodigo, setValCodigo] = useState<InputStatus>('');
     const [ValCosto] = useState<InputStatus>('');
 
 
-    
-  const [optionsUnidadMedida, setOptionsUnidadMedida] = useState<UnidadMedidaEntity[]>([]);
+    const [optionsUnidadMedida, setOptionsUnidadMedida] = useState<UnidadMedidaModel[]>([]);
 
     const onChange = (e: RadioChangeEvent) => {
         setNumeroState(e.target.value);
@@ -52,6 +58,18 @@ const Save = () => {
 
 
     };
+
+    useEffect(() => {
+
+        getCargarDatos();
+    }, []);
+
+    async function getCargarDatos() {
+        const sltUnidadMedida = await sGeneral.ObtenerUnidadMedidaItems();
+
+        setOptionsUnidadMedida(sltUnidadMedida);
+        console.log(sltUnidadMedida);
+    }
 
     const { Title } = Typography;
     return (
@@ -98,22 +116,11 @@ const Save = () => {
                         </Col>
                         <Col span={24}>
                             <Select className="custom-select"
-                                status={ValUnidadMedida}
-                                allowClear
-                                optionFilterProp="children"
                                 showSearch
                                 style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                                 defaultActiveFirstOption={false}
                                 filterOption={false}
-                                value={Ent.UnidadMedidaId === 0 ? null : Ent.UnidadMedidaId}
-                                key={Ent.UnidadMedidaId}
-                                onChange={onChangeUnidadMedida}
                             >
-                                {optionsUnidadMedida.map((row) => (
-                                <Select.Option key={row.UnidadMedidaId} value={row.UnidadMedidaId}>
-                                  {row.Nombre}
-                                </Select.Option>
-                              ))}
                             </Select>
 
                         </Col>
@@ -158,11 +165,21 @@ const Save = () => {
                                 </Col>
                                 <Col span={24}>
                                     <Select
+                                        status={ValUnidadMedida}
                                         allowClear
                                         style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                                         defaultActiveFirstOption={false}
                                         filterOption={false}
+                                        value={Ent.UnidadMedidaId === 0 ? null : Ent.UnidadMedidaId}
+                                        key={Ent.UnidadMedidaId}
+                                        onChange={onChangeUnidadMedida}
                                     >
+
+                                        {optionsUnidadMedida.map((row) => (
+                                            <Select.Option key={row.UnidadMedidaId} value={row.UnidadMedidaId}>
+                                                {row.Nombre}
+                                            </Select.Option>
+                                        ))}
                                     </Select>
                                 </Col>
                             </Row>
