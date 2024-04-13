@@ -1,4 +1,4 @@
-import { Row, Col, Typography, Button, Select, Input, DatePicker } from 'antd';
+import { Row, Col, Typography, Button, Select, Input, DatePicker,Radio } from 'antd';
 import { SaveFilled } from '@ant-design/icons';
 import { ButtonAddMain } from '../../Styles/Button'
 
@@ -30,8 +30,9 @@ const Save = () => {
                                 {/* <Col span={24}>
                                 </Col> */}
                                 <Col span={24}>
-                                <input type="radio" id="html" name="fav_language" value="HTML"></input>
-                                <label>Infraestructura</label>
+                               
+                                <Radio>Infraestructura</Radio>
+                                
                                 </Col>
                             </Row>
                         </Col>
@@ -41,8 +42,7 @@ const Save = () => {
                                 </Col> */}
                                 <Col span={24}>
                                     
-                                <input type="radio" id="html" name="fav_language" value="HTML"></input>
-                                    <label>Servicio</label>
+                                    <Radio>Servicio</Radio>
                                 </Col>
                             </Row>
                         </Col>
@@ -51,8 +51,8 @@ const Save = () => {
                                 {/* <Col span={24}>
                                 </Col> */}
                                 <Col span={24}>
-                                <input type="radio" id="html" name="fav_language" value="HTML"></input>
-                                    <label>Producto</label>
+                             
+                                <Radio>Producto</Radio>
                                 </Col>
                             </Row>
                         </Col>
