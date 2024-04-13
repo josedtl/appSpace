@@ -3,11 +3,13 @@ import { SaveFilled } from '@ant-design/icons';
 import { ButtonAddMain } from '../../Styles/Button'
 import type { RadioChangeEvent } from 'antd';
 import React, { useState } from 'react';
+import { TarifaMainEntity } from '../../Models/TarifaEntity';
 
 const Save = () => {
     const [value, setValue] = useState(1);
 
-
+    const initialTarifaMain = new TarifaMainEntity();
+    const [Ent, setEnt] = useState<TarifaMainEntity>(initialTarifaMain);
     const [FlaNumero, setNumeroState] = useState<number>(0);
 
     const onChange = (e: RadioChangeEvent) => {
@@ -15,6 +17,14 @@ const Save = () => {
 
     };
 
+
+    const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEnt({
+            ...Ent,
+            [e.target.name]: e.target.value.toUpperCase()
+        });
+
+    };
 
     const { Title } = Typography;
     return (
@@ -79,6 +89,8 @@ const Save = () => {
                                 type="text"
                                 name="NombreComercial"
                                 style={{ marginTop: '5px', marginBottom: '10px' }}
+                                onChange={onChangeText}
+                                value={Ent.NomComercial === null ? "" : Ent.NomComercial}
                             />
                         </Col>
                     </Row>
@@ -93,6 +105,8 @@ const Save = () => {
                                 type="text"
                                 name="Descripcion"
                                 style={{ marginTop: '5px', marginBottom: '10px' }}
+                                onChange={onChangeText}
+                                value={Ent.Descripcion === null ? "" : Ent.Descripcion}
                             />
                         </Col>
                     </Row>
