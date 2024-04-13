@@ -1,28 +1,43 @@
-import { Row, Col, Typography, Button, Select, Input, DatePicker, Radio, InputNumber } from 'antd';
+import { Row, Col, Typography, Button, Select, Input, DatePicker, Radio, InputNumber, InputNumberProps } from 'antd';
 import { SaveFilled } from '@ant-design/icons';
 import { ButtonAddMain } from '../../Styles/Button'
 import type { RadioChangeEvent } from 'antd';
 import React, { useState } from 'react';
-import { TarifaMainEntity } from '../../Models/TarifaEntity';
+import { TarifaSaveModel } from '../../Models/TarifaEntity';
+import type { InputStatus } from 'antd/lib/_util/statusUtils'
 
 const Save = () => {
     const [value, setValue] = useState(1);
 
-    const initialTarifaMain = new TarifaMainEntity();
-    const [Ent, setEnt] = useState<TarifaMainEntity>(initialTarifaMain);
+    const initialTarifaMain = new TarifaSaveModel();
+    const [Ent, setEnt] = useState<TarifaSaveModel>(initialTarifaMain);
     const [FlaNumero, setNumeroState] = useState<number>(0);
+    const [selectedUnidadMedida, setSelectedUnidadMedida] = useState<number | undefined>(undefined);
+    const [ValCosto] = useState<InputStatus>('');
 
     const onChange = (e: RadioChangeEvent) => {
         setNumeroState(e.target.value);
 
     };
 
+    const onChanges: InputNumberProps['onChange'] = (value) => {
+        console.log('changed', value);
+    };
 
     const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEnt({
             ...Ent,
             [e.target.name]: e.target.value.toUpperCase()
         });
+
+    };
+
+    const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        selectedUnidadMedida;
+
+        console.log(Ent);
+
 
     };
 
@@ -39,6 +54,7 @@ const Save = () => {
                         style={ButtonAddMain}
                         size={"large"}
                         icon={<SaveFilled />}
+                        onClick={Guardar_Total}
                     />
 
                 </Col>
@@ -87,7 +103,7 @@ const Save = () => {
                         <Col span={24}>
                             <Input
                                 type="text"
-                                name="NombreComercial"
+                                name="NomComercial"
                                 style={{ marginTop: '5px', marginBottom: '10px' }}
                                 onChange={onChangeText}
                                 value={Ent.NomComercial === null ? "" : Ent.NomComercial}
@@ -135,9 +151,13 @@ const Save = () => {
                                     <label>Moneda</label>
                                 </Col>
                                 <Col span={24}>
-                                    <InputNumber
+                                    <Select
+                                        allowClear
                                         style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                                        min={1} max={10} defaultValue={1} />
+                                        defaultActiveFirstOption={false}
+                                        filterOption={false}
+                                    >
+                                    </Select>
                                 </Col>
                             </Row>
                         </Col>
@@ -150,14 +170,14 @@ const Save = () => {
                                     <label>Costo</label>
                                 </Col>
                                 <Col span={24}>
-
-                                    <InputNumber<string>
-                                        style={{ width: 200 }}
-                                        defaultValue="1"
+                                    <Input
+                                        status={ValCosto}
+                                        type="Number"
+                                        name="CostoTarifa"
                                         min="0"
-                                        max="100"
-                                        step="0.50"
-                                        stringMode
+                                        style={{ marginTop: '5px', marginBottom: '10px' }}
+                                        onChange={onChangeText}
+                                        value={Ent.CostoTarifa === null ? "" : Ent.CostoTarifa}
                                     />
                                 </Col>
 
