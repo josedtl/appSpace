@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
 import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker } from 'antd';
-import { PersonaNaturalEntity } from '../../../Models/PersonaNaturalEntity';
+import { PersonaNaturalSaveModel } from '../../../Models/PersonaNaturalEntity';
 import PersonaNaturalService from '../../../Service/PersonaNaturalService';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { useParams } from 'react-router-dom';
@@ -21,8 +21,8 @@ const Save = () => {
   const sEntLista = new EntListaService();
   const sGeneralService = new GeneralService();
   const sPersonaNatural = new PersonaNaturalService();
-  const initialPersonaNatural = new PersonaNaturalEntity();
-  const [Ent, setEnt] = useState<PersonaNaturalEntity>(initialPersonaNatural);
+  const initialPersonaNatural = new PersonaNaturalSaveModel();
+  const [Ent, setEnt] = useState<PersonaNaturalSaveModel>(initialPersonaNatural);
   const { Title } = Typography;
   const [CargarPage, setCargarPage] = React.useState(true);
   const [FechaNacimientoItem, setFechaNacimientoItem] = useState<string>(moment(Ent.FechaNacimiento).format('DD/MM/YYYY hh:mm'));
@@ -122,7 +122,7 @@ const Save = () => {
   const [messageAdd, contextHolderAdd] = message.useMessage();
   const AddPersonaNatural = async () => {
     console.log(Ent);
-    const savedItem = await sPersonaNatural.saveItem(Ent);
+    const savedItem = await sPersonaNatural.Registrar(Ent);
     if (savedItem) {
 
       messageAdd.open({
@@ -134,7 +134,7 @@ const Save = () => {
   }
   const updatePersonaNatural = async () => {
     console.log(Ent);
-    const savedItem = await sPersonaNatural.UpdateItem(Ent);
+    const savedItem = await sPersonaNatural.Actualizar(Ent);
     if (savedItem) {
 
       messageAdd.open({
@@ -214,7 +214,6 @@ const Save = () => {
         Ent.FechaNacimiento = new Date(fecha);
         Ent.CodUsuario = "adm";
         Ent.FechaRegistro = new Date();
-        Ent.Action = Ent.PersonaNaturalId == 0 ? ProcessActionEnum.Add : ProcessActionEnum.Update;
 
         if (Ent.PersonaNaturalId == 0) {
 
@@ -248,10 +247,9 @@ const Save = () => {
     setOptionsEstadoCivil(Resp_EC);
 
     console.log(idNumero)
-    Ent.Action = ProcessActionEnum.Add
     if (idNumero > 0) {
 
-      const Resp_PersonaNatural = await sPersonaNatural.GetCabeceraItem(idNumero);
+      const Resp_PersonaNatural = await sPersonaNatural.ObtenerItem(idNumero);
       setEnt(Resp_PersonaNatural[0]);
       console.log(Resp_PersonaNatural[0]);
 

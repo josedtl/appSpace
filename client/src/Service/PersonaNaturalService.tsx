@@ -1,111 +1,59 @@
-import axios from 'axios';
-import { PersonaNaturalEntity } from '../Models/PersonaNaturalEntity';
+import { PersonaNaturalMainModel, PersonaNaturalSaveModel } from '../Models/PersonaNaturalEntity';
 import { apiLg } from './axios-config';
 
-const URL = import.meta.env.VITE_SOME_KEY;
 class PersonaNaturalService {
 
+  ServiceName: string = 'PersonaNatural';
 
-
-  async getItems(): Promise<PersonaNaturalEntity[]> {
+  async ObtenerMain(): Promise<PersonaNaturalMainModel[]> {
     try {
-      const response = await axios.get(`${URL}/api/PersonaNatural/GetItems/`);
-      console.log(response.status);
-      if (response.status === 200 && response.data.Value != null) {
-        return response.data.Value;
-      }
-      return [];
+      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerMain`);
+      return response.status === 200 ? response.data.Value : [];
     } catch (err) {
-      console.log(err);
       return [];
     }
   }
-  async deleteItem(PersonaNaturalId: number): Promise<boolean> {
+
+
+
+  async Registrar(item: PersonaNaturalSaveModel): Promise<PersonaNaturalSaveModel> {
     try {
-      const response = await axios.delete(`${URL}/api/PersonaNatural/Delete/${PersonaNaturalId}`);
-      return response.status === 200;
+
+      const response = await apiLg.post(`api/${this.ServiceName}/Registrar`, item, {
+        headers: { 'Content-Type': 'application/json', },
+      });
+      return response.status === 200 ? response.data : [];
     } catch (error) {
       console.log(error);
-      return false;
+      return new PersonaNaturalSaveModel();
     }
   }
 
-
-  async saveItem(item: PersonaNaturalEntity): Promise<PersonaNaturalEntity | null> {
+  async Actualizar(item: PersonaNaturalSaveModel): Promise<PersonaNaturalSaveModel> {
     try {
 
-      const response = await apiLg.post(`api/PersonaNatural/Registrar`, item, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await apiLg.post(`api/${this.ServiceName}/Actualizar`, item, {
+        headers: { 'Content-Type': 'application/json', },
       });
 
-      if (response.status === 200) {
-        return response.data;
-      } else {
-        console.log('Save operation failed');
-        return null;
-      }
+      return response.status === 200 ? response.data.Value : [];
     } catch (error) {
       console.log(error);
-      return null;
+      return new PersonaNaturalSaveModel();
     }
   }
 
-  async UpdateItem(item: PersonaNaturalEntity): Promise<PersonaNaturalEntity | null> {
+  async ObtenerItem(Id: number): Promise<PersonaNaturalSaveModel[]> {
     try {
-
-      const response = await apiLg.post(`api/PersonaNatural/Actualizar`, item, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.status === 200) {
-        return response.data;
-      } else {
-        console.log('Save operation failed');
-        return null;
-      }
-    } catch (error) {
-      console.log(error);
-      return null;
-    }
-  }
-
-  async getItem(Id: number): Promise<PersonaNaturalEntity[]> {
-    try {
-      const response = await axios.get(`${URL}/api/PersonaNatural/GetItem/${Id}`);
+      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerItem/${Id}`);
       console.log(response.status);
-      if (response.status === 200 && response.data.Value != null) {
-        return response.data.Value;
-      }
-      return [];
+      return response.status === 200 ? response.data.Value : [];
     } catch (err) {
       console.log(err);
       return [];
     }
   }
 
-
-  async getMainItems(): Promise<PersonaNaturalEntity[]> {
-    try {
-      const response = await apiLg.get(`api/PersonaNatural/GetPersonaNaturalMain`);
-      return response.data;
-
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  async GetCabeceraItem(Id: number): Promise<PersonaNaturalEntity[]> {
-    try {
-      const response = await apiLg.get(`api/PersonaNatural/GetPersonaNaturalItem/${Id}`);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  }
 
 }
 
