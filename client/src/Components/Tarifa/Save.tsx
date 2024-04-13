@@ -5,6 +5,7 @@ import type { RadioChangeEvent } from 'antd';
 import React, { useState } from 'react';
 import { TarifaSaveModel } from '../../Models/TarifaEntity';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
+import { UnidadMedidaEntity  } from '../../Models/UnidadMedidaEntity';
 
 const Save = () => {
     const [value, setValue] = useState(1);
@@ -13,15 +14,26 @@ const Save = () => {
     const [Ent, setEnt] = useState<TarifaSaveModel>(initialTarifaMain);
     const [FlaNumero, setNumeroState] = useState<number>(0);
     const [selectedUnidadMedida, setSelectedUnidadMedida] = useState<number | undefined>(undefined);
+    const [ValUnidadMedida, setValUnidadMedida] = useState<InputStatus>('');
+    const [ValCodigo, setValCodigo] = useState<InputStatus>('');
     const [ValCosto] = useState<InputStatus>('');
+
+
+    
+  const [optionsUnidadMedida, setOptionsUnidadMedida] = useState<UnidadMedidaEntity[]>([]);
 
     const onChange = (e: RadioChangeEvent) => {
         setNumeroState(e.target.value);
 
     };
 
-    const onChanges: InputNumberProps['onChange'] = (value) => {
-        console.log('changed', value);
+
+    const onChangeUnidadMedida = async (value: number) => {
+        ValCodigo;
+        setValUnidadMedida('');
+        Ent.UnidadMedidaId = value;
+        setSelectedUnidadMedida(value)
+        console.log(value)
     };
 
     const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,11 +98,22 @@ const Save = () => {
                         </Col>
                         <Col span={24}>
                             <Select className="custom-select"
+                                status={ValUnidadMedida}
+                                allowClear
+                                optionFilterProp="children"
                                 showSearch
                                 style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                                 defaultActiveFirstOption={false}
                                 filterOption={false}
+                                value={Ent.UnidadMedidaId === 0 ? null : Ent.UnidadMedidaId}
+                                key={Ent.UnidadMedidaId}
+                                onChange={onChangeUnidadMedida}
                             >
+                                {optionsUnidadMedida.map((row) => (
+                                <Select.Option key={row.UnidadMedidaId} value={row.UnidadMedidaId}>
+                                  {row.Nombre}
+                                </Select.Option>
+                              ))}
                             </Select>
 
                         </Col>
