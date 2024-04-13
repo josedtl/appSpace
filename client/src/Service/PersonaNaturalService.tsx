@@ -73,7 +73,7 @@ class PersonaNaturalService {
     }
   }
 
-  async getItem(Id :number): Promise<PersonaNaturalEntity[]> {
+  async getItem(Id: number): Promise<PersonaNaturalEntity[]> {
     try {
       const response = await axios.get(`${URL}/api/PersonaNatural/GetItem/${Id}`);
       console.log(response.status);
