@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DataTable from './DataTable';
-import { PersonaNaturalEntity } from '../../../Models/PersonaNaturalEntity';
+import { PersonaNaturalEntity, PersonaNaturalMainModel } from '../../../Models/PersonaNaturalEntity';
 import PersonaNaturalService from '../../../Service/PersonaNaturalService';
 import { Col, Row, Typography, Card, Button, Spin, Input } from 'antd';
 import { ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain, ButtonAddMain } from '../../../Styles/Button'
@@ -13,7 +13,7 @@ function Main() {
   }, []);
   const sPersonaNatural = new PersonaNaturalService();
 
-  const [items, setItems] = useState<PersonaNaturalEntity[]>([]);
+  const [items, setItems] = useState<PersonaNaturalMainModel[]>([]);
   const [CargarPage, setCargarPage] = React.useState(false);
   const [disabled, setDisabled] = useState(false);
   const [Busqueda, setBusqueda] = useState<string>('');
@@ -33,7 +33,7 @@ function Main() {
   };
 
   const getItems = async () => {
-    const itemsg = await sPersonaNatural.getMainItems();
+    const itemsg = await sPersonaNatural.ObtenerMain();
     setItems(itemsg);
 
     console.log(itemsg);
