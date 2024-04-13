@@ -21,11 +21,44 @@ const Save = () => {
 
                 </Col>
             </Row>
-
             <Row>
-               
-                <Col span={8}>
-                    
+                <Col xs={24} sm={10} md={8} lg={7} xl={6}>
+
+                <Row>
+                        <Col span={8}>
+                            <Row>
+                                {/* <Col span={24}>
+                                </Col> */}
+                                <Col span={24}>
+                                <input type="radio" id="html" name="fav_language" value="HTML"></input>
+                                <label>Infraestructura</label>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col span={8}>
+                            <Row>
+                                {/* <Col span={24}>
+                                </Col> */}
+                                <Col span={24}>
+                                    
+                                <input type="radio" id="html" name="fav_language" value="HTML"></input>
+                                    <label>Servicio</label>
+                                </Col>
+                            </Row>
+                        </Col>
+                        <Col span={8}>
+                            <Row>
+                                {/* <Col span={24}>
+                                </Col> */}
+                                <Col span={24}>
+                                <input type="radio" id="html" name="fav_language" value="HTML"></input>
+                                    <label>Producto</label>
+                                </Col>
+                            </Row>
+                        </Col>
+                    </Row>
+
+
                     <Row>
                         <Col span={24}>
                             <label>Buscar</label>
@@ -42,9 +75,6 @@ const Save = () => {
                         </Col>
                     </Row>
 
-
-
-
                     <Row>
                         <Col span={24}>
                             <label>Nombre Comercial</label>
@@ -57,7 +87,7 @@ const Save = () => {
                             />
                         </Col>
                     </Row>
-
+                  
 
                     <Row>
                         <Col span={24}>
@@ -108,7 +138,7 @@ const Save = () => {
                             </Row>
                         </Col>
                     </Row>
-
+                   
                 </Col>
 
                 <Col xs={24} sm={14} md={16} lg={17} xl={18}>
