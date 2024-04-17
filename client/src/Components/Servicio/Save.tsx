@@ -4,7 +4,7 @@ import { ButtonAddMain } from '../../Styles/Button';
 import React, { useEffect, useState } from 'react';
 import { ServicioMainEntity, ServicioSaveEntity, ServicioEntity } from '../../Models/ServicioEntity';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
-import { ServListaMainEntity, ServListaSaveEntity, ServListaEntity } from '../../Models/ServListaEntity';
+import { ServListaMainModel, ServListaSaveModel, ServListaModel } from '../../Models/ServListaEntity';
 import ServListaService from '../../Service/ServListaService';
 
 import ServicioService from '../../Service/ServicioService';
@@ -23,7 +23,7 @@ const Save = () => {
     const [ValServLista, setValServLista] = useState<InputStatus>('');
     const [ValCodigo, setValCodigo] = useState<InputStatus>('');
     const [ValCosto] = useState<InputStatus>('');
-    const [optionsServListaMain, setOptionsServListaMain] = useState<ServListaEntity[]>([]);
+    const [optionsServListaMain, setOptionsServListaMain] = useState<ServListaModel[]>([]);
 
     const onChangeServLista = async (value: number) => {
         ValCodigo;
@@ -54,9 +54,9 @@ const Save = () => {
     }, []);
 
     async function getCargarDatos() {
-        const sltServLista = await sServLista.ObtenerMain();
+    //     const sltTipoServicio= await sServLista.ObtenerItemCodigo('C004');
 
-        setOptionsServListaMain(sltServLista);
+    //   setOptionsServListaMain(sltTipoServicio);
     }
     const { Title } = Typography;
     return (
