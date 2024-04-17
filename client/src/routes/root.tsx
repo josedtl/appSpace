@@ -53,6 +53,7 @@ const Root: React.FC = () => {
         getItem(<Link to="/Producto/Menu">Artículo</Link>, 'C1_55'),
         getItem(<Link to="/Entidad">Entidad</Link>, 'C1_6'),
         getItem(<Link to="/Tarifa">Tarifa</Link>, 'C1_7'),
+        getItem(<Link to="/Servicio">Servicio</Link>, 'C1_8'),
         getItem(<Link to="/Infraestrutura/Menu">Infraestrutura</Link>, 'C1_56'),
       ]),
   ];

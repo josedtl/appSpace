@@ -38,6 +38,8 @@ import PageRecepcion from "./Components/Recepcion/Main";
 import PageRecepcionSave from "./Components/Recepcion/RecepcionDetalle/Save";
 import PageTarifaMain from "./Components/Tarifa/Main"
 import PageTarifaSave from "./Components/Tarifa/Save"
+import PageServicioMain from "./Components/Servicio/Main"
+import PageServicioSave from "./Components/Servicio/Save"
 import PageInfraestructuraMenu from "./Components/Infraestructura/Menu";
 import PageinfraestructuraMain from "./Components/Infraestructura/Main";
 import PageInfraestructuraSave from "./Components/Infraestructura/Save";
@@ -74,6 +76,8 @@ const router = createBrowserRouter([
       { path: "Infraestructura", element: <PageinfraestructuraMain />, },
       { path: "InfraestructuraSave/:Id", element: <PageInfraestructuraSave />, },
       { path: "Infraestructura/Enlace/:Id", element: <InfraestructuraEnlace />, },
+      { path: "Servicio", element: <PageServicioMain />, },
+      { path: "ServicioSave/:Id", element: <PageServicioSave />, },
     ],
   },
 ]);
