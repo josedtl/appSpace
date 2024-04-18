@@ -1,4 +1,4 @@
-import { Row, Col, Typography, Button, Select, Input, DatePicker, Radio, InputNumber, InputNumberProps } from 'antd';
+import { Row, Col, Typography, Button, Select, Input, DatePicker, Radio, InputNumber, InputNumberProps,Modal,message } from 'antd';
 import { SaveFilled } from '@ant-design/icons';
 import { ButtonAddMain } from '../../Styles/Button';
 import React, { useEffect, useState } from 'react';
@@ -6,18 +6,21 @@ import { ServicioMainEntity, ServicioSaveEntity, ServicioEntity } from '../../Mo
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { ServListaMainModel, ServListaSaveModel, ServListaModel } from '../../Models/ServListaEntity';
 import ServListaService from '../../Service/ServListaService';
-
+import { useParams } from 'react-router-dom';
 import ServicioService from '../../Service/ServicioService';
-
+import moment from 'moment';
 const Save = () => {
 
     const [value, setValue] = useState(1);
+    const { Id } = useParams();
+    const idNumero = Number(Id?.toString());
     const sServLista = new ServListaService();
     const sServicio = new ServicioService();
-
     const initialServicioSave = new ServicioSaveEntity();
     const [Ent, setEnt] = useState<ServicioSaveEntity>(initialServicioSave);
-
+    const [FechaRegistroItem, setFechaNacimientoItem] = useState<string>(moment(Ent.FechaRegistro).format('DD/MM/YYYY hh:mm'));
+    const dateFormat = 'YYYY/MM/DD';
+    const [CargarPage, setCargarPage] = React.useState(true);
 
     const [selectedServLista, setSelectedServLista] = useState<number | undefined>(undefined);
     const [ValServLista, setValServLista] = useState<InputStatus>('');
@@ -32,6 +35,9 @@ const Save = () => {
         setSelectedServLista(value)
         console.log(value)
     };
+    const [modal, contextHolder] = Modal.useModal();
+    const [messageAdd, contextHolderAdd] = message.useMessage();
+
 
     const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEnt({
@@ -41,30 +47,50 @@ const Save = () => {
 
     };
     const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
+
         e.preventDefault();
         selectedServLista;
 
         console.log(Ent);
         const response = sServicio.Registrar(Ent);
         console.log(response);
+
     };
     useEffect(() => {
 
+        // console.log(idNumero);
         getCargarDatos();
+
     }, []);
 
     async function getCargarDatos() {
-    //     const sltTipoServicio= await sServLista.ObtenerItemCodigo('C004');
+        setCargarPage(true);
 
-    //   setOptionsServListaMain(sltTipoServicio);
+        const sltTipoServicio = await sServLista.ObtenerItemCodigo('C004');
+        setOptionsServListaMain(sltTipoServicio);
+
+        if (idNumero > 0) {
+            const ItemCabecera = await sServicio.ObtenerItem(idNumero);
+            setEnt(ItemCabecera[0]);
+
+            const dateFNC = moment(ItemCabecera[0].FechaRegistro).format('YYYY-MM-DD')
+            setFechaNacimientoItem(dateFNC);
+
+        }
+        
+
+
+        setCargarPage(false);
     }
     const { Title } = Typography;
     return (
         <>
+       
+      {contextHolder}
+      {contextHolderAdd}
             <Row>
                 <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                    {/* <Title level={3}> PersonaNatural  {params.Id}</Title> */}
-                    <Title level={3}>Servicio</Title>
+                    <Title level={3}> {Ent.ServicioId > 0 ? 'Servicio' : 'Agregar Servicio'}</Title>
                 </Col>
                 <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                     <Button
@@ -76,63 +102,10 @@ const Save = () => {
 
                 </Col>
             </Row>
+
             <Row>
                 <Col xs={24} sm={10} md={8} lg={7} xl={6}>
 
-                    {/* <Row>
-                        <Col span={24}>
-                            <label>Buscar</label>
-                        </Col>
-                        <Col span={24}>
-                            <Select className="custom-select"
-                                status={ValRecurso}
-                                showSearch
-                                style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                                defaultActiveFirstOption={false}
-                                filterOption={false}
-                                onSearch={handleSearchBuscarRecurso}
-                                value={Ent.ObjetoReferenciaId === 0 ? null : Ent.ObjetoReferenciaId}
-                                key={Ent.ObjetoReferenciaId}
-                                onChange={onChangeRecurso}
-
-                            >{OptionRecurso.map((row) => (
-                                <Select.Option className="custom-option" key={row.ObjetoReferenciaId} value={row.ObjetoReferenciaId}>
-                                    {row.NomCompleto}
-                                </Select.Option>
-                            ))}
-                            </Select>
-
-                        </Col>
-                    </Row> */}
-
-                    <Row>
-                        <Col span={24}>
-                            <label>Servicio</label>
-                        </Col>
-                        <Col span={24}>
-                            <Input
-                                type="text"
-                                name="Nombre"
-                                style={{ marginTop: '5px', marginBottom: '10px' }}
-                                onChange={onChangeText}
-                                value={Ent.Nombre === null ? "" : Ent.Nombre}
-                            />
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col span={24}>
-                            <label>Descripcion</label>
-                        </Col>
-                        <Col span={24}>
-                            <Input
-                                type="text"
-                                name="Descripcion"
-                                style={{ marginTop: '5px', marginBottom: '10px' }}
-                                onChange={onChangeText}
-                                value={Ent.Descripcion === null ? "" : Ent.Descripcion}
-                            />
-                        </Col>
-                    </Row>
                     <Row>
                         <Col span={24}>
                             <Row>
@@ -159,6 +132,35 @@ const Save = () => {
                                     </Select>
                                 </Col>
                             </Row>
+                        </Col>
+                    </Row>
+
+                    <Row>
+                        <Col span={24}>
+                            <label>Nombre</label>
+                        </Col>
+                        <Col span={24}>
+                            <Input
+                                type="text"
+                                name="Nombre"
+                                style={{ marginTop: '5px', marginBottom: '10px' }}
+                                onChange={onChangeText}
+                                value={Ent.Nombre === null ? "" : Ent.Nombre}
+                            />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span={24}>
+                            <label>Descripcion</label>
+                        </Col>
+                        <Col span={24}>
+                            <Input
+                                type="text"
+                                name="Descripcion"
+                                style={{ marginTop: '5px', marginBottom: '10px' }}
+                                onChange={onChangeText}
+                                value={Ent.Descripcion === null ? "" : Ent.Descripcion}
+                            />
                         </Col>
                     </Row>
 
