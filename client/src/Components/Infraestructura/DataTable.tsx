@@ -90,7 +90,7 @@ const DataTable: React.FC<PropsTable> = (props) => {
             render: (record: InfraestructuraMainModel) => (
                 <span>
 
-                    <Link to={`/ProductoSave/${record.InfraestructuraId}`}>
+                    <Link to={`/InfraestructuraSave/${record.InfraestructuraId}`}>
                         <Button
                             type='dashed'
                             style={{ float: "right", marginRight: "10px", color: "#BB9B32", backgroundColor: "white", borderColor: "#BB9B32" }}

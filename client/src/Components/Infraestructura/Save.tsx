@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
 import { Tabs, Table, message, Select, Button, Col, Row, Typography, Modal, Spin, Input } from 'antd';
-import MerListaService from '../../Service/MerListaService';
+import InfraListaService from '../../Service/InfraListaService';
 import MDSucursal from './Enlace/InfraLista/ModalItem';
 import MDTipoInfraestructura from  './Enlace/InfraLista/ModalItem';
 import MDClasificacion from  './Enlace/InfraLista/ModalItem';
@@ -14,11 +14,11 @@ import InfraestructuraService from '../../Service/InfraestructuraService';
 import { InfraestructuraSaveModel } from '../../Models/InfraestructuraEntity';
 import GeneralService from '../../Service/GeneralService';
 import { UnidadMedidaEntity } from '../../Models/UnidadMedidaEntity';
-import { InfraListaEntity } from '../../Models/InfraListaEntity';
+import { InfraListaModel } from '../../Models/InfraListaEntity';
 const Save = () => {
   const { Id } = useParams();
   const idNumero = Number(Id?.toString());
-  const sMerLista = new MerListaService();
+  const sInfraLista = new InfraListaService();
   const sInfraestructura = new InfraestructuraService();
   const sGeneralService = new GeneralService();
   const initialProducto = new InfraestructuraSaveModel();
@@ -26,32 +26,38 @@ const Save = () => {
   const { Title } = Typography;
   const [CargarPage, setCargarPage] = React.useState(true);
 
-  const addItemToStateSucursal = async (item: InfraListaEntity) => {
-    const Resp_Sucursal = await sMerLista.getItem(item.ListaId);
+  const addItemToStateSucursal = async (item: InfraListaModel) => {
+    const Resp_Sucursal = await sInfraLista.ObtenerItem(item.ListaId);
     setOptionsSucursal(Resp_Sucursal);
     Ent.SucursalId = Resp_Sucursal[0].ListaId;
 
   };
 
-  const addItemToStateClasificacion = async (item: InfraListaEntity) => {
-    const Resp_Clasificacion = await sMerLista.getItem(item.ListaId);
+  const addItemToStateClasificacion = async (item: InfraListaModel) => {
+    const Resp_Clasificacion = await sInfraLista.ObtenerItem(item.ListaId);
     setOptionsClasificacion(Resp_Clasificacion);
     Ent.ClasificacionId = Resp_Clasificacion[0].ListaId;
 
   };
-  const addItemToStateInfraestructuraDimension = async (item: InfraListaEntity) => {
-    const Resp_InfraestructuraDimension = await sMerLista.getItem(item.ListaId);
+  const addItemToStateInfraestructuraDimension = async (item: InfraListaModel) => {
+    const Resp_InfraestructuraDimension = await sInfraLista.ObtenerItem(item.ListaId);
     setOptionsInfraestructuraDimension(Resp_InfraestructuraDimension);
     Ent.InfraestructuraDimensionId = Resp_InfraestructuraDimension[0].ListaId;
 
   };
-  const addItemToStateTipoInfraestructura = async (item: InfraListaEntity) => {
-    const Resp_TipoInfraestructura = await sMerLista.getItem(item.ListaId);
+  const addItemToStateTipoInfraestructura = async (item: InfraListaModel) => {
+    const Resp_TipoInfraestructura = await sInfraLista.ObtenerItem(item.ListaId);
     setOptionsTipoInfraestructura(Resp_TipoInfraestructura);
     Ent.TipoInfraestructuraId = Resp_TipoInfraestructura[0].ListaId;
 
   };
 
+  const addItemToStatePiso = async (item: InfraListaModel) => {
+    const Resp_Piso = await sInfraLista.ObtenerItem(item.ListaId);
+    setOptionsPiso(Resp_Piso);
+    Ent.TipoInfraestructuraId = Resp_Piso[0].ListaId;
+
+  };
 
   const columns = [
     {
@@ -129,19 +135,20 @@ const Save = () => {
   ]);
 
 
-  const [optionsSucursal, setOptionsSucursal] = useState<InfraListaEntity[]>([]);
-  const [optionsTipoInfraestructura, setOptionsTipoInfraestructura] = useState<InfraListaEntity[]>([]);
-  const [optionsClasificacion, setOptionsClasificacion] = useState<InfraListaEntity[]>([]);
-  const [optionsInfraestructuraDimension, setOptionsInfraestructuraDimension] = useState<InfraListaEntity[]>([]);
-  const [optionsPiso, setOptionsPiso] = useState<InfraListaEntity[]>([]);
+  const [optionsSucursal, setOptionsSucursal] = useState<InfraListaModel[]>([]);
+  const [optionsTipoInfraestructura, setOptionsTipoInfraestructura] = useState<InfraListaModel[]>([]);
+  const [optionsClasificacion, setOptionsClasificacion] = useState<InfraListaModel[]>([]);
+  const [optionsInfraestructuraDimension, setOptionsInfraestructuraDimension] = useState<InfraListaModel[]>([]);
+  const [optionsPiso, setOptionsPiso] = useState<InfraListaModel[]>([]);
 
 
-  const [optionsUM, setOptionsUM] = useState<UnidadMedidaEntity[]>([]);
 
   const handleSearchSucursal = async (value: string) => {
     try {
-      const responseSucursal = await sMerLista.getItemLike("M002", value);
-      setOptionsSucursal(responseSucursal);
+      const responseSucursal = await sInfraLista.BuscarItemCodigo("0001", value);
+      console.log(responseSucursal);
+      // setOptionsSucursal(responseSucursal);
+
     } catch (error) {
       console.error('Error al buscar categorías:', error);
     }
@@ -149,7 +156,7 @@ const Save = () => {
 
   const handleSearchTipoInfraestructura = async (value: string) => {
     try {
-      const responseTipoInfraestructura = await sMerLista.getItemLike("M003", value);
+      const responseTipoInfraestructura = await sInfraLista.BuscarItemCodigo("0006", value);
       setOptionsTipoInfraestructura(responseTipoInfraestructura);
     } catch (error) {
       console.error('Error al buscar categorías:', error);
@@ -160,7 +167,7 @@ const Save = () => {
 
   const handleSearchClasificacion = async (value: string) => {
     try {
-      const responseClasificacion = await sMerLista.getItemLike("M004", value);
+      const responseClasificacion = await sInfraLista.BuscarItemCodigo("0013", value);
       setOptionsClasificacion(responseClasificacion);
     } catch (error) {
       console.error('Error al buscar categorías:', error);
@@ -169,8 +176,17 @@ const Save = () => {
 
   const handleSearchInfraestructuraDimension = async (value: string) => {
     try {
-      const responseInfraestructuraDimension = await sMerLista.getItemLike("M005", value);
+      const responseInfraestructuraDimension = await sInfraLista.BuscarItemCodigo("0007", value);
       setOptionsInfraestructuraDimension(responseInfraestructuraDimension);
+    } catch (error) {
+      console.error('Error al buscar categorías:', error);
+    }
+  };
+
+  const handleSearchPiso = async (value: string) => {
+    try {
+      const responsePiso = await sInfraLista.BuscarItemCodigo("0009", value);
+      setOptionsPiso(responsePiso);
     } catch (error) {
       console.error('Error al buscar categorías:', error);
     }
@@ -180,24 +196,24 @@ const Save = () => {
 
   const getCargarDatos = async () => {
 
-    console.log(idNumero)
     if (idNumero > 0) {
 
       const Resp_Producto = await sInfraestructura.GetInfraestructuraItem(idNumero);
-      console.log(Resp_Producto);
-      const Resp_Sucursal = await sMerLista.getItem(Resp_Producto[0].SucursalId);
-      setOptionsSucursal(Resp_Sucursal);
-
-      const Resp_TipoInfraestructura = await sMerLista.getItem(Resp_Producto[0].TipoInfraestructuraId);
+      
+      const Resp_Sucursal = await sInfraLista.ObtenerItem(Resp_Producto[0].SucursalId);
+      const Resp_TipoInfraestructura = await sInfraLista.ObtenerItem(Resp_Producto[0].TipoInfraestructuraId);
+      const Resp_InfraestructuraDimension = await sInfraLista.ObtenerItem(Resp_Producto[0].InfraestructuraDimensionId);
+      const Resp_Clasificacion = await sInfraLista.ObtenerItem(Resp_Producto[0].ClasificacionId);
+      const Resp_Piso = await sInfraLista.ObtenerItem(Resp_Producto[0].PisoId);
+      
+      
       setOptionsTipoInfraestructura(Resp_TipoInfraestructura);
-
-      const Resp_Clasificacion = await sMerLista.getItem(Resp_Producto[0].ClasificacionId);
       setOptionsClasificacion(Resp_Clasificacion);
-
-      const Resp_InfraestructuraDimension = await sMerLista.getItem(Resp_Producto[0].InfraestructuraDimensionId);
       setOptionsInfraestructuraDimension(Resp_InfraestructuraDimension);
-
-
+      setOptionsSucursal(Resp_Sucursal);
+      setOptionsPiso(Resp_Piso);
+      
+      
       setEnt(Resp_Producto[0]);
     }
 
@@ -208,6 +224,7 @@ const Save = () => {
     setValCodigo('');
     setValNombre('');
     setValDescripcion('');
+    setValPiso('');
     setEnt({
       ...Ent,
       [e.target.name]: e.target.value.toUpperCase()
@@ -219,6 +236,8 @@ const Save = () => {
   const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
   const [selectedInfraestructuraDimension, setSelectedInfraestructuraDimension] = useState<number | undefined>(undefined);
   const [selectedUM, setSelectedUM] = useState<number | undefined>(undefined);
+  const [selectedPiso, setSelectedPiso] = useState<number | undefined>(undefined);
+
 
   const [ValCodigo, setValCodigo] = useState<InputStatus>('');
 
@@ -229,6 +248,7 @@ const Save = () => {
   const [ValNombre, setValNombre] = useState<InputStatus>('');
   const [ValDescripcion, setValDescripcion] = useState<InputStatus>('');
   const [ValUnidadMedida, setValUnidadMedida] = useState<InputStatus>('');
+  const [ValPiso, setValPiso] = useState<InputStatus>('');
 
 
 
@@ -256,6 +276,13 @@ const Save = () => {
     setValInfraestructuraDimension('');
     Ent.InfraestructuraDimensionId = value;
     setSelectedInfraestructuraDimension(value)
+  };
+
+  
+  const onChangePiso = async (value: number) => {
+    setValPiso('');
+    Ent.PisoId = value;
+    setSelectedPiso(value)
   };
 
 
@@ -286,6 +313,7 @@ const Save = () => {
     selectedClasificacion;
     selectedInfraestructuraDimension;
     selectedUM;
+    selectedPiso;
     // if (Ent.Codigo === '') {
     //   setValCodigo('error');
     //   messageAdd.open({ type: 'error', content: 'Ingrese Codigo.', });
@@ -444,7 +472,7 @@ const Save = () => {
               </Select>
               <MDSucursal buttonLabel="Enlace"
                 addItemToState={addItemToStateSucursal}
-                item={new InfraListaEntity()}
+                item={new InfraListaModel()}
                 CodigoTabla={'M002'}
                 title={"Sucursal"} />
             </Col>
@@ -477,7 +505,7 @@ const Save = () => {
               </Select>
               <MDTipoInfraestructura buttonLabel="Enlace"
                 addItemToState={addItemToStateTipoInfraestructura}
-                item={new InfraListaEntity()}
+                item={new InfraListaModel()}
                 CodigoTabla={'M003'}
                 title={"Tipo Producto"} />
 
@@ -514,7 +542,7 @@ const Save = () => {
 
               <MDClasificacion buttonLabel="Enlace"
                 addItemToState={addItemToStateClasificacion}
-                item={new InfraListaEntity()}
+                item={new InfraListaModel()}
                 CodigoTabla={'M004'}
                 title={"Clasificacion"} />
 
@@ -547,7 +575,7 @@ const Save = () => {
               </Select>
               <MDInfraestructuraDimension buttonLabel="Enlace"
                 addItemToState={addItemToStateInfraestructuraDimension}
-                item={new InfraListaEntity()}
+                item={new InfraListaModel()}
                 CodigoTabla={'M005'}
                 title={"InfraestructuraDimension"} />
 
@@ -561,28 +589,28 @@ const Save = () => {
               <label>Piso</label>
             </Col>
             <Col span={24}>
-              <Select
+         <Select
                 showSearch
-                status={ValInfraestructuraDimension}
+                status={ValPiso}
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                 defaultActiveFirstOption={false}
                 filterOption={false}
-                onSearch={handleSearchInfraestructuraDimension}
+                onSearch={handleSearchPiso}
                 value={Ent.PisoId === 0 ? null : Ent.PisoId}
                 key={Ent.PisoId}
-                onChange={onChangeInfraestructuraDimension}
+                onChange={onChangePiso}
               >
-                {optionsInfraestructuraDimension.map((InfraestructuraDimension) => (
-                  <Select.Option key={InfraestructuraDimension.ListaId} value={InfraestructuraDimension.ListaId}>
-                    {InfraestructuraDimension.Nombre}
+                {optionsPiso.map((PisoItem) => (
+                  <Select.Option key={PisoItem.ListaId} value={PisoItem.ListaId}>
+                    {PisoItem.Nombre}
                   </Select.Option>
                 ))}
-              </Select>
+              </Select> 
               <MDInfraestructuraDimension buttonLabel="Enlace"
                 addItemToState={addItemToStateInfraestructuraDimension}
-                item={new InfraListaEntity()}
-                CodigoTabla={'M005'}
-                title={"InfraestructuraDimension"} />
+                item={new InfraListaModel()}
+                CodigoTabla={'M009'}
+                title={"Piso"} /> 
 
 
 

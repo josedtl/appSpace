@@ -7,8 +7,8 @@ class InfraestructuraService {
 
     async GetInfraestructuraMain(): Promise<InfraestructuraMainModel[]> {
         try {
-            const response = await apiLg.get(`api/Infraestructura/GetInfraestructuraMain`);
-            return response.status === 200 ? response.data.value : [];
+            const response = await apiLg.get(`api/Infraestructura/ObtenerMain`);
+            return response.status === 200 ? response.data.Value : [];
         } catch (err) {
             console.log(err);
             return [];
@@ -21,7 +21,7 @@ class InfraestructuraService {
             const response = await apiLg.post(`api/Infraestructura/Registrar`, item, {
                 headers: { 'Content-Type': 'application/json', },
             });
-            return response.status === 200 ? response.data : [];
+            return response.status === 200 ? response.data.Value : [];
         } catch (error) {
             console.log(error);
             return new InfraestructuraSaveModel();
@@ -35,7 +35,7 @@ class InfraestructuraService {
                 headers: { 'Content-Type': 'application/json', },
             });
 
-            return response.status === 200 ? response.data : [];
+            return response.status === 200 ? response.data.Value : [];
         } catch (error) {
             console.log(error);
             return new InfraestructuraSaveModel();
@@ -44,9 +44,9 @@ class InfraestructuraService {
 
     async GetInfraestructuraItem(Id: number): Promise<InfraestructuraSaveModel[]> {
         try {
-            const response = await apiLg.get(`api/Infraestructura/GetInfraestructuraItem/${Id}`);
+            const response = await apiLg.get(`api/Infraestructura/ObtenerItem/${Id}`);
             console.log(response.status);
-            return response.status === 200 ? response.data : [];
+            return response.status === 200 ? response.data.Value : [];
         } catch (err) {
             console.log(err);
             return [];

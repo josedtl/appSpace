@@ -1,21 +1,24 @@
-import { InfraCampoTituloModel, InfraListaEntity } from '../Models/InfraListaEntity';
+import { EntidadLikeModel } from '../Models/EntidadLikeModel';
+import { InfraCampoTituloModel, InfraListaEntity, InfraListaModel } from '../Models/InfraListaEntity';
 import { apiLg } from './axios-config';
 
 class InfraListaService {
 
-  async getItems(Codigo :string): Promise<InfraListaEntity[]> {
+  ServiceName: string = 'InfraLista';
+
+  async ObtenerMain(Codigo: string): Promise<InfraListaEntity[]> {
     try {
-      const response = await apiLg.get(`api/InfraLista/GetInfraLista_Main/${Codigo}`);
-      return response.data;
+      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerMain/${Codigo}`);
+      return response.data.Value;
 
     } catch (error) {
       throw error;
     }
   }
 
-  async deleteItem(CategoriaId: number): Promise<boolean> {
+  async Delete(CategoriaId: number): Promise<boolean> {
     try {
-      const response = await apiLg.delete(`api/InfraLista/Delete/${CategoriaId}`);
+      const response = await apiLg.delete(`api/${this.ServiceName}/Delete/${CategoriaId}`);
       return response.data.Value;
     } catch (error) {
       throw error;
@@ -23,9 +26,9 @@ class InfraListaService {
   }
 
 
-  async saveItem(item: InfraListaEntity): Promise<InfraListaEntity | null> {
+  async Registrar(item: InfraListaEntity): Promise<InfraListaEntity | null> {
     try {
-      const response = await apiLg.post(`api/InfraLista/Save`, item, {
+      const response = await apiLg.post(`api/${this.ServiceName}/Registrar`, item, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -37,27 +40,20 @@ class InfraListaService {
     }
   }
 
-  // async getItemLike(codigo: string, value: string): Promise<InfraListaEntity[]> {
-  //   try {
-
-  //     const EntLike = new EntidadLikeModel();
-  //     EntLike.Valor1 = codigo;
-  //     EntLike.Valor2 = value;
-  //     const response = await apiLg.post(`api/MerLista/GetItemLike`, EntLike, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //     });
-  //     return response.data.Value;
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
 
 
-  async getItem(Id: number): Promise<InfraListaEntity[]> {
+
+  async BuscarItemCodigo(codigo: string, value: string): Promise<InfraListaEntity[]> {
     try {
-      const response = await apiLg.get(`api/InfraLista/GetItem/${Id}`);
+
+      const EntLike = new EntidadLikeModel();
+      EntLike.srtValor1 = codigo;
+      EntLike.srtValor2 = value;
+      const response = await apiLg.post(`api/${this.ServiceName}/BuscarItemCodigo`, EntLike, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       return response.data.Value;
     } catch (error) {
       throw error;
@@ -65,10 +61,21 @@ class InfraListaService {
   }
 
 
-  async GetItemTitulo(Codigo :string): Promise<InfraCampoTituloModel[]> {
+  async ObtenerItem(Id: number): Promise<InfraListaEntity[]> {
     try {
-      const response = await apiLg.get(`api/General/GetInfraCampoTitulo/${Codigo}`);
-      return response.data;
+      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerItem/${Id}`);
+      console.log(response);
+      return response.status === 200 && response.data.State == true ? response.data.Value : [];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  async GetItemTitulo(Codigo: string): Promise<InfraCampoTituloModel[]> {
+    try {
+      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerTitulo/${Codigo}`);
+      return response.data.Value;
 
     } catch (error) {
       throw error;

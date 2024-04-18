@@ -56,7 +56,7 @@ class MerListaService {
 
   async getItem(Id: number): Promise<MerListaEntity[]> {
     try {
-      const response = await apiLg.get(`api/InfraLista/GetItem/${Id}`);
+      const response = await apiLg.get(`api/InfraLista/ObtenerItem/${Id}`);
       return response.data.Value;
     } catch (error) {
       throw error;
