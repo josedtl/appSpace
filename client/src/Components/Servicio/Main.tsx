@@ -1,7 +1,7 @@
 
 import DateTable from './DataTable';
 import ServicioService from '../../Service/ServicioService';
-import { ServicioMainEntity } from '../../Models/ServicioEntity';
+import { ServicioEntity, ServicioMainEntity } from '../../Models/ServicioEntity';
 import { Button, Col, Row, Typography, Input, Card } from "antd";
 import React, { useEffect, useState } from 'react';
 import { ButtonAddMain, ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain } from '../../Styles/Button'
@@ -15,7 +15,7 @@ function Main() {
     const sTarifa = new ServicioService();
     const [ListaMain, setListaMain] = useState<ServicioMainEntity[]>([]);
 
-
+    const [items, setItems] = useState<ServicioMainEntity[]>([]);
     useEffect(() => {
         GetMainServicio();
 
@@ -27,8 +27,23 @@ function Main() {
         setListaMain(data);
     }
 
+    
+  const updateState = (item: ServicioMainEntity) => {
+    const itemIndex = items.findIndex((data) => data.ServicioId === item.ServicioId);
+    const newArray = [...items.slice(0, itemIndex), item, ...items.slice(itemIndex + 1)];
+    setItems(newArray);
+  };
+  const deleteItemFromState = (id: number) => {
+    const updatedItems = items.filter((item) => item.ServicioId !== id);
+    setItems(updatedItems);
+  };
+
+
+
     return (
         <>
+
+        
             <Row>
                 <Col xs={18} sm={18} md={12} lg={12} xl={12}>
                     <Title level={2}>Servicio</Title>

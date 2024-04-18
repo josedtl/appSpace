@@ -20,6 +20,11 @@ const DataTable: React.FC<PropsTable> = (props) => {
             key: 'Cont',
         },
         {
+            title: 'TipoServicio',
+            dataIndex: 'TipoServicio',
+            key: 'TipoServicio',
+        },
+        {
             title: 'Nombre',
             dataIndex: 'Nombre',
             key: 'Nombre',
@@ -29,11 +34,6 @@ const DataTable: React.FC<PropsTable> = (props) => {
             title: 'Descripcion',
             dataIndex: 'Descripcion',
             key: 'Descripcion',
-        },
-        {
-            title: 'TipoServicio',
-            dataIndex: 'TipoServicio',
-            key: 'TipoServicio',
         },
         {
             title: 'Fecha de registro',
@@ -55,7 +55,7 @@ const DataTable: React.FC<PropsTable> = (props) => {
             render: (record: ServicioMainEntity) => (
                 <span>
 
-                    <Link to=''>
+                    <Link to={`/ServicioSave/${record.ServicioId}`}>
                         <Button
                             type='dashed'
                             style={{ float: "right", marginRight: "10px", color: "#BB9B32", backgroundColor: "white", borderColor: "#BB9B32" }}
