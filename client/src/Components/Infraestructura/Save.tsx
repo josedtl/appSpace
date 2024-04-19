@@ -3,9 +3,9 @@ import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
 import { Tabs, Table, message, Select, Button, Col, Row, Typography, Modal, Spin, Input } from 'antd';
 import InfraListaService from '../../Service/InfraListaService';
 import MDSucursal from './Enlace/InfraLista/ModalItem';
-import MDTipoInfraestructura from  './Enlace/InfraLista/ModalItem';
-import MDClasificacion from  './Enlace/InfraLista/ModalItem';
-import MDInfraestructuraDimension from  './Enlace/InfraLista/ModalItem';
+import MDTipoInfraestructura from './Enlace/InfraLista/ModalItem';
+import MDClasificacion from './Enlace/InfraLista/ModalItem';
+import MDInfraestructuraDimension from './Enlace/InfraLista/ModalItem';
 
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { useParams } from 'react-router-dom';
@@ -39,17 +39,17 @@ const Save = () => {
     Ent.ClasificacionId = Resp_Clasificacion[0].ListaId;
 
   };
+
   const addItemToStateInfraestructuraDimension = async (item: InfraListaModel) => {
     const Resp_InfraestructuraDimension = await sInfraLista.ObtenerItem(item.ListaId);
     setOptionsInfraestructuraDimension(Resp_InfraestructuraDimension);
     Ent.InfraestructuraDimensionId = Resp_InfraestructuraDimension[0].ListaId;
-
   };
+
   const addItemToStateTipoInfraestructura = async (item: InfraListaModel) => {
     const Resp_TipoInfraestructura = await sInfraLista.ObtenerItem(item.ListaId);
     setOptionsTipoInfraestructura(Resp_TipoInfraestructura);
     Ent.TipoInfraestructuraId = Resp_TipoInfraestructura[0].ListaId;
-
   };
 
   const addItemToStatePiso = async (item: InfraListaModel) => {
@@ -192,33 +192,30 @@ const Save = () => {
     }
   };
 
-
-
   const getCargarDatos = async () => {
 
     if (idNumero > 0) {
 
       const Resp_Producto = await sInfraestructura.GetInfraestructuraItem(idNumero);
-      
-      const Resp_Sucursal = await sInfraLista.ObtenerItem(Resp_Producto[0].SucursalId);
-      const Resp_TipoInfraestructura = await sInfraLista.ObtenerItem(Resp_Producto[0].TipoInfraestructuraId);
-      const Resp_InfraestructuraDimension = await sInfraLista.ObtenerItem(Resp_Producto[0].InfraestructuraDimensionId);
-      const Resp_Clasificacion = await sInfraLista.ObtenerItem(Resp_Producto[0].ClasificacionId);
-      const Resp_Piso = await sInfraLista.ObtenerItem(Resp_Producto[0].PisoId);
-      
-      
+
+      const Resp_Sucursal = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].SucursalId);
+      const Resp_TipoInfraestructura = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].TipoInfraestructuraId);
+      const Resp_InfraestructuraDimension = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].InfraestructuraDimensionId);
+      const Resp_Clasificacion = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].ClasificacionId);
+      const Resp_Piso = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].PisoId);
+
       setOptionsTipoInfraestructura(Resp_TipoInfraestructura);
       setOptionsClasificacion(Resp_Clasificacion);
       setOptionsInfraestructuraDimension(Resp_InfraestructuraDimension);
       setOptionsSucursal(Resp_Sucursal);
       setOptionsPiso(Resp_Piso);
-      
-      
+
       setEnt(Resp_Producto[0]);
     }
 
     setCargarPage(false);
   };
+
   const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
 
     setValCodigo('');
@@ -231,6 +228,7 @@ const Save = () => {
     });
 
   };
+  
   const [selectedSucursal, setSelectedSucursal] = useState<number | undefined>(undefined);
   const [selectedTipoInfraestructura, setSelectedTipoInfraestructura] = useState<number | undefined>(undefined);
   const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
@@ -278,7 +276,7 @@ const Save = () => {
     setSelectedInfraestructuraDimension(value)
   };
 
-  
+
   const onChangePiso = async (value: number) => {
     setValPiso('');
     Ent.PisoId = value;
@@ -589,7 +587,7 @@ const Save = () => {
               <label>Piso</label>
             </Col>
             <Col span={24}>
-         <Select
+              <Select
                 showSearch
                 status={ValPiso}
                 style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
@@ -605,18 +603,18 @@ const Save = () => {
                     {PisoItem.Nombre}
                   </Select.Option>
                 ))}
-              </Select> 
+              </Select>
               <MDInfraestructuraDimension buttonLabel="Enlace"
                 addItemToState={addItemToStateInfraestructuraDimension}
                 item={new InfraListaModel()}
                 CodigoTabla={'M009'}
-                title={"Piso"} /> 
+                title={"Piso"} />
 
 
 
             </Col>
           </Row>
-       
+
 
           <Row>
             <Col span={24}>
