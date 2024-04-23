@@ -198,11 +198,11 @@ const Save = () => {
 
       const Resp_Producto = await sInfraestructura.GetInfraestructuraItem(idNumero);
 
-      const Resp_Sucursal = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].SucursalId);
-      const Resp_TipoInfraestructura = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].TipoInfraestructuraId);
-      const Resp_InfraestructuraDimension = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].InfraestructuraDimensionId);
-      const Resp_Clasificacion = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].ClasificacionId);
-      const Resp_Piso = await sInfraLista.ObtenerItemEnlace(Resp_Producto[0].PisoId);
+      const Resp_Sucursal = await sInfraLista.ObtenerItem(Resp_Producto[0].SucursalId);
+      const Resp_TipoInfraestructura = await sInfraLista.ObtenerItem(Resp_Producto[0].TipoInfraestructuraId);
+      const Resp_InfraestructuraDimension = await sInfraLista.ObtenerItem(Resp_Producto[0].InfraestructuraDimensionId);
+      const Resp_Clasificacion = await sInfraLista.ObtenerItem(Resp_Producto[0].ClasificacionId);
+      const Resp_Piso = await sInfraLista.ObtenerItem(Resp_Producto[0].PisoId);
 
       setOptionsTipoInfraestructura(Resp_TipoInfraestructura);
       setOptionsClasificacion(Resp_Clasificacion);
@@ -228,7 +228,7 @@ const Save = () => {
     });
 
   };
-  
+
   const [selectedSucursal, setSelectedSucursal] = useState<number | undefined>(undefined);
   const [selectedTipoInfraestructura, setSelectedTipoInfraestructura] = useState<number | undefined>(undefined);
   const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
@@ -367,7 +367,7 @@ const Save = () => {
         Ent.CodUsuario = "adm";
         Ent.FechaRegistro = new Date();
         Ent.EstadoRegistro = true
-
+        Ent.Action = 3;
         AddProducto();
       },
       onCancel() {

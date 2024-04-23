@@ -13,6 +13,7 @@ export class InfraestructuraSaveModel {
     FechaRegistro: Date;
     CodUsuario: string;
     EstadoRegistro: boolean;
+    Action: number;
     constructor() {
         this.InfraestructuraId = 0;
         this.SucursalId = 0;
@@ -28,6 +29,7 @@ export class InfraestructuraSaveModel {
         this.FechaRegistro = new Date();
         this.CodUsuario = '';
         this.EstadoRegistro = true;
+        this.Action = 0;
     }
 }
 
