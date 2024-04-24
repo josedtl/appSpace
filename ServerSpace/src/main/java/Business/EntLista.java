@@ -1,38 +1,37 @@
 package Business;
 
-import DataLayer.PersonaNaturalDB;
-import EntityLayer.PersonaNaturalEntity;
-import Framework.Inj;
+import DataLayer.EntListaDB;
+import EntityLayer.EntListaEntity;
 import java.util.ArrayList;
+import Framework.Inj;
 
-public class PersonaNatural {
-
-    public ArrayList<PersonaNaturalEntity> ObtenerMain() {
+public class EntLista {
+    public ArrayList<EntListaEntity> ObtenerCodigo(String codigo) {
         try {
-            PersonaNaturalDB BD = new PersonaNaturalDB();
+            EntListaDB BD = new EntListaDB();
             Inj.IniciarTranssaccionConsulta();
-            return BD.ObtenerMain();
+            return BD.ObtenerCodigo(codigo);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }
 
-    public ArrayList<PersonaNaturalEntity> ObtenerItem(int Id) {
+    public ArrayList<EntListaEntity> GetListaRelacion_Main(String codigo) {
         try {
-            PersonaNaturalDB BD = new PersonaNaturalDB();
+            EntListaDB BD = new EntListaDB();
             Inj.IniciarTranssaccionConsulta();
-            return BD.ObtenerItem(Id);
+            return BD.GetListaRelacion_Main(codigo);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }
 
-    public PersonaNaturalEntity Registrar(PersonaNaturalEntity Item) {
+    public EntListaEntity Registrar(EntListaEntity Item) {
         try {
             Inj.IniciarTranssaccion(true);
-            PersonaNaturalDB BD = new PersonaNaturalDB();
+            EntListaDB BD = new EntListaDB();
             BD.Registrar(Item);
             Inj.FinalizarTranssaccion();
             return Item;
@@ -41,5 +40,4 @@ public class PersonaNatural {
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }
-
 }

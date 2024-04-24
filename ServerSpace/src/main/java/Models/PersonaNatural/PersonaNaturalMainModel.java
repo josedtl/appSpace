@@ -1,4 +1,4 @@
-package Models;
+package Models.PersonaNatural;
 
 import EntityLayer.PersonaNaturalEntity;
 import com.fasterxml.jackson.annotation.JsonProperty;

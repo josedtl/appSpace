@@ -1,34 +1,33 @@
 package Business;
 
-import DataLayer.UbigeoDB;
-import EntityLayer.UbigeoEntity;
+import DataLayer.MonedaDB;
+import EntityLayer.MonedaEntity;
 import Framework.Inj;
 import java.util.ArrayList;
 
-public class Ubigeo {
-
- 
-    public ArrayList<UbigeoEntity> GetUbigeoBuscarLike(String Nombre) {
+public class Moneda {
+    
+    
+    public ArrayList<MonedaEntity> ObtenerMonedaItems() {
         try {
-            UbigeoDB BD = new UbigeoDB();
+            MonedaDB BD = new MonedaDB();
             Inj.IniciarTranssaccionConsulta();
-            return BD.GetUbigeoLikeItem(Nombre);
+            return BD.ObtenerMonedaItems();
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }
 
-    public ArrayList<UbigeoEntity> GetUbigeoItem(int Id) {
+    public ArrayList<MonedaEntity> ObtenerMonedaItem(int Id) {
         try {
-            UbigeoDB BD = new UbigeoDB();
+            MonedaDB BD = new MonedaDB();
             Inj.IniciarTranssaccionConsulta();
-            return BD.GetAllItem(Id);
+            return BD.ObtenerMonedaItem(Id);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }
-
 
 }

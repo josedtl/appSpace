@@ -57,7 +57,7 @@ public class EntListaDB extends BaseDB {
         return DatoMemoria;
     }
 
-    public EntListaEntity Save(EntListaEntity entity) {
+    public EntListaEntity Registrar(EntListaEntity entity) {
         Boolean State = null;
         try {
             Inj.IniciarTranssaccion(false);

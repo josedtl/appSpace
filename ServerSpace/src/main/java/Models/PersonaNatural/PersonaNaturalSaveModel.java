@@ -1,13 +1,15 @@
-package Models;
+package Models.PersonaNatural;
 
 import Enumerados.ProcessActionEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import EntityLayer.PersonaNaturalEntity;
+
 import java.sql.Timestamp;
 
 public class PersonaNaturalSaveModel {
 
     public PersonaNaturalSaveModel() {
-        // You can set default values for properties here
         this.personaNaturalId = 0;
         this.tipoDocumentoIdentidadId = 0;
         this.numDocumento = "";
@@ -19,11 +21,30 @@ public class PersonaNaturalSaveModel {
         this.direccion = "";
         this.telefono = "";
         this.correo = "";
-        this.generoId = 0;
+        this.sexoId = 0;
         this.estadoCivilId = 0;
         this.fechaRegistro = null;
         this.codUsuario = "";
         this.estadoRegistro = false;
+        this.action = ProcessActionEnum.Loaded;
+    }
+
+    public PersonaNaturalSaveModel(PersonaNaturalEntity Ent) {
+        this.personaNaturalId = Ent.getPersonaNaturalId();
+        this.tipoDocumentoIdentidadId = Ent.getTipoDocumentoIdentidadId();
+        this.numDocumento = Ent.getNumDocumento();
+        this.nombres = Ent.getNombres();
+        this.apellidoPaterno = Ent.getApellidoPaterno();
+        this.apellidoMaterno = Ent.getApellidoMaterno();
+        this.fechaNacimiento = Ent.getFechaNacimiento();
+        this.ubigeoId = Ent.getUbigeoId();
+        this.direccion = Ent.getDireccion();
+        this.telefono = Ent.getTelefono();
+        this.correo = Ent.getCorreo();
+        this.sexoId = Ent.getSexoId();
+        this.estadoCivilId = Ent.getEstadoCivilId();
+        this.fechaRegistro = Ent.getFechaRegistro();
+        this.codUsuario = Ent.getCodUsuario();
         this.action = ProcessActionEnum.Loaded;
     }
 
@@ -148,15 +169,15 @@ public class PersonaNaturalSaveModel {
         this.correo = correo;
     }
 
-    @JsonProperty("GeneroId")
-    private int generoId = 0;
+    @JsonProperty("SexoId")
+    private int sexoId = 0;
 
-    public int getGeneroId() {
-        return generoId;
+    public int getSexoId() {
+        return sexoId;
     }
 
-    public void setGeneroId(int generoId) {
-        this.generoId = generoId;
+    public void setSexoId(int sexoId) {
+        this.sexoId = sexoId;
     }
 
     @JsonProperty("EstadoCivilId")

@@ -1,34 +1,32 @@
 package Business;
 
-import DataLayer.UbigeoDB;
-import EntityLayer.UbigeoEntity;
+import DataLayer.UnidadMedidaDB;
+import EntityLayer.UnidadMedidaEntity;
 import Framework.Inj;
 import java.util.ArrayList;
 
-public class Ubigeo {
 
- 
-    public ArrayList<UbigeoEntity> GetUbigeoBuscarLike(String Nombre) {
+public class UnidadMedida {
+    
+    public ArrayList<UnidadMedidaEntity> GetUnidadMedidaItems() {
         try {
-            UbigeoDB BD = new UbigeoDB();
+            UnidadMedidaDB BD = new UnidadMedidaDB();
             Inj.IniciarTranssaccionConsulta();
-            return BD.GetUbigeoLikeItem(Nombre);
+            return BD.GetUnidadMedidaItems();
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }
 
-    public ArrayList<UbigeoEntity> GetUbigeoItem(int Id) {
+    public ArrayList<UnidadMedidaEntity> GetUnidadMedida_Item(int Id) {
         try {
-            UbigeoDB BD = new UbigeoDB();
+            UnidadMedidaDB BD = new UnidadMedidaDB();
             Inj.IniciarTranssaccionConsulta();
-            return BD.GetAllItem(Id);
+            return BD.GetUnidadMedida_Item(Id);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }
-
-
 }
