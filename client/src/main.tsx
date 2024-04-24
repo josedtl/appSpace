@@ -44,6 +44,9 @@ import PageInfraestructuraMenu from "./Components/Infraestructura/Menu";
 import PageinfraestructuraMain from "./Components/Infraestructura/Main";
 import PageInfraestructuraSave from "./Components/Infraestructura/Save";
 import InfraestructuraEnlace from "./Components/Infraestructura/Enlace/InfraLista/Main";
+import PageAlquilerMain from "./Components/Alquiler/Main";
+import PageAlquilerSave from "./Components/Alquiler/Save";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -78,6 +81,8 @@ const router = createBrowserRouter([
       { path: "Infraestructura/Enlace/:Id", element: <InfraestructuraEnlace />, },
       { path: "Servicio", element: <PageServicioMain />, },
       { path: "ServicioSave/:Id", element: <PageServicioSave />, },
+      { path: "Alquiler", element: <PageAlquilerMain />, },
+      { path: "AlquilerSave/:Id", element: <PageAlquilerSave />, },
     ],
   },
 ]);
