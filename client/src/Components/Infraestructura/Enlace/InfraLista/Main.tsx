@@ -53,7 +53,7 @@ function Page() {
   };
 
   const getItems = async () => {
-    const itemsg = await sInfraLista.getItems(idNumero);
+    const itemsg = await sInfraLista.ObtenerMain(idNumero);
     console.log(itemsg);
     const itemtitulo = await sInfraLista.GetItemTitulo(idNumero);
 

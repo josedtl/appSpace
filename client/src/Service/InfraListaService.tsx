@@ -1,12 +1,13 @@
 import { EntidadLikeModel } from '../Models/EntidadLikeModel';
 import { InfraCampoTituloModel, InfraListaModel,InfraListaEntity } from '../Models/InfraListaEntity';
+import { ItemLikeModel } from '../Models/Utiladades/ItemLikeModel';
 import { apiLg } from './axios-config';
 
 class InfraListaService {
 
   ServiceName: string = 'InfraLista';
 
-  async ObtenerMain(Codigo: string): Promise<InfraListaModel[]> {
+  async ObtenerMain(Codigo: string): Promise<InfraListaEntity[]> {
     try {
       const response = await apiLg.get(`api/${this.ServiceName}/ObtenerMain/${Codigo}`);
       return response.data.Value;
@@ -46,7 +47,7 @@ class InfraListaService {
   async BuscarItemCodigo(codigo: string, value: string): Promise<InfraListaModel[]> {
     try {
 
-      const EntLike = new EntidadLikeModel();
+      const EntLike = new ItemLikeModel();
       EntLike.srtValor1 = codigo;
       EntLike.srtValor2 = value;
       const response = await apiLg.post(`api/${this.ServiceName}/BuscarItemCodigo`, EntLike, {
@@ -73,7 +74,7 @@ class InfraListaService {
   async ObtenerItemEnlace(Id: number): Promise<InfraListaModel[]> {
     try {
       const response = await apiLg.get(`api/${this.ServiceName}/ObtenerItemEnlace/${Id}`);
-      console.log(response);
+    
       return response.status === 200 && response.data.State == true ? response.data.Value : [];
     } catch (error) {
       throw error;
@@ -82,8 +83,10 @@ class InfraListaService {
 
   async GetItemTitulo(Codigo: string): Promise<InfraCampoTituloModel[]> {
     try {
+      console.log(Codigo);
       const response = await apiLg.get(`api/${this.ServiceName}/ObtenerTitulo/${Codigo}`);
-      return response.data.Value;
+      console.log(response);
+      return response.status === 200 && response.data.State == true ? response.data.Value : [];
 
     } catch (error) {
       throw error;
