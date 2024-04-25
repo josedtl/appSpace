@@ -40,18 +40,11 @@ const Root: React.FC = () => {
   const items: MenuItem[] = [
     getItem('Solicitar', 'L1', <SolutionOutlined />,
       [
-        getItem(<Link to="/OrdenPedido">Orden de Pedido</Link>, 'L1_a'),
-        getItem(<Link to="/OrdenCompra">Orden de Compra</Link>, 'L1_2'),
-        getItem(<Link to="/Alquiler">Alquiler</Link>, 'L1_18')
-      ]),
-    getItem('Operación', 'A2', <ReconciliationOutlined />,
-      [getItem(<Link to="/">Reserva</Link>, 'A2_3'),
-      getItem(<Link to="/Recepcion">Recepción</Link>, 'A2_1'),
-      getItem(<Link to="/">Despacho</Link>, 'A2_2')
+        getItem(<Link to="/Alquiler">Alquiler</Link>, 'L1_18'),
+        getItem(<Link to="/">Reserva</Link>, 'A2_1'),
       ]),
     getItem('Catalogo', 'C1', <BlockOutlined />,
       [
-        getItem(<Link to="/Producto/Menu">Artículo</Link>, 'C1_55'),
         getItem(<Link to="/Entidad">Entidad</Link>, 'C1_6'),
         getItem(<Link to="/Tarifa">Tarifa</Link>, 'C1_7'),
         getItem(<Link to="/Servicio">Servicio</Link>, 'C1_8'),

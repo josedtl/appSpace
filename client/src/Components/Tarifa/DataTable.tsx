@@ -77,18 +77,65 @@ const DataTable: React.FC<PropsTable> = (props) => {
         },
 
     ];
+    const dataWithKeys = props.DataList.sort((a, b) => b.TarifaId - a.TarifaId).map((item, zIndex) => {
+        return {
+            ...item,
+            key: item.TarifaId,
+            Cont: (zIndex + 1)
+        };
+    });
+
 
  
-    return (
+    const ListaCard = () => {
+        if (props.EsTabla) {
 
-      <>
-        <Table
+            return (
+                <>
+                    <Row gutter={16} style={{ backgroundColor: '#FAFAFA' }} >
+                        {dataWithKeys.map(row => (
+
+                            <Col key={row.Cont} xs={24} md={12} lg={8} xl={6} xxl={4}>
+                                <Card hoverable={true}
+
+                                    style={{ marginTop: '10Px', }}
+                                    actions={[
+                                        <Link to={`/PersonaNaturalSave/${row.TarifaId}`}>
+                                            <EditFilled
+                                                style={{ color: "#BB9B32" }}
+                                            />
+                                        </Link>
+                                    ]}
+                                    bordered={false}>
+                                    {row.Cont + ".  "}   {row.Nombre}
+                                </Card>
+
+                            </Col>
+
+
+                        ))}
+                    </Row>
+
+                </>
+            )
+        } else {
+            return (
+                <Table
                     columns={columns}
-                    dataSource={props.DataList}
+                    dataSource={dataWithKeys}
                     size="small"
                     scroll={{ x: 'calc(700px + 50%)', y: '100%' }}
                 />
-      </>
+            )
+        }
+
+    }
+    return (
+
+        <div>
+
+            {ListaCard()}
+        </div>
 
     );
 }

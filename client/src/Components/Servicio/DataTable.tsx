@@ -30,11 +30,11 @@ const DataTable: React.FC<PropsTable> = (props) => {
             key: 'Nombre',
         },
        
-        {
-            title: 'Descripcion',
-            dataIndex: 'Descripcion',
-            key: 'Descripcion',
-        },
+        // {
+        //     title: 'Descripcion',
+        //     dataIndex: 'Descripcion',
+        //     key: 'Descripcion',
+        // },
         {
             title: 'Fecha de registro',
             dataIndex: 'FechaRegistro',
@@ -71,18 +71,67 @@ const DataTable: React.FC<PropsTable> = (props) => {
         },
 
     ];
+    const dataWithKeys = props.DataList.sort((a, b) => b.ServicioId - a.ServicioId).map((item, zIndex) => {
+        return {
+            ...item,
+            key: item.ServicioId,
+            Cont: (zIndex + 1)
+        };
+    });
+
+
+ 
+    const ListaCard = () => {
+        if (props.EsTabla) {
+
+            return (
+                <>
+                    <Row gutter={16} style={{ backgroundColor: '#FAFAFA' }} >
+                        {dataWithKeys.map(row => (
+
+                            <Col key={row.Cont} xs={24} md={12} lg={8} xl={6} xxl={4}>
+                                <Card hoverable={true}
+
+                                    style={{ marginTop: '10Px', }}
+                                    actions={[
+                                        <Link to={`/PersonaNaturalSave/${row.ServicioId}`}>
+                                            <EditFilled
+                                                style={{ color: "#BB9B32" }}
+                                            />
+                                        </Link>
+                                    ]}
+                                    bordered={false}>
+                                    {row.Cont + ".  "}   {row.Nombre}
+                                </Card>
+
+                            </Col>
+
+
+                        ))}
+                    </Row>
+
+                </>
+            )
+        } else {
+            return (
+                <Table
+                    columns={columns}
+                    dataSource={dataWithKeys}
+                    size="small"
+                    scroll={{ x: 'calc(700px + 50%)', y: '100%' }}
+                />
+            )
+        }
+
+    }
     return (
 
-        <>
-          <Table
-                      columns={columns}
-                      dataSource={props.DataList}
-                      size="small"
-                      scroll={{ x: 'calc(700px + 50%)', y: '100%' }}
-                  />
-        </>
-  
-      );
+        <div>
+
+            {ListaCard()}
+        </div>
+
+    );
 
 }
  export default DataTable;
