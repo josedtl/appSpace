@@ -61,7 +61,7 @@ class ServListaService {
       const EntLike = new EntidadLikeModel();
       EntLike.srtValor1 = Nombre;
       EntLike.intValor1 = Tipo;
-      const response = await apiLg.post(`api/${this.ServiceName}/BuscarServLista`, EntLike, {
+      const response = await apiLg.post(`api/${this.ServiceName}/Buscar`, EntLike, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -73,7 +73,7 @@ class ServListaService {
   }
   async ObtenerItemCodigo(Codigo :string): Promise<ServListaMainModel[]> {
     try {
-      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerServListaCodigo/${Codigo}`);
+      const response = await apiLg.get(`api/${this.ServiceName}/ObtenerCodigo/${Codigo}`);
       return response.status === 200 ? response.data.Value : [];
     } catch (err) {
       return [];
