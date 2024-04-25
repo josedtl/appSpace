@@ -2,7 +2,6 @@ package DataLayer;
 
 import EntityLayer.UbigeoEntity;
 import Framework.BaseDB;
-import Framework.Inj;
 import Framework.injector;
 
 import java.sql.ResultSet;

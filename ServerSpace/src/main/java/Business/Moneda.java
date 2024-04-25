@@ -2,7 +2,6 @@ package Business;
 
 import DataLayer.MonedaDB;
 import EntityLayer.MonedaEntity;
-import Framework.Inj;
 import java.util.ArrayList;
 
 public class Moneda {

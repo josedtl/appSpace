@@ -2,7 +2,6 @@ package Business;
 
 import DataLayer.UbigeoDB;
 import EntityLayer.UbigeoEntity;
-import Framework.Inj;
 import java.util.ArrayList;
 
 public class Ubigeo {

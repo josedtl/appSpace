@@ -2,7 +2,6 @@ package Business;
 
 import DataLayer.UnidadMedidaDB;
 import EntityLayer.UnidadMedidaEntity;
-import Framework.Inj;
 import java.util.ArrayList;
 
 

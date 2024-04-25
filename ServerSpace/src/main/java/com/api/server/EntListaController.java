@@ -2,16 +2,12 @@ package com.api.server;
 
 import Business.EntLista;
 import EntityLayer.EntListaEntity;
-import Framework.Utilidades;
 import Models.ResponseAPI;
 import Models.EntLista.EntListaModel;
-import Models.PersonaNatural.PersonaNaturalSaveModel;
 
 import java.util.ArrayList;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
