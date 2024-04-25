@@ -6,8 +6,8 @@ class EntListaService {
 
   async getItems(Codigo: string): Promise<EntListaModel[]> {
     try {
-      const response = await apiLg.get(`api/ListaRelacion/GetListaRelacion/${Codigo}`);
-      return response.data;
+      const response = await apiLg.get(`api/EntLista/ObtenerItemsCodigo/${Codigo}`);
+      return response.status === 200 ? response.data.Value : [];
 
     } catch (error) {
       throw error;

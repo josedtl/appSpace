@@ -35,6 +35,7 @@ public class PersonaNaturalController extends Configuracion {
 
     @GetMapping("/ObtenerItem/{Id}")
     public ResponseAPI<ArrayList<PersonaNaturalSaveModel>> ObtenerItem(@PathVariable int Id) {
+        DataConfi();
         PersonaNatural BS = new PersonaNatural();
 
         ArrayList<PersonaNaturalSaveModel> Items = new ArrayList<>();
@@ -48,6 +49,7 @@ public class PersonaNaturalController extends Configuracion {
 
     @PostMapping("/Registrar")
     public PersonaNaturalSaveModel Registrar(@RequestBody PersonaNaturalSaveModel ItemModel) {
+        DataConfi();
         PersonaNatural BS = new PersonaNatural();
         PersonaNaturalEntity Ent = new PersonaNaturalEntity();
 

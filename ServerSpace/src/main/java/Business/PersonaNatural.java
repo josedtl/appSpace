@@ -10,7 +10,6 @@ public class PersonaNatural {
     public ArrayList<PersonaNaturalEntity> ObtenerMain() {
         try {
             PersonaNaturalDB BD = new PersonaNaturalDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.ObtenerMain();
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
@@ -21,7 +20,6 @@ public class PersonaNatural {
     public ArrayList<PersonaNaturalEntity> ObtenerItem(int Id) {
         try {
             PersonaNaturalDB BD = new PersonaNaturalDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.ObtenerItem(Id);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);

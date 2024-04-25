@@ -11,7 +11,6 @@ public class Ubigeo {
     public ArrayList<UbigeoEntity> GetUbigeoBuscarLike(String Nombre) {
         try {
             UbigeoDB BD = new UbigeoDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.GetUbigeoLikeItem(Nombre);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
@@ -22,7 +21,6 @@ public class Ubigeo {
     public ArrayList<UbigeoEntity> GetUbigeoItem(int Id) {
         try {
             UbigeoDB BD = new UbigeoDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.GetAllItem(Id);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);

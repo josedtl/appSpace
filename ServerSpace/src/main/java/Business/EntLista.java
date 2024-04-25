@@ -6,21 +6,26 @@ import java.util.ArrayList;
 import Framework.Inj;
 
 public class EntLista {
+
+
     public ArrayList<EntListaEntity> ObtenerCodigo(String codigo) {
-        try {
-            EntListaDB BD = new EntListaDB();
-            Inj.IniciarTranssaccionConsulta();
-            return BD.ObtenerCodigo(codigo);
-        } catch (Exception ex) {
-            System.out.println("ERROR " + ex);
-            throw new UnsupportedOperationException("MENSAJE :" + ex);
-        }
+        EntListaDB BD = new EntListaDB();
+        return BD.ObtenerCodigo(codigo);
     }
+    // public ArrayList<EntListaEntity> ObtenerCodigo(String codigo) {
+    //     try {
+    //         EntListaDB BD = new EntListaDB();
+    //         Inj.IniciarTranssaccionConsulta();
+    //         return BD.ObtenerCodigo(codigo);
+    //     } catch (Exception ex) {
+    //         System.out.println("ERROR " + ex);
+    //         throw new UnsupportedOperationException("MENSAJE :" + ex);
+    //     }
+    // }
 
     public ArrayList<EntListaEntity> GetListaRelacion_Main(String codigo) {
         try {
             EntListaDB BD = new EntListaDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.GetListaRelacion_Main(codigo);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);

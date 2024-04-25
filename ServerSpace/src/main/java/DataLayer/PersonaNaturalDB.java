@@ -5,6 +5,8 @@ import Enumerados.ProcessActionEnum;
 import Framework.BaseDB;
 import Framework.Inj;
 import Framework.Utilidades;
+import Framework.injector;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,13 +14,13 @@ import java.util.ArrayList;
 public class PersonaNaturalDB extends BaseDB {
 
     public ArrayList<PersonaNaturalEntity> ObtenerItem(int PersonaNaturalId) {
-
+        injector InjDB = new injector();
         ArrayList<PersonaNaturalEntity> DatoMemoria = new ArrayList<>();
         PersonaNaturalEntity en;
         try {
-            Inj.Sp("sp_PersonaObtenerItem");
-            Inj.Pmt_Integer("@PersonaNaturalId", PersonaNaturalId, false);
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_PersonaObtenerItem");
+            InjDB.Pmt_Integer("@PersonaNaturalId", PersonaNaturalId, false);
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new PersonaNaturalEntity();
@@ -75,12 +77,12 @@ public class PersonaNaturalDB extends BaseDB {
     }
 
     public ArrayList<PersonaNaturalEntity> ObtenerMain() {
-
+        injector InjDB = new injector();
         ArrayList<PersonaNaturalEntity> DatoMemoria = new ArrayList<>();
         PersonaNaturalEntity en;
         try {
-            Inj.Sp("sp_PersonaObtenerMain");
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_PersonaObtenerMain");
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new PersonaNaturalEntity();

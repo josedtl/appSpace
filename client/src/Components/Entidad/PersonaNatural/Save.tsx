@@ -132,18 +132,7 @@ const Save = () => {
     } else {
     }
   }
-  const updatePersonaNatural = async () => {
-    console.log(Ent);
-    const savedItem = await sPersonaNatural.Actualizar(Ent);
-    if (savedItem) {
 
-      messageAdd.open({
-        type: 'success',
-        content: 'Se Actualizo correctamente.',
-      });
-    } else {
-    }
-  }
 
 
   const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -215,14 +204,9 @@ const Save = () => {
         Ent.CodUsuario = "adm";
         Ent.FechaRegistro = new Date();
 
-        if (Ent.PersonaNaturalId == 0) {
+        Ent.Action = Ent.PersonaNaturalId == 0 ? 1 : 3;
 
-          AddPersonaNatural();
-
-        } else {
-          updatePersonaNatural();
-
-        }
+        AddPersonaNatural();
 
       },
       onCancel() {
@@ -233,25 +217,25 @@ const Save = () => {
   };
 
 
-  async function getCargarDatos() {
+  const getCargarDatos = async () => {
 
 
-    setCargarPage(true);
     const Resp_UM = await sEntLista.getItems('C0012');
-    setOptionsTipoDocumentoIdentidad(Resp_UM);
-
     const Resp_Sexo = await sEntLista.getItems('C0008');
-    setOptionsSexo(Resp_Sexo);
-
     const Resp_EC = await sEntLista.getItems('C0009');
+
+    setOptionsTipoDocumentoIdentidad(Resp_UM);
+    setOptionsSexo(Resp_Sexo);
     setOptionsEstadoCivil(Resp_EC);
 
+    const dateFN = moment(new Date()).format('YYYY-MM-DD')
+    setFechaNacimientoItem(dateFN);
+    
     console.log(idNumero)
     if (idNumero > 0) {
 
       const Resp_PersonaNatural = await sPersonaNatural.ObtenerItem(idNumero);
       setEnt(Resp_PersonaNatural[0]);
-      console.log(Resp_PersonaNatural[0]);
 
 
       if (Resp_PersonaNatural[0].UbigeoId != null) {
@@ -259,9 +243,11 @@ const Save = () => {
 
         setOptionsUbigeo(Resp_Ubigeo);
       }
+      if (Resp_PersonaNatural[0].FechaNacimiento != null) {
 
-      const dateFNC = moment(Resp_PersonaNatural[0].FechaNacimiento).format('YYYY-MM-DD')
-      setFechaNacimientoItem(dateFNC);
+        const dateFNC = moment(Resp_PersonaNatural[0].FechaNacimiento).format('YYYY-MM-DD')
+        setFechaNacimientoItem(dateFNC);
+      }
 
 
 
@@ -271,10 +257,14 @@ const Save = () => {
     setCargarPage(false);
   };
   useEffect(() => {
+    async function cargarItem() {
 
-    const dateFN = moment(new Date()).format('YYYY-MM-DD')
-    setFechaNacimientoItem(dateFN);
-    getCargarDatos();
+      setCargarPage(true);
+      await getCargarDatos();
+    }
+
+
+    cargarItem();
   }, []);
 
   return (

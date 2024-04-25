@@ -11,7 +11,6 @@ public class Moneda {
     public ArrayList<MonedaEntity> ObtenerMonedaItems() {
         try {
             MonedaDB BD = new MonedaDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.ObtenerMonedaItems();
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);
@@ -22,7 +21,6 @@ public class Moneda {
     public ArrayList<MonedaEntity> ObtenerMonedaItem(int Id) {
         try {
             MonedaDB BD = new MonedaDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.ObtenerMonedaItem(Id);
         } catch (Exception ex) {
             System.out.println("ERROR " + ex);

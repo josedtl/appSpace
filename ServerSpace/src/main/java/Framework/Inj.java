@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 /**
  *
@@ -23,11 +25,23 @@ public class Inj {
     private static ArrayList<String> dat = new ArrayList<>();
     private static ArrayList<variable> type = new ArrayList<>();
 
+    public static Connection ConexionBD() {
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(EnvItem.getURL(), EnvItem.getUsuario(), EnvItem.getContrasena());
+
+            return con;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return con;
+        }
+    }
+
     public static void IniciarTranssaccion(Boolean Fla) throws SQLException {
         try {
             if (Fla) {
-                Conexion cx = new Conexion();
-                conx = cx.ConexionBD();
+                // Conexion cx = new Conexion();
+                conx = ConexionBD();
                 cs = null;
                 conx.setAutoCommit(false);
                 type = new ArrayList<>();
@@ -43,26 +57,38 @@ public class Inj {
 
     }
 
-    public static void IniciarTranssaccionConsulta() throws SQLException {
-        try {
-            
-                Conexion cx = new Conexion();
-                conx = cx.ConexionBD();
-                cs = null;
-                conx.setAutoCommit(true);
-                type = new ArrayList<>();
-                dat = new ArrayList<>();
-         
-        } catch (Exception ex) {
+    // public static void IniciarTranssaccionConsulta() {
+    //     try {
 
-        }
+    //         Conexion cx = new Conexion();
+    //         conx = cx.ConexionBD();
+    //         cs = null;
+    //         conx.setAutoCommit(true);
+    //         type = new ArrayList<>();
+    //         dat = new ArrayList<>();
 
-    }
+    //     } catch (Exception ex) {
+
+    //     }
+
+    // }
+
     public static void FinalizarTranssaccion() throws SQLException {
         conx.commit();
+
         conx.close();
-//        conx.setAutoCommit(true);
+        // conx.setAutoCommit(true);
     }
+
+    // public static void FinalizarTranssaccionConsulta() {
+
+    //     try {
+            
+    //         conx.close();
+    //     } catch (Exception ex) {
+
+    //     }
+    // }
 
     public static String getSp() {
         return m_Sp;
@@ -74,7 +100,7 @@ public class Inj {
         v.setString(value);
         v.setOUTPUT(valueB);
         type.add(v);
-        //    dat.add(value);
+        // dat.add(value);
     }
 
     public static void Pmt_Boolean(String Param, Boolean value, Boolean valueB) {
@@ -83,7 +109,7 @@ public class Inj {
         v.setInt(value ? 1 : 0);
         v.setOUTPUT(valueB);
         type.add(v);
-        //    dat.add(value);
+        // dat.add(value);
     }
 
     public static void Pmt_Integer(String Param, Integer value, Boolean valueB) {
@@ -92,7 +118,7 @@ public class Inj {
         v.setInt(value);
         v.setOUTPUT(valueB);
         type.add(v);
-        //    dat.add(value);
+        // dat.add(value);
     }
 
     public static void Pmt_Double(String Param, Double value, Boolean valueB) {
@@ -101,7 +127,7 @@ public class Inj {
         v.setDouble(value);
         v.setOUTPUT(valueB);
         type.add(v);
-        //    dat.add(value);
+        // dat.add(value);
     }
 
     public static void Pmt_Date(String Param, Timestamp value, Boolean valueB) {
@@ -110,7 +136,7 @@ public class Inj {
         v.setDate(value);
         v.setOUTPUT(valueB);
         type.add(v);
-        //    dat.add(value);
+        // dat.add(value);
     }
 
     private static String m_Sp;
@@ -233,54 +259,54 @@ public class Inj {
         return RunValue;
     }
 
-    public static ResultSet RunSelect() throws SQLException {
+    // public static ResultSet RunSelect() throws SQLException {
 
-        ResultSet rs = null;
-        String sum = "";
-        String suma = "";
+    //     ResultSet rs = null;
+    //     String sum = "";
+    //     String suma = "";
 
-        if (type.size() > 0) {
-            for (int i = 0; i < type.size(); i++) {
-                sum += ",?";
-            }
-            suma = sum.substring(1);
-        }
+    //     if (type.size() > 0) {
+    //         for (int i = 0; i < type.size(); i++) {
+    //             sum += ",?";
+    //         }
+    //         suma = sum.substring(1);
+    //     }
 
-        try {
-     
-            String Parmet = "" + getSp();
-            cs = conx.prepareCall("{CALL " + Parmet + "(" + suma + ")}");
+    //     try {
 
-            for (variable t : type) {
-                if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
-                    cs.setString(t.getParameterName(), t.getString());
-                }
-                if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
-                    cs.setBoolean(t.getParameterName(), t.getBoolean());
-                }
-                if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
-                    cs.setInt(t.getParameterName(), t.getInt());
-                }
-                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
-                    cs.setDouble(t.getParameterName(), t.getDouble());
-                }
-                if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDouble() == null) {
-                    cs.setTimestamp(t.getParameterName(), t.getDate());
-                }
-            }
+    //         String Parmet = "" + getSp();
+    //         cs = conx.prepareCall("{CALL " + Parmet + "(" + suma + ")}");
 
-            rs = cs.executeQuery();
+    //         for (variable t : type) {
+    //             if (t.getInt() == null && t.getBoolean() == null && t.getDouble() == null && t.getDate() == null) {
+    //                 cs.setString(t.getParameterName(), t.getString());
+    //             }
+    //             if (t.getInt() == null && t.getString() == null && t.getDouble() == null && t.getDate() == null) {
+    //                 cs.setBoolean(t.getParameterName(), t.getBoolean());
+    //             }
+    //             if (t.getDouble() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
+    //                 cs.setInt(t.getParameterName(), t.getInt());
+    //             }
+    //             if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDate() == null) {
+    //                 cs.setDouble(t.getParameterName(), t.getDouble());
+    //             }
+    //             if (t.getInt() == null && t.getString() == null && t.getBoolean() == null && t.getDouble() == null) {
+    //                 cs.setTimestamp(t.getParameterName(), t.getDate());
+    //             }
+    //         }
 
-        } catch (SQLException e) {
-//            if (conx != null) {
-//                conx.rollback();
-//                conx.close();
-//            }
-            e.printStackTrace();
-            throw new UnsupportedOperationException("Datalater : " + e);
-        }
-        return rs;
-    }
+    //         rs = cs.executeQuery();
+
+    //     } catch (SQLException e) {
+    //         // if (conx != null) {
+    //         // conx.rollback();
+    //         // conx.close();
+    //         // }
+    //         e.printStackTrace();
+    //         throw new UnsupportedOperationException("Datalater : " + e);
+    //     }
+    //     return rs;
+    // }
 
     public static Integer RunDelete() throws SQLException {
         Boolean OUTPUT = false;

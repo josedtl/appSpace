@@ -5,18 +5,23 @@ import Enumerados.ProcessActionEnum;
 import Framework.BaseDB;
 import Framework.Inj;
 import Framework.Utilidades;
+import Framework.injector;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ServicioDB extends BaseDB {
+
+    
+    injector InjDB = new injector();
     public ArrayList<ServicioEntity> ObtenerMain() {
 
         ArrayList<ServicioEntity> DatoMemoria = new ArrayList<>();
         ServicioEntity en;
         try {
-            Inj.Sp("sp_ServicioObtenerMain");
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_ServicioObtenerMain");
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new ServicioEntity();
@@ -70,9 +75,9 @@ public class ServicioDB extends BaseDB {
         ArrayList<ServicioEntity> DatoMemoria = new ArrayList<>();
         ServicioEntity en;
         try {
-            Inj.Sp("sp_ServicioObtenerItem");
-            Inj.Pmt_Integer("@ServicioId", ServicioId, false);
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_ServicioObtenerItem");
+            InjDB.Pmt_Integer("@ServicioId", ServicioId, false);
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new ServicioEntity();

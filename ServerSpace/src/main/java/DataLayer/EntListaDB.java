@@ -5,6 +5,8 @@ import Enumerados.ProcessActionEnum;
 import Framework.BaseDB;
 import Framework.Inj;
 import Framework.Utilidades;
+import Framework.injector;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,12 +15,13 @@ public class EntListaDB extends BaseDB {
 
     public ArrayList<EntListaEntity> ObtenerCodigo(String codigo) {
 
+        injector InjDB = new injector();
         ArrayList<EntListaEntity> DatoMemoria = new ArrayList<>();
         EntListaEntity en;
         try {
-            Inj.Sp("sp_EntListaObtenerCodigo");
-            Inj.Pmt_String("@Codigo", codigo, false);
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_EntListaObtenerCodigo");
+            InjDB.Pmt_String("@Codigo", codigo, false);
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new EntListaEntity();
@@ -35,13 +38,13 @@ public class EntListaDB extends BaseDB {
     }
 
     public ArrayList<EntListaEntity> GetListaRelacion_Main(String codigo) {
-
+        injector InjDB = new injector();
         ArrayList<EntListaEntity> DatoMemoria = new ArrayList<>();
         EntListaEntity en;
         try {
-            Inj.Sp("sp_ListaRelacion_Main");
-            Inj.Pmt_String("@Codigo", codigo, false);
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_ListaRelacion_Main");
+            InjDB.Pmt_String("@Codigo", codigo, false);
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new EntListaEntity();

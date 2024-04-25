@@ -64,7 +64,7 @@ export class PersonaNaturalMainModel {
 
 
 
-export class PersonaNaturalSaveModel  {
+export class PersonaNaturalSaveModel {
     PersonaNaturalId: number;
     TipoDocumentoIdentidadId: number;
     NumDocumento: string;
@@ -80,7 +80,7 @@ export class PersonaNaturalSaveModel  {
     Correo: string;
     SexoId: number;
     EstadoCivilId: number;
-
+    Action: number;
 
     constructor() {
         this.PersonaNaturalId = 0;
@@ -98,5 +98,6 @@ export class PersonaNaturalSaveModel  {
         this.Correo = "";
         this.SexoId = 0;
         this.EstadoCivilId = 0;
+        this.Action = 0;
     }
 }

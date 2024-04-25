@@ -5,19 +5,21 @@ import Enumerados.ProcessActionEnum;
 import Framework.BaseDB;
 import Framework.Inj;
 import Framework.Utilidades;
+import Framework.injector;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UnidadMedidaDB extends BaseDB {
-
+    injector InjDB = new injector();
     public ArrayList<UnidadMedidaEntity> GetUnidadMedidaItems() {
 
         ArrayList<UnidadMedidaEntity> DatoMemoria = new ArrayList<>();
         UnidadMedidaEntity en;
         try {
-            Inj.Sp("sp_UnidadMedidaItems");
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_UnidadMedidaItems");
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new UnidadMedidaEntity();
@@ -38,9 +40,9 @@ public class UnidadMedidaDB extends BaseDB {
         ArrayList<UnidadMedidaEntity> DatoMemoria = new ArrayList<>();
         UnidadMedidaEntity en;
         try {
-            Inj.Sp("sp_UnidadMedida_Item");
-            Inj.Pmt_Integer("@UnidadMedidaId", UnidadMedidaId, false);
-            ResultSet rs = Inj.RunSelect();
+            InjDB.Sp("sp_UnidadMedida_Item");
+            InjDB.Pmt_Integer("@UnidadMedidaId", UnidadMedidaId, false);
+            ResultSet rs = InjDB.RunSelect();
             fillSchemeTable(rs);
             while (rs.next()) {
                 en = new UnidadMedidaEntity();

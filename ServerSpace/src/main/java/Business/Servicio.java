@@ -10,7 +10,6 @@ public class Servicio {
     public ArrayList<ServicioEntity> ObtenerMain() {
         try {
             ServicioDB BD = new ServicioDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.ObtenerMain();
         } catch (Exception ex) {
             throw new UnsupportedOperationException("MENSAJE :" + ex);
@@ -33,7 +32,6 @@ public class Servicio {
     public ArrayList<ServicioEntity> ObtenerItem(int Id) {
         try {
             ServicioDB BD = new ServicioDB();
-            Inj.IniciarTranssaccionConsulta();
             return BD.ObtenerItem(Id);
         } catch (Exception ex) {
             throw new UnsupportedOperationException("MENSAJE :" + ex);
