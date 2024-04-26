@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { PersonaNaturalEntity } from '../../Models/PersonaNaturalEntity';
+import { AlquilerEntity } from '../../Models/AlquilerEntity';
 import { EditFilled } from '@ant-design/icons';
 import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import { Link } from 'react-router-dom';
@@ -21,52 +21,39 @@ const DataTable: React.FC<PropsTable> = (props) => {
             key: 'Cont',
         },
         {
-            title: 'Documento',
-            dataIndex: 'TipoDocumento',
-            key: 'TipoDocumento',
+            title: 'TipoTablaAlquilerId',
+            dataIndex: 'TipoTablaAlquilerId',
+            key: 'TipoTablaAlquilerId',
         },
         {
-            title: 'Numero',
-            dataIndex: 'NumDocumento',
-            key: 'NumDocumento',
+            title: 'TarifaId',
+            dataIndex: 'TarifaId',
+            key: 'TarifaId',
         },
         {
-            title: 'Nombres',
-            dataIndex: 'Nombres',
-            key: 'Nombres',
+            title: 'Codigo',
+            dataIndex: 'Codigo',
+            key: 'Codigo',
         },
         {
-            title: 'ApellidoPaterno',
-            dataIndex: 'ApellidoPaterno',
-            key: 'ApellidoPaterno',
+            title: 'ClienteId',
+            dataIndex: 'ClienteId',
+            key: 'ClienteId',
         },
         {
-            title: 'ApellidoMaterno',
-            dataIndex: 'ApellidoMaterno',
-            key: 'ApellidoMaterno',
+            title: 'PrecioUnitario',
+            dataIndex: 'PrecioUnitario',
+            key: 'PrecioUnitario',
         },
-
-        {
-            title: 'Fecha de registro',
-            dataIndex: 'FechaRegistro',
-            width: '150px',
-            key: 'FechaRegistro',
-            render: (date: string) => moment(date).format('DD/MM/YYYY hh:mm'),
-        },
-        {
-            title: 'Usuario',
-            dataIndex: 'CodUsuario',
-            width: '100px',
-            key: 'CodUsuario',
-        }, {
+         {
             title: 'Action',
             fixed: 'right',
             width: 70,
             key: 'action',
-            render: (record: PersonaNaturalEntity) => (
+            render: (record: AlquilerEntity) => (
                 <span>
 
-                    <Link to={`/PersonaNaturalSave/${record.PersonaNaturalId}`}>
+                    <Link to={`/PersonaNaturalSave/${record.AlquilerId}`}>
                         <Button
                             type='dashed'
                             style={{ float: "right", marginRight: "10px", color: "#BB9B32", backgroundColor: "white", borderColor: "#BB9B32" }}
@@ -85,10 +72,10 @@ const DataTable: React.FC<PropsTable> = (props) => {
 
     ];
 
-    const dataWithKeys = props.DataList.sort((a, b) => b.PersonaNaturalId - a.PersonaNaturalId).map((item, zIndex) => {
+    const dataWithKeys = props.DataList.sort((a, b) => b.AlquilerId - a.AlquilerId).map((item, zIndex) => {
         return {
             ...item,
-            key: item.PersonaNaturalId,
+            key: item.AlquilerId,
             Cont: (zIndex + 1)
         };
     });
@@ -108,7 +95,7 @@ const DataTable: React.FC<PropsTable> = (props) => {
 
                                     style={{ marginTop: '10Px', }}
                                     actions={[
-                                        <Link to={`/PersonaNaturalSave/${row.PersonaNaturalId}`}>
+                                        <Link to={`/AlquilerSave/${row.AlquilerId}`}>
                                             <EditFilled
                                                 style={{ color: "#BB9B32" }}
                                             />

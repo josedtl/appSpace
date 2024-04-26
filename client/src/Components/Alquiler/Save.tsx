@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
-import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker } from 'antd';
+import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker, Card } from 'antd';
 import { PersonaNaturalSaveModel } from '../../Models/PersonaNaturalEntity';
 import PersonaNaturalService from '../../Service/PersonaNaturalService';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
@@ -15,33 +15,33 @@ import EntListaService from '../../Service/EntListaService';
 import { EntListaModel } from '../../Models/EntListaEntity';
 import GeneralService from '../../Service/GeneralService';
 import { UbigeoEntity } from '../../Models/UbigeoEntity';
+import { AlquilerEntity } from '../../Models/AlquilerEntity';
+
+import AlquilerService from '../../Service/AlquilerService';
+
 const Save = () => {
   const { Id } = useParams();
   const idNumero = Number(Id?.toString());
   const sEntLista = new EntListaService();
   const sGeneralService = new GeneralService();
-  const sPersonaNatural = new PersonaNaturalService();
-  const initialPersonaNatural = new PersonaNaturalSaveModel();
-  const [Ent, setEnt] = useState<PersonaNaturalSaveModel>(initialPersonaNatural);
+  const sAlquiler = new AlquilerService();
+  const initialAlquiler = new AlquilerEntity();
+  const [Ent, setEnt] = useState<AlquilerEntity>(initialAlquiler);
+
   const { Title } = Typography;
   const [CargarPage, setCargarPage] = React.useState(true);
-  const [FechaNacimientoItem, setFechaNacimientoItem] = useState<string>(moment(Ent.FechaNacimiento).format('DD/MM/YYYY hh:mm'));
-  const dateFormat = 'YYYY/MM/DD';
-
-
-
-
+  const [ValCodigo, setValCodigo] = useState<InputStatus>('');
 
   const [optionsTipoDocumentoIdentidad, setOptionsTipoDocumentoIdentidad] = useState<EntListaModel[]>([]);
-  const [optionsSexo, setOptionsSexo] = useState<EntListaModel[]>([]);
-  const [optionsEstadoCivil, setOptionsEstadoCivil] = useState<EntListaModel[]>([]);
-  const [optionsUbigeo, setOptionsUbigeo] = useState<UbigeoEntity[]>([]);
+  const [optionsCliente, setOptionsCliente] = useState<EntListaModel[]>([]);
+  const [optionsTarifa, setOptionsTarifa] = useState<EntListaModel[]>([]);
+  const [optionsTablaAlquiler, setOptionsTablaAlquiler] = useState<UbigeoEntity[]>([]);
 
 
   const handleSearchUbigeo = async (value: string) => {
     try {
       const response = await sGeneralService.GetUbigeoItemLikeApi(value);
-      setOptionsUbigeo(response);
+      setOptionsTablaAlquiler(response);
       console.log(response)
     } catch (error) {
       console.error('Error al buscar Ubigeo:', error);
@@ -63,95 +63,69 @@ const Save = () => {
 
   };
 
-  const onChangeDate: DatePickerProps['onChange'] = (date, dateString) => {
-    date;
-    setFechaNacimientoItem(dateString);
-  };
-  const [selectedTipoDocuemntoIdentidad, setSelectedTipoDocuemntoIdentidad] = useState<number | undefined>(undefined);
-  const [selectedSexo, setSelectedSexo] = useState<number | undefined>(undefined);
-  const [selectedEstadoCivil, setSelectedEstadoCivil] = useState<number | undefined>(undefined);
-  const [selectedUbigeo, setselectedUbigeo] = useState<number | undefined>(undefined);
+  const [selectedCliente, setSelectedCliente] = useState<number | undefined>(undefined);
+  const [selectedTarifa, setSelectedTarifa] = useState<number | undefined>(undefined);
+  const [selectedTablaAlquiler, setSelectedTablaAlquiler] = useState<number | undefined>(undefined);
+  const [ValCliente, setValCliente] = useState<InputStatus>('');
+  const [ValTarifa, setTarifa] = useState<InputStatus>('');
+  const [ValTablaAlquiler, setValTablaAlquiler] = useState<InputStatus>('');
 
-  const [ValTipoDocuemntoIdentidad, setValTipoDocuemntoIdentidad] = useState<InputStatus>('');
-  const [ValNumDocumento] = useState<InputStatus>('');
-  const [ValNombres] = useState<InputStatus>('');
-  const [ValApellidoPaterno] = useState<InputStatus>('');
-  const [ValApellidoMaterno] = useState<InputStatus>('');
-  const [ValCodigo, setValCodigo] = useState<InputStatus>('');
-  const [ValUbigeo, setValUbigeo] = useState<InputStatus>('');
-  const [ValDireccion] = useState<InputStatus>('');
-  const [ValTelefono] = useState<InputStatus>('');
-  const [ValCorreo] = useState<InputStatus>('');
-  const [ValSexo, setValSexo] = useState<InputStatus>('');
-  const [ValEstadoCivil, setValEstadoCivil] = useState<InputStatus>('');
-
-  const onChangeTipoDocuemntoIdentidad = async (value: number) => {
-    ValCodigo;
-    setValTipoDocuemntoIdentidad('');
-    Ent.TipoDocumentoIdentidadId = value;
-    setSelectedTipoDocuemntoIdentidad(value)
+  const onChangeCliente = async (value: number) => {
+    ValCliente;
+    setValCliente('');
+    Ent.ClienteId = value;
+    setSelectedCliente(value)
     console.log(value)
   };
 
-  const onChangeSexo = async (value: number) => {
-    setValSexo('');
-    Ent.SexoId = value;
-    setSelectedSexo(value)
+  const onChangeTarifaId = async (value: number) => {
+    setTarifa('');
+    Ent.TarifaId = value;
+    setSelectedTarifa(value)
   };
 
 
-  const onChangeEstadoCivil = async (value: number) => {
-    setValEstadoCivil('');
-    Ent.EstadoCivilId = value;
-    setSelectedEstadoCivil(value)
+  const onChangeTablaAlquiler = async (value: number) => {
+    setValTablaAlquiler('');
+    Ent.TipoTablaAlquilerId = value;
+    setSelectedTablaAlquiler(value)
   };
-
-
-  const onChangeUbigeo = async (value: number) => {
-    setValUbigeo('');
-    Ent.UbigeoId = value;
-    setselectedUbigeo(value)
-  };
-
-
-
-
 
 
   const [modal, contextHolder] = Modal.useModal();
   const [messageAdd, contextHolderAdd] = message.useMessage();
-  const AddPersonaNatural = async () => {
-    console.log(Ent);
-    const savedItem = await sPersonaNatural.Registrar(Ent);
-    if (savedItem) {
 
-      messageAdd.open({
-        type: 'success',
-        content: 'Se guardó correctamente.',
-      });
-    } else {
-    }
+  const AddAlquiler = async () => {
+    // console.log(Ent);
+    // const savedItem = await sAlquiler.Registrar(Ent);
+    // if (savedItem) {
+
+    //   messageAdd.open({
+    //     type: 'success',
+    //     content: 'Se guardó correctamente.',
+    //   });
+    // } else {
+    // }
   }
-  const updatePersonaNatural = async () => {
-    console.log(Ent);
-    const savedItem = await sPersonaNatural.Actualizar(Ent);
-    if (savedItem) {
+  const updateAlquiler = async () => {
+    // console.log(Ent);
+    // const savedItem = await sAlquiler.Actualizar(Ent);
+    // if (savedItem) {
 
-      messageAdd.open({
-        type: 'success',
-        content: 'Se Actualizo correctamente.',
-      });
-    } else {
-    }
+    //   messageAdd.open({
+    //     type: 'success',
+    //     content: 'Se Actualizo correctamente.',
+    //   });
+    // } else {
+    // }
   }
 
 
   const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    selectedTipoDocuemntoIdentidad;
-    selectedSexo;
-    selectedEstadoCivil;
-    selectedUbigeo;
+    selectedCliente;
+    selectedTablaAlquiler;
+    selectedTarifa;
 
     // if (Ent.Codigo === '') {
     //   setValCodigo('error');
@@ -210,17 +184,13 @@ const Save = () => {
       cancelText: 'No',
       onOk() {
 
-        const fecha: Date = new Date(FechaNacimientoItem + "T00:00:00");
-        Ent.FechaNacimiento = new Date(fecha);
-        Ent.CodUsuario = "adm";
-        Ent.FechaRegistro = new Date();
 
-        if (Ent.PersonaNaturalId == 0) {
+        if (Ent.AlquilerId == 0) {
 
-          AddPersonaNatural();
+          AddAlquiler();
 
         } else {
-          updatePersonaNatural();
+          updateAlquiler();
 
         }
 
@@ -237,56 +207,50 @@ const Save = () => {
 
 
     setCargarPage(true);
-    const Resp_UM = await sEntLista.getItems('C0012');
-    setOptionsTipoDocumentoIdentidad(Resp_UM);
+    // const Resp_UM = await sEntLista.getItems('C0012');
+    // setOptionsEstadoCivil(Resp_UM);
 
-    const Resp_Sexo = await sEntLista.getItems('C0008');
-    setOptionsSexo(Resp_Sexo);
+    // const Resp_Sexo = await sEntLista.getItems('C0008');
+    // setOptionsSexo(Resp_Sexo);
 
-    const Resp_EC = await sEntLista.getItems('C0009');
-    setOptionsEstadoCivil(Resp_EC);
+    // const Resp_EC = await sEntLista.getItems('C0009');
+    // setOptionsEstadoCivil(Resp_EC);
 
     console.log(idNumero)
-    if (idNumero > 0) {
+    // if (idNumero > 0) {
 
-      const Resp_PersonaNatural = await sPersonaNatural.ObtenerItem(idNumero);
-      setEnt(Resp_PersonaNatural[0]);
-      console.log(Resp_PersonaNatural[0]);
+    //   const Resp_PersonaNatural = await sAlquiler.ObtenerItem(idNumero);
+    //   setEnt(Resp_PersonaNatural[0]);
+    //   console.log(Resp_PersonaNatural[0]);
 
 
-      if (Resp_PersonaNatural[0].UbigeoId != null) {
-        const Resp_Ubigeo = await sGeneralService.GetUbigeoItemApi(Resp_PersonaNatural[0].UbigeoId);
+    //   if (Resp_PersonaNatural[0].UbigeoId != null) {
+    //     const Resp_Ubigeo = await sGeneralService.GetUbigeoItemApi(Resp_PersonaNatural[0].UbigeoId);
 
-        setOptionsUbigeo(Resp_Ubigeo);
-      }
-
-      const dateFNC = moment(Resp_PersonaNatural[0].FechaNacimiento).format('YYYY-MM-DD')
-      setFechaNacimientoItem(dateFNC);
+    //     setOptionsUbigeo(Resp_Ubigeo);
+    //   }
 
 
 
 
-    }
+    // }
 
     setCargarPage(false);
   };
   useEffect(() => {
 
-    const dateFN = moment(new Date()).format('YYYY-MM-DD')
-    setFechaNacimientoItem(dateFN);
     getCargarDatos();
   }, []);
 
   return (
-    <Spin spinning={CargarPage} tip="Cargando" size="large">
 
+    <Spin spinning={CargarPage} tip="Cargando" size="large">
 
       {contextHolder}
       {contextHolderAdd}
       <Row>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-          {/* <Title level={3}> PersonaNatural  {params.Id}</Title> */}
-          <Title level={3}> {Ent.PersonaNaturalId > 0 ? 'PersonaNatural' : 'Agregar PersonaNatural'}</Title>
+          <Title level={3}> {Ent.AlquilerId > 0 ? 'Alquiler' : 'Agregar Alquiler'}</Title>
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Button
@@ -298,312 +262,125 @@ const Save = () => {
 
         </Col>
       </Row>
-      <Row>
-        <Col xs={24} sm={10} md={8} lg={7} xl={6}>
+
+      <Card >
+
+        <Row>
+
+          <Col xs={24}>
+            <Row>
+              <Col span={12}>
+                <Row>
+                  <Col span={24}>
+                    <label>Cliente</label>
+                  </Col>
+                  <Col span={24}>
+                    <Select
+                      status={ValCliente}
+                      allowClear
+                      style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                      defaultActiveFirstOption={false}
+                      filterOption={false}
+                      optionFilterProp="children"
+                      value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
+                      key={Ent.ClienteId}
+                      onChange={onChangeCliente}
+                    >
+                      {optionsTipoDocumentoIdentidad.map((row) => (
+                        <Select.Option key={row.ListaId} value={row.ListaId}>
+                          {row.Nombre}
+                        </Select.Option>
+                      ))}
+                    </Select>
+
+                  </Col>
+                </Row>
+
+              </Col>
+
+
+
+              <Col span={12}>
+                <Row>
+                  <Col span={24}>
+                    <label>Tarifa</label>
+                  </Col>
+                  <Col span={24}>
+                    <Select
+                      status={ValTarifa}
+                      allowClear
+                      style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                      defaultActiveFirstOption={false}
+                      filterOption={false}
+                      optionFilterProp="children"
+                      value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
+                      key={Ent.TarifaId}
+                      onChange={onChangeTarifaId}
+                    >  {/* {optionsTarifa.map((row) => (
+              <Select.Option key={row.TarifaId} value={row.TarifaId}>
+                {row.TarifaId}
+              </Select.Option>
+            ))} */}
+                    </Select>
+                  </Col>
+                </Row>
+
+              </Col>
+
+
+            </Row>
 
 
 
 
-          <Row>
-            <Col span={12}>
-              <Row>
-                <Col span={24}>
-                  <label>Tipo Documento</label>
-                </Col>
-                <Col span={24}>
-                  <Select
-                    status={ValTipoDocuemntoIdentidad}
-                    allowClear
-                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                    defaultActiveFirstOption={false}
-                    filterOption={false}
-                    optionFilterProp="children"
-                    value={Ent.TipoDocumentoIdentidadId === 0 ? null : Ent.TipoDocumentoIdentidadId}
-                    key={Ent.TipoDocumentoIdentidadId}
-                    onChange={onChangeTipoDocuemntoIdentidad}
-                  >
-                    {optionsTipoDocumentoIdentidad.map((row) => (
-                      <Select.Option key={row.ListaId} value={row.ListaId}>
-                        {row.Nombre}
-                      </Select.Option>
-                    ))}
-                  </Select>
-
-                </Col>
-              </Row>
-
-            </Col>
-            <Col span={12}>
-              <Row>
-                <Col span={24}>
-                  <label>Numero</label>
-                </Col>
-                <Col span={24}>
-                  <Input
-                    status={ValNumDocumento}
-                    type="text"
-                    name="NumDocumento"
-                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                    onChange={onChangeText}
-                    value={Ent.NumDocumento === null ? "" : Ent.NumDocumento}
-                  />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col span={24}>
-              <label>Nombres</label>
-            </Col>
-            <Col span={24}>
-              <Input
-                status={ValNombres}
-                type="text"
-                name="Nombres"
-                style={{ marginTop: '5px', marginBottom: '10px' }}
-                onChange={onChangeText}
-                value={Ent.Nombres === null ? "" : Ent.Nombres}
-              />
-            </Col>
-          </Row>
-
-
-
-
-
-
-
-          <Row>
-            <Col span={12}>
-              <Row>
-                <Col span={24}>
-                  <label>Apellido Paterno</label>
-                </Col>
-                <Col span={24}>
-                  <Input
-                    status={ValApellidoPaterno}
-                    type="text"
-                    name="ApellidoPaterno"
-                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                    onChange={onChangeText}
-                    value={Ent.ApellidoPaterno === null ? "" : Ent.ApellidoPaterno}
-                  />
-                </Col>
-              </Row>
-
-            </Col>
-            <Col span={12}>
-              <Row>
-                <Col span={24}>
-                  <label>Apellido Materno</label>
-                </Col>
-                <Col span={24}>
-                  <Input
-                    status={ValApellidoMaterno}
-                    type="text"
-                    name="ApellidoMaterno"
-                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                    onChange={onChangeText}
-                    value={Ent.ApellidoMaterno === null ? "" : Ent.ApellidoMaterno}
-                  />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-
-
-
-
-
-
-
-
-
-
-
-          <Row>
-            <Col span={12}>
-              <Row>
-                <Col span={24}>
-                  <label>Fecha de Nacimiento</label>
-                </Col>
-                <Col span={24}>
-                  <DatePicker
-                    onChange={onChangeDate}
-                    value={dayjs(FechaNacimientoItem, dateFormat)}
-                    // defaultValue={dayjs(FechaEmisionItem, dateFormat)}
-                    style={{ marginTop: '5px', marginBottom: '10px', width: '100%' }}
-                  />
-
-                </Col>
-              </Row>
-
-            </Col>
-
-
-
-            <Col span={12}>
-              <Row>
-                <Col span={24}>
-                  <label>Telefono</label>
-                </Col>
+            <Row>
+              <Col span={24}>
+                <label>Codigo</label>
+              </Col>
+              <Col span={24}>
                 <Col span={24}>
                   <Input
                     type="text"
-                    name="Telefono"
-                    status={ValTelefono}
+                    name="Codigo"
                     style={{ marginTop: '5px', marginBottom: '10px' }}
                     onChange={onChangeText}
-                    value={Ent.Telefono === null ? "" : Ent.Telefono}
+                    value={Ent.Codigo === null ? "" : Ent.Codigo}
                   />
-
                 </Col>
-              </Row>
+              </Col>
+            </Row>
 
-            </Col>
-          </Row>
-
-
-
-
-          <Row>
-            <Col span={24}>
-              <label>Correo</label>
-            </Col>
-            <Col span={24}>
-              <Input
-                type="text"
-                name="Correo"
-                status={ValCorreo}
-                style={{ marginTop: '5px', marginBottom: '10px' }}
-                onChange={onChangeText}
-                value={Ent.Correo === null ? "" : Ent.Correo}
-              />
-
-            </Col>
-          </Row>
-
-
-
-
-
-          <Row>
-            <Col span={12}>
-              <Row>
+            <Row>
+              <Col span={24}>
+                <label>Precio Unitario</label>
+              </Col>
+              <Col span={24}>
                 <Col span={24}>
-                  <label>Sexo</label>
+                  <Input
+                    type="number"
+                    name="PrecioUnitario"
+                    style={{ marginTop: '5px', marginBottom: '10px' }}
+                    onChange={onChangeText}
+                    value={Ent.PrecioUnitario === null ? "" : Ent.PrecioUnitario}
+                  />
                 </Col>
-                <Col span={24}>
-                  <Select
-                    status={ValSexo}
-                    allowClear
-                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                    defaultActiveFirstOption={false}
-                    filterOption={false}
-                    value={Ent.SexoId === 0 ? null : Ent.SexoId}
-                    key={Ent.SexoId}
-                    onChange={onChangeSexo}
-                  >
-                    {optionsSexo.map((row) => (
-                      <Select.Option key={row.ListaId} value={row.ListaId}>
-                        {row.Nombre}
-                      </Select.Option>
-                    ))}
-                  </Select>
-
-                </Col>
-              </Row>
-            </Col>
-            <Col span={12}>
-              <Row>
-                <Col span={24}>
-                  <label>Estado Civil</label>
-                </Col>
-                <Col span={24}>
-                  <Select
-                    status={ValEstadoCivil}
-                    allowClear
-                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                    defaultActiveFirstOption={false}
-                    filterOption={false}
-                    value={Ent.EstadoCivilId === 0 ? null : Ent.EstadoCivilId}
-                    key={Ent.EstadoCivilId}
-                    onChange={onChangeEstadoCivil}
-                  >
-                    {optionsEstadoCivil.map((row) => (
-                      <Select.Option key={row.ListaId} value={row.ListaId}>
-                        {row.Nombre}
-                      </Select.Option>
-                    ))}
-                  </Select>
-
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+              </Col>
+            </Row>
 
 
 
 
+          </Col>
 
-          <Row>
-            <Col span={24}>
-              <label>Ubigeo</label>
-            </Col>
-            <Col span={24}>
-              <Select className="custom-select"
-                status={ValUbigeo}
-                showSearch
-                style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                defaultActiveFirstOption={false}
-                filterOption={false}
-                onSearch={handleSearchUbigeo}
-                value={Ent.UbigeoId === 0 ? null : Ent.UbigeoId}
-                key={Ent.UbigeoId}
-                onChange={onChangeUbigeo}
-              >
-                {optionsUbigeo.map((row) => (
-                  <Select.Option className="custom-option" key={row.UbigeoId} value={row.UbigeoId}>
-                    {row.DesUbigeo}
-                  </Select.Option>
-                ))}
-              </Select>
-
-            </Col>
-          </Row>
-
-
-          <Row>
-            <Col span={24}>
-              <label>Dirección</label>
-            </Col>
-            <Col span={24}>
-              <Input
-                type="text"
-                name="Direccion"
-                status={ValDireccion}
-                style={{ marginTop: '5px', marginBottom: '10px' }}
-                onChange={onChangeText}
-                value={Ent.Direccion === null ? "" : Ent.Direccion}
-              />
-            </Col>
-          </Row>
-
-
-
-
-
-        </Col>
-
-        <Col xs={24} sm={14} md={16} lg={17} xl={18}>
-
-        </Col>
-      </Row>
+          <Col xs={24} sm={14} md={16} lg={17} xl={18}>
+            
+          </Col>
+        </Row>
+      </Card>
     </Spin>
   );
 };
+
 
 
 export default Save;

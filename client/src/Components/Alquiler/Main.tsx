@@ -7,13 +7,16 @@ import { ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain, But
 import { SizeMainButtonSecondary, SizeButtonPrimary } from '../../Styles/Type'
 import { IconLoad, IconTabla, IconCard, IconReport, IconFiltro, IconAdd } from '../../Styles/Icons'
 import { Link } from "react-router-dom";
+import {AlquilerEntity  } from '../../Models/AlquilerEntity';
+
+
 function Main() {
   useEffect(() => {
     getItems();
   }, []);
   const sPersonaNatural = new PersonaNaturalService();
 
-  const [items, setItems] = useState<PersonaNaturalMainModel[]>([]);
+  const [items, setItems] = useState<AlquilerEntity[]>([]);
   const [CargarPage, setCargarPage] = React.useState(false);
   const [disabled, setDisabled] = useState(false);
   const [Busqueda, setBusqueda] = useState<string>('');
@@ -21,30 +24,30 @@ function Main() {
     setDisabled(!disabled);
   };
 
-  const updateState = (item: PersonaNaturalEntity) => {
-    const itemIndex = items.findIndex((data) => data.PersonaNaturalId === item.PersonaNaturalId);
+  const updateState = (item: AlquilerEntity) => {
+    const itemIndex = items.findIndex((data) => data.AlquilerId === item.AlquilerId);
     const newArray = [...items.slice(0, itemIndex), item, ...items.slice(itemIndex + 1)];
     setItems(newArray);
   };
 
   const deleteItemFromState = (id: number) => {
-    const updatedItems = items.filter((item) => item.PersonaNaturalId !== id);
+    const updatedItems = items.filter((item) => item.AlquilerId !== id);
     setItems(updatedItems);
   };
 
   const getItems = async () => {
-    const itemsg = await sPersonaNatural.ObtenerMain();
-    setItems(itemsg);
+    // const itemsg = await sPersonaNatural.ObtenerMain();
+    // setItems(itemsg);
 
-    console.log(itemsg);
-    setCargarPage(false);
+    // console.log(itemsg);
+    // setCargarPage(false);
 
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBusqueda(e.target.value.toUpperCase());
   };
   const filterItems = items.filter(fdata =>
-    fdata.Nombres.toLowerCase().includes(Busqueda.toLowerCase())
+    fdata.Codigo.toLowerCase().includes(Busqueda.toLowerCase())
   );
 
   const { Title } = Typography;
@@ -53,11 +56,11 @@ function Main() {
       <Row>
 
         <Col xs={18} sm={18} md={12} lg={12} xl={12}>
-          <Title level={2}> PersonaNatural</Title>
+          <Title level={2}> Alquiler</Title>
         </Col>
 
         <Col xs={6} sm={6} md={12} lg={12} xl={12}>
-          <Link to={`/PersonaNaturalSave/0`}>
+          <Link to={`/AlquilerSave/0`}>
             <Button
               style={ButtonAddMain}
               size={SizeButtonPrimary}
