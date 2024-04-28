@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
-import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker, Card, Segmented, Avatar } from 'antd';
+import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker, Card, Segmented, Avatar, AutoComplete } from 'antd';
 import { PersonaNaturalSaveModel } from '../../Models/PersonaNaturalEntity';
 import PersonaNaturalService from '../../Service/PersonaNaturalService';
 import DataTable from './DataTable';
@@ -17,6 +17,7 @@ import { EntListaModel } from '../../Models/EntListaEntity';
 import GeneralService from '../../Service/GeneralService';
 import { UbigeoEntity } from '../../Models/UbigeoEntity';
 import { AlquilerEntity } from '../../Models/AlquilerEntity';
+import { EntidadEntity } from '../../Models/EntidadEntity';
 
 import AlquilerService from '../../Service/AlquilerService';
 
@@ -32,11 +33,23 @@ const Save = () => {
   const { Title } = Typography;
   const [CargarPage, setCargarPage] = React.useState(true);
   const [ValCodigo, setValCodigo] = useState<InputStatus>('');
-
+  const [ValEntidad, setValEntidad] = useState<InputStatus>('');
   const [optionsTipoDocumentoIdentidad, setOptionsTipoDocumentoIdentidad] = useState<EntListaModel[]>([]);
   const [optionsCliente, setOptionsCliente] = useState<EntListaModel[]>([]);
   const [optionsTarifa, setOptionsTarifa] = useState<EntListaModel[]>([]);
   const [optionsTablaAlquiler, setOptionsTablaAlquiler] = useState<UbigeoEntity[]>([]);
+  const [optionsEntidad, setOptionsEntidad] = useState<EntidadEntity[]>([]);
+
+
+  const handleSearchEntidad = async (value: string) => {
+    try {
+      const response = await sGeneralService.GetEntidadBuscarItem(value);
+      setOptionsEntidad(response);
+      console.log(response)
+    } catch (error) {
+      console.error('Error al buscar Ubigeo:', error);
+    }
+  };
 
 
   const handleSearchUbigeo = async (value: string) => {
@@ -48,6 +61,7 @@ const Save = () => {
       console.error('Error al buscar Ubigeo:', error);
     }
   };
+
 
 
 
@@ -93,6 +107,7 @@ const Save = () => {
   const onTab1Change = (key: string) => {
     setActiveTabKey1(key);
   };
+
 
 
 
@@ -359,19 +374,19 @@ const Save = () => {
                   <label>Cliente</label>
                 </Col>
                 <Col span={24}>
-                  <Select
+                  <Select className="custom-select"
                     status={ValCliente}
-                    allowClear
+                    showSearch
                     style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                     defaultActiveFirstOption={false}
                     filterOption={false}
-                    optionFilterProp="children"
+                    onSearch={handleSearchEntidad}
                     value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
                     key={Ent.ClienteId}
                     onChange={onChangeCliente}
                   >
                     {optionsTipoDocumentoIdentidad.map((row) => (
-                      <Select.Option key={row.ListaId} value={row.ListaId}>
+                      <Select.Option className="custom-option" key={row.ListaId} value={row.ListaId}>
                         {row.Nombre}
                       </Select.Option>
                     ))}

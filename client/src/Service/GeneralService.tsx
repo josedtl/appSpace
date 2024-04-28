@@ -14,7 +14,7 @@ import { EstadoProcesoEntity, TipoProcesoEntity } from '../Models/GeneralEntity'
 import { EmpresaEntity } from '../Models/EmpresaEntity';
 import { EntidadLikeModel } from '../Models/EntidadLikeModel';
 import { MonedaModel } from '../Models/MonedaModel';
-
+import {EntidadEntity,EntidadModel } from '../Models/EntidadEntity';
 class GeneralService {
 
   ServiceName: string = 'General';
@@ -96,6 +96,22 @@ class GeneralService {
     try {
       const response = await apiLg.get(`api/General/ObtenerUbigeoItem/${Value}`);
       return response.status === 200 ? response.data.Value : [];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async GetEntidadBuscarItem(NombreCompleto: string): Promise<EntidadEntity[]> {
+    try {
+
+      const EntLike = new EntidadLikeModel();
+      EntLike.srtValor1 = NombreCompleto;
+      const response = await apiLg.post(`api/General/GetEntidadBuscarItem`, EntLike, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data ;
     } catch (error) {
       throw error;
     }
