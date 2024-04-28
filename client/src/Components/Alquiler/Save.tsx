@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
-import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker, Card } from 'antd';
+import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker, Card, Segmented, Avatar } from 'antd';
 import { PersonaNaturalSaveModel } from '../../Models/PersonaNaturalEntity';
 import PersonaNaturalService from '../../Service/PersonaNaturalService';
+import DataTable from './DataTable';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { useParams } from 'react-router-dom';
 import { ButtonAddMain } from '../../Styles/Button'
@@ -47,6 +48,54 @@ const Save = () => {
       console.error('Error al buscar Ubigeo:', error);
     }
   };
+
+
+
+
+  const tabList = [
+    {
+      key: 'Servicio',
+      tab: 'Servicio',
+    },
+    {
+      key: 'Venta',
+      tab: 'Venta',
+    },
+  ];
+
+  const contentList: Record<string, React.ReactNode> = {
+    Servicio: <p>content1</p>,
+    Venta: <p>content2</p>,
+  };
+  const tabListNoTitle = [
+    {
+      key: 'article',
+      label: 'article',
+    },
+    {
+      key: 'app',
+      label: 'app',
+    },
+    {
+      key: 'project',
+      label: 'project',
+    },
+  ];
+
+
+  const contentListNoTitle: Record<string, React.ReactNode> = {
+    article: <p>article content</p>,
+    app: <p>app content</p>,
+    project: <p>project content</p>,
+  };
+
+  const [activeTabKey1, setActiveTabKey1] = useState<string>('Servicio');
+  const onTab1Change = (key: string) => {
+    setActiveTabKey1(key);
+  };
+
+
+
 
 
 
@@ -242,6 +291,22 @@ const Save = () => {
     getCargarDatos();
   }, []);
 
+  const getItems = async () => {
+
+  };
+
+  const [items, setItems] = useState<AlquilerEntity[]>([]);
+  const [disabled, setDisabled] = useState(false);
+
+  const [Busqueda, setBusqueda] = useState<string>('');
+  const toggle = () => {
+    setDisabled(!disabled);
+  };
+  const filterItems = items.filter(fdata =>
+    fdata.Codigo.toLowerCase().includes(Busqueda.toLowerCase())
+  );
+
+
   return (
 
     <Spin spinning={CargarPage} tip="Cargando" size="large">
@@ -250,111 +315,106 @@ const Save = () => {
       {contextHolderAdd}
       <Row>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+
           <Title level={3}> {Ent.AlquilerId > 0 ? 'Alquiler' : 'Agregar Alquiler'}</Title>
+
         </Col>
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-          <Button
-            style={ButtonAddMain}
-            onClick={Guardar_Total}
-            size={"large"}
-            icon={<SaveFilled />}
-          />
-
-        </Col>
-      </Row>
-
-      <Card >
-
-        <Row>
-
-          <Col xs={24}>
-            <Row>
-              <Col span={12}>
-                <Row>
-                  <Col span={24}>
-                    <label>Cliente</label>
-                  </Col>
-                  <Col span={24}>
-                    <Select
-                      status={ValCliente}
-                      allowClear
-                      style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                      defaultActiveFirstOption={false}
-                      filterOption={false}
-                      optionFilterProp="children"
-                      value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
-                      key={Ent.ClienteId}
-                      onChange={onChangeCliente}
-                    >
-                      {optionsTipoDocumentoIdentidad.map((row) => (
-                        <Select.Option key={row.ListaId} value={row.ListaId}>
-                          {row.Nombre}
-                        </Select.Option>
-                      ))}
-                    </Select>
-
-                  </Col>
-                </Row>
-
-              </Col>
-
-
-
-              <Col span={12}>
-                <Row>
-                  <Col span={24}>
-                    <label>Tarifa</label>
-                  </Col>
-                  <Col span={24}>
-                    <Select
-                      status={ValTarifa}
-                      allowClear
-                      style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                      defaultActiveFirstOption={false}
-                      filterOption={false}
-                      optionFilterProp="children"
-                      value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
-                      key={Ent.TarifaId}
-                      onChange={onChangeTarifaId}
-                    >  {/* {optionsTarifa.map((row) => (
-              <Select.Option key={row.TarifaId} value={row.TarifaId}>
-                {row.TarifaId}
-              </Select.Option>
-            ))} */}
-                    </Select>
-                  </Col>
-                </Row>
-
-              </Col>
-
-
-            </Row>
-
-
-
-
+          <Col style={{ float: "right" }} span={8}>
             <Row>
               <Col span={24}>
                 <label>Codigo</label>
               </Col>
               <Col span={24}>
-                <Col span={24}>
-                  <Input
-                    type="text"
-                    name="Codigo"
-                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                    onChange={onChangeText}
-                    value={Ent.Codigo === null ? "" : Ent.Codigo}
-                  />
-                </Col>
+                <Input
+                  type="text"
+                  name="Codigo"
+                  style={{ marginTop: '5px', marginBottom: '10px' }}
+                  onChange={onChangeText}
+                  value={Ent.Codigo === null ? "" : Ent.Codigo}
+                />
               </Col>
             </Row>
 
-            <Row>
-              <Col span={24}>
-                <label>Precio Unitario</label>
-              </Col>
-              <Col span={24}>
+          </Col>
+          {/* 
+          <Button
+            style={ButtonAddMain}
+            onClick={Guardar_Total}
+            size={"large"}
+            icon={<SaveFilled />}
+          /> */}
+
+        </Col>
+      </Row>
+
+
+      <Row>
+
+        <Col xs={24}>
+          <Row>
+            <Col span={12}>
+              <Row>
+                <Col span={24}>
+                  <label>Cliente</label>
+                </Col>
+                <Col span={24}>
+                  <Select
+                    status={ValCliente}
+                    allowClear
+                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                    defaultActiveFirstOption={false}
+                    filterOption={false}
+                    optionFilterProp="children"
+                    value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
+                    key={Ent.ClienteId}
+                    onChange={onChangeCliente}
+                  >
+                    {optionsTipoDocumentoIdentidad.map((row) => (
+                      <Select.Option key={row.ListaId} value={row.ListaId}>
+                        {row.Nombre}
+                      </Select.Option>
+                    ))}
+                  </Select>
+
+                </Col>
+              </Row>
+
+            </Col>
+
+            <Col span={8}>
+              <Row>
+                <Col span={24}>
+                  <label>Tarifa</label>
+                </Col>
+                <Col span={24}>
+                  <Select
+                    status={ValTarifa}
+                    allowClear
+                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                    defaultActiveFirstOption={false}
+                    filterOption={false}
+                    optionFilterProp="children"
+                    value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
+                    key={Ent.TarifaId}
+                    onChange={onChangeTarifaId}
+                  >  {/* {optionsTarifa.map((row) => (
+              <Select.Option key={row.TarifaId} value={row.TarifaId}>
+                {row.TarifaId}
+              </Select.Option>
+            ))} */}
+                  </Select>
+                </Col>
+              </Row>
+
+            </Col>
+
+
+            <Col span={4}>
+              <Row>
+                <Col span={24}>
+                  <label>Precio Unitario</label>
+                </Col>
                 <Col span={24}>
                   <Input
                     type="number"
@@ -364,19 +424,75 @@ const Save = () => {
                     value={Ent.PrecioUnitario === null ? "" : Ent.PrecioUnitario}
                   />
                 </Col>
-              </Col>
-            </Row>
+              </Row>
 
+            </Col>
 
+          </Row>
 
+        </Col>
+
+        <Col xs={24} >
+          <Col span={8} style={{ float: "left" }}>
+
+            <Button size={"large"}>Detalle</Button>
 
           </Col>
+          <Col span={8} style={{ float: "right" }}>
+            <Button size={"large"} >Agregar</Button>
 
-          <Col xs={24} sm={14} md={16} lg={17} xl={18}>
-            
+          </Col>
+        </Col>
+
+        <Col xs={24} >
+          <Card
+            style={{ width: '100%' }}
+            tabList={tabList}
+            activeTabKey={activeTabKey1}
+            onTabChange={onTab1Change}
+          >
+
+            <DataTable DataList={filterItems} EsTabla={disabled} />
+
+            {contentList[activeTabKey1]}
+          </Card>
+          <br />
+          <br />
+
+        </Col>
+      </Row>
+
+
+
+      <Col span={2}>
+
+        <Row>
+          <Col span={24}>
+            <label>Fecha Registro</label>
+          </Col>
+          <Col span={24}>
+            <Input
+              type="string"
+              name="FechaRegistro"
+              style={{ marginTop: '5px', marginBottom: '10px' }}
+              readOnly={true}
+              value={moment().format('DD/MM/YYYY hh:mm')}
+            />
           </Col>
         </Row>
-      </Card>
+
+
+      </Col>
+
+      <Col span={8} style={{ float: "right" }}>
+
+        <Button
+          style={ButtonAddMain}
+          onClick={Guardar_Total}
+          size={"large"}
+          icon={<SaveFilled />}
+        /> </Col>
+
     </Spin>
   );
 };
