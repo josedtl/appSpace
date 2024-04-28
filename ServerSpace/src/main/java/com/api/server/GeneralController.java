@@ -3,6 +3,7 @@ package com.api.server;
 import Business.*;
 import EntityLayer.*;
 import Models.*;
+import Models.General.EntidadModel;
 import Models.General.MonedaModel;
 import Models.General.UnidadMedidaModel;
 
@@ -98,6 +99,20 @@ public class GeneralController extends Configuracion {
         }
 
         return new ResponseAPI<ArrayList<UbigeoItemModel>>(Items, true, "");
+    }
+
+    @PostMapping("/GetEntidadBuscarItem")
+    public ResponseAPI<ArrayList<EntidadModel>> GetEntidadBuscarItem(@RequestBody ItemLikeModel ItemLike) {
+        DataConfi();
+        ArrayList<EntidadModel> Items = new ArrayList<>();
+        General BS = new General();
+        ArrayList<EntidadEntity> Data = BS.GetEntidadBuscarItem(ItemLike.getSrtValor1());
+
+        for (EntidadEntity Item : Data) {
+            Items.add(new EntidadModel(Item));
+        }
+
+        return new ResponseAPI<ArrayList<EntidadModel>>(Items, true, "");
     }
 
 }
