@@ -18,8 +18,9 @@ import GeneralService from '../../Service/GeneralService';
 import { UbigeoEntity } from '../../Models/UbigeoEntity';
 import { AlquilerEntity } from '../../Models/AlquilerEntity';
 import { EntidadEntity } from '../../Models/EntidadEntity';
-
 import AlquilerService from '../../Service/AlquilerService';
+import { TarifaBuscarItem } from '../../Models/TarifaEntity';
+import TarifaService from '../../Service/TarifaService';
 
 const Save = () => {
   const { Id } = useParams();
@@ -27,6 +28,7 @@ const Save = () => {
   const sEntLista = new EntListaService();
   const sGeneralService = new GeneralService();
   const sAlquiler = new AlquilerService();
+  const sTarifa = new TarifaService();
   const initialAlquiler = new AlquilerEntity();
   const [Ent, setEnt] = useState<AlquilerEntity>(initialAlquiler);
 
@@ -39,7 +41,7 @@ const Save = () => {
   const [optionsTarifa, setOptionsTarifa] = useState<EntListaModel[]>([]);
   const [optionsTablaAlquiler, setOptionsTablaAlquiler] = useState<UbigeoEntity[]>([]);
   const [optionsEntidad, setOptionsEntidad] = useState<EntidadEntity[]>([]);
-
+  const [OptionTarifaBuscarItem, setOptionsTarifaBuscarItem] = useState<TarifaBuscarItem[]>([]);
 
   const handleSearchEntidad = async (value: string) => {
     try {
@@ -50,6 +52,16 @@ const Save = () => {
       console.error('Error al buscar Ubigeo:', error);
     }
   };
+
+  const handleSearchTarifa = async (value: string) => {
+    try {
+      const response = await sTarifa.GetTarifaBuscarItem(value);
+      setOptionsTarifaBuscarItem(response);
+      console.log(response)
+    } catch (error) {
+      console.error('Error al buscar Tarifa:', error);
+    }
+  }; 
 
 
   const handleSearchUbigeo = async (value: string) => {
@@ -107,12 +119,6 @@ const Save = () => {
   const onTab1Change = (key: string) => {
     setActiveTabKey1(key);
   };
-
-
-
-
-
-
 
 
   const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -385,9 +391,9 @@ const Save = () => {
                     key={Ent.ClienteId}
                     onChange={onChangeCliente}
                   >
-                    {optionsTipoDocumentoIdentidad.map((row) => (
-                      <Select.Option className="custom-option" key={row.ListaId} value={row.ListaId}>
-                        {row.Nombre}
+                    {optionsEntidad.map((row) => (
+                      <Select.Option className="custom-option" key={row.EntidadId} value={row.EntidadId}>
+                        {row.NombreCompleto}
                       </Select.Option>
                     ))}
                   </Select>
@@ -403,21 +409,22 @@ const Save = () => {
                   <label>Tarifa</label>
                 </Col>
                 <Col span={24}>
-                  <Select
+                <Select className="custom-select"
                     status={ValTarifa}
-                    allowClear
+                    showSearch
                     style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                     defaultActiveFirstOption={false}
                     filterOption={false}
-                    optionFilterProp="children"
+                    onSearch={handleSearchTarifa}
                     value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
                     key={Ent.TarifaId}
                     onChange={onChangeTarifaId}
-                  >  {/* {optionsTarifa.map((row) => (
-              <Select.Option key={row.TarifaId} value={row.TarifaId}>
-                {row.TarifaId}
-              </Select.Option>
-            ))} */}
+                  >
+                    {OptionTarifaBuscarItem.map((row) => (
+                      <Select.Option className="custom-option" key={row.TarifaId} value={row.TarifaId}>
+                        {row.NomComercial}
+                      </Select.Option>
+                    ))}
                   </Select>
                 </Col>
               </Row>

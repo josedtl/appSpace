@@ -79,3 +79,16 @@ export class TarifaBuscarRecursoModel {
     }
 }
 
+
+export class TarifaBuscarItem {
+    TarifaId: number;
+    NomComercial: string;
+    TipoTarifaEnum: number;
+
+    constructor() {
+        this.TarifaId = 0;
+        this.NomComercial = '';
+        this.TipoTarifaEnum = 0;
+    }
+}
+

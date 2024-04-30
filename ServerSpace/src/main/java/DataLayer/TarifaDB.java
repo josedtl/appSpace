@@ -1,5 +1,6 @@
 package DataLayer;
 
+import EntityLayer.EntidadEntity;
 import EntityLayer.TarifaEntity;
 import Enumerados.ProcessActionEnum;
 import Framework.BaseDB;
@@ -116,6 +117,28 @@ public class TarifaDB extends BaseDB {
                 }
             }
 
+        } catch (SQLException e) {
+            System.out.println("ERROR " + e);
+            throw new UnsupportedOperationException("Datalater :" + e);
+        }
+        return DatoMemoria;
+    }
+    
+    public ArrayList<TarifaEntity> GetTarifaBuscarItem(String NomComercial) {
+        injector InjDB = new injector();
+        ArrayList<TarifaEntity> DatoMemoria = new ArrayList<>();
+        TarifaEntity en;
+        try {
+            InjDB.Sp("sp_TarifaBuscarItem");
+            InjDB.Pmt_String("@NomComercial", NomComercial , false);
+            ResultSet rs = InjDB.RunSelect();
+            fillSchemeTable(rs);
+            while (rs.next()) {
+                en = new TarifaEntity();
+                if (fillFrom(rs, en)) {
+                    DatoMemoria.add(en);
+                }
+            }
         } catch (SQLException e) {
             System.out.println("ERROR " + e);
             throw new UnsupportedOperationException("Datalater :" + e);

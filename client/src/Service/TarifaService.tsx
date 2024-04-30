@@ -1,5 +1,5 @@
 import { EntidadLikeModel } from '../Models/EntidadLikeModel';
-import { TarifaBuscarRecursoModel, TarifaMainEntity, TarifaSaveModel } from '../Models/TarifaEntity';
+import { TarifaBuscarRecursoModel, TarifaMainEntity, TarifaSaveModel, TarifaBuscarItem } from '../Models/TarifaEntity';
 import { apiLg } from './axios-config';
 
 class TarifaService {
@@ -71,6 +71,22 @@ class TarifaService {
       throw error;
     }
   }
+
+  async GetTarifaBuscarItem(NomComercial: string): Promise<TarifaBuscarItem[]> {
+    try {
+      const EntLike = new TarifaBuscarItem();
+      EntLike.NomComercial =  NomComercial ; 
+      const response = await apiLg.post(`api/${this.ServiceName}/GetTarifaBuscarItem`, EntLike, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data.Value;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
 }
 

@@ -3,7 +3,7 @@ import { SaveFilled } from '@ant-design/icons';
 import { ButtonAddMain } from '../../Styles/Button'
 import type { RadioChangeEvent } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { TarifaSaveModel, TarifaBuscarRecursoModel } from '../../Models/TarifaEntity';
+import { TarifaSaveModel, TarifaBuscarRecursoModel,TarifaBuscarItem } from '../../Models/TarifaEntity';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { UnidadMedidaModel } from '../../Models/UnidadMedidaEntity';
 import { MonedaModel } from '../../Models/MonedaModel';

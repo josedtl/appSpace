@@ -1,7 +1,10 @@
 package Business;
 
+import EntityLayer.EntidadEntity;
 import EntityLayer.TarifaEntity;
 import java.util.ArrayList;
+
+import DataLayer.GeneralDB;
 import DataLayer.TarifaDB;
 import Framework.Inj;
 
@@ -42,6 +45,15 @@ public class Tarifa {
             TarifaDB BD = new TarifaDB();
             return BD.BuscarRecurso(Nombre, Tipo);
         } catch (Exception ex) {
+            throw new UnsupportedOperationException("MENSAJE :" + ex);
+        }
+    }
+     public ArrayList<TarifaEntity> GetTarifaBuscarItem(String NomComercial) {
+        try {
+            TarifaDB BD = new TarifaDB();
+            return BD.GetTarifaBuscarItem(NomComercial);
+        } catch (Exception ex) {
+            System.out.println("ERROR " + ex);
             throw new UnsupportedOperationException("MENSAJE :" + ex);
         }
     }

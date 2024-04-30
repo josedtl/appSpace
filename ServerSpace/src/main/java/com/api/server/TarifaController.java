@@ -1,10 +1,14 @@
 package com.api.server;
 
 import Framework.Utilidades;
+import Business.General;
 import Business.Tarifa;
+import EntityLayer.EntidadEntity;
 import EntityLayer.TarifaEntity;
 import Models.ItemLikeModel;
 import Models.ResponseAPI;
+import Models.General.EntidadModel;
+import Models.Tarifa.TarifaBuscarItem;
 import Models.Tarifa.TarifaBuscarRecursoModel;
 import Models.Tarifa.TarifaMainModel;
 import Models.Tarifa.TarifaSaveModel;
@@ -86,5 +90,19 @@ public class TarifaController extends Configuracion {
         }
 
         return new ResponseAPI<ArrayList<TarifaBuscarRecursoModel>>(Items, true, "");
+    }
+
+    @PostMapping("/GetTarifaBuscarItem")
+    public ResponseAPI<ArrayList<TarifaBuscarItem>> GetTarifaBuscarItem(@RequestBody ItemLikeModel ItemLike) {
+        DataConfi();
+        ArrayList<TarifaBuscarItem> Items = new ArrayList<>();
+        Tarifa BS = new Tarifa();
+        ArrayList<TarifaEntity> Data = BS.GetTarifaBuscarItem(ItemLike.getSrtValor1());
+
+        for (TarifaEntity Item : Data) {
+            Items.add(new TarifaBuscarItem(Item));
+        }
+
+        return new ResponseAPI<ArrayList<TarifaBuscarItem>>(Items, true, "");
     }
 }
