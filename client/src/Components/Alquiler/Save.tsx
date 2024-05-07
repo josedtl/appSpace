@@ -11,6 +11,7 @@ import type { DatePickerProps } from 'antd';
 import moment from 'moment';
 import 'moment/locale/es';
 import dayjs from 'dayjs';
+import MDFiltro from './FiltroInfraestructura/ModalItem';
 import { ProcessActionEnum } from '../../Lib/ResourceModel/Enum'
 import EntListaService from '../../Service/EntListaService';
 import { EntListaModel } from '../../Models/EntListaEntity';
@@ -61,7 +62,7 @@ const Save = () => {
     } catch (error) {
       console.error('Error al buscar Tarifa:', error);
     }
-  }; 
+  };
 
 
   const handleSearchUbigeo = async (value: string) => {
@@ -374,6 +375,40 @@ const Save = () => {
 
         <Col xs={24}>
           <Row>
+
+          <Col span={6}>
+              <Row>
+                <Col span={24}>
+                  <label>Tarifa</label>
+                </Col>
+                <Col span={24}>
+                  <Select className="custom-select"
+                    status={ValTarifa}
+                    showSearch
+                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                    defaultActiveFirstOption={false}
+                    filterOption={false}
+                    onSearch={handleSearchTarifa}
+                    value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
+                    key={Ent.TarifaId}
+                    onChange={onChangeTarifaId}
+                  >
+                    {OptionTarifaBuscarItem.map((row) => (
+                      <Select.Option className="custom-option" key={row.TarifaId} value={row.TarifaId}>
+                        {row.NomComercial}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                  <MDFiltro buttonLabel="dsdsd"
+                    addItemToState={[]}
+                    item={[]}
+                    CodigoTabla={'M002'}
+                    title={"Sucursal"} />
+                </Col>
+              </Row>
+
+            </Col>
+
             <Col span={12}>
               <Row>
                 <Col span={24}>
@@ -403,35 +438,7 @@ const Save = () => {
 
             </Col>
 
-            <Col span={8}>
-              <Row>
-                <Col span={24}>
-                  <label>Tarifa</label>
-                </Col>
-                <Col span={24}>
-                <Select className="custom-select"
-                    status={ValTarifa}
-                    showSearch
-                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                    defaultActiveFirstOption={false}
-                    filterOption={false}
-                    onSearch={handleSearchTarifa}
-                    value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
-                    key={Ent.TarifaId}
-                    onChange={onChangeTarifaId}
-                  >
-                    {OptionTarifaBuscarItem.map((row) => (
-                      <Select.Option className="custom-option" key={row.TarifaId} value={row.TarifaId}>
-                        {row.NomComercial}
-                      </Select.Option>
-                    ))}
-                  </Select>
-                </Col>
-              </Row>
-
-            </Col>
-
-
+            
             <Col span={4}>
               <Row>
                 <Col span={24}>
