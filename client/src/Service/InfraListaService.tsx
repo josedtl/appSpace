@@ -1,4 +1,3 @@
-import { EntidadLikeModel } from '../Models/EntidadLikeModel';
 import { InfraCampoTituloModel, InfraListaModel,InfraListaEntity } from '../Models/InfraListaEntity';
 import { ItemLikeModel } from '../Models/Utiladades/ItemLikeModel';
 import { apiLg } from './axios-config';
@@ -50,7 +49,7 @@ class InfraListaService {
       const EntLike = new ItemLikeModel();
       EntLike.srtValor1 = codigo;
       EntLike.srtValor2 = value;
-      const response = await apiLg.post(`api/${this.ServiceName}/BuscarItemCodigo`, EntLike, {
+      const response = await apiLg.post(`api/${this.ServiceName}/Buscar`, EntLike, {
         headers: {
           'Content-Type': 'application/json',
         },

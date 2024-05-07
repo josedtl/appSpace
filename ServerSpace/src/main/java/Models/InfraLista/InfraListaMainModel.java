@@ -1,12 +1,34 @@
-package EntityLayer;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import Enumerados.ProcessActionEnum;
+package Models.InfraLista;
 
 import java.sql.Timestamp;
 
-public class InfraListaEntity {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import EntityLayer.InfraListaEntity;
+
+public class InfraListaMainModel {
+    
+
+    public InfraListaMainModel() {
+        this.listaId = 0;
+        this.campoId = 0;
+        this.codigo = "";
+        this.nombre = "";
+        this.descripcion = "";
+        this.fechaRegistro = null;
+        this.codUsuario = "";
+        this.estadoRegistro = false;
+    }
+
+    public InfraListaMainModel(InfraListaEntity Ent) {
+        this.listaId = Ent.getListaId();
+        this.campoId = Ent.getCampoId();
+        this.codigo = Ent.getCodigo();
+        this.nombre = Ent.getNombre();
+        this.descripcion = Ent.getDescripcion();
+        this.fechaRegistro = Ent.getFechaRegistro();
+        this.codUsuario = Ent.getCodUsuario();
+        this.estadoRegistro = Ent.getEstadoRegistro();
+    }
 
     @JsonProperty("ListaId")
     private int listaId = 0;
@@ -85,6 +107,8 @@ public class InfraListaEntity {
         this.codUsuario = codUsuario;
     }
 
+
+
     @JsonProperty("EstadoRegistro")
     private boolean estadoRegistro = false;
 
@@ -96,25 +120,7 @@ public class InfraListaEntity {
         this.estadoRegistro = estadoRegistro;
     }
 
-    // COMPLEMENTARIO*************************************************************************************************************************************
 
-    private ProcessActionEnum action = ProcessActionEnum.Loaded;
 
-    public int getAction() {
-        return action.getValor();
-    }
 
-    public void setAction(ProcessActionEnum Action) {
-        this.action = Action;
-    }
-
-    private String codigoCampo = "";
-
-    public String getCodigoCampo() {
-        return codigoCampo;
-    }
-
-    public void setCodigoCampo(String codigoCampo) {
-        this.codigoCampo = codigoCampo;
-    }
 }

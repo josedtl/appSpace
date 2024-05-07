@@ -163,8 +163,6 @@ const Save = () => {
     }
   };
 
-
-
   const handleSearchClasificacion = async (value: string) => {
     try {
       const responseClasificacion = await sInfraLista.BuscarItemCodigo("0013", value);

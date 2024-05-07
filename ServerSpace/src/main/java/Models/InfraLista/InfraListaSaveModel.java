@@ -1,12 +1,36 @@
-package EntityLayer;
+package Models.InfraLista;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import Enumerados.ProcessActionEnum;
 
 import java.sql.Timestamp;
 
-public class InfraListaEntity {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import EntityLayer.InfraListaEntity;
+import Enumerados.ProcessActionEnum;
+
+public class InfraListaSaveModel {
+    
+    
+    public InfraListaSaveModel() {
+        this.listaId = 0;
+        this.codigoCampo = "";
+        this.codigo = "";
+        this.nombre = "";
+        this.descripcion = "";
+        this.fechaRegistro = null;
+        this.codUsuario = "";
+        this.estadoRegistro = false;
+    }
+
+    public InfraListaSaveModel(InfraListaEntity Ent) {
+        this.listaId = Ent.getListaId();
+        this.codigoCampo = Ent.getCodigoCampo();
+        this.codigo = Ent.getCodigo();
+        this.nombre = Ent.getNombre();
+        this.descripcion = Ent.getDescripcion();
+        this.fechaRegistro = Ent.getFechaRegistro();
+        this.codUsuario = Ent.getCodUsuario();
+        this.estadoRegistro = Ent.getEstadoRegistro();
+    }
 
     @JsonProperty("ListaId")
     private int listaId = 0;
@@ -19,15 +43,15 @@ public class InfraListaEntity {
         this.listaId = listaId;
     }
 
-    @JsonProperty("CampoId")
-    private int campoId = 0;
+    @JsonProperty("CodigoCampo")
+    private String codigoCampo = "";
 
-    public int getCampoId() {
-        return campoId;
+    public String getCodigoCampo() {
+        return codigoCampo;
     }
 
-    public void setCampoId(int campoId) {
-        this.campoId = campoId;
+    public void setCodigoCampo(String codigoCampo) {
+        this.codigoCampo = codigoCampo;
     }
 
     @JsonProperty("Codigo")
@@ -85,6 +109,8 @@ public class InfraListaEntity {
         this.codUsuario = codUsuario;
     }
 
+
+
     @JsonProperty("EstadoRegistro")
     private boolean estadoRegistro = false;
 
@@ -96,8 +122,8 @@ public class InfraListaEntity {
         this.estadoRegistro = estadoRegistro;
     }
 
-    // COMPLEMENTARIO*************************************************************************************************************************************
 
+    @JsonProperty("Action")
     private ProcessActionEnum action = ProcessActionEnum.Loaded;
 
     public int getAction() {
@@ -108,13 +134,5 @@ public class InfraListaEntity {
         this.action = Action;
     }
 
-    private String codigoCampo = "";
-
-    public String getCodigoCampo() {
-        return codigoCampo;
-    }
-
-    public void setCodigoCampo(String codigoCampo) {
-        this.codigoCampo = codigoCampo;
-    }
+ 
 }
