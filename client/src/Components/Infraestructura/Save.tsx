@@ -76,6 +76,8 @@ const Save = () => {
     cargarItem();
 
   }, []);
+
+
   const getCargarDatos = async () => {
 
     if (idNumero > 0) {
@@ -270,6 +272,7 @@ const Save = () => {
     selectedPiso;
     ValDescripcion;
     ValNombre;
+
     if (Ent.CodigoInterno.trimEnd() === '') {
       setValCodigoInterno('error');
       messageAdd.open({ type: 'error', content: 'Ingrese Codigo Interno .', });
