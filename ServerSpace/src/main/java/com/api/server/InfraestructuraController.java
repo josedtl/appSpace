@@ -45,6 +45,7 @@ public class InfraestructuraController extends Configuracion {
         Ent.setCodigoInterno(ItemModel.getCodigoInterno());
         Ent.setDescripcion(ItemModel.getDescripcion());
         Ent.setTipoInfraestructuraId(ItemModel.getTipoInfraestructuraId());
+        Ent.setclasificacionId(ItemModel.getClasificacionId());
         Ent.setInfraestructuraDimensionId(ItemModel.getInfraestructuraDimensionId());
         Ent.setAforo(ItemModel.getAforo());
         Ent.setPisoId(ItemModel.getPisoId());

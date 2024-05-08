@@ -14,10 +14,9 @@ import Framework.Utilidades;
 
 public class InfraListaDB extends BaseDB{
 
-
+    injector InjDB = new injector();
    public ArrayList<InfraListaEntity> ObtenerCodigo(String codigo) {
 
-        injector InjDB = new injector();
         ArrayList<InfraListaEntity> DatoMemoria = new ArrayList<>();
         InfraListaEntity en;
         try {
@@ -42,7 +41,6 @@ public class InfraListaDB extends BaseDB{
 
     public ArrayList<InfraListaEntity> Buscar(String codigo, String Nombre){
 
-        injector InjDB = new injector();
         ArrayList<InfraListaEntity> DatoMemoria = new ArrayList<>();
         InfraListaEntity en;
         try {
@@ -67,7 +65,6 @@ public class InfraListaDB extends BaseDB{
 
     public ArrayList<InfraListaEntity> ObtenerMain(String codigo) {
 
-        injector InjDB = new injector();
         ArrayList<InfraListaEntity> DatoMemoria = new ArrayList<>();
         InfraListaEntity en;
         try {
@@ -101,12 +98,12 @@ public class InfraListaDB extends BaseDB{
             }
             Inj.Sp(Store);
             Inj.Pmt_Integer("@ListaId", entity.getListaId(), true);
-            Inj.Pmt_Integer("@CampoId", entity.getCampoId(), false);
+            Inj.Pmt_String("@CodigoCampo", entity.getCodigoCampo(), false);
             Inj.Pmt_String("@Codigo", entity.getCodigo(), false);
             Inj.Pmt_String("@Nombre", entity.getNombre(), false);
             Inj.Pmt_String("@Descripcion", entity.getDescripcion(), false);
-            Inj.Pmt_String("@CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_String("@FechaRegistro", Utilidades.getFechaRegistro(), false);
+            Inj.Pmt_String("@CodUsuario", entity.getCodUsuario(), false);
             Inj.Pmt_Boolean("@EstadoRegistro", entity.getEstadoRegistro(), false);
             if (entity.getAction() == ProcessActionEnum.Add.getValor()) {
                 int Id = Inj.RunInsert();
@@ -128,7 +125,7 @@ public class InfraListaDB extends BaseDB{
 
     public ArrayList<InfraListaEntity> ObtenerItem(int ListaId) {
 
-        injector InjDB = new injector();
+   
         ArrayList<InfraListaEntity> DatoMemoria = new ArrayList<>();
         InfraListaEntity en;
         try {

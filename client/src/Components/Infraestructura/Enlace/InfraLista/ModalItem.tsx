@@ -12,7 +12,6 @@ const ModalItem: React.FC<PropsModel> = (props) => {
   const [modal, setModal] = React.useState(false);
   const toggle = () => {
     setModal(!modal);
-    console.log(props.CodigoTabla);
   };
   let button: any = "";
   let title = "";
@@ -31,7 +30,7 @@ const ModalItem: React.FC<PropsModel> = (props) => {
     );
     title = "Editar " + props.title;
   } else if (label === "Enlace") {
-
+    props.item.Action = 1;
     button = (
       <Button
         onClick={toggle}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { MerListaEntity } from '../../../../Models/MerListaEntity'
-import MerListaService from '../../../../Service/MerListaService';
+import { InfraListaEntity } from '../../../../Models/InfraListaEntity'
+import InfraListaService from '../../../../Service/InfraListaService';
 import { Form, Grid } from 'antd';
 import { Checkbox, Button, Col, Row, Input } from 'antd';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
@@ -8,10 +8,10 @@ import { PropsModel } from '../../../../Lib/PropsItem'
 import { ButtonAcceptModel } from '../../../../Styles/Button'
 import type { CheckboxProps } from 'antd';
 const AddEditForm: React.FC<PropsModel> = (props) => {
-    const sMerLista = new MerListaService();
+    const sInfraLista = new InfraListaService();
 
-    const initialMerLista = new MerListaEntity();
-    const [Ent, setEnt] = useState<MerListaEntity>(initialMerLista);
+    const initialInfraLista = new InfraListaEntity();
+    const [Ent, setEnt] = useState<InfraListaEntity>(initialInfraLista);
     const [FlaState, setFlaState] = useState<Boolean>(false);
     const [form] = Form.useForm();
     const [ValDato, setValDato] = useState<InputStatus>('');
@@ -40,9 +40,8 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         Ent.FechaRegistro = new Date();
         Ent.CodUsuario = 'adm';
         Ent.EstadoRegistro = EstadoRegistrochecked;
-        Ent.CodigoTabla = props.CodigoTabla;
-        console.log(Ent)
-        const savedItem = await sMerLista.saveItem(Ent);
+        Ent.CodigoCampo = props.CodigoTabla;
+        const savedItem = await sInfraLista.Registrar(Ent);
         if (savedItem) {
             if (FlaState) {
                 props.updateState(savedItem);
@@ -51,13 +50,12 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                 props.addItemToState(savedItem);
             }
             props.toggle();
-            setEnt(new MerListaEntity());
+            setEnt(new InfraListaEntity());
         }
     };
     const label = EstadoRegistrochecked ? 'Registro habilitado' : 'Registro deshabilitar';
 
     const onChangechk: CheckboxProps['onChange'] = (e) => {
-        console.log('checked = ', e.target.checked);
         setEstadoRegistrochecked(e.target.checked);
     };
     useEffect(() => {
@@ -66,7 +64,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setFlaState(updatedPerson.ListaId > 0);
         setEnt(updatedPerson);
         setEstadoRegistrochecked(updatedPerson.EstadoRegistro)
-        console.log(props.CodigoTabla)
     }, []);
 
     return (

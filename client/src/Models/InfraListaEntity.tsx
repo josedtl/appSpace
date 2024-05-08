@@ -10,7 +10,7 @@ export class InfraListaEntity {
     FechaRegistro: Date;
     CodUsuario: string;;
     EstadoRegistro: boolean;
-    CodigoTabla: string
+    CodigoCampo: string
     constructor() {
         this.Cont = 0;
         this.ListaId = 0;
@@ -21,7 +21,7 @@ export class InfraListaEntity {
         this.FechaRegistro = new Date();
         this.CodUsuario = '';
         this.EstadoRegistro = false;
-        this.CodigoTabla = '';
+        this.CodigoCampo = '';
     }
 }
 
