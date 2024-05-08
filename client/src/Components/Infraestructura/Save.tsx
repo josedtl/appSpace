@@ -139,7 +139,7 @@ const Save = () => {
   };
 
 
-  
+
   const onSearchSucursal = async (value: string) => {
     try {
       const responseSucursal = await sInfraLista.BuscarItemCodigo("0001", value);
@@ -246,21 +246,21 @@ const Save = () => {
     setSelectedPiso(value)
   };
 
-  const MetodoRegistrar = async () => {
+  const Method_Registrar = async () => {
 
+    const m_MensajeRegistrar = Ent.Action == 1 ? messageAdd.open({ type: 'success', content: 'Se guardó correctamente.', }) : messageAdd.open({ type: 'success', content: 'Se actualizo correctamente.', });
     const savedItem = await sInfraestructura.Registrar(Ent);
-    if (savedItem) {
-      console.log(savedItem);
-      messageAdd.open({
-        type: 'success',
-        content: 'Se guardó correctamente.',
-      });
+
+    if (savedItem.InfraestructuraId > 0) {
+      m_MensajeRegistrar;
     } else {
+      messageAdd.open({ type: 'error', content: 'Hubo error en el proceso.', });
     }
+
   }
 
 
-  const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClick_Guardar = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     selectedSucursal;
@@ -296,13 +296,13 @@ const Save = () => {
 
     if (Ent.InfraestructuraDimensionId === 0) {
       setValInfraestructuraDimension('error');
-      messageAdd.open({ type: 'error', content: 'Seleccione un InfraestructuraDimension.', });
+      messageAdd.open({ type: 'error', content: 'Seleccione una Dimension.', });
       return;
     }
 
-    if (Ent.Descripcion === '') {
-      setValDescripcion('error');
-      messageAdd.open({ type: 'error', content: 'Ingrese un Nombre.', });
+    if (Ent.PisoId === 0) {
+      setValPiso('error');
+      messageAdd.open({ type: 'error', content: 'Seleccione una Piso.', });
       return;
     }
 
@@ -318,7 +318,7 @@ const Save = () => {
         Ent.FechaRegistro = new Date();
         Ent.EstadoRegistro = true
         Ent.Action = Ent.InfraestructuraId == 0 ? 1 : 3;
-        MetodoRegistrar();
+        Method_Registrar();
       },
       onCancel() {
         console.log('Cancel');
@@ -341,7 +341,7 @@ const Save = () => {
         <Col xs={24} sm={24} md={12} lg={12} xl={12}>
           <Button
             style={ButtonAddMain}
-            onClick={Guardar_Total}
+            onClick={onClick_Guardar}
             size={"large"}
             icon={<SaveFilled />}
           />
@@ -542,15 +542,7 @@ const Save = () => {
               <label>Descripcion</label>
             </Col>
             <Col span={24}>
-              {/* <Input
-                type="TextArea"
 
-                name="Descripcion"
-                status={ValDescripcion}
-                style={{ marginTop: '5px', marginBottom: '10px' }}
-                onChange={onChangeText}
-                value={Ent.Descripcion === null ? "" : Ent.Descripcion}
-              /> */}
               <TextArea
                 showCount
                 name="Descripcion"
@@ -565,9 +557,7 @@ const Save = () => {
         </Col>
 
         <Col xs={24} sm={14} md={16} lg={17} xl={18}>
-          {/* <Tabs
-            style={{ marginLeft: '20px' }}
-            type="line" items={TabsItems} /> */}
+
         </Col>
       </Row>
     </Spin>
