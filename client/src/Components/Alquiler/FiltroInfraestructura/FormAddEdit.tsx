@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { MerListaEntity } from '../../../Models/MerListaEntity'
 import MerListaService from '../../../Service/MerListaService';
-import { Form, Grid, Radio, Select, Card } from 'antd';
-import { Checkbox, Button, Col, Row, Input } from 'antd';
+import { Form, Select, Card } from 'antd';
+import { Button, Col, Row } from 'antd';
 import InfraListaService from '../../../Service/InfraListaService';
 import type { RadioChangeEvent } from 'antd';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
@@ -11,8 +11,8 @@ import { ButtonAcceptModel } from '../../../Styles/Button'
 import type { CheckboxProps } from 'antd';
 import DataTable from '../DataTable';
 import { IconTabla, IconCard } from '../../../Styles/Icons'
-import { ButtonMainSecondaryLeft, ButtonMainSecondaryRight, InputSearchMain, ButtonAddMain } from '../../../Styles/Button'
-import { SizeMainButtonSecondary, SizeButtonPrimary } from '../../../Styles/Type'
+import { ButtonMainSecondaryLeft } from '../../../Styles/Button'
+import { SizeMainButtonSecondary } from '../../../Styles/Type'
 import { AlquilerEntity } from '../../../Models/AlquilerEntity';
 import { InfraestructuraSaveModel } from '../../../Models/InfraestructuraEntity';
 import { InfraListaModel } from '../../../Models/InfraListaEntity';
@@ -32,13 +32,18 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [ValPiso, setValPiso] = useState<InputStatus>('');
     const [optionsPiso, setOptionsPiso] = useState<InfraListaModel[]>([]);
     const [selectedPiso, setSelectedPiso] = useState<number | undefined>(undefined);
+    const [optionsClasificacion, setOptionsClasificacion] = useState<InfraListaModel[]>([]);
+    const [ValClasificacion, setValClasificacion] = useState<InputStatus>('');
+    const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
+
+
+
 
     const toggle = () => {
         setDisabled(!disabled);
     };
-    // const toggleChecked = () => {
-    //     setChecked(!checked);
-    // };
+
+    //Piso
     const handleSearchPiso = async (value: string) => {
         try {
             const responsePiso = await sInfraLista.BuscarItemCodigo("0009", value);
@@ -48,6 +53,21 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         }
     };
 
+    // Clasificación
+    const onSearchClasificacion = async (value: string) => {
+        try {
+            const responseClasificacion = await sInfraLista.BuscarItemCodigo("0013", value);
+            setOptionsClasificacion(responseClasificacion);
+        } catch (error) {
+            console.error('Error al buscar categorías:', error);
+        }
+    };
+
+    const onChangeClasificacion = async (value: number) => {
+        setValClasificacion('');
+        EntInf.ClasificacionId = value;
+        setSelectedClasificacion(value)
+    };
 
     const onChanger = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValDato('');
@@ -57,10 +77,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         });
 
     };
-    const onChange = (e: RadioChangeEvent) => {
-        setNumeroState(e.target.value);
 
-    };
     const onChangePiso = async (value: number) => {
         setValPiso('');
         EntInf.PisoId = value;
@@ -71,11 +88,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         {
             key: 'Servicio',
             tab: 'Servicio',
-        },
-        {
-            key: 'Venta',
-            tab: 'Venta',
-        },
+        }
     ];
     const contentList: Record<string, React.ReactNode> = {
         Servicio: <p>content1</p>,
@@ -115,12 +128,14 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
             setEnt(new MerListaEntity());
         }
     };
+
     const label = EstadoRegistrochecked ? 'Registro habilitado' : 'Registro deshabilitar';
 
     const onChangechk: CheckboxProps['onChange'] = (e) => {
         console.log('checked = ', e.target.checked);
         setEstadoRegistrochecked(e.target.checked);
     };
+    
     useEffect(() => {
         const updatedPerson = props.item;
         updatedPerson.Action = updatedPerson.ListaId > 0 ? 3 : 1;
@@ -136,24 +151,36 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
             <Col xs={24}>
                 <Row>
-                    <Col span={8}>
 
+
+                    <Col span={8}>
                         <Row>
                             <Col span={24}>
                                 <label>Estado</label>
                             </Col>
                             <Col span={24}>
-                                <Row>
-                                    <Radio.Group
-                                        style={{ marginTop: '5px', marginBottom: '10px' }}>
-                                        <Radio value={0} onChange={onChange}   >Libre</Radio>
-                                        <Radio value={1} onChange={onChange}   >Ocupado</Radio>
-                                        <Radio value={2} onChange={onChange}  >Mantenimiento</Radio>
-                                    </Radio.Group>
-                                </Row>
+                                <Select
+                                    showSearch
+                                    //status={ValClasificacion}
+                                    style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
+                                    defaultActiveFirstOption={false}
+                                    filterOption={false}
+                                //  onSearch={handleSearchClasificacion}
+                                //value={Ent.ClasificacionId === 0 ? null : Ent.ClasificacionId}
+                                // key={Ent.ClasificacionId}
+                                // onChange={onChangeClasificacion}
+                                >
+                                    {/* {optionsClasificacion.map((Clasificacion) => (
+                  <Select.Option key={Clasificacion.ListaId} value={Clasificacion.ListaId}>
+                    {Clasificacion.Nombre}
+                  </Select.Option>
+                ))} */}
+                                </Select>
                             </Col>
                         </Row>
                     </Col>
+
+
                     <Col span={8}>
                         <Row>
                             <Col span={24}>
@@ -190,20 +217,20 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                             <Col span={24}>
                                 <Select
                                     showSearch
-                                    //status={ValClasificacion}
+                                    status={ValClasificacion}
                                     style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                                     defaultActiveFirstOption={false}
                                     filterOption={false}
-                                //  onSearch={handleSearchClasificacion}
-                                //value={Ent.ClasificacionId === 0 ? null : Ent.ClasificacionId}
-                                // key={Ent.ClasificacionId}
-                                // onChange={onChangeClasificacion}
+                                    onSearch={onSearchClasificacion}
+                                    value={EntInf.ClasificacionId === 0 ? null : EntInf.ClasificacionId}
+                                    key={EntInf.ClasificacionId}
+                                    onChange={onChangeClasificacion}
                                 >
-                                    {/* {optionsClasificacion.map((Clasificacion) => (
-                  <Select.Option key={Clasificacion.ListaId} value={Clasificacion.ListaId}>
-                    {Clasificacion.Nombre}
-                  </Select.Option>
-                ))} */}
+                                    {optionsClasificacion.map((Clasificacion) => (
+                                        <Select.Option key={Clasificacion.ListaId} value={Clasificacion.ListaId}>
+                                            {Clasificacion.Nombre}
+                                        </Select.Option>
+                                    ))}
                                 </Select>
                             </Col>
                         </Row>
