@@ -72,3 +72,9 @@ export const ButtonDetalleAdd: CSSProperties = {
     backgroundColor: "#E5F8FA",
     borderColor: "#15616d",
 };
+
+export const SelectSearchMain: CSSProperties = {
+    color: "#15616d",
+    backgroundColor: "#E5F8FA",
+    borderColor: "#15616d",
+};

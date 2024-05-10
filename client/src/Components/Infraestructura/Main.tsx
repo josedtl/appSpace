@@ -85,7 +85,7 @@ function Main() {
     }
   };
 
-  
+
   const onChangeClasificacion = async (value: number) => {
     setValClasificacion('');
     setfClasificacion(value);
@@ -173,23 +173,24 @@ function Main() {
             ))}
           </Select>
           <Select
-                showSearch
-                status={ValClasificacion}
-                style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
-                defaultActiveFirstOption={false}
-                filterOption={false}
-                onSearch={onSearchClasificacion}
-                value={fClasificacion=== 0 ? null : fClasificacion}
-                key="KCLaso"
-                placeholder='Filtrar por clasificacion'
-                onChange={onChangeClasificacion}
-              >
-                {optionsClasificacion.map((Clasificacion) => (
-                  <Select.Option key={Clasificacion.ListaId} value={Clasificacion.ListaId}>
-                    {Clasificacion.Nombre}
-                  </Select.Option>
-                ))}
-              </Select>
+            showSearch
+            status={ValClasificacion}
+            style={{ width: '85%', marginTop: '5px', marginBottom: '10px', background: 'red' }}
+            defaultActiveFirstOption={false}
+            filterOption={false}
+            onSearch={onSearchClasificacion}
+            value={fClasificacion === 0 ? null : fClasificacion}
+            key="KCLaso"
+            placeholder='Filtrar por clasificacion'
+            onChange={onChangeClasificacion}
+          >
+            {optionsClasificacion.map((Clasificacion) => (
+              <Select.Option
+                key={Clasificacion.ListaId} value={Clasificacion.ListaId}>
+                {Clasificacion.Nombre}
+              </Select.Option>
+            ))}
+          </Select>
         </Col>
 
       </Row>
