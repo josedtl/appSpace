@@ -51,6 +51,8 @@ export class InfraestructuraMainModel {
     CodUsuario: string;
     EstadoRegistro: boolean;
     EstadoAdministrativoId:0;
+    PisoId: number;
+    ClasificacionId: number;
     constructor() {
         this.Cont = 0;
         this.InfraestructuraId = 0;
@@ -67,6 +69,8 @@ export class InfraestructuraMainModel {
         this.CodUsuario = '';
         this.EstadoRegistro = false;
         this.EstadoAdministrativoId=0;
+        this.PisoId = 0;
+        this.ClasificacionId = 0;
     }
 }
 
