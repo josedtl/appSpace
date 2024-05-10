@@ -12,14 +12,16 @@ public class InfraestructuraMainModel {
         this.codigoSistema = "";
         this.codigoInterno = "";
         this.descripcion = "";
-        this.tipoInfraestructura= "";
-        this.clasificacion="";
+        this.tipoInfraestructura = "";
+        this.clasificacion = "";
         this.infraestructuraDimension = "";
         this.aforo = 0;
         this.piso = "";
         this.fechaRegistro = null;
         this.codUsuario = "";
         this.estadoRegistro = false;
+        this.pisoId = 0;
+        this.clasificacionId = 0;
     }
 
     public InfraestructuraMainModel(InfraestructuraEntity Ent) {
@@ -28,14 +30,16 @@ public class InfraestructuraMainModel {
         this.codigoSistema = Ent.getCodigoSistema();
         this.codigoInterno = Ent.getCodigoInterno();
         this.descripcion = Ent.getDescripcion();
-        this.tipoInfraestructura= Ent.getTipoInfraestructura();
-        this.clasificacion= Ent.getClasificacion();
+        this.tipoInfraestructura = Ent.getTipoInfraestructura();
+        this.clasificacion = Ent.getClasificacion();
         this.infraestructuraDimension = Ent.getInfraestructuraDimension();
         this.aforo = Ent.getAforo();
         this.piso = Ent.getPiso();
         this.fechaRegistro = Ent.getFechaRegistro();
         this.codUsuario = Ent.getCodUsuario();
         this.estadoRegistro = Ent.getEstadoRegistro();
+        this.pisoId = Ent.getPisoId();
+        this.clasificacionId= Ent.getClasificacionId();
     }
 
     @JsonProperty("InfraestructuraId")
@@ -104,7 +108,6 @@ public class InfraestructuraMainModel {
         this.tipoInfraestructura = tipoInfraestructura;
     }
 
-
     @JsonProperty("Clasificacion")
     private String clasificacion = "";
 
@@ -116,10 +119,8 @@ public class InfraestructuraMainModel {
         this.clasificacion = clasificacion;
     }
 
-
     @JsonProperty("InfraestructuraDimension")
     private String infraestructuraDimension = "";
-
 
     public String getInfraestructuraDimension() {
         return infraestructuraDimension;
@@ -141,7 +142,7 @@ public class InfraestructuraMainModel {
     }
 
     @JsonProperty("Piso")
-    private String piso= "";
+    private String piso = "";
 
     public String getPiso() {
         return piso;
@@ -175,11 +176,35 @@ public class InfraestructuraMainModel {
 
     @JsonProperty("EstadoRegistro")
     private boolean estadoRegistro = false;
+
     public boolean getEstadoRegistro() {
         return estadoRegistro;
     }
 
     public void setEstadoRegistro(boolean estadoRegistro) {
         this.estadoRegistro = estadoRegistro;
+    }
+
+    @JsonProperty("PisoId")
+    private int pisoId = 0;
+
+    public int getPisoId() {
+        return pisoId;
+    }
+
+    public void setPisoId(int pisoId) {
+        this.pisoId = pisoId;
+    }
+
+
+    @JsonProperty("ClasificacionId")
+    private int clasificacionId = 0;
+
+    public int getClasificacionId() {
+        return clasificacionId;
+    }
+
+    public void setClasificacionId(int clasificacionId) {
+        this.clasificacionId = clasificacionId;
     }
 }

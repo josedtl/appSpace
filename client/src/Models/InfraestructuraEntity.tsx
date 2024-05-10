@@ -48,6 +48,8 @@ export class InfraestructuraMainModel {
     FechaRegistro: Date;
     CodUsuario: string;
     EstadoRegistro: boolean;
+    PisoId: number;
+    ClasificacionId: number;
     constructor() {
         this.Cont = 0;
         this.InfraestructuraId = 0;
@@ -63,6 +65,8 @@ export class InfraestructuraMainModel {
         this.FechaRegistro = new Date();
         this.CodUsuario = '';
         this.EstadoRegistro = false;
+        this.PisoId = 0;
+        this.ClasificacionId = 0;
     }
 }
 
