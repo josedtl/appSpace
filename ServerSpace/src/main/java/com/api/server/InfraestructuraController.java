@@ -4,6 +4,7 @@ import Framework.Utilidades;
 import Business.Infraestructura;
 import EntityLayer.InfraestructuraEntity;
 import Models.ResponseAPI;
+import Models.Infraestructura.InfraestructuraFiltroModel;
 import Models.Infraestructura.InfraestructuraMainModel;
 import Models.Infraestructura.InfraestructuraSaveModel;
 
@@ -70,6 +71,20 @@ public class InfraestructuraController extends Configuracion {
         }
 
         return new ResponseAPI<ArrayList<InfraestructuraSaveModel>>(Items, true, "");
+    }
+
+    @GetMapping("/ObtenerFiltro")
+    public ResponseAPI<ArrayList<InfraestructuraFiltroModel>> ObtenerFiltro() {
+        DataConfi();
+        Infraestructura BS = new Infraestructura();
+        ArrayList<InfraestructuraFiltroModel> Items = new ArrayList<>();
+        ArrayList<InfraestructuraEntity> Data = BS.ObtenerFiltro();
+
+        for (InfraestructuraEntity Item : Data) {
+            Items.add(new InfraestructuraFiltroModel(Item));
+        }
+
+        return new ResponseAPI<ArrayList<InfraestructuraFiltroModel>>(Items, true, "");
     }
 
 }

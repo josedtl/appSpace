@@ -14,6 +14,7 @@ export class InfraestructuraSaveModel {
     CodUsuario: string;
     EstadoRegistro: boolean;
     Action: number;
+    EstadoAdministrativoId:0;
     constructor() {
         this.InfraestructuraId = 0;
         this.SucursalId = 0;
@@ -30,6 +31,7 @@ export class InfraestructuraSaveModel {
         this.CodUsuario = '';
         this.EstadoRegistro = true;
         this.Action = 0;
+        this.EstadoAdministrativoId=0;
     }
 }
 
@@ -48,6 +50,7 @@ export class InfraestructuraMainModel {
     FechaRegistro: Date;
     CodUsuario: string;
     EstadoRegistro: boolean;
+    EstadoAdministrativoId:0;
     constructor() {
         this.Cont = 0;
         this.InfraestructuraId = 0;
@@ -63,6 +66,22 @@ export class InfraestructuraMainModel {
         this.FechaRegistro = new Date();
         this.CodUsuario = '';
         this.EstadoRegistro = false;
+        this.EstadoAdministrativoId=0;
     }
 }
 
+export class InfraestructuraFiltroModel {
+
+    Cont: number;
+    InfraestructuraId: number;
+    Clasificacion: string;
+    Piso: string;
+    EstadoAdministrativoId:string;
+    constructor() {
+        this.Cont = 0;
+        this.InfraestructuraId = 0;
+        this.Clasificacion = '';
+        this.Piso = '';
+        this.EstadoAdministrativoId='';
+    }
+}
