@@ -1,4 +1,4 @@
-import { InfraestructuraMainModel, InfraestructuraSaveModel } from '../Models/InfraestructuraEntity';
+import { InfraestructuraMainModel, InfraestructuraSaveModel,InfraestructuraFiltroModel } from '../Models/InfraestructuraEntity';
 import { apiLg } from './axios-config';
 
 class InfraestructuraService {
@@ -53,7 +53,15 @@ class InfraestructuraService {
         }
     }
 
-
+    async GetInfraestructuraObtenerFiltro(): Promise<InfraestructuraFiltroModel[]> {
+        try {
+            const response = await apiLg.get(`api/Infraestructura/ObtenerFiltro`);
+            return response.status === 200 ? response.data.Value : [];
+        } catch (err) {
+            console.log(err);
+            return [];
+        }
+    }
 
 }
 

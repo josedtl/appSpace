@@ -132,4 +132,27 @@ public class InfraestructuraDB extends BaseDB {
         return DatoMemoria;
     }
 
+    
+    public ArrayList<InfraestructuraEntity> ObtenerFiltro() {
+
+        ArrayList<InfraestructuraEntity> DatoMemoria = new ArrayList<>();
+        InfraestructuraEntity en;
+        try {
+            Inj.Sp("sp_InfraestructuraObtenerFiltro");
+            ResultSet rs = Inj.RunSelect();
+            fillSchemeTable(rs);
+            while (rs.next()) {
+                en = new InfraestructuraEntity();
+                if (fillFrom(rs, en)) {
+                    DatoMemoria.add(en);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR " + e);
+            throw new UnsupportedOperationException("Datalater :" + e);
+        }
+        return DatoMemoria;
+    }
+
 }

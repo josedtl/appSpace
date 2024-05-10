@@ -25,4 +25,10 @@ public class Infraestructura {
         InfraestructuraDB BD = new InfraestructuraDB();
         return BD.Delete(Id);
     }
+
+    public ArrayList<InfraestructuraEntity> ObtenerFiltro() {
+        InfraestructuraDB BD = new InfraestructuraDB();
+        return BD.ObtenerFiltro();
+    }
+
 }

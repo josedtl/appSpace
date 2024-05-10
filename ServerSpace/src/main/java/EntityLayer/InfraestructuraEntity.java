@@ -144,6 +144,16 @@ public class InfraestructuraEntity {
     public void setEstadoRegistro(boolean estadoRegistro) {
         this.estadoRegistro = estadoRegistro;
     }
+    
+    @JsonProperty("EstadoAdministrativoId")
+    private int estadoAdministrativoId = 0;
+    public int getestadoAdministrativoId() {
+        return estadoAdministrativoId;
+    }
+
+    public void setestadoAdministrativoId(int estadoAdministrativoId) {
+        this.estadoAdministrativoId = estadoAdministrativoId;
+    }
 
 // COMPLEMENTARIO*************************************************************************************************************************************
 
@@ -202,4 +212,13 @@ public class InfraestructuraEntity {
         this.piso = piso;
     }
 
+    private String estadoAdministrativo= "";
+
+    public String getestadoAdministrativo() {
+        return estadoAdministrativo;
+    }
+
+    public void setestadoAdministrativo(String estadoAdministrativo) {
+        this.estadoAdministrativo = estadoAdministrativo;
+    }
 }
