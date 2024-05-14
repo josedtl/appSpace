@@ -9,7 +9,7 @@ import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { PropsModel } from '../../../Lib/PropsItem'
 import { ButtonAcceptModel } from '../../../Styles/Button'
 import type { CheckboxProps } from 'antd';
-import DataTable from '../DataTable';
+import DataTable from './DataTable';
 import { IconTabla, IconCard } from '../../../Styles/Icons'
 import { ButtonMainSecondaryLeft } from '../../../Styles/Button'
 import { SizeMainButtonSecondary } from '../../../Styles/Type'
@@ -78,6 +78,16 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     };
 
+
+    const onSearchPiso = async (value: string) => {
+        try {
+          const responsePiso = await sInfraLista.BuscarItemCodigo("0009", value);
+          setOptionsPiso(responsePiso);
+        } catch (error) {
+          console.error('Error al buscar categorías:', error);
+        }
+      };
+
     const onChangePiso = async (value: number) => {
         setValPiso('');
         EntInf.PisoId = value;
@@ -103,10 +113,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         fdata.Codigo.toLowerCase().includes(Busqueda.toLowerCase())
     );
 
-    const [activeTabKey1, setActiveTabKey1] = useState<string>('Servicio');
-    const onTab1Change = (key: string) => {
-        setActiveTabKey1(key);
-    };
 
     const submitFormAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -193,7 +199,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                                     style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                                     defaultActiveFirstOption={false}
                                     filterOption={false}
-                                    onSearch={handleSearchPiso}
+                                    onSearch={onSearchPiso}
                                     value={EntInf.PisoId === 0 ? null : EntInf.PisoId}
                                     key={EntInf.PisoId}
                                     onChange={onChangePiso}
@@ -246,17 +252,9 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
             />
 
             <Col xs={24} >
-                <Card
-                    style={{ width: '100%' }}
-                    tabList={tabList}
-                    activeTabKey={activeTabKey1}
-                    onTabChange={onTab1Change}
-                >
+               
 
                     <DataTable DataList={filterItems} EsTabla={disabled} />
-
-                    {contentList[activeTabKey1]}
-                </Card>
                 <br />
                 <br />
 
