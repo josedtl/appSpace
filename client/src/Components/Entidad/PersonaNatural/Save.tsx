@@ -121,8 +121,8 @@ const Save = () => {
   const [modal, contextHolder] = Modal.useModal();
   const [messageAdd, contextHolderAdd] = message.useMessage();
   const AddPersonaNatural = async () => {
-    console.log(Ent);
     const savedItem = await sPersonaNatural.Registrar(Ent);
+    console.log(savedItem);
     if (savedItem) {
 
       messageAdd.open({
