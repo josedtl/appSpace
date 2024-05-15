@@ -3,3 +3,11 @@
 ################################################################################
 
 /Space/Space.sln
+/Space/Framework.Data.Sql/bin
+/Space/Framework.Data.Sql/obj
+/Space/Framework.Data/bin
+/Space/Framework.Data/bin
+/Space/Framework.Data/obj
+/Space/Space.DataLayer/bin
+*.cache
+/Space/Space.EntityLayer/obj
