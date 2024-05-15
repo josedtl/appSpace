@@ -1,0 +1,17 @@
+E:\Davidshard\Framework\Framework.Data\bin\Debug\net8.0\Framework.Data.deps.json
+E:\Davidshard\Framework\Framework.Data\bin\Debug\net8.0\Framework.Data.dll
+E:\Davidshard\Framework\Framework.Data\bin\Debug\net8.0\Framework.Data.pdb
+E:\Davidshard\Framework\Framework.Data\bin\Debug\net8.0\Framework.Data.Sql.dll
+E:\Davidshard\Framework\Framework.Data\bin\Debug\net8.0\Framework.dll
+E:\Davidshard\Framework\Framework.Data\bin\Debug\net8.0\Framework.pdb
+E:\Davidshard\Framework\Framework.Data\bin\Debug\net8.0\Framework.Data.Sql.pdb
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framework.Data.csproj.AssemblyReference.cache
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framework.Data.GeneratedMSBuildEditorConfig.editorconfig
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framework.Data.AssemblyInfoInputs.cache
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framework.Data.AssemblyInfo.cs
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framework.Data.csproj.CoreCompileInputs.cache
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framewor.F79F0CCD.Up2Date
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framework.Data.dll
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\refint\Framework.Data.dll
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\Framework.Data.pdb
+E:\Davidshard\Framework\Framework.Data\obj\Debug\net8.0\ref\Framework.Data.dll

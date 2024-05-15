@@ -1,0 +1,15 @@
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\bin\Debug\net7.0\Space.EntityLayer.deps.json
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\bin\Debug\net7.0\Space.EntityLayer.dll
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\bin\Debug\net7.0\Space.EntityLayer.pdb
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\bin\Debug\net7.0\Framework.dll
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\bin\Debug\net7.0\Framework.pdb
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.csproj.AssemblyReference.cache
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.AssemblyInfoInputs.cache
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.AssemblyInfo.cs
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.csproj.CoreCompileInputs.cache
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.En.08E10B6C.Up2Date
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.dll
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\refint\Space.EntityLayer.dll
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\Space.EntityLayer.pdb
+D:\ProyectoDeveloper2024\Space\Space.EntityLayer\obj\Debug\net7.0\ref\Space.EntityLayer.dll

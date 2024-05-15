@@ -1,0 +1,15 @@
+D:\ProyectoDeveloper2024\Space\Space.Common\bin\Debug\net7.0\Space.Common.deps.json
+D:\ProyectoDeveloper2024\Space\Space.Common\bin\Debug\net7.0\Space.Common.dll
+D:\ProyectoDeveloper2024\Space\Space.Common\bin\Debug\net7.0\Space.Common.pdb
+D:\ProyectoDeveloper2024\Space\Space.Common\bin\Debug\net7.0\Framework.dll
+D:\ProyectoDeveloper2024\Space\Space.Common\bin\Debug\net7.0\Framework.pdb
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Common.csproj.AssemblyReference.cache
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Common.AssemblyInfoInputs.cache
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Common.AssemblyInfo.cs
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Common.csproj.CoreCompileInputs.cache
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Co.9F71829D.Up2Date
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Common.dll
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\refint\Space.Common.dll
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\Space.Common.pdb
+D:\ProyectoDeveloper2024\Space\Space.Common\obj\Debug\net7.0\ref\Space.Common.dll
