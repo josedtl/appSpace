@@ -10,6 +10,7 @@ namespace Space.Server.Controllers
     [ApiController]
     public class GeneralController : ControllerBase
     {
+        Base d = new Base();
         #region MONEDA
 
         [HttpGet]
@@ -18,6 +19,7 @@ namespace Space.Server.Controllers
         {
             try
             {
+                d.Configurar();
                 var Items = Moneda.ObtenerMonedaItems();
 
                 List<MonedaModel> Lista = new List<MonedaModel>();
@@ -40,6 +42,7 @@ namespace Space.Server.Controllers
         {
             try
             {
+                d.Configurar();
                 var Items = Moneda.ObtenerMonedaItem(MonedaId);
 
                 List<MonedaModel> Lista = new List<MonedaModel>();
@@ -66,6 +69,7 @@ namespace Space.Server.Controllers
         {
             try
             {
+                d.Configurar();
                 var Items = UnidadMedida.GetUnidadMedidaItems();
 
                 List<UnidadMedidaModel> Lista = new List<UnidadMedidaModel>();
@@ -88,6 +92,7 @@ namespace Space.Server.Controllers
         {
             try
             {
+                d.Configurar();
                 var Items = UnidadMedida.GetUnidadMedida_Item(UnidadMedidaId);
 
                 List<UnidadMedidaModel> Lista = new List<UnidadMedidaModel>();
@@ -114,6 +119,7 @@ namespace Space.Server.Controllers
         {
             try
             {
+                d.Configurar();
                 var Items = Ubigeo.GetUbigeoBuscarLike(ItemLike.srtValor1);
                 List<UbigeoModel> Lista = new List<UbigeoModel>();
                 foreach (var Item in Items) Lista.Add(new UbigeoModel(Item));
@@ -133,6 +139,7 @@ namespace Space.Server.Controllers
         {
             try
             {
+                d.Configurar();
                 var Items = Ubigeo.GetUbigeoItem(UbigeoId);
                 List<UbigeoModel> Lista = new List<UbigeoModel>();
                 foreach (var Item in Items) Lista.Add(new UbigeoModel(Item));
@@ -148,5 +155,26 @@ namespace Space.Server.Controllers
 
         #endregion
 
+
+
+        [HttpPost]
+        [Route("GetEntidadBuscarItem")]
+        public ResponseAPI<List<EntidadModel>> GetEntidadBuscarItem(ItemLikeModel ItemLike)
+        {
+            try
+            {
+                d.Configurar();
+                var Items = Entidad.GetEntidadBuscarItem(ItemLike.srtValor1);
+                List<EntidadModel> Lista = new List<EntidadModel>();
+                foreach (var Item in Items) Lista.Add(new EntidadModel(Item));
+                return new ResponseAPI<List<EntidadModel>>(Lista, true);
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseAPI<List<EntidadModel>>(new List<EntidadModel>(), false, ex.Message);
+            }
+
+        }
     }
 }

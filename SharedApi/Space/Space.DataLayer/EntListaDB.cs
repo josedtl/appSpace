@@ -79,8 +79,8 @@ namespace Space.DataLayer
         {
             if (Ent.LogicalState == LogicalState.Added || Ent.LogicalState == LogicalState.Updated)
             {
-                String storedName = "sp_InfraListaActualizar";
-                if (Ent.LogicalState == LogicalState.Added) storedName = "sp_InfraListaRegistrar";
+                String storedName = "sp_EntListaActualizar";
+                if (Ent.LogicalState == LogicalState.Added) storedName = "sp_EntListaRegistrar";
                 DbDatabase.GetStoredProcCommand(storedName);
                 DbDatabase.SetTransaction(Helper.DbTransaction);
 

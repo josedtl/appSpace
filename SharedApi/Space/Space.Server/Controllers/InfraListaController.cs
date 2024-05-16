@@ -151,7 +151,7 @@ namespace Space.Server.Controllers
         }
 
         [HttpGet]
-        [Route("GetInfraCampoTitulo/{codigo}")]
+        [Route("ObtenerTitulo/{codigo}")]
         public ResponseAPI<List<InfraCampoTituloModel>> ObtenerTitulo(String codigo)
         {
             try

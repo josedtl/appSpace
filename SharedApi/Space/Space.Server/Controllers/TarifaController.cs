@@ -73,7 +73,7 @@ namespace Space.Server.Controllers
             }
         }
 
-    
+
 
         [HttpGet]
         [Route("ObtenerItem/{TarifaId}")]
@@ -114,7 +114,7 @@ namespace Space.Server.Controllers
 
                 List<TarifaBuscarRecursoModel> Lista = new List<TarifaBuscarRecursoModel>();
 
-                foreach (var Item in Items)   Lista.Add(new TarifaBuscarRecursoModel(Item));
+                foreach (var Item in Items) Lista.Add(new TarifaBuscarRecursoModel(Item));
 
 
                 return new ResponseAPI<List<TarifaBuscarRecursoModel>>(Lista, true);
@@ -126,5 +126,29 @@ namespace Space.Server.Controllers
             }
         }
 
+
+        [HttpPost]
+        [Route("GetTarifaBuscarItem")]
+        public ResponseAPI<List<TarifaBuscarItem>> GetTarifaBuscarItem(ItemLikeModel Value)
+        {
+            try
+            {
+                d.Configurar();
+                Tarifa DB = new Tarifa();
+                var Items = DB.GetTarifaBuscarItem(Value.srtValor1);
+
+                List<TarifaBuscarItem> Lista = new List<TarifaBuscarItem>();
+
+                foreach (var Item in Items) Lista.Add(new TarifaBuscarItem(Item));
+
+
+                return new ResponseAPI<List<TarifaBuscarItem>>(Lista, true);
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseAPI<List<TarifaBuscarItem>>(new List<TarifaBuscarItem>(), false, ex.Message);
+            }
+        }
     }
 }

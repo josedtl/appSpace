@@ -148,6 +148,32 @@ namespace Space.DataLayer
                 throw ex;
             }
         }
+
+        
+        public virtual List<TarifaEntity> GetTarifaBuscarItem(String NomComercial)
+        {
+            try
+            {
+                StartHelper(false);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "NomComercial", DbType.String, 20, false, 0, 0, NomComercial);
+                IDataReader dr = (IDataReader)DbDatabase.ExecuteReader(CommandType.StoredProcedure, "sp_TarifaBuscarItem");
+                FillSchemeTable(dr);
+                List<TarifaEntity> EntityList = new List<TarifaEntity>();
+                while (dr.Read())
+                {
+                    TarifaEntity entity = new TarifaEntity();
+                    if (FillFrom(dr, entity)) EntityList.Add(entity);
+                    entity.OnLogicalLoaded();
+                }
+
+                Helper.Close(dr);
+                return EntityList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
    
     }
 }

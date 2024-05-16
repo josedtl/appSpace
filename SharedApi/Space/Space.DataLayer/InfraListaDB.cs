@@ -137,7 +137,7 @@ namespace Space.DataLayer
 
                 DbDatabase.AddParameter(MyUtils.GetOutputDirection(true), "ListaId", DbType.Int32, 4, false, 0, 0, Ent.ListaId);
                 DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "CodigoCampo", DbType.String, 120, false, 0, 0, Ent.CodigoCampo);
-                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "Codigo", DbType.Int32, 250, false, 0, 0, Ent.Codigo);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "Codigo", DbType.String, 250, false, 0, 0, Ent.Codigo);
                 DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "Nombre", DbType.String, 250, false, 0, 0, Ent.Nombre);
                 DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "Descripcion", DbType.String, 250, false, 0, 0, Ent.Descripcion);
                 DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "FechaRegistro", DbType.DateTime, 8, false, 0, 0, Ent.FechaRegistro);

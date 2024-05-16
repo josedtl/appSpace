@@ -39,6 +39,11 @@ namespace Space.BusinessLayer
             TarifaDB DB = new TarifaDB();
             return DB.BuscarRecurso(Nombre, Tipo);
         }
+    public List<TarifaEntity> GetTarifaBuscarItem(String Nombre)
+        {
+            TarifaDB DB = new TarifaDB();
+            return DB.GetTarifaBuscarItem(Nombre);
+        }
 
     }
 }
