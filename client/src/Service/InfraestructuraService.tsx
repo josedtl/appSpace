@@ -1,4 +1,4 @@
-import { InfraestructuraMainModel, InfraestructuraSaveModel,InfraestructuraFiltroModel } from '../Models/InfraestructuraEntity';
+import { InfraestructuraMainModel, InfraestructuraSaveModel, InfraestructuraFiltroModel } from '../Models/InfraestructuraEntity';
 import { apiLg } from './axios-config';
 
 class InfraestructuraService {
@@ -17,11 +17,11 @@ class InfraestructuraService {
 
     async Registrar(item: InfraestructuraSaveModel): Promise<InfraestructuraSaveModel> {
         try {
-
+            console.log(item);
             const response = await apiLg.post(`api/Infraestructura/Registrar`, item, {
                 headers: { 'Content-Type': 'application/json', },
             });
-            return response.status === 200 ? response.data.Value : [];
+            return response.data.Value;
         } catch (error) {
             console.log(error);
             return new InfraestructuraSaveModel();

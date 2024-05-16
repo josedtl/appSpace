@@ -22,26 +22,14 @@ class PersonaNaturalService {
       const response = await apiLg.post(`api/${this.ServiceName}/Registrar`, item, {
         headers: { 'Content-Type': 'application/json', },
       });
-      return response.status === 200 ? response.data : [];
+      return response.data.Value;
     } catch (error) {
       console.log(error);
       return new PersonaNaturalSaveModel();
     }
   }
 
-  async Actualizar(item: PersonaNaturalSaveModel): Promise<PersonaNaturalSaveModel> {
-    try {
 
-      const response = await apiLg.post(`api/${this.ServiceName}/Actualizar`, item, {
-        headers: { 'Content-Type': 'application/json', },
-      });
-
-      return response.status === 200 ? response.data.Value : [];
-    } catch (error) {
-      console.log(error);
-      return new PersonaNaturalSaveModel();
-    }
-  }
 
   async ObtenerItem(Id: number): Promise<PersonaNaturalSaveModel[]> {
     try {

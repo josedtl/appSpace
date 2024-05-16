@@ -33,8 +33,10 @@ class InfraListaService {
           'Content-Type': 'application/json',
         },
       });
+      console.log(response);
       return response.data.Value;
     } catch (error) {
+      console.log(error)
       throw error;
     }
   }
