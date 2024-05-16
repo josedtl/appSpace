@@ -135,6 +135,8 @@ namespace Space.Common
                         if (m_IntegratedSecurity)
                             return String.Format("Data Source={0};Initial Catalog={1};Integrated Security=True;", m_Server, m_DataBase);
                         else return String.Format("Data Source={0};Initial Catalog={1};Persist Security Info=True;User ID={2};Password={3};", m_Server, m_DataBase, m_UserName, m_Password);
+                    case TypeConection.MySql:
+                        return String.Format("Server={0};Database={1};Uid={2};Pwd={3};", m_Server, m_DataBase, m_UserName, m_Password);
                     case TypeConection.Oracle: return String.Format(@"Data Source= ""(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(Host = {0}) (Port={1}))(CONNECT_DATA = (SID ={2})))"";User Id=""{3}"";Password=""{4}"";", m_Server, m_Port, m_DataBase, m_UserName, m_Password);
                 }
                 return String.Empty;
@@ -186,7 +188,8 @@ namespace Space.Common
                     {
                         case "TypeConection":
                             if (ValueFromNode(item) == "MsSQL") Conecction = TypeConection.MsSQL;
-                            else if (ValueFromNode(item) == "Oracle") Conecction = TypeConection.MsSQL;
+                            else if (ValueFromNode(item) == "Oracle") Conecction = TypeConection.Oracle;
+                            else if (ValueFromNode(item) == "Mysql") Conecction = TypeConection.MySql;
                             else Conecction = TypeConection.WCFservice;
                             break;
                         case "Server":

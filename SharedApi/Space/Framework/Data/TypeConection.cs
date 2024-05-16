@@ -16,5 +16,7 @@ namespace Framework
         Oracle = 1,
         [EnumMember]
         WCFservice = 2,
+        [EnumMember]
+        MySql = 2,
     }
 }

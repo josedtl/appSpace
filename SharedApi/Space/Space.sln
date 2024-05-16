@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Data", "Framework
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Data.Sql", "Framework.Data.Sql\Framework.Data.Sql.csproj", "{A8C6E324-166F-47E3-932B-9D9C31B3895E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Data.Mysql", "Framework.Data.Mysql\Framework.Data.Mysql.csproj", "{23E835D8-2283-4136-A418-A8D8CE32846D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -195,6 +197,26 @@ Global
 		{A8C6E324-166F-47E3-932B-9D9C31B3895E}.Release|x64.Build.0 = Release|Any CPU
 		{A8C6E324-166F-47E3-932B-9D9C31B3895E}.Release|x86.ActiveCfg = Release|Any CPU
 		{A8C6E324-166F-47E3-932B-9D9C31B3895E}.Release|x86.Build.0 = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|x64.Build.0 = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Debug|x86.Build.0 = Debug|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|ARM.Build.0 = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|ARM64.Build.0 = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|x64.ActiveCfg = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|x64.Build.0 = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|x86.ActiveCfg = Release|Any CPU
+		{23E835D8-2283-4136-A418-A8D8CE32846D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -203,41 +225,9 @@ Global
 		{D9278E2A-DB27-4167-9E5B-20209EBC2376} = {7C1AFCE1-986F-4C6C-AAEB-2D3CE6C56D7F}
 		{0737329A-90D8-4B24-8A87-5517F37D33CD} = {7C1AFCE1-986F-4C6C-AAEB-2D3CE6C56D7F}
 		{A8C6E324-166F-47E3-932B-9D9C31B3895E} = {7C1AFCE1-986F-4C6C-AAEB-2D3CE6C56D7F}
+		{23E835D8-2283-4136-A418-A8D8CE32846D} = {7C1AFCE1-986F-4C6C-AAEB-2D3CE6C56D7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E15EC3E-9BCB-40AD-B173-51329F48B416}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://davidjosetimolugo.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Space.BusinessLayer\\Space.BusinessLayer.csproj
-		SccProjectName1 = Space.BusinessLayer
-		SccLocalPath1 = Space.BusinessLayer
-		SccProjectUniqueName2 = Space.DataLayer\\Space.DataLayer.csproj
-		SccProjectName2 = Space.DataLayer
-		SccLocalPath2 = Space.DataLayer
-		SccProjectUniqueName3 = Space.EntityLayer\\Space.EntityLayer.csproj
-		SccProjectName3 = Space.EntityLayer
-		SccLocalPath3 = Space.EntityLayer
-		SccProjectUniqueName4 = Space.Server\\Space.Server.csproj
-		SccProjectName4 = Space.Server
-		SccLocalPath4 = Space.Server
-		SccProjectUniqueName5 = Space.Common\\Space.Common.csproj
-		SccProjectName5 = Space.Common
-		SccLocalPath5 = Space.Common
-		SccProjectUniqueName6 = Framework\\Framework.csproj
-		SccProjectTopLevelParentUniqueName6 = Space.sln
-		SccProjectName6 = Framework
-		SccLocalPath6 = Framework
-		SccProjectUniqueName7 = Framework.Data\\Framework.Data.csproj
-		SccProjectTopLevelParentUniqueName7 = Space.sln
-		SccProjectName7 = Framework.Data
-		SccLocalPath7 = Framework.Data
-		SccProjectUniqueName8 = Framework.Data.Sql\\Framework.Data.Sql.csproj
-		SccProjectTopLevelParentUniqueName8 = Space.sln
-		SccProjectName8 = Framework.Data.Sql
-		SccLocalPath8 = Framework.Data.Sql
 	EndGlobalSection
 EndGlobal

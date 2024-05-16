@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Framework.Data.Sql;
+using Framework.Data.Mysql;
 
 namespace Framework.Data
 {
@@ -26,6 +27,7 @@ namespace Framework.Data
             if (Database == null)
             {
                 if (TypeConection == Framework.TypeConection.MsSQL) m_Database = new SqlDatabase(Connectionstring, m_SchemaName);
+               else if (TypeConection == Framework.TypeConection.MySql) m_Database = new MySqlDatabase(Connectionstring);
                 //else m_Database = new OracleDatabase(Connectionstring, m_SchemaName);
             }
             if (DbConnection == null && IsTransactional)

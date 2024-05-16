@@ -14,6 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Framework.Data.Mysql\Framework.Data.Mysql.csproj" />
     <ProjectReference Include="..\Framework.Data.Sql\Framework.Data.Sql.csproj" />
     <ProjectReference Include="..\Framework\Framework.csproj" />
   </ItemGroup>
