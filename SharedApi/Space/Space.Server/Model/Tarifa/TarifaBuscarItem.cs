@@ -15,7 +15,7 @@ namespace Space.Server.Model.Tarifa
         public TarifaBuscarItem(TarifaEntity Ent)
         {
             this.TarifaId= Ent.TarifaId;
-            this.NomComercial = Ent.NomCompleto;
+            this.NomComercial = Ent.NomComercial;
             this.TipoTarifaEnum = Ent.TipoTarifaEnum;
         }
 
