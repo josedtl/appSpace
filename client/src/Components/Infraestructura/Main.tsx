@@ -69,6 +69,7 @@ function Main() {
       console.error('Error al buscar categorías:', error);
     }
   };
+  
   const onChangePiso = async (value: number) => {
     setValPiso('');
     setfPiso(value);

@@ -51,10 +51,10 @@ const DataTable: React.FC<PropsTable> = (props) => {
 
     ];
 
-    const dataWithKeys = props.DataList.sort((a, b) => b.AlquilerId - a.AlquilerId).map((item, zIndex) => {
+    const dataWithKeys = props.DataList.sort((a, b) => b.InfraestructuraId - a.InfraestructuraId).map((item, zIndex) => {
         return {
             ...item,
-            key: item.AlquilerId,
+            key: item.InfraestructuraId,
             Cont: (zIndex + 1)
         };
     });

@@ -2,23 +2,25 @@ import React, { useState, useEffect } from "react";
 import { MerListaEntity } from '../../../Models/MerListaEntity'
 import MerListaService from '../../../Service/MerListaService';
 import { Form, Select, Card } from 'antd';
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Row ,Input} from 'antd';
 import InfraListaService from '../../../Service/InfraListaService';
 import type { RadioChangeEvent } from 'antd';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { PropsModel } from '../../../Lib/PropsItem'
-import { ButtonAcceptModel } from '../../../Styles/Button'
+import { ButtonAcceptModel,InputSearchMain } from '../../../Styles/Button'
 import type { CheckboxProps } from 'antd';
 import DataTable from './DataTable';
 import { IconTabla, IconCard } from '../../../Styles/Icons'
 import { ButtonMainSecondaryLeft } from '../../../Styles/Button'
 import { SizeMainButtonSecondary } from '../../../Styles/Type'
 import { AlquilerEntity } from '../../../Models/AlquilerEntity';
-import { InfraestructuraSaveModel } from '../../../Models/InfraestructuraEntity';
+import { InfraestructuraSaveModel,InfraestructuraMainModel } from '../../../Models/InfraestructuraEntity';
 import { InfraListaModel } from '../../../Models/InfraListaEntity';
+import InfraestructuraService from '../../../Service/InfraestructuraService';
 const AddEditForm: React.FC<PropsModel> = (props) => {
     const sMerLista = new MerListaService();
     const sInfraLista = new InfraListaService();
+    const sInfraestructura = new InfraestructuraService();
     const initialMerLista = new MerListaEntity();
     const [Ent, setEnt] = useState<MerListaEntity>(initialMerLista);
     const [FlaState, setFlaState] = useState<Boolean>(false);
@@ -26,21 +28,48 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [ValDato, setValDato] = useState<InputStatus>('');
     const initialProducto = new InfraestructuraSaveModel();
     const [EntInf, setEntInf] = useState<InfraestructuraSaveModel>(initialProducto);
-
+    
     const [EstadoRegistrochecked, setEstadoRegistrochecked] = useState(true);
-    const [FlaNumero, setNumeroState] = useState<number>(0);
-    const [ValPiso, setValPiso] = useState<InputStatus>('');
-    const [optionsPiso, setOptionsPiso] = useState<InfraListaModel[]>([]);
     const [selectedPiso, setSelectedPiso] = useState<number | undefined>(undefined);
+    const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
+    const [optionsPiso, setOptionsPiso] = useState<InfraListaModel[]>([]);
     const [optionsClasificacion, setOptionsClasificacion] = useState<InfraListaModel[]>([]);
     const [ValClasificacion, setValClasificacion] = useState<InputStatus>('');
-    const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
+    const [ValPiso, setValPiso] = useState<InputStatus>('');
+    
+    const [optionsInfraestructuraFiltro, setOptionsInfraestructuraFiltro] = useState<InfraListaModel[]>([]);
+    const [ValEstado, setValEstado] = useState<InputStatus>('');
+    const [selectedEstado, setSelectedEstado] = useState<number | undefined>(undefined);
+    const [item, setItem] = useState<InfraestructuraMainModel[]>([]);
+    
 
-
-
+    const [CargarPage, setCargarPage] = React.useState(true);
 
     const toggle = () => {
         setDisabled(!disabled);
+    };
+
+    const [fPiso, setfPiso] = useState<number>(0);
+    const [fClasificacion, setfClasificacion] = useState<number>(0);
+
+    const filterItemsPiso = fPiso == 0 ? item : item.filter(fdata => fdata.PisoId == fPiso);
+    const filterItemsclasificacion = fClasificacion == 0 ? filterItemsPiso : filterItemsPiso.filter(fdata => fdata.ClasificacionId == fClasificacion);
+    const filterItems = filterItemsclasificacion.filter(fdata => fdata.CodigoInterno.toLowerCase().includes(Busqueda.toLowerCase()));
+  
+    //Estado
+    const handleSearchEstado = async (value: string) => {
+        try {
+            const responseEstado = await sInfraLista.BuscarItemCodigo('0014', value);
+            setOptionsInfraestructuraFiltro(responseEstado);
+
+        } catch (error) {
+            console.error('Error al buscar Estado:', error);
+        }
+    };
+    const onChangeEstado = async (value: number) => {
+        setValEstado('');
+        EntInf.EstadoAdministrativoId = value;
+        setSelectedEstado(value)
     };
 
     //Piso
@@ -51,6 +80,21 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         } catch (error) {
             console.error('Error al buscar categorías:', error);
         }
+    };
+
+    const onSearchPiso = async (value: string) => {
+        try {
+            const responsePiso = await sInfraLista.BuscarItemCodigo("0009", value);
+            setOptionsPiso(responsePiso);
+        } catch (error) {
+            console.error('Error al buscar categorías:', error);
+        }
+    };
+
+    const onChangePiso = async (value: number) => {
+        setValPiso('');
+        EntInf.PisoId = value;
+        setSelectedPiso(value)
     };
 
     // Clasificación
@@ -79,20 +123,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     };
 
 
-    const onSearchPiso = async (value: string) => {
-        try {
-          const responsePiso = await sInfraLista.BuscarItemCodigo("0009", value);
-          setOptionsPiso(responsePiso);
-        } catch (error) {
-          console.error('Error al buscar categorías:', error);
-        }
-      };
-
-    const onChangePiso = async (value: number) => {
-        setValPiso('');
-        EntInf.PisoId = value;
-        setSelectedPiso(value)
-    };
 
     const tabList = [
         {
@@ -107,12 +137,16 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     const [items, setItems] = useState<AlquilerEntity[]>([]);
     const [disabled, setDisabled] = useState(false);
-
     const [Busqueda, setBusqueda] = useState<string>('');
-    const filterItems = items.filter(fdata =>
+
+    const filterItem = items.filter(fdata =>
         fdata.Codigo.toLowerCase().includes(Busqueda.toLowerCase())
     );
 
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setBusqueda(e.target.value.toUpperCase());
+      };
+    
 
     const submitFormAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -141,7 +175,16 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         console.log('checked = ', e.target.checked);
         setEstadoRegistrochecked(e.target.checked);
     };
+
     
+  const getItems = async () => {
+    const itemsg = await sInfraestructura.GetInfraestructuraMain();
+    setItem(itemsg);
+    console.log(itemsg);
+    setCargarPage(false);
+
+  };
+
     useEffect(() => {
         const updatedPerson = props.item;
         updatedPerson.Action = updatedPerson.ListaId > 0 ? 3 : 1;
@@ -154,10 +197,14 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     return (
         <>
 
+            <Row>
+                <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                    <h2>Filtro</h2>
+                </Col>
+            </Row>
 
             <Col xs={24}>
                 <Row>
-
 
                     <Col span={8}>
                         <Row>
@@ -167,20 +214,20 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                             <Col span={24}>
                                 <Select
                                     showSearch
-                                    //status={ValClasificacion}
+                                    status={ValEstado}
                                     style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
                                     defaultActiveFirstOption={false}
                                     filterOption={false}
-                                //  onSearch={handleSearchClasificacion}
-                                //value={Ent.ClasificacionId === 0 ? null : Ent.ClasificacionId}
-                                // key={Ent.ClasificacionId}
-                                // onChange={onChangeClasificacion}
+                                    onSearch={handleSearchEstado}
+                                    value={EntInf.EstadoAdministrativoId === 0 ? null : EntInf.EstadoAdministrativoId}
+                                    key={EntInf.EstadoAdministrativoId}
+                                    onChange={onChangeEstado}
                                 >
-                                    {/* {optionsClasificacion.map((Clasificacion) => (
-                  <Select.Option key={Clasificacion.ListaId} value={Clasificacion.ListaId}>
-                    {Clasificacion.Nombre}
-                  </Select.Option>
-                ))} */}
+                                    {optionsInfraestructuraFiltro.map((EstadoAdministrativo) => (
+                                        <Select.Option key={EstadoAdministrativo.ListaId} value={EstadoAdministrativo.ListaId}>
+                                            {EstadoAdministrativo.Nombre}
+                                        </Select.Option>
+                                    ))}
                                 </Select>
                             </Col>
                         </Row>
@@ -252,9 +299,9 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
             />
 
             <Col xs={24} >
-               
 
-                    <DataTable DataList={filterItems} EsTabla={disabled} />
+
+                <DataTable DataList={filterItems} EsTabla={disabled} />
                 <br />
                 <br />
 

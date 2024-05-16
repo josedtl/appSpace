@@ -14,7 +14,7 @@ export class InfraestructuraSaveModel {
     CodUsuario: string;
     EstadoRegistro: boolean;
     Action: number;
-    EstadoAdministrativoId:0;
+    EstadoAdministrativoId:number;
     constructor() {
         this.InfraestructuraId = 0;
         this.SucursalId = 0;

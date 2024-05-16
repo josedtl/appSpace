@@ -178,7 +178,6 @@ public class InfraestructuraEntity {
     public void setTipoInfraestructura(String tipoInfraestructura) {
         this.tipoInfraestructura = tipoInfraestructura;
     }
-
     
     private String clasificacion = "";
 

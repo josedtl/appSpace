@@ -11,6 +11,7 @@ export class InfraListaEntity {
     CodUsuario: string;;
     EstadoRegistro: boolean;
     CodigoCampo: string
+    EstadoAdministrativoId :number;
     constructor() {
         this.Cont = 0;
         this.ListaId = 0;
@@ -22,6 +23,7 @@ export class InfraListaEntity {
         this.CodUsuario = '';
         this.EstadoRegistro = false;
         this.CodigoCampo = '';
+        this.EstadoAdministrativoId =0;
     }
 }
 
