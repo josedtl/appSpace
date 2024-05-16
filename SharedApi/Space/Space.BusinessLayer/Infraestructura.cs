@@ -77,6 +77,17 @@ namespace Space.BusinessLayer
                 throw ex;
             }
         }
-
+        public static List<InfraestructuraEntity> ObtenerFiltroAlquiler()
+        {
+            try
+            {
+                InfraestructuraDB x = new InfraestructuraDB();
+                return x.ObtenerFiltroAlquiler();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace Space.EntityLayer
         public String Clasificacion { get; set; }
         public String InfraestructuraDimension { get; set; }
         public String Piso { get; set; }
+        public String EstadoAdministrativo { get; set; }
     }
 }

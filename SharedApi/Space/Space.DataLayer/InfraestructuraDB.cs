@@ -183,5 +183,30 @@ namespace Space.DataLayer
             return true;
         }
 
+        public virtual List<InfraestructuraEntity> ObtenerFiltroAlquiler()
+        {
+            try
+            {
+                StartHelper(false);
+                IDataReader dr = (IDataReader)DbDatabase.ExecuteReader(System.Data.CommandType.StoredProcedure, "sp_InfraestructuraObtenerFiltro");
+                FillSchemeTable(dr);
+                List<InfraestructuraEntity> EntityList = new List<InfraestructuraEntity>();
+
+                while (dr.Read())
+                {
+                    InfraestructuraEntity entity = new InfraestructuraEntity();
+                    if (FillFrom<InfraestructuraEntity>(dr, entity)) EntityList.Add(entity);
+                    entity.OnLogicalLoaded();
+                }
+
+                Helper.Close(dr);
+                return EntityList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { MerListaEntity } from '../../../Models/MerListaEntity'
 import MerListaService from '../../../Service/MerListaService';
 import { Form, Select, Card } from 'antd';
-import { Button, Col, Row ,Input} from 'antd';
+import { Button, Col, Row, Input } from 'antd';
 import InfraListaService from '../../../Service/InfraListaService';
 import type { RadioChangeEvent } from 'antd';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { PropsModel } from '../../../Lib/PropsItem'
-import { ButtonAcceptModel,InputSearchMain } from '../../../Styles/Button'
+import { ButtonAcceptModel, InputSearchMain } from '../../../Styles/Button'
 import type { CheckboxProps } from 'antd';
 import DataTable from './DataTable';
 import { IconTabla, IconCard } from '../../../Styles/Icons'
 import { ButtonMainSecondaryLeft } from '../../../Styles/Button'
 import { SizeMainButtonSecondary } from '../../../Styles/Type'
 import { AlquilerEntity } from '../../../Models/AlquilerEntity';
-import { InfraestructuraSaveModel,InfraestructuraMainModel } from '../../../Models/InfraestructuraEntity';
+import { InfraestructuraSaveModel, InfraestructuraFiltroModel } from '../../../Models/InfraestructuraEntity';
 import { InfraListaModel } from '../../../Models/InfraListaEntity';
 import InfraestructuraService from '../../../Service/InfraestructuraService';
 const AddEditForm: React.FC<PropsModel> = (props) => {
@@ -28,7 +28,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [ValDato, setValDato] = useState<InputStatus>('');
     const initialProducto = new InfraestructuraSaveModel();
     const [EntInf, setEntInf] = useState<InfraestructuraSaveModel>(initialProducto);
-    
+
     const [EstadoRegistrochecked, setEstadoRegistrochecked] = useState(true);
     const [selectedPiso, setSelectedPiso] = useState<number | undefined>(undefined);
     const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
@@ -36,12 +36,12 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [optionsClasificacion, setOptionsClasificacion] = useState<InfraListaModel[]>([]);
     const [ValClasificacion, setValClasificacion] = useState<InputStatus>('');
     const [ValPiso, setValPiso] = useState<InputStatus>('');
-    
+
     const [optionsInfraestructuraFiltro, setOptionsInfraestructuraFiltro] = useState<InfraListaModel[]>([]);
     const [ValEstado, setValEstado] = useState<InputStatus>('');
     const [selectedEstado, setSelectedEstado] = useState<number | undefined>(undefined);
-    const [item, setItem] = useState<InfraestructuraMainModel[]>([]);
-    
+    const [item, setItem] = useState<InfraestructuraFiltroModel[]>([]);
+
 
     const [CargarPage, setCargarPage] = React.useState(true);
 
@@ -51,11 +51,12 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     const [fPiso, setfPiso] = useState<number>(0);
     const [fClasificacion, setfClasificacion] = useState<number>(0);
+    const [fEstadoAdministrativo, setfEstadoAdministrativo] = useState<number>(0);
 
     const filterItemsPiso = fPiso == 0 ? item : item.filter(fdata => fdata.PisoId == fPiso);
     const filterItemsclasificacion = fClasificacion == 0 ? filterItemsPiso : filterItemsPiso.filter(fdata => fdata.ClasificacionId == fClasificacion);
-    const filterItems = filterItemsclasificacion.filter(fdata => fdata.CodigoInterno.toLowerCase().includes(Busqueda.toLowerCase()));
-  
+    const filterItems = fEstadoAdministrativo == 0 ? filterItemsclasificacion : filterItemsclasificacion.filter(fdata => fdata.EstadoAdministrativoId == fEstadoAdministrativo);
+
     //Estado
     const handleSearchEstado = async (value: string) => {
         try {
@@ -70,6 +71,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setValEstado('');
         EntInf.EstadoAdministrativoId = value;
         setSelectedEstado(value)
+        setfEstadoAdministrativo(value);
     };
 
     //Piso
@@ -95,6 +97,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setValPiso('');
         EntInf.PisoId = value;
         setSelectedPiso(value)
+        setfPiso(value);
     };
 
     // Clasificación
@@ -111,6 +114,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setValClasificacion('');
         EntInf.ClasificacionId = value;
         setSelectedClasificacion(value)
+        setfClasificacion(value);
     };
 
     const onChanger = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,8 +149,8 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setBusqueda(e.target.value.toUpperCase());
-      };
-    
+    };
+
 
     const submitFormAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -176,14 +180,15 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setEstadoRegistrochecked(e.target.checked);
     };
 
-    
-  const getItems = async () => {
-    const itemsg = await sInfraestructura.GetInfraestructuraMain();
-    setItem(itemsg);
-    console.log(itemsg);
-    setCargarPage(false);
 
-  };
+    const getItems = async () => {
+        const itemsg = await sInfraestructura.GetInfraestructuraObtenerFiltro();
+
+        setItem(itemsg);
+        console.log(itemsg);
+        setCargarPage(false);
+
+    };
 
     useEffect(() => {
         const updatedPerson = props.item;
@@ -192,6 +197,8 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setEnt(updatedPerson);
         setEstadoRegistrochecked(updatedPerson.EstadoRegistro)
         console.log(props.CodigoTabla)
+        console.log("Abriendo VCentana");
+        getItems();
     }, []);
 
     return (

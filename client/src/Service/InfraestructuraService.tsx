@@ -55,7 +55,7 @@ class InfraestructuraService {
 
     async GetInfraestructuraObtenerFiltro(): Promise<InfraestructuraFiltroModel[]> {
         try {
-            const response = await apiLg.get(`api/Infraestructura/ObtenerFiltro`);
+            const response = await apiLg.get(`api/Infraestructura/ObtenerFiltroAlquiler`);
             return response.status === 200 ? response.data.Value : [];
         } catch (err) {
             console.log(err);

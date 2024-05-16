@@ -74,18 +74,31 @@ export class InfraestructuraMainModel {
     }
 }
 
-export class InfraestructuraFiltroModel {
+export class InfraestructuraFiltroModel{
 
     Cont: number;
     InfraestructuraId: number;
+    ClasificacionId:number;
+    PisoId:number;
+    EstadoAdministrativoId:number;
     Clasificacion: string;
     Piso: string;
-    EstadoAdministrativoId:string;
+    EstadoAdministrativo:string;
+    CodigoInterno: string;
+    TipoInfraestructura: string;
+    TipoInfraestructuraId: number;
+
     constructor() {
         this.Cont = 0;
         this.InfraestructuraId = 0;
+        this.ClasificacionId=0;
+        this.PisoId =0;
+        this.EstadoAdministrativoId=0;
         this.Clasificacion = '';
         this.Piso = '';
-        this.EstadoAdministrativoId='';
+        this.EstadoAdministrativo='';
+        this.CodigoInterno='';
+        this.TipoInfraestructura='';
+        this.TipoInfraestructuraId=0;
     }
 }

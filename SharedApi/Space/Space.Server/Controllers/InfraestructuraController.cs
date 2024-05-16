@@ -96,6 +96,29 @@ namespace Space.Server.Controllers
                 return new ResponseAPI<List<InfraestructuraSaveModel>>(ex.Message.ToString());
             }
         }
+
+        [HttpGet]
+        [Route("ObtenerFiltroAlquiler")]
+        public ResponseAPI<List<InfraestructuraFiltroModel>> ObtenerFiltroAlquiler()
+        {
+            try
+            {
+                d.Configurar();
+                var Items = Infraestructura.ObtenerFiltroAlquiler();
+
+                List<InfraestructuraFiltroModel> Lista = new List<InfraestructuraFiltroModel>();
+
+                foreach (var Item in Items) Lista.Add(new InfraestructuraFiltroModel(Item));
+
+                return new ResponseAPI<List<InfraestructuraFiltroModel>>(Lista, true);
+
+            }
+            catch (Exception ex)
+            {
+                return new ResponseAPI<List<InfraestructuraFiltroModel>>(ex.Message.ToString());
+            }
+        }
+
     }
 
 }

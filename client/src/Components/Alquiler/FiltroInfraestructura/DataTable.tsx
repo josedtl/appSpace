@@ -15,13 +15,13 @@ const DataTable: React.FC<PropsTable> = (props) => {
         {
             title: 'Nº',
             dataIndex: 'Cont',
-            width: '30px',
+            width: '20px',
             key: 'Cont',
         },
         {
             title: 'Estado',
-            dataIndex: 'EstadoAdministrativoId',
-            key: 'EstadoAdministrativoId',
+            dataIndex: 'EstadoAdministrativo',
+            key: 'EstadoAdministrativo',
             width: 80
         },
         {
