@@ -20,8 +20,9 @@ import { UbigeoEntity } from '../../Models/UbigeoEntity';
 import { AlquilerEntity } from '../../Models/AlquilerEntity';
 import { EntidadEntity } from '../../Models/EntidadEntity';
 import AlquilerService from '../../Service/AlquilerService';
-import { TarifaBuscarItem } from '../../Models/TarifaEntity';
+import { TarifaBuscarItem, TarifaSaveModel } from '../../Models/TarifaEntity';
 import TarifaService from '../../Service/TarifaService';
+import { UnidadMedidaModel } from '../../Models/UnidadMedidaEntity';
 
 const Save = () => {
   const { Id } = useParams();
@@ -33,16 +34,27 @@ const Save = () => {
   const initialAlquiler = new AlquilerEntity();
   const [Ent, setEnt] = useState<AlquilerEntity>(initialAlquiler);
 
+
+  const initialTarifa = new TarifaSaveModel();
+  const [EntTa, setEntTa] = useState<TarifaSaveModel>(initialTarifa);
+
+  
+  const [FechaNacimientoItem, setFechaNacimientoItem] = useState<string>(moment(EntTa.FechaRegistro).format('DD/MM/YYYY hh:mm'));
+  const dateFormat = 'YYYY/MM/DD';
+
   const { Title } = Typography;
   const [CargarPage, setCargarPage] = React.useState(true);
   const [ValCodigo, setValCodigo] = useState<InputStatus>('');
   const [ValEntidad, setValEntidad] = useState<InputStatus>('');
-  const [optionsTipoDocumentoIdentidad, setOptionsTipoDocumentoIdentidad] = useState<EntListaModel[]>([]);
+  const [ValUnidadMedida, setValUnidadMedida] = useState<InputStatus>('');
   const [optionsCliente, setOptionsCliente] = useState<EntListaModel[]>([]);
   const [optionsTarifa, setOptionsTarifa] = useState<EntListaModel[]>([]);
   const [optionsTablaAlquiler, setOptionsTablaAlquiler] = useState<UbigeoEntity[]>([]);
   const [optionsEntidad, setOptionsEntidad] = useState<EntidadEntity[]>([]);
   const [OptionTarifaBuscarItem, setOptionsTarifaBuscarItem] = useState<TarifaBuscarItem[]>([]);
+
+  const [optionsUnidadMedida, setOptionsUnidadMedida] = useState<UnidadMedidaModel[]>([]);
+  const [selectedUnidadMedida, setSelectedUnidadMedida] = useState<number | undefined>(undefined);
 
   const handleSearchEntidad = async (value: string) => {
     try {
@@ -76,6 +88,10 @@ const Save = () => {
   };
 
 
+  const onChangeDate: DatePickerProps['onChange'] = (date, dateString) => {
+    date;
+    setFechaNacimientoItem(dateString);
+  };
 
 
 
@@ -162,6 +178,13 @@ const Save = () => {
     setSelectedTablaAlquiler(value)
   };
 
+  const onChangeUnidadMedida = async (value: number) => {
+    ValCodigo;
+    setValUnidadMedida('');
+    EntTa.UnidadMedidaId = value;
+    setSelectedUnidadMedida(value)
+    console.log(value)
+  };
 
   const [modal, contextHolder] = Modal.useModal();
   const [messageAdd, contextHolderAdd] = message.useMessage();
@@ -373,73 +396,138 @@ const Save = () => {
 
       <Row>
 
-
-
-        <Col span={12}>
+        <Col xs={24}>
           <Row>
-            <Col span={24}>
-              <label>Cliente</label>
-            </Col>
-            <Col span={24}>
+
+            <Col span={12}>
               <Row>
+                <Col span={24}>
+                  <label>Cliente</label>
+                </Col>
+                <Col span={24}>
+                  <Row>
 
-                <Select className="custom-select"
-                  status={ValCliente}
-                  showSearch
-                  style={{ width: '94%', marginTop: '5px', marginBottom: '10px' }}
-                  defaultActiveFirstOption={false}
-                  filterOption={false}
-                  onSearch={handleSearchEntidad}
-                  value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
-                  key={Ent.ClienteId}
-                  onChange={onChangeCliente}
-                >
-                  {optionsEntidad.map((row) => (
-                    <Select.Option className="custom-option" key={row.EntidadId} value={row.EntidadId}>
-                      {row.NombreCompleto}
-                    </Select.Option>
-                  ))}
-                </Select>
-
-
-                <MDFiltro buttonLabel="dsdsd"
-                  addItemToState={[]}
-                  item={[]}
-                  CodigoTabla={'M002'}
-                  title={"Sucursal"} />
+                    <Select className="custom-select"
+                      status={ValCliente}
+                      showSearch
+                      style={{ width: '94%', marginTop: '5px', marginBottom: '10px' }}
+                      defaultActiveFirstOption={false}
+                      filterOption={false}
+                      onSearch={handleSearchEntidad}
+                      value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
+                      key={Ent.ClienteId}
+                      onChange={onChangeCliente}
+                    >
+                      {optionsEntidad.map((row) => (
+                        <Select.Option className="custom-option" key={row.EntidadId} value={row.EntidadId}>
+                          {row.NombreCompleto}
+                        </Select.Option>
+                      ))}
+                    </Select>
 
 
+                    <MDFiltro buttonLabel="dsdsd"
+                      addItemToState={[]}
+                      item={[]}
+                      CodigoTabla={'M002'}
+                      title={"Sucursal"} />
+
+
+                  </Row>
+                </Col>
+              </Row>
+
+            </Col>
+            <Col span={3}>
+              <Row>
+                <Col span={24}>
+                  <label>Unidad de Medida</label>
+                </Col>
+                <Col span={24}>
+                  <Select
+                    status={ValUnidadMedida}
+                    allowClear
+                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                    defaultActiveFirstOption={false}
+                    filterOption={false}
+                    value={EntTa.UnidadMedidaId === 0 ? null : EntTa.UnidadMedidaId}
+                    key={EntTa.UnidadMedidaId}
+                    onChange={onChangeUnidadMedida}
+                  >
+
+                    {optionsUnidadMedida.map((row) => (
+                      <Select.Option key={row.UnidadMedidaId} value={row.UnidadMedidaId}>
+                        {row.Nombre}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Col>
               </Row>
             </Col>
+
+            <Col span={3}>
+              <Row>
+                <Col span={24}>
+                  <label>Fecha Inicio</label>
+                </Col>
+                <Col span={24}>
+                  <DatePicker
+                    onChange={onChangeDate}
+                    value={dayjs(FechaNacimientoItem, dateFormat)}
+                    // defaultValue={dayjs(FechaEmisionItem, dateFormat)}
+                    style={{ marginTop: '5px', marginBottom: '10px', width: '100%' }}
+                  />
+
+                </Col>
+              </Row>
+            </Col>
+
+
+            <Col span={2}>
+              <Row>
+                <Col span={24}>
+                  <label>Cantidad</label>
+                </Col>
+                <Col span={24}>
+                  <Input
+                    type="number"
+                    name="Cantidad"
+                    style={{ marginTop: '5px', marginBottom: '10px' }}
+                    onChange={onChangeText}
+                    // value={Ent.c === null ? "" : Ent.PrecioUnitario}
+                  />
+                </Col>
+              </Row>
+
+            </Col>
+
+            
+            <Col span={3}>
+              <Row>
+                <Col span={24}>
+                  <label>Fecha Termino</label>
+                </Col>
+                <Col span={24}>
+                  <DatePicker
+                    onChange={onChangeDate}
+                    value={dayjs(FechaNacimientoItem, dateFormat)}
+                    // defaultValue={dayjs(FechaEmisionItem, dateFormat)}
+                    style={{ marginTop: '5px', marginBottom: '10px', width: '100%' }}
+                  />
+
+                </Col>
+              </Row>
+            </Col>
+
           </Row>
 
         </Col>
-
-
-        <Col span={12}>
-          <Row>
-            <Col span={24}>
-              <label>Precio Unitario</label>
-            </Col>
-            <Col span={24}>
-              <Input
-                type="number"
-                name="PrecioUnitario"
-                style={{ marginTop: '5px', marginBottom: '10px' }}
-                onChange={onChangeText}
-                value={Ent.PrecioUnitario === null ? "" : Ent.PrecioUnitario}
-              />
-            </Col>
-          </Row>
-
-        </Col>
-
 
 
         <Col xs={24}>
           <Row>
 
-            <Col span={15}>
+            <Col span={12}>
               <Row>
 
                 <Col span={24}>
@@ -447,36 +535,32 @@ const Save = () => {
                 </Col>
                 <Col span={24}>
                   <Row>
-                    <Col span={17}>
 
-                      <Select className="custom-select"
-                        status={ValTarifa}
-                        showSearch
-                        style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                        defaultActiveFirstOption={false}
-                        filterOption={false}
-                        onSearch={handleSearchTarifa}
-                        value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
-                        key={Ent.TarifaId}
-                        onChange={onChangeTarifaId}
-                      >
-                        {OptionTarifaBuscarItem.map((row) => (
-                          <Select.Option className="custom-option" key={row.TarifaId} value={row.TarifaId}>
-                            {row.NomComercial}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Col>
-                    <Col span={7}>
-                      <Row>
-                        <MDFiltro buttonLabel="dsdsd"
-                          addItemToState={[]}
-                          item={[]}
-                          CodigoTabla={'M002'}
-                          title={"Sucursal"} />
+                    <Select className="custom-select"
+                      status={ValTarifa}
+                      showSearch
+                      style={{ width: '94%', marginTop: '5px', marginBottom: '10px' }}
+                      defaultActiveFirstOption={false}
+                      filterOption={false}
+                      onSearch={handleSearchTarifa}
+                      value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
+                      key={Ent.TarifaId}
+                      onChange={onChangeTarifaId}
+                    >
+                      {OptionTarifaBuscarItem.map((row) => (
+                        <Select.Option className="custom-option" key={row.TarifaId} value={row.TarifaId}>
+                          {row.NomComercial}
+                        </Select.Option>
+                      ))}
+                    </Select>
 
-                      </Row>
-                    </Col>
+                    <MDFiltro buttonLabel="dsdsd"
+                      addItemToState={[]}
+                      item={[]}
+                      CodigoTabla={'M002'}
+                      title={"Sucursal"} />
+
+
 
                   </Row>
                 </Col>
