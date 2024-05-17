@@ -2,7 +2,7 @@ import * as React from 'react';
 import AddEditForm from "./FormAddEdit";
 import { Button, Modal } from 'antd';
 import { EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { ButtonAddMain, ButtonDetalleEdit, ButtonEnlace, ButtonEnlaceCard } from '../../../Styles/Button'
+import { ButtonAddMain, ButtonDetalleEdit, ButtonEnlace, ButtonEnlaceCard ,ButtonEnlaceEstatico} from '../../../Styles/Button'
 import { SizeButtonPrimary, SizeButtonDetalle, SizeButtonEnlace } from '../../../Styles/Type'
 import { PropsModel } from '../../../Lib/PropsItem'
 import { IconEditTable, IconEnlace } from '../../../Styles/Icons'
@@ -21,7 +21,7 @@ const ModalItem: React.FC<PropsModel> = (props) => {
   button = (
     <Button
       onClick={toggle}
-      style={ButtonEnlace}
+      style={ButtonEnlaceEstatico}
       icon={IconEnlace}
       size={SizeButtonEnlace}
     />

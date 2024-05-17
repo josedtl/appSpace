@@ -375,70 +375,67 @@ const Save = () => {
 
 
 
-            <Col span={15}>
-              <Row>
-                <Col span={24}>
-                  <label>Cliente</label>
-                </Col>
-                <Col span={24}>
-                  <Row>
-                    <Col span={17}>
-                        <Select className="custom-select"
-                          status={ValCliente}
-                          showSearch
-                          style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                          defaultActiveFirstOption={false}
-                          filterOption={false}
-                          onSearch={handleSearchEntidad}
-                          value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
-                          key={Ent.ClienteId}
-                          onChange={onChangeCliente}
-                        >
-                          {optionsEntidad.map((row) => (
-                            <Select.Option className="custom-option" key={row.EntidadId} value={row.EntidadId}>
-                              {row.NombreCompleto}
-                            </Select.Option>
-                          ))}
-                        </Select>
-                    </Col>
-                    <Col span={7}>
-                      <Row>
-                        <MDFiltro buttonLabel="dsdsd"
-                          addItemToState={[]}
-                          item={[]}
-                          CodigoTabla={'M002'}
-                          title={"Sucursal"} />
-
-                      </Row>
-                    </Col>
-
-                  </Row>
-                </Col>
-              </Row>
-
+        <Col span={12}>
+          <Row>
+            <Col span={24}>
+              <label>Cliente</label>
             </Col>
-
-
-            <Col span={9}>
+            <Col span={24}>
               <Row>
-                <Col span={24}>
-                  <label>Precio Unitario</label>
-                </Col>
-                <Col span={24}>
-                  <Input
-                    type="number"
-                    name="PrecioUnitario"
-                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                    onChange={onChangeText}
-                    value={Ent.PrecioUnitario === null ? "" : Ent.PrecioUnitario}
-                  />
-                </Col>
+
+                <Select className="custom-select"
+                  status={ValCliente}
+                  showSearch
+                  style={{ width: '94%', marginTop: '5px', marginBottom: '10px' }}
+                  defaultActiveFirstOption={false}
+                  filterOption={false}
+                  onSearch={handleSearchEntidad}
+                  value={Ent.ClienteId === 0 ? null : Ent.ClienteId}
+                  key={Ent.ClienteId}
+                  onChange={onChangeCliente}
+                >
+                  {optionsEntidad.map((row) => (
+                    <Select.Option className="custom-option" key={row.EntidadId} value={row.EntidadId}>
+                      {row.NombreCompleto}
+                    </Select.Option>
+                  ))}
+                </Select>
+
+
+                <MDFiltro buttonLabel="dsdsd"
+                  addItemToState={[]}
+                  item={[]}
+                  CodigoTabla={'M002'}
+                  title={"Sucursal"} />
+
+
               </Row>
-
             </Col>
+          </Row>
+
+        </Col>
 
 
-        
+        <Col span={12}>
+          <Row>
+            <Col span={24}>
+              <label>Precio Unitario</label>
+            </Col>
+            <Col span={24}>
+              <Input
+                type="number"
+                name="PrecioUnitario"
+                style={{ marginTop: '5px', marginBottom: '10px' }}
+                onChange={onChangeText}
+                value={Ent.PrecioUnitario === null ? "" : Ent.PrecioUnitario}
+              />
+            </Col>
+          </Row>
+
+        </Col>
+
+
+
         <Col xs={24}>
           <Row>
 
@@ -452,23 +449,23 @@ const Save = () => {
                   <Row>
                     <Col span={17}>
 
-                        <Select className="custom-select"
-                          status={ValTarifa}
-                          showSearch
-                          style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
-                          defaultActiveFirstOption={false}
-                          filterOption={false}
-                          onSearch={handleSearchTarifa}
-                          value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
-                          key={Ent.TarifaId}
-                          onChange={onChangeTarifaId}
-                        >
-                          {OptionTarifaBuscarItem.map((row) => (
-                            <Select.Option className="custom-option" key={row.TarifaId} value={row.TarifaId}>
-                              {row.NomComercial}
-                            </Select.Option>
-                          ))}
-                        </Select>
+                      <Select className="custom-select"
+                        status={ValTarifa}
+                        showSearch
+                        style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                        defaultActiveFirstOption={false}
+                        filterOption={false}
+                        onSearch={handleSearchTarifa}
+                        value={Ent.TarifaId === 0 ? null : Ent.TarifaId}
+                        key={Ent.TarifaId}
+                        onChange={onChangeTarifaId}
+                      >
+                        {OptionTarifaBuscarItem.map((row) => (
+                          <Select.Option className="custom-option" key={row.TarifaId} value={row.TarifaId}>
+                            {row.NomComercial}
+                          </Select.Option>
+                        ))}
+                      </Select>
                     </Col>
                     <Col span={7}>
                       <Row>
