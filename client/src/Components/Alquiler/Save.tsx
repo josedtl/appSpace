@@ -23,6 +23,7 @@ import AlquilerService from '../../Service/AlquilerService';
 import { TarifaBuscarItem, TarifaSaveModel } from '../../Models/TarifaEntity';
 import TarifaService from '../../Service/TarifaService';
 import { UnidadMedidaModel } from '../../Models/UnidadMedidaEntity';
+import { MonedaModel } from '../../Models/MonedaModel';
 
 const Save = () => {
   const { Id } = useParams();
@@ -38,7 +39,7 @@ const Save = () => {
   const initialTarifa = new TarifaSaveModel();
   const [EntTa, setEntTa] = useState<TarifaSaveModel>(initialTarifa);
 
-  
+
   const [FechaNacimientoItem, setFechaNacimientoItem] = useState<string>(moment(EntTa.FechaRegistro).format('DD/MM/YYYY hh:mm'));
   const dateFormat = 'YYYY/MM/DD';
 
@@ -55,6 +56,10 @@ const Save = () => {
 
   const [optionsUnidadMedida, setOptionsUnidadMedida] = useState<UnidadMedidaModel[]>([]);
   const [selectedUnidadMedida, setSelectedUnidadMedida] = useState<number | undefined>(undefined);
+
+  const [selectedMoneda, setSelectedMoneda] = useState<number | undefined>(undefined);
+  const [ValMoneda, setValMoneda] = useState<InputStatus>('');
+  const [OptionMoneda, setOptionsMoneda] = useState<MonedaModel[]>([]);
 
   const handleSearchEntidad = async (value: string) => {
     try {
@@ -183,6 +188,15 @@ const Save = () => {
     setValUnidadMedida('');
     EntTa.UnidadMedidaId = value;
     setSelectedUnidadMedida(value)
+    console.log(value)
+  };
+
+
+  const onChangeMoneda = async (value: number) => {
+    ValCodigo;
+    setValMoneda('');
+    EntTa.MonedaId = value;
+    setSelectedMoneda(value)
     console.log(value)
   };
 
@@ -406,7 +420,6 @@ const Save = () => {
                 </Col>
                 <Col span={24}>
                   <Row>
-
                     <Select className="custom-select"
                       status={ValCliente}
                       showSearch
@@ -431,8 +444,6 @@ const Save = () => {
                       item={[]}
                       CodigoTabla={'M002'}
                       title={"Sucursal"} />
-
-
                   </Row>
                 </Col>
               </Row>
@@ -494,14 +505,14 @@ const Save = () => {
                     name="Cantidad"
                     style={{ marginTop: '5px', marginBottom: '10px' }}
                     onChange={onChangeText}
-                    // value={Ent.c === null ? "" : Ent.PrecioUnitario}
+                  // value={Ent.c === null ? "" : Ent.PrecioUnitario}
                   />
                 </Col>
               </Row>
 
             </Col>
 
-            
+
             <Col span={3}>
               <Row>
                 <Col span={24}>
@@ -526,10 +537,8 @@ const Save = () => {
 
         <Col xs={24}>
           <Row>
-
             <Col span={12}>
               <Row>
-
                 <Col span={24}>
                   <label>Tarifa</label>
                 </Col>
@@ -559,16 +568,75 @@ const Save = () => {
                       item={[]}
                       CodigoTabla={'M002'}
                       title={"Sucursal"} />
-
-
-
                   </Row>
                 </Col>
               </Row>
             </Col>
 
-          </Row>
+            <Col span={6}>
+              <Row>
+                <Col span={24}>
+                  <label>Moneda</label>
+                </Col>
+                <Col span={24}>
+                  <Select
+                    status={ValMoneda}
+                    allowClear
+                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                    defaultActiveFirstOption={false}
+                    filterOption={false}
+                    value={EntTa.MonedaId === 0 ? null : EntTa.MonedaId}
+                    key={EntTa.MonedaId}
+                    onChange={onChangeMoneda}
+                  >
+                    {OptionMoneda.map((row) => (
+                      <Select.Option key={row.MonedaId} value={row.MonedaId}>
+                        {row.Simbolo}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Col>
+              </Row>
+            </Col>
 
+            <Col span={3}>
+              <Row>
+                <Col span={24}>
+                  <label>Precio</label>
+                </Col>
+                <Col span={24}>
+                  <Input
+                    type="number"
+                    name="Precio"
+                    style={{ marginTop: '5px', marginBottom: '10px' }}
+                    onChange={onChangeText}
+                  // value={Ent.c === null ? "" : Ent.PrecioUnitario}
+                  />
+                </Col>
+              </Row>
+
+            </Col>
+
+
+            <Col span={3}>
+              <Row>
+                <Col span={24}>
+                  <label>Precio Neto</label>
+                </Col>
+                <Col span={24}>
+                  <Input
+                    type="number"
+                    name="PrecioNeto"
+                    style={{ marginTop: '5px', marginBottom: '10px' }}
+                    onChange={onChangeText}
+                  // value={Ent.c === null ? "" : Ent.PrecioUnitario}
+                  />
+                </Col>
+              </Row>
+
+            </Col>
+
+          </Row>
         </Col>
 
         <Col span={24}>
