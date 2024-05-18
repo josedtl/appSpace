@@ -31,25 +31,6 @@ const DataTable: React.FC<PropsTable> = (props) => {
             key: 'CodigoInterno',
             width: 80
         },
-        {
-            title: 'Tipo Infraestructura',
-            dataIndex: 'TipoInfraestructura',
-            key: 'TipoInfraestructura',
-            width: 80
-        },
-        {
-            title: 'Clasificacion',
-            dataIndex: 'Clasificacion',
-            key: 'Clasificacion',
-            width: 90
-        },
-        {
-            title: 'Piso',
-            dataIndex: 'Piso',
-            key: 'Piso',
-            width: 80
-        },
-        
 
     ];
 
@@ -100,8 +81,7 @@ const DataTable: React.FC<PropsTable> = (props) => {
                     columns={columns}
                     dataSource={dataWithKeys}
                     size="small"
-                    pagination={false}
-                    scroll={{ x: 'calc(700px + 50%)', y: '350px' }}
+                    scroll={{ x: 'calc(700px + 50%)', y: '50px' }}
                 />
             )
         }
