@@ -1,6 +1,5 @@
 import { OrdenPedidoDetalleEntity } from "../Models/OrdenPedidoDetalleEntity";
-
-
+import { AlquilerEntity } from "../Models/AlquilerEntity";
 
 
 
@@ -38,4 +37,12 @@ export type PropsTableDetalle = {
     updateState: any;
     deleteItemFromState: any;
     EsTabla: boolean
+}
+
+export type PropsModelDetalles = {
+    buttonLabel?: string;
+    item: AlquilerEntity;
+    updateState?: any;
+    addItemToState?: any;
+    toggle?: any
 }

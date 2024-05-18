@@ -14,6 +14,7 @@ import { IconTabla, IconCard } from '../../../Styles/Icons'
 import { ButtonMainSecondaryLeft } from '../../../Styles/Button'
 import { SizeMainButtonSecondary } from '../../../Styles/Type'
 import { AlquilerEntity } from '../../../Models/AlquilerEntity';
+import MDFiltro from '../FiltroInfraestructura/ModalItem';
 import { InfraestructuraSaveModel, InfraestructuraFiltroModel } from '../../../Models/InfraestructuraEntity';
 import { InfraListaModel } from '../../../Models/InfraListaEntity';
 import InfraestructuraService from '../../../Service/InfraestructuraService';
@@ -34,14 +35,16 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [selectedClasificacion, setSelectedClasificacion] = useState<number | undefined>(undefined);
     const [optionsPiso, setOptionsPiso] = useState<InfraListaModel[]>([]);
     const [optionsClasificacion, setOptionsClasificacion] = useState<InfraListaModel[]>([]);
-    const [ValClasificacion, setValClasificacion] = useState<InputStatus>('');
-    const [ValPiso, setValPiso] = useState<InputStatus>('');
 
     const [optionsInfraestructuraFiltro, setOptionsInfraestructuraFiltro] = useState<InfraListaModel[]>([]);
+    const [optionsTipo, setOptionsTipo] = useState<InfraListaModel[]>([]);
+    const [ValClasificacion, setValClasificacion] = useState<InputStatus>('');
+    const [ValPiso, setValPiso] = useState<InputStatus>('');
     const [ValEstado, setValEstado] = useState<InputStatus>('');
     const [selectedEstado, setSelectedEstado] = useState<number | undefined>(undefined);
     const [item, setItem] = useState<InfraestructuraFiltroModel[]>([]);
-
+    const [ValTipo, setValTipo] = useState<InputStatus>('');
+    const [selectedTipo, setSelectedTipo] = useState<number | undefined>(undefined);
 
     const [CargarPage, setCargarPage] = React.useState(true);
 
@@ -52,6 +55,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [fPiso, setfPiso] = useState<number>(0);
     const [fClasificacion, setfClasificacion] = useState<number>(0);
     const [fEstadoAdministrativo, setfEstadoAdministrativo] = useState<number>(0);
+    const [fTipo, setfTipo] = useState<number>(0);
 
     const filterItemsPiso = fPiso == 0 ? item : item.filter(fdata => fdata.PisoId == fPiso);
     const filterItemsclasificacion = fClasificacion == 0 ? filterItemsPiso : filterItemsPiso.filter(fdata => fdata.ClasificacionId == fClasificacion);
@@ -73,6 +77,24 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setSelectedEstado(value)
         setfEstadoAdministrativo(value);
     };
+
+    //Tipo
+    const handleSearchTipo = async (value: string) => {
+        try {
+            const responseTipo = await sInfraLista.BuscarItemCodigo('0006', value);
+            setOptionsTipo(responseTipo);
+
+        } catch (error) {
+            console.error('Error al buscar Tipo:', error);
+        }
+    };
+    const onChangeTipo = async (value: number) => {
+        setValTipo('');
+        EntInf.TipoInfraestructuraId = value;
+        setSelectedTipo(value)
+        setfTipo(value);
+    };
+
 
     //Piso
     const handleSearchPiso = async (value: string) => {
@@ -204,16 +226,16 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     return (
         <>
 
-            <Row>
-                <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                    <h2>Filtro</h2>
-                </Col>
-            </Row>
-
-            <Col xs={24}>
                 <Row>
+                    <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+                        <h2>FILTRO POR HORA</h2>
+                    </Col>
+                </Row>
 
-                    <Col span={8}>
+                <Row>
+                    <Col xs={6} >
+
+
                         <Row>
                             <Col span={24}>
                                 <label>Estado</label>
@@ -238,10 +260,32 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                                 </Select>
                             </Col>
                         </Row>
-                    </Col>
 
+                        <Row>
+                            <Col span={24}>
+                                <label>Tipo</label>
+                            </Col>
+                            <Col span={24}>
+                                <Select
+                                    showSearch
+                                    status={ValTipo}
+                                    style={{ width: '85%', marginTop: '5px', marginBottom: '10px' }}
+                                    defaultActiveFirstOption={false}
+                                    filterOption={false}
+                                    onSearch={handleSearchTipo}
+                                    value={EntInf.TipoInfraestructuraId === 0 ? null : EntInf.TipoInfraestructuraId}
+                                    key={EntInf.TipoInfraestructuraId}
+                                    onChange={onChangeTipo}
+                                >
+                                    {optionsTipo.map((TipoInfraestructura) => (
+                                        <Select.Option key={TipoInfraestructura.ListaId} value={TipoInfraestructura.ListaId}>
+                                            {TipoInfraestructura.Nombre}
+                                        </Select.Option>
+                                    ))}
+                                </Select>
+                            </Col>
+                        </Row>
 
-                    <Col span={8}>
                         <Row>
                             <Col span={24}>
                                 <label>Piso</label>
@@ -267,9 +311,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                             </Col>
                         </Row>
 
-                    </Col>
-
-                    <Col span={8}>
                         <Row>
                             <Col span={24}>
                                 <label>Clasificación</label>
@@ -295,36 +336,40 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                             </Col>
                         </Row>
                     </Col>
+
+
+                    <Col xs={18} >
+
+                        <Button
+                            onClick={toggle}
+                            style={ButtonMainSecondaryLeft}
+                            size={SizeMainButtonSecondary}
+                            icon={disabled ? IconTabla : IconCard}
+                        />
+
+                        <Col xs={24} >
+
+
+                            <DataTable DataList={filterItems} EsTabla={disabled} />
+                            <br />
+                            <br />
+
+                        </Col>
+
+                        <Row style={{ height: '50px', alignContent: "flex-end", }}>
+
+                            <Col span={24} style={{ alignContent: "center" }}>
+
+                                <Button
+                                    onClick={submitFormAdd}
+                                    style={ButtonAcceptModel}>
+                                    Aceptar
+                                </Button>
+                            </Col>
+                        </Row>
+                    </Col>
                 </Row>
 
-            </Col>
-            <Button
-                onClick={toggle}
-                style={ButtonMainSecondaryLeft}
-                size={SizeMainButtonSecondary}
-                icon={disabled ? IconTabla : IconCard}
-            />
-
-            <Col xs={24} >
-
-
-                <DataTable DataList={filterItems} EsTabla={disabled} />
-                <br />
-                <br />
-
-            </Col>
-
-            <Row style={{ height: '50px', alignContent: "flex-end", }}>
-
-                <Col span={24} style={{ alignContent: "center" }}>
-
-                    <Button
-                        onClick={submitFormAdd}
-                        style={ButtonAcceptModel}>
-                        Aceptar
-                    </Button>
-                </Col>
-            </Row>
         </>
 
     );

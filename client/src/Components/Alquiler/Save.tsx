@@ -1,60 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { SaveFilled, ExclamationCircleOutlined } from '@ant-design/icons';
-import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker, Card, Segmented, Avatar, AutoComplete } from 'antd';
-import { PersonaNaturalSaveModel } from '../../Models/PersonaNaturalEntity';
-import PersonaNaturalService from '../../Service/PersonaNaturalService';
+import { message, Select, Button, Col, Row, Typography, Modal, Spin, Input, DatePicker, Card, Tabs, Segmented, Avatar, AutoComplete } from 'antd';
 import DataTable from './DataTable';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { useParams } from 'react-router-dom';
-import { ButtonAddMain } from '../../Styles/Button'
 import type { DatePickerProps } from 'antd';
 import moment from 'moment';
 import 'moment/locale/es';
 import dayjs from 'dayjs';
 import MDFiltro from './FiltroInfraestructura/ModalItem';
-import { ProcessActionEnum } from '../../Lib/ResourceModel/Enum'
-import EntListaService from '../../Service/EntListaService';
-import { EntListaModel } from '../../Models/EntListaEntity';
+import MDCliente from './Cliente/ModalItem';
+
+import ModalItem from '../Alquiler/ModalItem';
+
+//SERVICES
 import GeneralService from '../../Service/GeneralService';
-import { UbigeoEntity } from '../../Models/UbigeoEntity';
-import { AlquilerEntity } from '../../Models/AlquilerEntity';
-import { EntidadEntity } from '../../Models/EntidadEntity';
-import AlquilerService from '../../Service/AlquilerService';
 import { TarifaBuscarItem, TarifaSaveModel } from '../../Models/TarifaEntity';
 import TarifaService from '../../Service/TarifaService';
+
+//ENTITY
+import { AlquilerEntity } from '../../Models/AlquilerEntity';
+import { EntidadEntity } from '../../Models/EntidadEntity';
 import { UnidadMedidaModel } from '../../Models/UnidadMedidaEntity';
+import { MonedaModel } from '../../Models/MonedaModel';
+
+import { OrdenPedidoDetalleEntity } from '../../Models/OrdenPedidoDetalleEntity';
 
 const Save = () => {
   const { Id } = useParams();
   const idNumero = Number(Id?.toString());
-  const sEntLista = new EntListaService();
   const sGeneralService = new GeneralService();
-  const sAlquiler = new AlquilerService();
   const sTarifa = new TarifaService();
   const initialAlquiler = new AlquilerEntity();
   const [Ent, setEnt] = useState<AlquilerEntity>(initialAlquiler);
-
-
-  const initialTarifa = new TarifaSaveModel();
-  const [EntTa, setEntTa] = useState<TarifaSaveModel>(initialTarifa);
-
-  
-  const [FechaNacimientoItem, setFechaNacimientoItem] = useState<string>(moment(EntTa.FechaRegistro).format('DD/MM/YYYY hh:mm'));
+  const [FechaInicioItem, setFechaInicioItem] = useState<string>(moment(Ent.FechaInicio).format('DD/MM/YYYY hh:mm'));
   const dateFormat = 'YYYY/MM/DD';
+  const [FechaTerminoItem, setFechaTerminoItem] = useState<string>(moment(Ent.FechaTermino).format('DD/MM/YYYY hh:mm'));
+  const dateFormatFin = 'YYYY/MM/DD';
 
   const { Title } = Typography;
   const [CargarPage, setCargarPage] = React.useState(true);
   const [ValCodigo, setValCodigo] = useState<InputStatus>('');
-  const [ValEntidad, setValEntidad] = useState<InputStatus>('');
   const [ValUnidadMedida, setValUnidadMedida] = useState<InputStatus>('');
-  const [optionsCliente, setOptionsCliente] = useState<EntListaModel[]>([]);
-  const [optionsTarifa, setOptionsTarifa] = useState<EntListaModel[]>([]);
-  const [optionsTablaAlquiler, setOptionsTablaAlquiler] = useState<UbigeoEntity[]>([]);
   const [optionsEntidad, setOptionsEntidad] = useState<EntidadEntity[]>([]);
   const [OptionTarifaBuscarItem, setOptionsTarifaBuscarItem] = useState<TarifaBuscarItem[]>([]);
 
   const [optionsUnidadMedida, setOptionsUnidadMedida] = useState<UnidadMedidaModel[]>([]);
   const [selectedUnidadMedida, setSelectedUnidadMedida] = useState<number | undefined>(undefined);
+
+  const [ValMoneda, setValMoneda] = useState<InputStatus>('');
+  const [OptionMoneda, setOptionsMoneda] = useState<MonedaModel[]>([]);
+
 
   const handleSearchEntidad = async (value: string) => {
     try {
@@ -77,62 +73,33 @@ const Save = () => {
   };
 
 
-  const handleSearchUbigeo = async (value: string) => {
-    try {
-      const response = await sGeneralService.GetUbigeoItemLikeApi(value);
-      setOptionsTablaAlquiler(response);
-      console.log(response)
-    } catch (error) {
-      console.error('Error al buscar Ubigeo:', error);
-    }
-  };
 
 
-  const onChangeDate: DatePickerProps['onChange'] = (date, dateString) => {
+  const onChangeDateInicio: DatePickerProps['onChange'] = (date, dateString) => {
     date;
-    setFechaNacimientoItem(dateString);
+    setFechaInicioItem(dateString);
   };
 
+  const onChangeDateTermino: DatePickerProps['onChange'] = (date, dateString) => {
+    date;
+    setFechaTerminoItem(dateString);
+  };
 
 
   const tabList = [
     {
-      key: 'Servicio',
-      tab: 'Servicio',
-    },
-    {
-      key: 'Venta',
-      tab: 'Venta',
-    },
+      key: 'Detalle',
+      tab: 'Detalle',
+    }
   ];
 
   const contentList: Record<string, React.ReactNode> = {
-    Servicio: <p>content1</p>,
-    Venta: <p>content2</p>,
-  };
-  const tabListNoTitle = [
-    {
-      key: 'article',
-      label: 'article',
-    },
-    {
-      key: 'app',
-      label: 'app',
-    },
-    {
-      key: 'project',
-      label: 'project',
-    },
-  ];
+    Detalle: <p></p>,
 
-
-  const contentListNoTitle: Record<string, React.ReactNode> = {
-    article: <p>article content</p>,
-    app: <p>app content</p>,
-    project: <p>project content</p>,
   };
 
-  const [activeTabKey1, setActiveTabKey1] = useState<string>('Servicio');
+
+  const [activeTabKey1, setActiveTabKey1] = useState<string>('Detalle');
   const onTab1Change = (key: string) => {
     setActiveTabKey1(key);
   };
@@ -155,7 +122,6 @@ const Save = () => {
   const [selectedTablaAlquiler, setSelectedTablaAlquiler] = useState<number | undefined>(undefined);
   const [ValCliente, setValCliente] = useState<InputStatus>('');
   const [ValTarifa, setTarifa] = useState<InputStatus>('');
-  const [ValTablaAlquiler, setValTablaAlquiler] = useState<InputStatus>('');
 
   const onChangeCliente = async (value: number) => {
     ValCliente;
@@ -172,18 +138,19 @@ const Save = () => {
   };
 
 
-  const onChangeTablaAlquiler = async (value: number) => {
-    setValTablaAlquiler('');
-    Ent.TipoTablaAlquilerId = value;
-    setSelectedTablaAlquiler(value)
-  };
-
   const onChangeUnidadMedida = async (value: number) => {
     ValCodigo;
     setValUnidadMedida('');
-    EntTa.UnidadMedidaId = value;
+    Ent.UnidadMedidaId = value;
     setSelectedUnidadMedida(value)
     console.log(value)
+  };
+
+  const addItemToState = (item: AlquilerEntity) => {
+
+    const itemIndex = items.findIndex((data) => data.Codigo === item.Codigo);
+
+
   };
 
   const [modal, contextHolder] = Modal.useModal();
@@ -299,6 +266,11 @@ const Save = () => {
 
   async function getCargarDatos() {
 
+    setSelectedTablaAlquiler
+    setBusqueda
+    setItems
+    setDisabled
+
 
     setCargarPage(true);
     // const Resp_UM = await sEntLista.getItems('C0012');
@@ -336,22 +308,17 @@ const Save = () => {
     getCargarDatos();
   }, []);
 
-  const getItems = async () => {
-
-  };
 
   const [items, setItems] = useState<AlquilerEntity[]>([]);
   const [disabled, setDisabled] = useState(false);
 
   const [Busqueda, setBusqueda] = useState<string>('');
-  const toggle = () => {
-    setDisabled(!disabled);
-  };
+
   const filterItems = items.filter(fdata =>
     fdata.Codigo.toLowerCase().includes(Busqueda.toLowerCase())
   );
 
-
+  const operations = <ModalItem buttonLabel="" addItemToState={addItemToState} item={new OrdenPedidoDetalleEntity()} keyItem={''} />
   return (
 
     <Spin spinning={CargarPage} tip="Cargando" size="large">
@@ -406,7 +373,6 @@ const Save = () => {
                 </Col>
                 <Col span={24}>
                   <Row>
-
                     <Select className="custom-select"
                       status={ValCliente}
                       showSearch
@@ -426,13 +392,11 @@ const Save = () => {
                     </Select>
 
 
-                    <MDFiltro buttonLabel="dsdsd"
+                    <MDCliente buttonLabel="dsdsd"
                       addItemToState={[]}
                       item={[]}
                       CodigoTabla={'M002'}
                       title={"Sucursal"} />
-
-
                   </Row>
                 </Col>
               </Row>
@@ -450,8 +414,8 @@ const Save = () => {
                     style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
                     defaultActiveFirstOption={false}
                     filterOption={false}
-                    value={EntTa.UnidadMedidaId === 0 ? null : EntTa.UnidadMedidaId}
-                    key={EntTa.UnidadMedidaId}
+                    value={Ent.UnidadMedidaId === 0 ? null : Ent.UnidadMedidaId}
+                    key={Ent.UnidadMedidaId}
                     onChange={onChangeUnidadMedida}
                   >
 
@@ -472,8 +436,8 @@ const Save = () => {
                 </Col>
                 <Col span={24}>
                   <DatePicker
-                    onChange={onChangeDate}
-                    value={dayjs(FechaNacimientoItem, dateFormat)}
+                    onChange={onChangeDateInicio}
+                    value={dayjs(FechaInicioItem, dateFormat)}
                     // defaultValue={dayjs(FechaEmisionItem, dateFormat)}
                     style={{ marginTop: '5px', marginBottom: '10px', width: '100%' }}
                   />
@@ -483,7 +447,7 @@ const Save = () => {
             </Col>
 
 
-            <Col span={2}>
+            <Col span={3}>
               <Row>
                 <Col span={24}>
                   <label>Cantidad</label>
@@ -494,14 +458,14 @@ const Save = () => {
                     name="Cantidad"
                     style={{ marginTop: '5px', marginBottom: '10px' }}
                     onChange={onChangeText}
-                    // value={Ent.c === null ? "" : Ent.PrecioUnitario}
+                  // value={Ent.c === null ? "" : Ent.PrecioUnitario}
                   />
                 </Col>
               </Row>
 
             </Col>
 
-            
+
             <Col span={3}>
               <Row>
                 <Col span={24}>
@@ -509,8 +473,8 @@ const Save = () => {
                 </Col>
                 <Col span={24}>
                   <DatePicker
-                    onChange={onChangeDate}
-                    value={dayjs(FechaNacimientoItem, dateFormat)}
+                    onChange={onChangeDateTermino}
+                    value={dayjs(FechaTerminoItem, dateFormatFin)}
                     // defaultValue={dayjs(FechaEmisionItem, dateFormat)}
                     style={{ marginTop: '5px', marginBottom: '10px', width: '100%' }}
                   />
@@ -526,10 +490,8 @@ const Save = () => {
 
         <Col xs={24}>
           <Row>
-
             <Col span={12}>
               <Row>
-
                 <Col span={24}>
                   <label>Tarifa</label>
                 </Col>
@@ -559,38 +521,98 @@ const Save = () => {
                       item={[]}
                       CodigoTabla={'M002'}
                       title={"Sucursal"} />
-
-
-
                   </Row>
                 </Col>
               </Row>
             </Col>
 
-          </Row>
+            <Col span={6}>
+              <Row>
+                <Col span={24}>
+                  <label>Moneda</label>
+                </Col>
+                <Col span={24}>
+                  <Select
+                    status={ValMoneda}
+                    allowClear
+                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                    defaultActiveFirstOption={false}
+                    filterOption={false}
+                  // value={Ent.MonedaId === 0 ? null : Ent.MonedaId}
+                  // key={Ent.MonedaId}
+                  // onChange={onChangeMoneda}
+                  >
+                    {OptionMoneda.map((row) => (
+                      <Select.Option key={row.MonedaId} value={row.MonedaId}>
+                        {row.Nombre}
+                      </Select.Option>
+                    ))}
+                  </Select>
+                </Col>
+              </Row>
+            </Col>
 
+            <Col span={3}>
+              <Row>
+                <Col span={24}>
+                  <label>Precio</label>
+                </Col>
+                <Col span={24}>
+                  <Input
+                    type="number"
+                    name="Precio"
+                    style={{ marginTop: '5px', marginBottom: '10px' }}
+                    onChange={onChangeText}
+                  // value={Ent.c === null ? "" : Ent.PrecioUnitario}
+                  />
+                </Col>
+              </Row>
+
+            </Col>
+
+
+            <Col span={3}>
+              <Row>
+                <Col span={24}>
+                  <label>Precio Neto</label>
+                </Col>
+                <Col span={24}>
+                  <Input
+                    type="number"
+                    name="PrecioNeto"
+                    style={{ marginTop: '5px', marginBottom: '10px' }}
+                    onChange={onChangeText}
+                  // value={Ent.c === null ? "" : Ent.PrecioUnitario}
+                  />
+                </Col>
+              </Row>
+
+            </Col>
+
+          </Row>
         </Col>
+
+
 
         <Col span={24}>
           <Row>
-            <Col xs={24} >
-              <Col span={8} style={{ float: "left" }}>
-
-                <Button size={"large"}>Detalle</Button>
-
-              </Col>
+            {/* <Col xs={24} >
               <Col span={8} style={{ float: "right" }}>
                 <Button size={"large"} >Agregar</Button>
 
               </Col>
-            </Col>
+            </Col> */}
 
             <Col xs={24} >
+
+              {/* <DataTable DataList={filterItems} EsTabla={disabled} /> */}
+
               <Card
                 style={{ width: '100%' }}
                 tabList={tabList}
                 activeTabKey={activeTabKey1}
                 onTabChange={onTab1Change}
+                tabBarExtraContent={operations}
               >
 
                 <DataTable DataList={filterItems} EsTabla={disabled} />
@@ -601,41 +623,89 @@ const Save = () => {
               <br />
 
             </Col>
+
           </Row>
 
         </Col>
+
       </Row>
 
 
 
-      <Col span={2}>
+      <Row>
+        <Col span={2}>
+          <Row>
+            <label>Usuario :</label>
+          </Row>
+        </Col>
+        <Col span={3}>
+          <Row>
+            <label > </label>
+          </Row>
+        </Col>
+      </Row>
 
+
+      <Row>
+        <Col span={2}>
+          <Row>
+            <label>Fecha Creación :</label>
+          </Row>
+        </Col>
+        <Col span={3}>
+          <Row>
+            <label > </label>
+          </Row>
+        </Col>
+      </Row>
+
+
+      <Row>
+        <Col span={2}>
+          <Row>
+            <label>Fecha Modifica :</label>
+          </Row>
+        </Col>
+        <Col span={3}>
+          <Row>
+            <label> </label>
+
+          </Row>
+        </Col>
+      </Row>
+
+
+      <Col span={24} style={{ float: "right" }} >
         <Row>
-          <Col span={24}>
-            <label>Fecha Registro</label>
+          <Col span={6}>
+            <Row>
+              <label>Total S/ </label>
+            </Row>
           </Col>
-          <Col span={24}>
-            <Input
-              type="string"
-              name="FechaRegistro"
-              style={{ marginTop: '5px', marginBottom: '10px' }}
-              readOnly={true}
-              value={moment().format('DD/MM/YYYY hh:mm')}
-            />
+          <Col span={6}>
+            <label>---------</label>
           </Col>
+          <Col span={6}>
+            <Row>
+              <label>Total S/ </label>
+            </Row>
+          </Col>
+          <Col span={6}>
+            <label>---------</label>
+
+          </Col>
+
         </Row>
-
-
       </Col>
 
-      <Col span={8} style={{ float: "right" }}>
+      {/* <Col span={8} style={{ float: "right" }}>
 
         <Button
           style={ButtonAddMain}
           onClick={Guardar_Total}
           size={"large"}
           icon={<SaveFilled />}
-        /> </Col>
+        /> </Col> */}
 
     </Spin>
   );
