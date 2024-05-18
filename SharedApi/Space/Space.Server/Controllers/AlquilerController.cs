@@ -35,7 +35,7 @@ namespace Space.Server.Controllers
                 ItemEntity.CodUsuario = Item.CodUsuario;
                 ItemEntity.LogicalState = (LogicalState)Item.Action;
 
-                if (Item != null && Item.Detalles.Count > 0)
+                if (Item.Detalles != null && Item.Detalles.Count > 0)
                 {
                     ItemEntity.Detalles = new List<AlquilerDetalleEntity>();
 
