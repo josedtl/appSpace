@@ -1,20 +1,12 @@
-import { CategoriaEntity } from '../Models/CategoriaEntity';
-import { TipoProductoEntity } from '../Models/TipoProductoEntity';
-import { MarcaEntity } from '../Models/MarcaEntity';
-import { ModeloEntity } from '../Models/ModeloEntity';
-import { UnidadMedidaEntity, UnidadMedidaModel } from '../Models/UnidadMedidaEntity';
-import { SexoEntity } from '../Models/SexoEntity';
-import { EstadoCivilEntity } from '../Models/EstadoCivilEntity';
+import { UnidadMedidaModel } from '../Models/UnidadMedidaEntity';
 import { TipoDocumentoIdentidadEntity } from '../Models/TipoDocumentoIdentidadEntity';
 import { UbigeoEntity } from '../Models/UbigeoEntity';
 import { PersonaNaturalEntity } from '../Models/PersonaNaturalEntity';
 import { apiLg } from './axios-config';
-import { ProductoEntity } from '../Models/ProductoEntity';
-import { EstadoProcesoEntity, TipoProcesoEntity } from '../Models/GeneralEntity';
-import { EmpresaEntity } from '../Models/EmpresaEntity';
+import { TipoEntidadItemModel } from '../Models/GeneralEntity';
 import { EntidadLikeModel } from '../Models/EntidadLikeModel';
 import { MonedaModel } from '../Models/MonedaModel';
-import { EntidadEntity, EntidadModel } from '../Models/EntidadEntity';
+import { EntidadEntity } from '../Models/EntidadEntity';
 class GeneralService {
 
   ServiceName: string = 'General';
@@ -109,6 +101,16 @@ class GeneralService {
       throw error;
     }
   }
+
+  async GetTipoEntidadObtenerItems(): Promise<TipoEntidadItemModel[]> {
+    try {
+      const response = await apiLg.get(`api/General/TipoEntidadObtenerItems`);
+      return response.data.Value;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 
 }
 
