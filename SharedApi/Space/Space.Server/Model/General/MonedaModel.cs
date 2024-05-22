@@ -1,7 +1,7 @@
 ﻿using Space.EntityLayer;
 using System.Text.Json.Serialization;
 
-namespace Space.Server.Model.General
+namespace Space.Server
 {
     public class MonedaModel
     {

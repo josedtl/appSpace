@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Space.BusinessLayer;
-using Space.Server.Model;
-using Space.Server.Model.General;
-using Space.Server.Model.Tarifa;
+using Space.DataLayer;
 
 namespace Space.Server.Controllers
 {
@@ -174,7 +172,25 @@ namespace Space.Server.Controllers
             {
                 return new ResponseAPI<List<EntidadModel>>(new List<EntidadModel>(), false, ex.Message);
             }
+        }
 
+        [HttpGet]
+        [Route("TipoEntidadObtenerItems")]
+        public ResponseAPI<List<TipoEntidadItemModel>> TipoEntidadObtenerItems()
+        {
+            try
+            {
+                d.Configurar();
+                var Items = TipoEntidad.ObtenerItems();
+                List<TipoEntidadItemModel> Lista = new List<TipoEntidadItemModel>();
+                foreach (var Item in Items) Lista.Add(new TipoEntidadItemModel(Item));
+
+                return new ResponseAPI<List<TipoEntidadItemModel>>(Lista, true);
+            }
+            catch (Exception ex)
+            {
+                return new ResponseAPI<List<TipoEntidadItemModel>>(new List<TipoEntidadItemModel>(), false, ex.Message);
+            }
         }
     }
 }

@@ -123,8 +123,12 @@ const DataTable: React.FC<PropsTable> = (props) => {
                 />
             )
         }
-
+        
     }
+
+
+
+
     return (
 
         <div>

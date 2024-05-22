@@ -282,6 +282,12 @@ const Save = () => {
     // const Resp_EC = await sEntLista.getItems('C0009');
     // setOptionsEstadoCivil(Resp_EC);
 
+    const sltUnidadMedida = await sGeneralService.ObtenerUnidadMedidaItems();
+    setOptionsUnidadMedida(sltUnidadMedida);
+    const sltMoneda = await sGeneralService.ObtenerMonedaItems();
+    setOptionsMoneda(sltMoneda);
+
+
     console.log(idNumero)
     // if (idNumero > 0) {
 

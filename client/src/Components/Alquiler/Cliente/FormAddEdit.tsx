@@ -150,6 +150,11 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         cargarItem();
       }, []);
     
+      const TipoEntidad = () => {
+       // if(TipoEntidad)
+
+      }
+
 
     return (
         <>
@@ -168,14 +173,24 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                                 <label>Tipo Entidad</label>
                             </Col>
                             <Col span={24}>
-                                <Input
-                                    status={ValEntidad}
-                                    type="text"
-                                    name="EntidadId"
-                                    style={{ marginTop: '5px', marginBottom: '10px' }}
-                                    onChange={onChangeText}
-                                    value={EntEnt.EntidadId === null ? "" : EntEnt.EntidadId}
-                                />
+                                <Select
+                                    status={ValTipoDocuemntoIdentidad}
+                                    allowClear
+                                    style={{ width: '100%', marginTop: '5px', marginBottom: '10px' }}
+                                    defaultActiveFirstOption={false}
+                                    filterOption={false}
+                                    optionFilterProp="children"
+                                    value={EntPer.TipoDocumentoIdentidadId === 0 ? null : EntPer.TipoDocumentoIdentidadId}
+                                    key={EntPer.TipoDocumentoIdentidadId}
+                                    onChange={onChangeTipoDocuemntoIdentidad}
+                                >
+                                    {optionsTipoDocumentoIdentidad.map((row) => (
+                                        <Select.Option key={row.ListaId} value={row.ListaId}>
+                                            {row.Nombre}
+                                        </Select.Option>
+                                    ))}
+                                </Select>
+
                             </Col>
                         </Col>
                     </Row>

@@ -36,5 +36,29 @@ namespace Space.DataLayer
                 throw ex;
             }
         }
+
+        public virtual List<EntidadEntity> GetEntidadMain()
+        {
+            try
+            {
+                StartHelper(false);
+                IDataReader dr = (IDataReader)DbDatabase.ExecuteReader(CommandType.StoredProcedure, "up_Entidad_SelectAll");
+                FillSchemeTable(dr);
+                List<EntidadEntity> EntityList = new List<EntidadEntity>();
+                while (dr.Read())
+                {
+                    EntidadEntity entity = new EntidadEntity();
+                    if (FillFrom(dr, entity)) EntityList.Add(entity);
+                    entity.OnLogicalLoaded();
+                }
+
+                Helper.Close(dr);
+                return EntityList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
