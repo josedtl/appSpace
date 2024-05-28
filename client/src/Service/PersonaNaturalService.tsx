@@ -1,4 +1,4 @@
-import { PersonaNaturalMainModel, PersonaNaturalSaveModel } from '../Models/PersonaNaturalEntity';
+import { PersonaNaturalMainModel, PersonaNaturalSaveModel ,PersonaNaturalEnlaceModel} from '../Models/PersonaNaturalEntity';
 import { apiLg } from './axios-config';
 
 class PersonaNaturalService {
@@ -28,7 +28,18 @@ class PersonaNaturalService {
       return new PersonaNaturalSaveModel();
     }
   }
+  async RegistrarEnlace(item: PersonaNaturalEnlaceModel): Promise<PersonaNaturalEnlaceModel> {
+    try {
 
+      const response = await apiLg.post(`api/${this.ServiceName}/RegistrarEnlace`, item, {
+        headers: { 'Content-Type': 'application/json', },
+      });
+      return response.data.Value;
+    } catch (error) {
+      console.log(error);
+      return new PersonaNaturalEnlaceModel();
+    }
+  }
 
 
   async ObtenerItem(Id: number): Promise<PersonaNaturalSaveModel[]> {

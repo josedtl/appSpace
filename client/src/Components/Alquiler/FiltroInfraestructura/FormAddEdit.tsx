@@ -202,7 +202,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setEstadoRegistrochecked(e.target.checked);
     };
 
-
     const getItems = async () => {
         const itemsg = await sInfraestructura.GetInfraestructuraObtenerFiltro();
 

@@ -2,6 +2,7 @@ using Framework;
 using Microsoft.AspNetCore.Mvc;
 using Space.BusinessLayer;
 using Space.EntityLayer;
+using Space.Server.Model.PersonaNatural;
 using Space.Server.Model.Tarifa;
 
 namespace Space.Server.Controllers
@@ -85,6 +86,35 @@ namespace Space.Server.Controllers
             catch (Exception ex)
             {
                 return new ResponseAPI<PersonaNaturalSaveModel>(new PersonaNaturalSaveModel(), false, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("RegistrarEnlace")]
+        public ResponseAPI<PersonaNaturalEnlaceModel> RegistrarEnlace(PersonaNaturalEnlaceModel Item)
+        {
+            try
+            {
+                d.Configurar();
+                PersonaNaturalEntity ItemEntity = new PersonaNaturalEntity();
+
+                ItemEntity.PersonaNaturalId = Item.PersonaNaturalId;
+                ItemEntity.TipoDocumentoIdentidadId = Item.TipoDocumentoIdentidadId;
+                ItemEntity.CodUsuario = Item.CodUsuario;
+                ItemEntity.Nombres = Item.Nombres;
+                ItemEntity.ApellidoPaterno = Item.ApellidoPaterno;
+                ItemEntity.ApellidoMaterno = Item.ApellidoMaterno;
+                ItemEntity.NumDocumento = Item.NumDocumento;
+                ItemEntity.FechaRegistro = Item.FechaRegistro;
+                ItemEntity.LogicalState = (LogicalState)Item.Action;
+
+                Item.PersonaNaturalId = PersonaNatural.RegistrarEnlace(ItemEntity);
+                    
+                return new ResponseAPI<PersonaNaturalEnlaceModel>(Item, true);
+            }
+            catch (Exception ex)
+            {
+                return new ResponseAPI<PersonaNaturalEnlaceModel>(new PersonaNaturalEnlaceModel(), false, ex.Message);
             }
         }
 

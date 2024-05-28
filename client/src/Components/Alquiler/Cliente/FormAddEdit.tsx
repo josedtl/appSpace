@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Form, Select } from 'antd';
-import { Button, Col, Row, Input } from 'antd';
+import { Button, Col, Row, Input, message, Modal } from 'antd';
 import type { InputStatus } from 'antd/lib/_util/statusUtils'
 import { PropsModel } from '../../../Lib/PropsItem'
 import { ButtonAcceptModel } from '../../../Styles/Button'
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 //SERVICE
 import MerListaService from '../../../Service/MerListaService';
 import EntListaService from '../../../Service/EntListaService';
 import GeneralService from '../../../Service/GeneralService';
-
+import PersonaNaturalService from '../../../Service/PersonaNaturalService';
+import { EmpresaEntity } from '../../../Models/EmpresaEntity';
 //ENTITY
 import { MerListaEntity } from '../../../Models/MerListaEntity'
 import { EntListaModel } from '../../../Models/EntListaEntity';
-import { EmpresaEntity } from '../../../Models/EmpresaEntity'
 import { AlquilerEntity } from '../../../Models/AlquilerEntity';
-import { PersonaNaturalMainModel, PersonaNaturalSaveModel } from '../../../Models/PersonaNaturalEntity';
 import { TipoEntidadItemModel, DatosClienteItemModel } from '../../../Models/GeneralEntity'
+import EmpresaService from '../../../Service/EmpresaService';
+import { PersonaNaturalEnlaceModel } from '../../../Models/PersonaNaturalEntity';
 
 const AddEditForm: React.FC<PropsModel> = (props) => {
     const sMerLista = new MerListaService();
@@ -27,14 +29,23 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [FlaState, setFlaState] = useState<Boolean>(false);
     const [ValDato, setValDato] = useState<InputStatus>('');
 
+    const sPersonaNatural = new PersonaNaturalService();
+    const initialPersonaNatural = new PersonaNaturalEnlaceModel();
+    const [EntPer, setPer] = useState<PersonaNaturalEnlaceModel>(initialPersonaNatural);
+
+    const sEmpresa = new EmpresaService();
+
+    const initialEmpresa = new EmpresaEntity();
+    const [Empre, setEmpre] = useState<EmpresaEntity>(initialEmpresa);
+
     const initialTipoEntidad = new DatosClienteItemModel();
+
     const [EntDato, setDato] = useState<DatosClienteItemModel>(initialTipoEntidad);
 
 
     const [EstadoRegistrochecked, setEstadoRegistrochecked] = useState(true);
 
     const [ValCodigo, setValCodigo] = useState<InputStatus>('');
-    const [ValEntidad] = useState<InputStatus>('');
     const [ValNumDocumento] = useState<InputStatus>('');
     const [ValNombres] = useState<InputStatus>('');
     const [ValApellidoPaterno] = useState<InputStatus>('');
@@ -77,8 +88,59 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         setDisabled(!disabled);
     };
 
+    const [modal, contextHolder] = Modal.useModal();
+    const [messageAdd, contextHolderAdd] = message.useMessage();
 
+    const AddCliente = async () => {
+        console.log(EntPer);
+        const savedItem = await sPersonaNatural.RegistrarEnlace(EntPer);
+        console.log(savedItem);
+        if (savedItem) {
 
+            messageAdd.open({
+                type: 'success',
+                content: 'Se guardó correctamente.',
+            });
+        } else {
+        }
+
+        // const savedItem = await sEmpresa.saveItem(Empre);
+        // if (savedItem) {
+
+        //   messageAdd.open({
+        //     type: 'success',
+        //     content: 'Se guardó correctamente.',
+        //   });
+        // } else {
+        // }
+    }
+    const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        selectedTipoDocuemntoIdentidad;
+
+        modal.confirm({
+            title: 'Mensaje del Sistema',
+            icon: <ExclamationCircleOutlined />,
+            content: '¿Desea guardar el registro?',
+            okText: 'Si',
+            okType: 'danger',
+            cancelText: 'No',
+            onOk() {
+
+                Ent.CodUsuario = "adm";
+                Ent.FechaRegistro = new Date();
+
+                Ent.Action = EntPer.PersonaNaturalId == 0 ? 1 : 3;
+
+                AddCliente();
+
+            },
+            onCancel() {
+                console.log('Cancel');
+            },
+        });
+
+    };
 
     const onChanger = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValDato('');
@@ -105,6 +167,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         Ent.CodigoTabla = props.CodigoTabla;
         console.log(Ent)
         const savedItem = await sMerLista.saveItem(Ent);
+
         if (savedItem) {
             if (FlaState) {
                 props.updateState(savedItem);
@@ -129,7 +192,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
         setCargarPage(false);
     };
-
 
     useEffect(() => {
         async function cargarItem() {
@@ -181,6 +243,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                                 <label>Numero</label>
                             </Col>
                             <Col span={24}>
+
                                 <Input
                                     status={ValNumDocumento}
                                     type="text"
@@ -386,8 +449,10 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
                             <Col span={24} style={{ alignContent: "center" }}>
 
                                 <Button
-                                    onClick={submitFormAdd}
+
+                                    onClick={Guardar_Total}
                                     style={ButtonAcceptModel}>
+
                                     Aceptar
                                 </Button>
                             </Col>

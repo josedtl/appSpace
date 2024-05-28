@@ -29,7 +29,14 @@ namespace Space.BusinessLayer
 
             return Ent.PersonaNaturalId;
         }
+        
+        public static Int32 RegistrarEnlace(PersonaNaturalEntity Ent)
+        {
+            PersonaNaturalDB DB = new PersonaNaturalDB();
+            DB.RegistrarEnlace(Ent);
 
-      
+            return Ent.PersonaNaturalId;
+        }
+
     }
 }

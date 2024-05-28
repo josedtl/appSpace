@@ -50,6 +50,38 @@ namespace Space.DataLayer
             Helper.Close();
             return true;
         }
+        public virtual bool RegistrarEnlace(PersonaNaturalEntity Ent)
+        {
+            StartHelper(true);
+            try
+            {
+                RegistrarEnlaceDB(Ent);
+            }
+            catch (Exception ex)
+            {
+                Helper.CancelTransaction();
+                throw ex;
+            }
+
+            Helper.Close();
+            return true;
+        }
+        public virtual List<PersonaNaturalEntity> RegistrarEnlace(List<PersonaNaturalEntity> Items)
+        {
+            StartHelper(true);
+            try
+            {
+                for (int o = 0; o < Items.Count; o++) RegistrarEnlace(Items[o]);
+            }
+            catch (Exception ex)
+            {
+                Helper.CancelTransaction();
+                throw ex;
+            }
+
+            Helper.Close();
+            return Items;
+        }
 
         public virtual List<PersonaNaturalEntity> Registrar(List<PersonaNaturalEntity> Items)
         {
@@ -138,5 +170,35 @@ namespace Space.DataLayer
                 throw ex;
             }
         }
+
+        private bool RegistrarEnlaceDB(PersonaNaturalEntity Ent)
+        {
+            if (Ent.LogicalState == LogicalState.Added || Ent.LogicalState == LogicalState.Updated)
+            {
+                String storedName = "sp_PersonaRegistarEnlace";
+                DbDatabase.GetStoredProcCommand(storedName);
+                DbDatabase.SetTransaction(Helper.DbTransaction);
+
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(true), "PersonaNaturalId", DbType.Int32, 4, false, 0, 0, Ent.PersonaNaturalId);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "TipoDocumentoIdentidadId", DbType.Int32, 4, false, 0, 0, Ent.TipoDocumentoIdentidadId);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "NumDocumento", DbType.String, 100, false, 0, 0, Ent.NumDocumento);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "Nombres", DbType.String, 100, false, 0, 0, Ent.Nombres);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "ApellidoPaterno", DbType.String, 100, false, 0, 0, Ent.ApellidoPaterno);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "ApellidoMaterno", DbType.String, 100, false, 0, 0, Ent.ApellidoMaterno);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "CodUsuario", DbType.String, 20, false, 0, 0, Ent.CodUsuario);
+                DbDatabase.AddParameter(MyUtils.GetOutputDirection(false), "FechaRegistro", DbType.DateTime, 12, false, 0, 0, Ent.FechaRegistro);
+                int returnValue = DbDatabase.ExecuteNonQuery();
+                if (Ent.LogicalState == LogicalState.Added)
+                {
+                    if (Ent.PersonaNaturalId <= 0) Ent.PersonaNaturalId = (Int32)DbDatabase.GetParameterValue("PersonaNaturalId");
+                    Ent.OnLogicalAdded();
+                }
+               
+            }
+
+
+            return true;
+        }
+
     }
 }

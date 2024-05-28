@@ -101,3 +101,29 @@ export class PersonaNaturalSaveModel {
         this.Action = 0;
     }
 }
+
+
+
+export class PersonaNaturalEnlaceModel {
+    PersonaNaturalId: number;
+    TipoDocumentoIdentidadId: number;
+    NumDocumento: string;
+    Nombres: string;
+    ApellidoPaterno: string;
+    ApellidoMaterno: string;
+    Action: number;
+    FechaRegistro: Date;
+    CodUsuario: string;
+
+    constructor() {
+        this.PersonaNaturalId = 0;
+        this.TipoDocumentoIdentidadId = 0;
+        this.NumDocumento = "";
+        this.Nombres = "";
+        this.ApellidoPaterno = "";
+        this.ApellidoMaterno = "";
+        this.FechaRegistro = new Date();
+        this.CodUsuario = "";
+        this.Action = 0;
+    }
+}
