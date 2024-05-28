@@ -1,5 +1,5 @@
 
-import {ServicioMainEntity,ServicioSaveEntity,ServicioEntity } from '../Models/ServicioEntity';
+import {ServicioMainEntity,ServicioSaveEntity } from '../Models/ServicioEntity';
 import { apiLg } from './axios-config';
 
 class ServicioService {
@@ -50,7 +50,7 @@ class ServicioService {
           return [];
         }
       }
-
+     
 
 }
 
