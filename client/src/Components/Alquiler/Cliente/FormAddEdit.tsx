@@ -19,13 +19,12 @@ import { AlquilerEntity } from '../../../Models/AlquilerEntity';
 import { TipoEntidadItemModel, DatosClienteItemModel } from '../../../Models/GeneralEntity'
 import EmpresaService from '../../../Service/EmpresaService';
 import { PersonaNaturalEnlaceModel } from '../../../Models/PersonaNaturalEntity';
+import { EntDatoModel } from "../../../Models/EntDatoEntity";
 
 const AddEditForm: React.FC<PropsModel> = (props) => {
     const sMerLista = new MerListaService();
     const sGeneralService = new GeneralService();
     const sEntLista = new EntListaService();
-    const initialMerLista = new MerListaEntity();
-    const [Ent, setEnt] = useState<MerListaEntity>(initialMerLista);
     const [FlaState, setFlaState] = useState<Boolean>(false);
     const [ValDato, setValDato] = useState<InputStatus>('');
 
@@ -40,7 +39,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     const initialTipoEntidad = new DatosClienteItemModel();
 
-    const [EntDato, setDato] = useState<DatosClienteItemModel>(initialTipoEntidad);
+    const [EntDato, setEntDato] = useState<DatosClienteItemModel>(initialTipoEntidad);
 
 
     const [EstadoRegistrochecked, setEstadoRegistrochecked] = useState(true);
@@ -75,8 +74,8 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValCodigo('');
-        setEnt({
-            ...Ent,
+        setEntDato({
+            ...EntDato,
             [e.target.name]: e.target.value.toUpperCase()
         });
 
@@ -92,7 +91,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [messageAdd, contextHolderAdd] = message.useMessage();
 
     const AddCliente = async () => {
-        console.log(EntPer);
+        console.log(EntDato);
         const savedItem = await sPersonaNatural.RegistrarEnlace(EntPer);
         console.log(savedItem);
         if (savedItem) {
@@ -118,6 +117,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         e.preventDefault();
         selectedTipoDocuemntoIdentidad;
 
+        console.log("ok");
         modal.confirm({
             title: 'Mensaje del Sistema',
             icon: <ExclamationCircleOutlined />,
@@ -127,10 +127,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
             cancelText: 'No',
             onOk() {
 
-                Ent.CodUsuario = "adm";
-                Ent.FechaRegistro = new Date();
-
-                Ent.Action = EntPer.PersonaNaturalId == 0 ? 1 : 3;
 
                 AddCliente();
 
@@ -142,13 +138,6 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     };
 
-    const onChanger = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValDato('');
-        setEnt({
-            ...Ent,
-            [e.target.name]: e.target.value.toUpperCase()
-        });
-    };
 
     const [disabled, setDisabled] = useState(false);
     const [Busqueda, setBusqueda] = useState<string>('');
@@ -158,27 +147,23 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     };
 
 
-    const submitFormAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
+    // const submitFormAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    //     e.preventDefault();
 
-        Ent.FechaRegistro = new Date();
-        Ent.CodUsuario = 'adm';
-        Ent.EstadoRegistro = EstadoRegistrochecked;
-        Ent.CodigoTabla = props.CodigoTabla;
-        console.log(Ent)
-        const savedItem = await sMerLista.saveItem(Ent);
+    //     console.log(EntDato)
+    //     const savedItem = await sMerLista.saveItem(EntDatoModelato);
 
-        if (savedItem) {
-            if (FlaState) {
-                props.updateState(savedItem);
-            }
-            else {
-                props.addItemToState(savedItem);
-            }
-            props.toggle();
-            setEnt(new MerListaEntity());
-        }
-    };
+    //     if (savedItem) {
+    //         if (FlaState) {
+    //             props.updateState(savedItem);
+    //         }
+    //         else {
+    //             props.addItemToState(savedItem);
+    //         }
+    //         props.toggle();
+    //         setEnt(new MerListaEntity());
+    //     }
+    // };
 
     const label = EstadoRegistrochecked ? 'Registro habilitado' : 'Registro deshabilitar';
 
