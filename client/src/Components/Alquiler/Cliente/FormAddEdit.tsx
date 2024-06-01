@@ -75,8 +75,8 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
 
     const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValCodigo('');
-        setEnt({
-            ...Ent,
+        setDato({
+            ...EntDato,
             [e.target.name]: e.target.value.toUpperCase()
         });
 
@@ -92,7 +92,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
     const [messageAdd, contextHolderAdd] = message.useMessage();
 
     const AddCliente = async () => {
-        console.log(EntPer);
+        console.log(EntDato);
         const savedItem = await sPersonaNatural.RegistrarEnlace(EntPer);
         console.log(savedItem);
         if (savedItem) {
@@ -118,6 +118,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         e.preventDefault();
         selectedTipoDocuemntoIdentidad;
 
+        console.log("ok");
         modal.confirm({
             title: 'Mensaje del Sistema',
             icon: <ExclamationCircleOutlined />,
