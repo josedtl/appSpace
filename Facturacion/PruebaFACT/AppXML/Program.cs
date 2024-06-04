@@ -21,8 +21,12 @@ namespace AppXML
                 ID = new ID { Value = "FFF1-1" },
                 IssueDate = DateTime.Now.ToString("yyyy-MM-dd"),
                 IssueTime = DateTime.Now.ToString("hh:mm:ss"),
+
+
+
                 InvoiceTypeCode = new InvoiceTypeCode
                 {
+
                     ListID = "0101",
                     ListAgencyName = "PE:SUNAT",
                     ListName = "Tipo de Documento",
@@ -32,7 +36,7 @@ namespace AppXML
                     Value = "01"
                 },
                 Note = new Note
-                {
+                {   //No. 52 Catálogo    Códigos de leyendas
                     LanguageLocaleID = "1000",
                     Value = "SETECIENTOS OCHO CON 00/100 SOLES"
                 },
