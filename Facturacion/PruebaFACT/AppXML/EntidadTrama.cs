@@ -32,10 +32,10 @@ namespace AppXML
         public string CustomizationID { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public DateTime IssueDate { get; set; }
+        public String IssueDate { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
         public string IssueTime { get; set; }
@@ -127,7 +127,7 @@ namespace AppXML
     public class DespatchDocumentReference
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
         public DocumentTypeCode DocumentTypeCode { get; set; }
@@ -151,7 +151,7 @@ namespace AppXML
     public class Signature
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
 
         [XmlElement( Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
 
@@ -176,7 +176,7 @@ namespace AppXML
     public class PartyIdentification
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
     }
 
     public class PartyName
@@ -227,10 +227,10 @@ namespace AppXML
     public class RegistrationAddress
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string AddressTypeCode { get; set; }
+        public AddressTypeCode AddressTypeCode { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
         public string CityName { get; set; }
@@ -257,7 +257,7 @@ namespace AppXML
     public class Country
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string IdentificationCode { get; set; }
+        public IDentificationCode IDentificationCode { get; set; }
     }
 
     public class AccountingCustomerParty
@@ -269,7 +269,7 @@ namespace AppXML
     public class PaymentTerms
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
         public string PaymentMeansID { get; set; }
@@ -290,7 +290,7 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class TaxSubtotal
@@ -311,16 +311,16 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class TaxCategory
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public decimal Percent { get; set; }
+        public string Percent { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string TaxExemptionReasonCode { get; set; }
+        public TaxExemptionReasonCode TaxExemptionReasonCode { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2")]
         public TaxScheme TaxScheme { get; set; }
@@ -329,7 +329,7 @@ namespace AppXML
     public class TaxScheme
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
         public string Name { get; set; }
@@ -365,7 +365,7 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class TaxInclusiveAmount
@@ -374,7 +374,7 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class AllowanceTotalAmount
@@ -383,7 +383,7 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class ChargeTotalAmount
@@ -392,7 +392,7 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class PrepaidAmount
@@ -401,7 +401,7 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class PayableAmount
@@ -410,13 +410,13 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class InvoiceLine
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
         public InvoicedQuantity InvoicedQuantity { get; set; }
@@ -449,7 +449,7 @@ namespace AppXML
         public string UnitCodeListAgencyName { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class PricingReference
@@ -464,7 +464,7 @@ namespace AppXML
         public PriceAmount PriceAmount { get; set; }
 
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string PriceTypeCode { get; set; }
+        public PriceTypeCode PriceTypeCode { get; set; }
     }
 
     public class PriceAmount
@@ -473,7 +473,7 @@ namespace AppXML
         public string CurrencyID { get; set; }
 
         [XmlText]
-        public decimal Value { get; set; }
+        public string Value { get; set; }
     }
 
     public class Item
@@ -488,7 +488,7 @@ namespace AppXML
     public class SellersItemIdentification
     {
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
-        public string ID { get; set; }
+        public ID ID { get; set; }
     }
 
     public class Price
@@ -496,5 +496,80 @@ namespace AppXML
         [XmlElement(Namespace = "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2")]
         public PriceAmount PriceAmount { get; set; }
     }
+    public class ID
+    {
+        [XmlAttribute("schemeID")]
+        public string schemeID { get; set; }
 
+        [XmlAttribute("schemeName")]
+        public string schemeName { get; set; }
+
+        [XmlAttribute("schemeAgencyName")]
+        public string schemeAgencyName { get; set; }
+        [XmlAttribute("schemeURI")]
+        public string schemeURI { get; set; }
+        [XmlText]
+        public string Value { get; set; }
+    }
+
+
+
+    public class AddressTypeCode
+    {
+        [XmlAttribute("listAgencyName")]
+        public string listAgencyName { get; set; }
+
+        [XmlAttribute("listName")]
+        public string listName { get; set; }
+        [XmlText]
+        public string Value { get; set; }
+
+    }
+
+    public class IDentificationCode
+    {
+        [XmlAttribute("listID")]
+        public string listID { get; set; }
+
+        [XmlAttribute("listAgencyName")]
+        public string listAgencyName { get; set; }
+
+        [XmlAttribute("listName")]
+        public string listName { get; set; }
+
+        [XmlText]
+        public string Value { get; set; }
+
+    }
+    public class PriceTypeCode
+    {
+        [XmlAttribute("listAgencyName")]
+        public string listAgencyName { get; set; }
+
+        [XmlAttribute("listName")]
+        public string listName { get; set; }
+        
+        [XmlAttribute("listURI")]
+        public string listURI { get; set; }
+
+        [XmlText]
+        public string Value { get; set; }
+
+    }
+
+ public class TaxExemptionReasonCode
+    {
+        [XmlAttribute("listAgencyName")]
+        public string listAgencyName { get; set; }
+
+        [XmlAttribute("listName")]
+        public string listName { get; set; }
+        
+        [XmlAttribute("listURI")]
+        public string listURI { get; set; }
+
+        [XmlText]
+        public string Value { get; set; }
+
+    }
 }
