@@ -1,0 +1,159 @@
+﻿@page "/TarifaSave/{MiVariable}"
+@inject NavigationManager NavigationManager;
+@inject IMessageService _message
+@using Space.Web.Pages.Tarifa.Save
+@using Space.ServiceConsumer;
+
+<Spin Tip="Cargando..." Spinning=@_loading>
+    <div>
+        <Layout>
+            <GridRow>
+                <GridCol Span="12">
+
+                    <Title Level="4">Tarifa</Title>
+                </GridCol>
+                <GridCol Span="12">
+                    <Button Type="@ButtonType.Primary"
+                            Icon="@IconType.Outline.Save"
+                            Size="@AntSizeLDSType.Large"
+                            OnClick="Method_Guardar"
+                            style="float:right">
+                        Guardar
+                    </Button>
+                </GridCol>
+            </GridRow>
+
+            <Content>
+                <GridRow>
+                    <GridCol Span="6">
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Moneda</label>
+                                <Select TItem="MonedaModel"
+                                        TItemValue="MonedaModel"
+                                        DataSource="@lst_Moneda"
+                                        @bind-Value="@select_Moneda"
+                                        LabelName="@nameof(MonedaModel.Nombre)">
+                                </Select>
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Unidad Medida</label>
+                                <Select TItem="UnidadMedidaModel"
+                                        TItemValue="UnidadMedidaModel"
+                                        DataSource="@lst_unidadMedida"
+                                        @bind-Value="@select_UnidadMedida"
+                                        LabelName="@nameof(UnidadMedidaModel.Nombre)">
+                                </Select>
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Nombre Tarifa</label>
+                                <Input @bind-Value="@Tarifa.NomTarifa" />
+                                </Col>
+
+                            </Row>
+                        </InputGroup>
+
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Nombre Comercial</label>
+                                <Input @bind-Value="@Tarifa.NomComercial" />
+                                </Col>
+
+                            </Row>
+                        </InputGroup>
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="12">
+
+                                <label>TipoTarifaEnum</label>
+                                <Input Type="number" Placeholder="0" @bind-Value="@Tarifa.TipoTarifaEnum" />
+
+                                </Col>
+                                <Col Span="12">
+
+                                <label>Costo Tarifa</label>
+                                <Input Type="number" Placeholder="0" @bind-Value="@Tarifa.CostoTarifa" />
+
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Descripción</label>
+                                <TextArea ShowCount
+                                           MaxLength="400"
+                                           @bind-Value="@Tarifa.Descripcion"
+                                           MinRows="2" MaxRows="6" />
+                                 </Col>
+                             </Row>
+                         </InputGroup>
+
+
+                     </GridCol>
+                 </GridRow>
+             </Content>
+         </Layout>
+
+     </div>
+ </Spin>
+
+
+ <style>
+     [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-content,
+     .card-container .ant-tabs-card .ant-tabs-content {
+         height: 120px;
+         margin-top: -16px;
+     }
+
+         [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-content .ant-tabs-tabpane,
+         .card-container .ant-tabs-card .ant-tabs-content .ant-tabs-tabpane {
+             background: #fff;
+             padding: 16px;
+         }
+
+     [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-bar,
+     .card-container .ant-tabs-card .ant-tabs-bar {
+         border-color: #fff;
+     }
+
+         [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab,
+         .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab {
+             border-color: transparent;
+             background: transparent;
+         }
+
+         [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab-active,
+         .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab-active {
+             border-color: #fff;
+             background: #fff;
+         }
+
+     .site-statistic-demo-card {
+         background: #ececec;
+         padding: 30px;
+     }
+
+     .ant-progress-circle-wrap,
+     .ant-progress-line-wrap {
+         margin-right: 8px;
+         margin-bottom: 5px;
+     }
+ </style>

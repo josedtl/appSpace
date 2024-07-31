@@ -1,0 +1,316 @@
+﻿@page "/InfraestructuraSave/{MiVariable}"
+@using Space.Web.Pages.Infraestructura.Save;
+@using System.ComponentModel
+@using AntDesign.TableModels
+@using System.ComponentModel.DataAnnotations
+@using Space.ServiceConsumer;
+@inject NavigationManager NavigationManager;
+@inject IMessageService _message
+
+<Spin Tip="Cargando..." Spinning=@_loading>
+    <div>
+
+        <Layout>
+            @* <Header > *@
+
+
+            @* </Header> *@
+            <GridRow>
+                <GridCol Span="12">
+
+                    <Title Level="3">Infraestructura</Title>
+                </GridCol>
+                <GridCol Span="12">
+                    <Button Type="@ButtonType.Primary"
+                            Icon="@IconType.Outline.Save"
+                            Size="@AntSizeLDSType.Large"
+                            OnClick="Method_Guardar"
+                            style="float:right">
+                        Guardar
+                    </Button>
+                </GridCol>
+            </GridRow>
+
+
+
+
+            <Content>
+
+                <GridRow>
+                    <GridCol Span="6">
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Sucursal</label>
+                                <Select TItem="InfraListaModel"
+                                        TItemValue="InfraListaModel"
+                                        @bind-Value="@select_Sucursal"
+                                        DataSource="@lst_Sucursal"
+                                        LabelName="@nameof(InfraListaModel.Nombre)"
+                                        Placeholder="Choose"
+                                        AllowClear>
+                                </Select>
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Tipo</label>
+                                <Select TItem="InfraListaModel"
+                                        TItemValue="InfraListaModel"
+                                        @bind-Value="@select_Tipo"
+                                        DataSource="@lst_Tipo"
+                                        LabelName="@nameof(InfraListaModel.Nombre)"
+                                        Placeholder="Choose"
+                                        AllowClear>
+                                </Select>
+
+                                </Col>
+                            </Row>
+                        </InputGroup>
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Clasificación</label>
+                                <Select TItem="InfraListaModel"
+                                        TItemValue="InfraListaModel"
+                                        @bind-Value="@select_Clasificacion"
+                                        DataSource="@lst_Clasificacion"
+                                        LabelName="@nameof(InfraListaModel.Nombre)"
+                                        Placeholder="Choose"
+                                        AllowClear>
+                                </Select>
+
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="12">
+                                <label>Codigo Sistema</label>
+                                <Input @bind-Value="@Infraestructura.CodigoSistema" />
+                                </Col>
+                                <Col Span="12">
+                                <label>Codigo Interno</label>
+                                <Input @bind-Value="@Infraestructura.CodigoInterno" />
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Dimension</label>
+                                <Select TItem="InfraListaModel"
+                                        TItemValue="InfraListaModel"
+                                        @bind-Value="@select_Dimension"
+                                        DataSource="@lst_Dimension"
+                                        LabelName="@nameof(InfraListaModel.Nombre)"
+                                        Placeholder="Choose"
+                                        AllowClear>
+                                </Select>
+
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="12">
+                                <label>Piso</label>
+                                <Select TItem="InfraListaModel"
+                                        TItemValue="InfraListaModel"
+                                        @bind-Value="@select_Piso"
+                                        DataSource="@lst_Piso"
+                                        LabelName="@nameof(InfraListaModel.Nombre)"
+                                        Placeholder="Choose"
+                                        AllowClear>
+                                </Select>
+
+                                </Col>
+                                <Col Span="12">
+
+                                <label>Aforo</label>
+                                <Input Type="number" Placeholder="0" @bind-Value="@Infraestructura.Aforo" />
+
+                                </Col>
+                            </Row>
+                        </InputGroup>
+
+                        @* <Input @bind-Value="@Infraestructura.Aforo" /> *@
+
+
+                        <InputGroup>
+                            <Row Gutter="8">
+                                <Col Span="24">
+                                <label>Descripción</label>
+                                @* <Input @bind-Value="@Infraestructura.Descripcion" /> *@
+                                <TextArea ShowCount
+                                           MaxLength="400"
+                                           @bind-Value="@Infraestructura.Descripcion"
+                                           MinRows="2" MaxRows="6" />
+                                 </Col>
+
+
+                             </Row>
+                         </InputGroup>
+
+
+                     </GridCol>
+                     <GridCol Span="18">
+                         @*    <div class="card-container">
+                        <Tabs DefaultActiveKey="2">
+                        <TabPane Key="1">
+                        <TabTemplate>
+                        <span><Icon Type="android" />Fotografia</span>
+                        </TabTemplate>
+                        <ChildContent>Tab 1</ChildContent>
+                        </TabPane>
+                        <TabPane Key="2">
+                        <TabTemplate>
+                        <span><Icon Type="apple" />Historial de Movimiento</span>
+                        </TabTemplate>
+                        <ChildContent>Tab 2</ChildContent>
+                        </TabPane>
+                        </Tabs>
+                        </div> *@
+
+                         <div class="card-container" style="padding: 16px;">
+                             <Tabs Type="@TabType.Card">
+                                 <TabPane Key="1">
+                                     <TabTemplate>
+                                         <span>
+                                             <Icon Type="picture" />
+                                             Fotografia
+                                         </span>
+                                     </TabTemplate>
+                                     <ChildContent>
+
+                                         <ImagePreviewGroup>
+                                             <Image Width="250" Src="https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-31/habitaciones-hotel-8a-a.jpg" />
+                                             <Image Width="250" Src="https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-42/habitaciones-hotel-18a-a.jpg" />
+                                             <Image Width="250" Src="https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-25/habitaciones-hotel-2a-a.jpg" />
+                                             <Image Width="250" Src="https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-35/habitaciones-hotel-12a-a.jpg" />
+                                             <Image Width="250" Src="https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-28/habitaciones-hotel-5a-a.jpg" />
+                                             <Image Width="250" Src="https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-33/habitaciones-hotel-10a-a.jpg" />
+                                             <Image Width="250" Src="https://images.hola.com/imagenes/decoracion/20230425230358/dormitorios-inspirados-en-habitaciones-hoteles-am/1-237-40/habitaciones-hotel-17a-a.jpg" />
+
+
+
+
+                                         </ImagePreviewGroup>
+
+                                     </ChildContent>
+                                 </TabPane>
+                                 <TabPane Key="2">
+                                     <TabTemplate>
+                                         <span>
+                                             <Icon Type="control" />
+                                             Historial de Movimientos
+                                         </span>
+                                     </TabTemplate>
+                                     <ChildContent>
+
+                                         <div class="site-statistic-demo-card">
+                                             <Row Gutter="16">
+                                                 <Col Span="12">
+                                                 <Card>
+                                                     <Statistic Title="Active" Value="11.28" Precision="2" ValueStyle="color: #3f8600;" Suffix="%">
+                                                         <PrefixTemplate>
+                                                             <span><Icon Type="arrow-up" /></span>
+                                                         </PrefixTemplate>
+                                                     </Statistic>
+                                                 </Card>
+                                                 </Col>
+                                                 <Col Span="12">
+                                                 <Card>
+                                                     <Statistic Title="Idle" Value="9.3" Precision="2" ValueStyle="color: #cf1322;" Suffix="%">
+                                                         <PrefixTemplate>
+                                                             <span><Icon Type="arrow-down" /></span>
+                                                         </PrefixTemplate>
+                                                     </Statistic>
+                                                 </Card>
+                                                 </Col>
+                                             </Row>
+                                         </div>
+
+
+
+                                     </ChildContent>
+                                 </TabPane>
+                                 <TabPane Key="3">
+                                     <TabTemplate>
+                                         <span>
+                                             <Icon Type="line-chart" />
+                                             Historial de Mantenimiento
+                                         </span>
+                                     </TabTemplate>
+                                     <ChildContent>
+                                         <div>
+                                             <Progress Type="ProgressType.Circle" Percent=75 />
+                                             <Progress Type="ProgressType.Circle" Percent=70 Status="ProgressStatus.Exception" />
+                                             <Progress Type="ProgressType.Circle" Percent=100 />
+                                         </div>
+
+                                     </ChildContent>
+                                 </TabPane>
+                             </Tabs>
+                         </div>
+                     </GridCol>
+                 </GridRow>
+
+             </Content>
+
+
+         </Layout>
+     </div>
+ </Spin>
+
+
+ <style>
+     [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-content,
+     .card-container .ant-tabs-card .ant-tabs-content {
+         height: 120px;
+         margin-top: -16px;
+     }
+
+         [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-content .ant-tabs-tabpane,
+         .card-container .ant-tabs-card .ant-tabs-content .ant-tabs-tabpane {
+             background: #fff;
+             padding: 16px;
+         }
+
+     [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-bar,
+     .card-container .ant-tabs-card .ant-tabs-bar {
+         border-color: #fff;
+     }
+
+         [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab,
+         .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab {
+             border-color: transparent;
+             background: transparent;
+         }
+
+         [data-theme='compact'] .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab-active,
+         .card-container .ant-tabs-card .ant-tabs-bar .ant-tabs-tab-active {
+             border-color: #fff;
+             background: #fff;
+         }
+
+     .site-statistic-demo-card {
+         background: #ececec;
+         padding: 30px;
+     }
+
+     .ant-progress-circle-wrap,
+     .ant-progress-line-wrap {
+         margin-right: 8px;
+         margin-bottom: 5px;
+     }
+ </style>

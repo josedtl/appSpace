@@ -1,0 +1,66 @@
+﻿@* <div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Space.Web</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+ *@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<Menu Theme="MenuTheme.Dark" Mode="MenuMode.Inline" DefaultSelectedKeys=@(new[]{"1"}) Style="background:#6D05FF">
+    <MenuItem Key="1" RouterLink="counter">
+        <Icon Type="user" Theme="outline"  />
+        <span>Reserva</span>
+    </MenuItem>
+    <MenuItem Key="2" RouterLink="fetchdata">
+        <Icon Type="user" Theme="outline" />
+        <span>Alquiler</span>
+    </MenuItem>
+    @{
+        RenderFragment sub1Title =
+        @<span>
+            <Icon Type="profile" Theme="outline" />
+            <span>Catalogo</span>
+        </span>
+        ;
+    }
+    <SubMenu Key="sub1" Style="background:#6D05FF" TitleTemplate=sub1Title>
+        <MenuItem Key="3" RouterLink="InfraestructuraMenuPreview" >
+            @* <Icon Type="video-camera" Theme="outline" /> *@
+            <span>Infraestructura</span>
+        </MenuItem>
+        <MenuItem Key="4" RouterLink="Tarifa">
+            @* <Icon Type="video-camera" Theme="outline" /> *@
+            <span>Tarifa</span>
+        </MenuItem>
+        <MenuItem Key="5">Persona Natural</MenuItem>
+        <MenuItem Key="6" RouterLink="EntidadMenuPreview">
+            @* <Icon Type="video-camera" Theme="outline" /> *@
+            <span>Entidad</span>
+        </MenuItem>
+     
+    </SubMenu>
+
+</Menu>

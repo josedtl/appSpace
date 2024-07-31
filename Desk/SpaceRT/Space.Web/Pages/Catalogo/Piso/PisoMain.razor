@@ -1,0 +1,34 @@
+﻿@page "/PisoMain/{MiVariable}"
+@using Space.Web.Pages.Catalogo.Piso;
+@using Space.ServiceConsumer;
+<Spin Tip="Cargando..." Spinning=@_loading>
+
+    <GridRow>
+        <GridCol Span="12">
+
+            <Title Level="3">@_Titulo</Title>
+        </GridCol>
+        <GridCol Span="12">
+            <Button Type="@ButtonType.Primary"
+                    Icon="@IconType.Outline.Download"
+                    style="float:right">
+                Nuevo
+            </Button>
+                    @* Size="@_size" OnClick="IrAlSave" *@
+
+        </GridCol>
+    </GridRow>
+    <Table TItem="InfraListaMainModel" DataSource="@lst_InfraLista" ScrollX="1300">
+            <PropertyColumn Title="N" Property="@(c=>c.Item)" Width="50" />
+        <PropertyColumn Title="C. Sistema" Property="@(c=>c.Codigo)" Width="100" />
+        <PropertyColumn Title="C. Interno" Property="@(c=>c.Nombre)" Width="100" />
+        <PropertyColumn Title="Sucursal" Property="@(c=>c.Descripcion)" Width="250" />
+        <PropertyColumn Title="Piso" Property="@(c=>c.FechaRegistro)" Width="80" />
+        <PropertyColumn Title="Tipo" Property="@(c=>c.CodUsuario)" Width="250" />
+        <ActionColumn Title="Action" Width="100" Fixed="right">
+            <Space>
+                @* <SpaceItem><Button OnClick="()=>Method_Editar(context.InfraestructuraId)">Editar</Button></SpaceItem> *@
+            </Space>
+        </ActionColumn>
+    </Table>
+</Spin>

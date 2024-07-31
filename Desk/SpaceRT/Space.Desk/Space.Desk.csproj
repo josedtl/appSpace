@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Space.ServiceConsumer\Space.ServiceConsumer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="FMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\Infraestructura\InfraestructuraMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\Infraestructura\InfraestructuraPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\InfraLista\InfraListaMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\InfraLista\InfraListaSave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\Persona\PersonaMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\Persona\PersonaPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\Servicio\ServicioMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\Servicio\ServicioPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

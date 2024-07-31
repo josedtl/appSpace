@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SolutionOutlined,
   ReconciliationOutlined,
@@ -63,7 +63,7 @@ const Root: React.FC = () => {
         trigger={null} collapsible collapsed={collapsed}
 
       >
-        <div style={{ height: '60px',  background: '#001529' }}  >
+        <div style={{ height: '60px', background: '#001529' }}  >
           {/* <svg version="1.1" style={{ marginTop: '70px', marginLeft: '45px', alignContent: 'center' }} width="100px" height="100px" viewBox="-0.5 -0.5 172 172" ><defs /><g><ellipse cx="85" cy="85" rx="85" ry="85" fill="#001529" stroke="rgb(0, 0, 0)" pointer-events="all" /><path d="M 50 91 L 130 91 L 130 70 L 150 100 L 130 130 L 130 109 L 50 109 Z" fill="#15616d" stroke="#15616d" stroke-miterlimit="10" pointer-events="all" /><path d="M 20 61 L 100 61 L 100 40 L 120 70 L 100 100 L 100 79 L 20 79 Z" fill="#15616d" stroke="#15616d" stroke-miterlimit="10" transform="rotate(180,70,70)" pointer-events="all" /></g></svg> */}
         </div>
         <Menu
@@ -77,7 +77,7 @@ const Root: React.FC = () => {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background:'#D6D6D6' }}>
+        <Header style={{ padding: 0, background: '#D6D6D6' }}>
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

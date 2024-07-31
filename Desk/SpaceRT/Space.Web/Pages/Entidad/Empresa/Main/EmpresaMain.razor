@@ -1,0 +1,72 @@
+﻿@page "/Empresa"
+@using Space.Web.Pages.Entidad.Empresa.Main;
+@using System.ComponentModel
+@using AntDesign.TableModels
+@using System.ComponentModel.DataAnnotations
+@using Space.ServiceConsumer;
+@inject NavigationManager NavigationManager;
+<Spin Tip="Cargando..." Spinning=@_loading>
+    <Layout>
+        <Header style="background-color:white">
+
+
+            <GridRow>
+                <GridCol Span="12">
+
+                    <Title Level="2">Persona Natrual</Title>
+                </GridCol>
+                <GridCol Span="12">
+                    <Button Type="@ButtonType.Primary"
+                            Icon="@IconType.Outline.Download"
+                            Size="@_size" OnClick="IrAlSave"
+                            style="float:right">
+                        Nuevo
+                    </Button>
+
+                </GridCol>
+            </GridRow>
+        </Header>
+        <Content>
+
+            <Table TItem="PersonaNaturalMainModel"
+                   DataSource="@Persona_Lista"
+                   ScrollX="1300"
+                   ScrollY="60vh"
+                   PageSize="20"
+                   Size="TableSize.Small"
+                   class="mi-clase-de-margen"
+                   PaginationPosition="bottomRight">
+                <PropertyColumn Title="N" Property="@(c=>c.Item)" Width="50" />
+                <PropertyColumn Title="Tipo documento" Property="@(c=>c.TipoDocumento)" Width="120" />
+                <PropertyColumn Title="Numero" Property="@(c=>c.NumDocumento)" Width="120" />
+                <PropertyColumn Title="Nombres" Property="@(c=>c.Nombres)" Width="200" />
+                <PropertyColumn Title="Apellido Paterno" Property="@(c=>c.ApellidoPaterno)" Width="80" />
+                <PropertyColumn Title="Apellido Materno" Property="@(c=>c.ApellidoMaterno)" Width="120" />
+                <PropertyColumn Title="Usuario" Property="@(c=>c.CodUsuario)" Width="100" />
+                <PropertyColumn Title="F. Registro" Property="@(c=>c.FechaRegistro)" Width="200" />
+                <ActionColumn Title="Action" Width="100" Fixed="right">
+                    <Space>
+                        <SpaceItem>
+                            <Button Type="@ButtonType.Dashed"
+                                    Shape="@ButtonShape.Circle"
+                                    OnClick="()=>Method_Editar(context.PersonaNaturaId)"
+                                    Icon="@IconType.Outline.Edit" />
+                        </SpaceItem>
+                    </Space>
+                </ActionColumn>
+            </Table>
+
+        </Content>
+        @*<Footer>Footer</Footer>*@
+    </Layout>
+
+
+</Spin>
+
+<style>
+
+    .mi-clase-de-margen {
+        margin-left: 40px; /* O ajusta el valor según tus necesidades */
+        margin-right: 40px;
+    }
+</style>

@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Space.Web", "Space.Web\Space.Web.csproj", "{D8CEE782-AD41-4273-A860-F06475E0643A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Space.ServiceConsumer", "Space.ServiceConsumer\Space.ServiceConsumer.csproj", "{356BFE86-BD3C-4205-8069-337875FAAA19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Space.Desk", "Space.Desk\Space.Desk.csproj", "{9051B6F6-4365-4C1C-BAAF-77E6770B5B5F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8CEE782-AD41-4273-A860-F06475E0643A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8CEE782-AD41-4273-A860-F06475E0643A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8CEE782-AD41-4273-A860-F06475E0643A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8CEE782-AD41-4273-A860-F06475E0643A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{356BFE86-BD3C-4205-8069-337875FAAA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{356BFE86-BD3C-4205-8069-337875FAAA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{356BFE86-BD3C-4205-8069-337875FAAA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{356BFE86-BD3C-4205-8069-337875FAAA19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9051B6F6-4365-4C1C-BAAF-77E6770B5B5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9051B6F6-4365-4C1C-BAAF-77E6770B5B5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9051B6F6-4365-4C1C-BAAF-77E6770B5B5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9051B6F6-4365-4C1C-BAAF-77E6770B5B5F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61BEB08E-0BC1-43AB-9546-2A25637241F1}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/proyectodev0803
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Space.Web\\Space.Web.csproj
+		SccProjectName1 = Space.Web
+		SccLocalPath1 = Space.Web
+		SccProjectUniqueName2 = Space.ServiceConsumer\\Space.ServiceConsumer.csproj
+		SccProjectName2 = Space.ServiceConsumer
+		SccLocalPath2 = Space.ServiceConsumer
+		SccProjectUniqueName3 = Space.Desk\\Space.Desk.csproj
+		SccProjectName3 = Space.Desk
+		SccLocalPath3 = Space.Desk
+	EndGlobalSection
+EndGlobal

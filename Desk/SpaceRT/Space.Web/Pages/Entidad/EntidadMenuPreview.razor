@@ -1,0 +1,42 @@
+﻿@page "/EntidadMenuPreview"
+@inject NavigationManager NavigationManager;
+
+
+<div>
+
+    <Title Level="2">Entidad</Title>
+    <GridRow Gutter="16">
+        <GridCol Class="gutter-row" Span="24">
+
+            <Segmented TValue="string">
+                <SegmentedItem Value="@("Persona")">
+                    <span @onclick="()=>Method_PersonaNatural()">
+                        <div style=" padding: 4px;">
+                            <Avatar style="background-color: #0496FF;" Size="200" Icon="team"></Avatar>
+                            <div><h5>Persona</h5> </div>
+                        </div>
+                    </span>
+                </SegmentedItem>
+
+                <SegmentedItem Value="@("Empresa")">
+                    <span @onclick="()=>Method_Empresa()">
+                        <div style=" padding: 4px;">
+                            <Avatar style="background-color: #0496FF;" Size="200" Icon="bank"></Avatar>
+                            <div><h5>Empresa</h5> </div>
+                        </div>
+                    </span>
+                </SegmentedItem>
+            </Segmented>
+        </GridCol>
+
+    </GridRow>
+ 
+
+</div>
+
+<style>
+    .gutter-box {
+        padding: 8px 0;
+        background: #00a0e9;
+    }
+</style>

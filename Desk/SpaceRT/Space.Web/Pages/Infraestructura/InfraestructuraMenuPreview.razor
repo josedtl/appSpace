@@ -1,0 +1,80 @@
+﻿@page "/InfraestructuraMenuPreview"
+@inject NavigationManager NavigationManager;
+
+@{
+    string style = "background: #0092ff; padding: 8px 0;";
+    Dictionary<string, int> gutter = new()
+            {
+                ["xs"] = 8,
+                ["sm"] = 16,
+                ["md"] = 24,
+                ["lg"] = 32,
+                ["xl"] = 48,
+                ["xxl"] = 64
+            };
+}
+
+<div>
+
+    <Title Level="2">Principal</Title>
+    <GridRow Gutter="16">
+        <GridCol Class="gutter-row" Span="24">
+      
+            <Segmented TValue="string">
+                <SegmentedItem Value="@("user1a")">
+                    <span @onclick="()=>Method_Principal()">
+                        <div style=" padding: 4px;">
+                            <Avatar style="background-color: #0496FF;" Size="200" Icon="bank"></Avatar>
+                            <div><h5>Infraestructura</h5> </div>
+                        </div>
+                    </span>
+                </SegmentedItem>
+            </Segmented>
+        </GridCol>
+
+    </GridRow>
+    <Title Level="2">Enlace</Title>
+    <GridRow Gutter="@gutter">
+        <GridCol Class="gutter-row" Span="24">
+
+            <Segmented TValue="string">
+                <SegmentedItem Value="@("user1")">
+                    <span @onclick="()=>Method_Tipo()">
+                        <div style=" padding: 4px;">
+                            <Avatar style="background-color: #828282;" Size="150" Icon="book"></Avatar>
+                            <div><h5>Tipo</h5> </div>
+                        </div>
+                    </span>
+                </SegmentedItem>
+                <SegmentedItem Value="@("user2")">
+                    <span @onclick="()=>Method_Dimension()">
+                        <div style="padding: 4px;">
+                            <Avatar style="background-color: #828282;" Size="150" Icon="book"></Avatar>
+                            <div><h5>Dimension</h5> </div>
+                        </div>
+                    </span>
+                </SegmentedItem>
+                <SegmentedItem Value="@("user3")">
+                    <span @onclick="()=>Method_Piso()">
+                        <div style="padding: 4px;">
+                            <Avatar style="background-color: #828282;" Size="150" Icon="book"></Avatar>
+                            <div><h5>Piso</h5> </div>
+                        </div>
+                    </span>
+                </SegmentedItem>
+            </Segmented>
+
+
+
+
+        </GridCol>
+    </GridRow>
+
+</div>
+
+<style>
+    .gutter-box {
+        padding: 8px 0;
+        background: #00a0e9;
+    }
+</style>
