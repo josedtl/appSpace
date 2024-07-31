@@ -137,7 +137,6 @@ const Save = () => {
                                     style={{ marginTop: '5px', marginBottom: '10px' }}>
                                     <Radio value={0} onChange={onChange}   >Servicio</Radio>
                                     <Radio value={1} onChange={onChange}   >Infraestructura</Radio>
-                                    <Radio value={2} onChange={onChange}  >Producto</Radio>
                                 </Radio.Group>
 
 

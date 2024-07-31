@@ -12,14 +12,12 @@ import EntListaService from '../../../Service/EntListaService';
 import GeneralService from '../../../Service/GeneralService';
 import PersonaNaturalService from '../../../Service/PersonaNaturalService';
 import { EmpresaEntity } from '../../../Models/EmpresaEntity';
+
 //ENTITY
-import { MerListaEntity } from '../../../Models/MerListaEntity'
 import { EntListaModel } from '../../../Models/EntListaEntity';
-import { AlquilerEntity } from '../../../Models/AlquilerEntity';
 import { TipoEntidadItemModel, DatosClienteItemModel } from '../../../Models/GeneralEntity'
 import EmpresaService from '../../../Service/EmpresaService';
 import { PersonaNaturalEnlaceModel } from '../../../Models/PersonaNaturalEntity';
-import { EntDatoModel } from "../../../Models/EntDatoEntity";
 
 const AddEditForm: React.FC<PropsModel> = (props) => {
     const sMerLista = new MerListaService();
@@ -113,6 +111,7 @@ const AddEditForm: React.FC<PropsModel> = (props) => {
         // } else {
         // }
     }
+    
     const Guardar_Total = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         selectedTipoDocuemntoIdentidad;
