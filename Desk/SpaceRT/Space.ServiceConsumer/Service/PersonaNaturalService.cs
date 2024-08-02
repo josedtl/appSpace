@@ -21,8 +21,10 @@ namespace Space.ServiceConsumer.Service
                 client.DefaultRequestHeaders.Add("Authorization", GetToken());
                 HttpResponseMessage Data = await client.GetAsync(GetUrlParametros(Url));
                 String Content = ValidarHttp(Data);
-                List<EntidadEntityModel> Items = JsonConvert.DeserializeObject<List<EntidadEntityModel>>(Content);
-                return Items;
+            
+                var ResponseItem = JsonConvert.DeserializeObject<ResponseAPI<List<EntidadEntityModel>>>(Content);
+
+                return ResponseItem.Value;
             }
             catch (Exception ex)
             {
@@ -81,13 +83,19 @@ namespace Space.ServiceConsumer.Service
             {
                 String RoutePrefix = "api/PersonaNatural";
                 InstanciaParametros();
-                String Url = RemoteAddress(RoutePrefix, "GetPersonaNaturalMain");
+                String Url = RemoteAddress(RoutePrefix, "ObtenerMain");
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Authorization", GetToken());
                 HttpResponseMessage Data = await client.GetAsync(GetUrlParametros(Url));
                 String Content = ValidarHttp(Data);
-                List<PersonaNaturalMainModel> Items = JsonConvert.DeserializeObject<List<PersonaNaturalMainModel>>(Content);
-                return Items;
+          
+
+                var ResponseItem = JsonConvert.DeserializeObject<ResponseAPI<List<PersonaNaturalMainModel>>>(Content);
+                return ResponseItem.Value;
+
+
+
+
             }
             catch (Exception ex)
             {

@@ -16,10 +16,10 @@ namespace Space.ServiceConsumer.Service
         public static String RemoteAddress(String RoutePrefix, String NameControlador)
         {
 
-            ConectorItem.Servidor = "localhost";
+            ConectorItem.Servidor = "localhost:7201";
             ConectorItem.ServiceConfig = "ServiceSpace";
 
-            remoteAddress = String.Format("http://{0}/{1}/{2}/{3}", ConectorItem.Servidor, ConectorItem.ServiceConfig, RoutePrefix, NameControlador);
+            remoteAddress = String.Format("https://{0}/{1}/{2}", ConectorItem.Servidor, RoutePrefix, NameControlador);
 
             return remoteAddress;
         }

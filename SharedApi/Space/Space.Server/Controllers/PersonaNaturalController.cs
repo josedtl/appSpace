@@ -22,7 +22,6 @@ namespace Space.Server.Controllers
                 var Items = PersonaNatural.ObtenerMain();
                 List<PersonaNaturalMainModel> Lista = new List<PersonaNaturalMainModel>();
                 foreach (var Item in Items) Lista.Add(new PersonaNaturalMainModel(Item));
-
                 return new ResponseAPI<List<PersonaNaturalMainModel>>(Lista, true);
             }
             catch (Exception ex)

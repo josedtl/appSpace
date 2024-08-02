@@ -19,6 +19,7 @@ namespace Space.EntityLayer
             Direccion = GetStringDefault();
             Telefono = GetStringDefault();
             Correo = GetStringDefault();
+            Web = GetStringDefault();
             UbigeoId = GetInt32Default();
             FechaRegistro = DateTime.Now;
             CodUsuario = GetStringDefault();
@@ -35,6 +36,7 @@ namespace Space.EntityLayer
         public Int32 UbigeoId { get; set; }
         public DateTime FechaRegistro { get; set; }
         public String CodUsuario { get; set; }
+        public String Web {  get; set; }
 
     }
 }

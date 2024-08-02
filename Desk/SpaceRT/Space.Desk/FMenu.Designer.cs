@@ -32,6 +32,7 @@
             MenuVertical = new Panel();
             button7 = new Button();
             pCatalogo = new Panel();
+            btnEmpresa = new Button();
             button1 = new Button();
             btnMercaderia = new Button();
             btnPersonaNatural = new Button();
@@ -85,6 +86,7 @@
             // 
             // pCatalogo
             // 
+            pCatalogo.Controls.Add(btnEmpresa);
             pCatalogo.Controls.Add(button1);
             pCatalogo.Controls.Add(btnMercaderia);
             pCatalogo.Controls.Add(btnPersonaNatural);
@@ -99,6 +101,27 @@
             pCatalogo.Size = new Size(288, 280);
             pCatalogo.TabIndex = 4;
             pCatalogo.Visible = false;
+            // 
+            // btnEmpresa
+            // 
+            btnEmpresa.Anchor = AnchorStyles.Top;
+            btnEmpresa.FlatAppearance.BorderSize = 0;
+            btnEmpresa.FlatAppearance.MouseDownBackColor = Color.Gray;
+            btnEmpresa.FlatAppearance.MouseOverBackColor = Color.Silver;
+            btnEmpresa.FlatStyle = FlatStyle.Flat;
+            btnEmpresa.Font = new Font("Calibri Light", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEmpresa.ForeColor = SystemColors.ButtonHighlight;
+            btnEmpresa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEmpresa.Location = new Point(-2, 235);
+            btnEmpresa.Margin = new Padding(4, 3, 4, 3);
+            btnEmpresa.Name = "btnEmpresa";
+            btnEmpresa.Padding = new Padding(41, 0, 0, 0);
+            btnEmpresa.Size = new Size(287, 23);
+            btnEmpresa.TabIndex = 9;
+            btnEmpresa.Text = "Empresa";
+            btnEmpresa.TextAlign = ContentAlignment.MiddleLeft;
+            btnEmpresa.UseVisualStyleBackColor = true;
+            btnEmpresa.Click += btnEmpresa_Click;
             // 
             // button1
             // 
@@ -351,5 +374,6 @@
         private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Button btnMercaderia;
         private Button button1;
+        private Button btnEmpresa;
     }
 }

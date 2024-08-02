@@ -94,7 +94,7 @@ namespace Space.DataLayer
             try
             {
                 StartHelper(false);
-                IDataReader dr = (IDataReader)DbDatabase.ExecuteReader(CommandType.StoredProcedure, "sp_PersonaMainAll");
+                IDataReader dr = (IDataReader)DbDatabase.ExecuteReader(CommandType.StoredProcedure, "sp_EmpresaObtenerMain");
                 FillSchemeTable(dr);
                 List<EmpresaEntity> EntityList = new List<EmpresaEntity>();
                 while (dr.Read())

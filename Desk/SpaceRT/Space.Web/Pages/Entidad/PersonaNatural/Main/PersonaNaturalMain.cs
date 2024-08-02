@@ -67,4 +67,5 @@ namespace Space.Web.Pages.Entidad.PersonaNatural.Main
 
             }
         }
+    }
 }

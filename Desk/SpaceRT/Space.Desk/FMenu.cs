@@ -63,5 +63,10 @@ namespace Space.Desk
         {
             AbrirFormEnPanel(new Formulario.Mercaderia.MercaderiaMain());
         }
+
+        private void btnEmpresa_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new Formulario.Empresa.EmpresaMain());
+        }
     }
 }

@@ -23,6 +23,12 @@
     <Compile Update="FMenu.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formulario\Empresa\EmpresaMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formulario\Empresa\EmpresaPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formulario\Infraestructura\InfraestructuraMain.cs">
       <SubType>Form</SubType>
     </Compile>
